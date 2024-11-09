@@ -1,0 +1,284 @@
+// Enums pour gérer les choix
+enum OuiNonNP {
+    OUI, NON, NP // NP = Non Précisé
+}
+
+enum Gender {
+    MASCULIN, FEMININ
+}
+
+enum Region {
+    SFAX, GABES, GAFSA, KEBILI, TOZEUR, MEDNINE, TATAOUINE, SBZ, KASSERINE, MAHDIA, KAIRAOUANE, MONASTIR, SOUSSE, AUTRE
+}
+
+enum CivilStatus {
+    CELIBATAIRE, MARIE, DIVORCE, NP
+}
+
+enum CouvertureSociale {
+    CNAM, INDIGENT, NP
+}
+
+enum DiagnosticType {
+    HEMOPHILIE, WILLEBRAND, THROMBOPATHIE, DEFICIT_FACTEUR_VII, DEFICIT_FACTEUR_XI, DEFICIT_FACTEUR_XIII, DEFICIT_COMBINE
+}
+
+enum FormeHemophilie {
+    SPORADIQUE, HEREDITAIRE, NP
+}
+
+enum TypeManifestation {
+    SPONTANE, PROVOQUE
+}
+
+enum TypePreparation {
+    PREPAREE, NON_PREPAREE, NP
+}
+
+enum SuiteOperatoire {
+    SIMPLE, HEMORRAGIQUE, NP
+}
+
+enum TypeComplicationsOrthopediques {
+    SYNOVITE, ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE, PSEUDOTUMEURS, FRACTURES
+}
+
+enum ArticulationCible {
+    GENOU_GAUCHE, GENOU_DROIT, COUDE_GAUCHE, COUDE_DROIT, CHEVILLE_GAUCHE, CHEVILLE_DROITE
+}
+
+enum PECTherapeutique {
+    RAS, SYNOVIORTHESE, PTG
+}
+
+enum TauxInhibiteur {
+    FAIBLE_REPONDEUR, FORT_REPONDEUR, NP
+}
+
+enum TauxRecuperation {
+    NORMAL, DIMINUE
+}
+
+enum RechercheACC {
+    NON_FAITE, FAITE, POSITIVE, NEGATIVE, DOUTEUSE
+}
+
+enum CATTherapeutique {
+    AUGMENTER_DOSE_FACTEUR, NOVOSEVEN, FEIBA, CORTICOTHERAPIE, IMMUREL
+}
+
+enum Observance {
+    OUI, NON, NP
+}
+
+enum EvolutionInhibiteur {
+    DISPARITION, PERSISTANCE
+}
+
+enum SchemaTherapeutique {
+    HEBDOMADAIRE, MENSUEL, BIMENSUEL
+}
+
+enum Serologie {
+    POSITIVE, NEGATIVE, NP
+}
+
+enum EvolutionVHC {
+    DISPARITION, PERSISTANCE
+}
+
+enum TestStatus {
+    FAIT, NON_FAIT, NORMAL, ALLONGE
+}
+
+enum TypeHemorragie {
+    CHUTE_DENTAIRE, PLAIE_LANGUE, GINGIVORRAGIES, EPISTAXIS, ECHYMOSES
+}
+
+enum TypeHemorragieVisceres {
+    HEMATEMESE, RECTORRAGIE, HEMATURIE
+}
+
+enum EvolutionSNC {
+    REGRESSION, DECES
+}
+
+enum AccidentsGravesType {
+    HEMATOMES_CEREBRALES, HEMOTHORAX, EDC_HEMORRAGIQUE, HEMATOME_COMPRESSIF
+}
+
+enum PriseEnChargeType {
+    A_LA_DEMANDE, PROPHYLAXIE
+}
+
+enum InjectionType {
+    AUTO_INJECTION, INJECTION_PARENT, INJECTION_HOPITAL
+}
+
+enum TraitementType {
+    PLASMATIQUE, RECOMBINANT
+}
+
+// Entité Patient pour les informations de base
+entity Patient {
+    prenom String required maxlength(50),
+    nom String required maxlength(50),
+    nomJeuneFille String maxlength(50),
+    profession String maxlength(50),
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String maxlength(50), // Si "origine" est "Autre"
+    adresse String maxlength(100),
+    telephone String maxlength(20),
+    etatCivil CivilStatus required,
+    couvertureSociale CouvertureSociale required,
+    prenomPere String maxlength(50),
+    professionPere String maxlength(50),
+    nomPrenomMere String maxlength(50),
+    professionMere String maxlength(50),
+    
+    // Champs de diagnostic déplacés depuis FicheHemophilie
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(50),
+    anneeDiagnostic Integer,
+
+    // Enregistrement au registre
+    consentementRegistre OuiNonNP,
+    dateEnregistrementRegistre LocalDate
+}
+
+// Entité FicheHemophilie pour centraliser les informations de diagnostic et de suivi
+entity FicheHemophilie {
+    dossierNumber String required maxlength(50),
+    ordreNumber String maxlength(50),
+    indexNumber String maxlength(50),
+    
+    // Antécédents familiaux
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins String maxlength(50),
+    casSimilairesFamille OuiNonNP,
+    nbreCasSimilaires Integer,
+    degreParenteCasSimilaires String maxlength(50),
+    casDecesSyndromeHemorragique OuiNonNP,
+    nbreCasDeces Integer,
+    formeHemophilie FormeHemophilie,
+    nbreFreres Integer,
+    nbreSoeurs Integer,
+
+    // Biologie au moment du diagnostic
+    dateTestConfirmation LocalDate,
+    hemogrammeHb Double,
+    hemogrammeHt Double,
+    plaquettes Integer,
+    tp Double,
+    fibrinogene Double,
+    tcaMT Double,
+    tcaMT2h Double,
+    tcaTemoin2h Double,
+    ts TestStatus,
+    
+    // Manifestations cliniques
+    hemarthrose OuiNonNP,
+    siegeHemarthrose ArticulationCible,
+    circonstanceHemarthrose TypeManifestation,
+    frequenceHemarthrose Integer,
+
+    hematomeSuperficiel OuiNonNP,
+    circonstanceHematomeSuperficiel TypeManifestation,
+    siegeHematomeSuperficiel String maxlength(50),
+
+    hematomePsoas OuiNonNP,
+    circonstanceHematomePsoas TypeManifestation,
+    recidiveHematomePsoas OuiNonNP,
+
+    hemorragiesCutaneoMuqueuses OuiNonNP,
+    typeHemorragiesCutaneoMuqueuses TypeHemorragie,
+    frequenceHemorragiesCutaneoMuqueuses Integer,
+
+    hemorragieVisceres OuiNonNP,
+    typeHemorragieVisceres TypeHemorragieVisceres,
+    explorationHemorragieVisceres OuiNonNP,
+    examenLesionHemorragieVisceres String maxlength(50),
+
+    saignementSNC OuiNonNP,
+    evolutionSNC EvolutionSNC,
+
+    // Circoncision
+    circoncision OuiNonNP,
+    typePreparationCirconcision TypePreparation,
+    suiteOperatoireCirconcision SuiteOperatoire,
+    ageCirconcision Integer,
+
+    // Avulsion dentaire
+    avulsionDentaire OuiNonNP,
+    typePreparationAvulsionDentaire TypePreparation,
+
+    // Intervention chirurgicale
+    interventionChirurgicale OuiNonNP,
+    typeInterventionChirurgicale String maxlength(50),
+
+    // Accidents hémorragiques graves
+    accidentsHemorragiquesGraves OuiNonNP,
+    circonstanceAccidentsHemorragiquesGraves AccidentsGravesType,
+
+    // Traitement
+    priseEnCharge PriseEnChargeType required,
+    causePriseEnCharge String maxlength(50),
+    doseProphylaxie String maxlength(20),
+    frequenceProphylaxie Integer,
+    debutProphylaxie LocalDate,
+    modaliteInjection InjectionType,
+    typeTraitementSubstitutif TraitementType,
+    age1ereSubstitution Integer,
+
+    // Antécédents de traitement par PSL
+    antecedentsPSL OuiNonNP,
+    plasmaFraisCongele OuiNonNP,
+    cryoprecipite OuiNonNP,
+
+    // Complications liées au traitement
+    complicationsOrthopediques OuiNonNP,
+    typeComplicationsOrthopediques TypeComplicationsOrthopediques,
+    articulationCible ArticulationCible,
+    pecTherapeutique PECTherapeutique,
+
+    complicationsInhibiteurs OuiNonNP,
+    tauxInhibiteur TauxInhibiteur,
+    testRecuperationFAH TestStatus,
+    dateRecuperationFAH LocalDate,
+    tauxRecuperation TauxRecuperation,
+    antiFAHNonNeutralisant OuiNonNP,
+    rechercheACC RechercheACC,
+    catTherapeutique CATTherapeutique,
+    iti OuiNonNP,
+    posologieITI String maxlength(50),
+    dureeITI String maxlength(50),
+    observanceITI Observance,
+    causeNonObservanceITI String maxlength(50),
+    evolutionInhibiteur EvolutionInhibiteur,
+    prophylaxieHemlibra OuiNonNP,
+    dateDebutHemlibra LocalDate,
+    schemaTherapeutique SchemaTherapeutique,
+    efficaciteHemlibra Integer,
+
+    // Complications virales
+    serologieHBC Serologie,
+    serologieHVC Serologie,
+    dateDecouverteVHC LocalDate,
+    chargeViraleVHC String maxlength(50),
+    traitementVHC OuiNonNP,
+    evolutionVHC EvolutionVHC,
+    serologieHIV Serologie
+}
+
+// Relations entre FicheHemophilie et Patient
+relationship ManyToOne {
+    FicheHemophilie{patient} to Patient
+}
+
+// Options de génération
+dto * with mapstruct
+paginate Patient, FicheHemophilie with pagination
+service all with serviceClass
