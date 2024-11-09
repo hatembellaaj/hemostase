@@ -1,1558 +1,216 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-fiche-hemophilie-heading" data-cy="FicheHemophilieCreateUpdateHeading">Créer ou éditer un Fiche Hemophilie</h2>
+      <h2 id="jhi-fiche-hemophilie-heading" data-cy="FicheHemophilieCreateUpdateHeading">Créer ou éditer une Fiche Hémophilie</h2>
 
-      <div>
-        <jhi-alert-error></jhi-alert-error>
-
-        @if (editForm.controls.id.value !== null) {
-          <div class="mb-3">
-            <label class="form-label" for="field_id">ID</label>
-            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-          </div>
-        }
-
-        @let dossierNumberRef = editForm.get('dossierNumber')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_dossierNumber">Dossier Number</label>
-          <input
-            type="text"
-            class="form-control"
-            name="dossierNumber"
-            id="field_dossierNumber"
-            data-cy="dossierNumber"
-            formControlName="dossierNumber"
-          />
-          @if (dossierNumberRef.invalid && (dossierNumberRef.dirty || dossierNumberRef.touched)) {
-            <div>
-              @if (editForm.get('dossierNumber')?.errors?.required) {
-                <small class="form-text text-danger">Ce champ est obligatoire.</small>
-              }
-              @if (editForm.get('dossierNumber')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let ordreNumberRef = editForm.get('ordreNumber')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_ordreNumber">Ordre Number</label>
-          <input
-            type="text"
-            class="form-control"
-            name="ordreNumber"
-            id="field_ordreNumber"
-            data-cy="ordreNumber"
-            formControlName="ordreNumber"
-          />
-          @if (ordreNumberRef.invalid && (ordreNumberRef.dirty || ordreNumberRef.touched)) {
-            <div>
-              @if (editForm.get('ordreNumber')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let indexNumberRef = editForm.get('indexNumber')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_indexNumber">Index Number</label>
-          <input
-            type="text"
-            class="form-control"
-            name="indexNumber"
-            id="field_indexNumber"
-            data-cy="indexNumber"
-            formControlName="indexNumber"
-          />
-          @if (indexNumberRef.invalid && (indexNumberRef.dirty || indexNumberRef.touched)) {
-            <div>
-              @if (editForm.get('indexNumber')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
-          <select
-            class="form-control"
-            name="parentsConsanguins"
-            formControlName="parentsConsanguins"
-            id="field_parentsConsanguins"
-            data-cy="parentsConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        @let degreParenteConsanguinsRef = editForm.get('degreParenteConsanguins')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteConsanguins"
-            id="field_degreParenteConsanguins"
-            data-cy="degreParenteConsanguins"
-            formControlName="degreParenteConsanguins"
-          />
-          @if (degreParenteConsanguinsRef.invalid && (degreParenteConsanguinsRef.dirty || degreParenteConsanguinsRef.touched)) {
-            <div>
-              @if (editForm.get('degreParenteConsanguins')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_casSimilairesFamille">Cas Similaires Famille</label>
-          <select
-            class="form-control"
-            name="casSimilairesFamille"
-            formControlName="casSimilairesFamille"
-            id="field_casSimilairesFamille"
-            data-cy="casSimilairesFamille"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_nbreCasSimilaires">Nbre Cas Similaires</label>
-          <input
-            type="number"
-            class="form-control"
-            name="nbreCasSimilaires"
-            id="field_nbreCasSimilaires"
-            data-cy="nbreCasSimilaires"
-            formControlName="nbreCasSimilaires"
-          />
-        </div>
-
-        @let degreParenteCasSimilairesRef = editForm.get('degreParenteCasSimilaires')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCasSimilaires">Degre Parente Cas Similaires</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCasSimilaires"
-            id="field_degreParenteCasSimilaires"
-            data-cy="degreParenteCasSimilaires"
-            formControlName="degreParenteCasSimilaires"
-          />
-          @if (degreParenteCasSimilairesRef.invalid && (degreParenteCasSimilairesRef.dirty || degreParenteCasSimilairesRef.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCasSimilaires')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_casDecesSyndromeHemorragique">Cas Deces Syndrome Hemorragique</label>
-          <select
-            class="form-control"
-            name="casDecesSyndromeHemorragique"
-            formControlName="casDecesSyndromeHemorragique"
-            id="field_casDecesSyndromeHemorragique"
-            data-cy="casDecesSyndromeHemorragique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_nbreCasDeces">Nbre Cas Deces</label>
-          <input
-            type="number"
-            class="form-control"
-            name="nbreCasDeces"
-            id="field_nbreCasDeces"
-            data-cy="nbreCasDeces"
-            formControlName="nbreCasDeces"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_formeHemophilie">Forme Hemophilie</label>
-          <select
-            class="form-control"
-            name="formeHemophilie"
-            formControlName="formeHemophilie"
-            id="field_formeHemophilie"
-            data-cy="formeHemophilie"
-          >
-            <option [ngValue]="null"></option>
-            @for (formeHemophilie of formeHemophilieValues; track $index) {
-              <option [value]="formeHemophilie">
-                {{ { null: '', SPORADIQUE: 'SPORADIQUE', HEREDITAIRE: 'HEREDITAIRE', NP: 'NP' }[formeHemophilie] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_nbreFreres">Nbre Freres</label>
-          <input
-            type="number"
-            class="form-control"
-            name="nbreFreres"
-            id="field_nbreFreres"
-            data-cy="nbreFreres"
-            formControlName="nbreFreres"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_nbreSoeurs">Nbre Soeurs</label>
-          <input
-            type="number"
-            class="form-control"
-            name="nbreSoeurs"
-            id="field_nbreSoeurs"
-            data-cy="nbreSoeurs"
-            formControlName="nbreSoeurs"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_dateTestConfirmation">Date Test Confirmation</label>
-          <div class="input-group">
-            <input
-              id="field_dateTestConfirmation"
-              data-cy="dateTestConfirmation"
-              type="text"
-              class="form-control"
-              name="dateTestConfirmation"
-              ngbDatepicker
-              #dateTestConfirmationDp="ngbDatepicker"
-              formControlName="dateTestConfirmation"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateTestConfirmationDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
+      <div class="accordion" id="ficheAccordion">
+        <!-- Section: Identification -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingIdentification">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIdentification" aria-expanded="true" aria-controls="collapseIdentification">
+              Identification
             </button>
+          </h2>
+          <div id="collapseIdentification" class="accordion-collapse collapse show" aria-labelledby="headingIdentification" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_dossierNumber">Dossier Number</label>
+                <input type="text" class="form-control" name="dossierNumber" id="field_dossierNumber" data-cy="dossierNumber" formControlName="dossierNumber" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_ordreNumber">Ordre Number</label>
+                <input type="text" class="form-control" name="ordreNumber" id="field_ordreNumber" data-cy="ordreNumber" formControlName="ordreNumber" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_indexNumber">Index Number</label>
+                <input type="text" class="form-control" name="indexNumber" id="field_indexNumber" data-cy="indexNumber" formControlName="indexNumber" />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemogrammeHb">Hemogramme Hb</label>
-          <input
-            type="number"
-            class="form-control"
-            name="hemogrammeHb"
-            id="field_hemogrammeHb"
-            data-cy="hemogrammeHb"
-            formControlName="hemogrammeHb"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hemogrammeHt">Hemogramme Ht</label>
-          <input
-            type="number"
-            class="form-control"
-            name="hemogrammeHt"
-            id="field_hemogrammeHt"
-            data-cy="hemogrammeHt"
-            formControlName="hemogrammeHt"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_plaquettes">Plaquettes</label>
-          <input
-            type="number"
-            class="form-control"
-            name="plaquettes"
-            id="field_plaquettes"
-            data-cy="plaquettes"
-            formControlName="plaquettes"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp</label>
-          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_fibrinogene">Fibrinogene</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fibrinogene"
-            id="field_fibrinogene"
-            data-cy="fibrinogene"
-            formControlName="fibrinogene"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT">Tca MT</label>
-          <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT2h">Tca MT 2 H</label>
-          <input type="number" class="form-control" name="tcaMT2h" id="field_tcaMT2h" data-cy="tcaMT2h" formControlName="tcaMT2h" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaTemoin2h">Tca Temoin 2 H</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tcaTemoin2h"
-            id="field_tcaTemoin2h"
-            data-cy="tcaTemoin2h"
-            formControlName="tcaTemoin2h"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ts">Ts</label>
-          <select class="form-control" name="ts" formControlName="ts" id="field_ts" data-cy="ts">
-            <option [ngValue]="null"></option>
-            @for (testStatus of testStatusValues; track $index) {
-              <option [value]="testStatus">
-                {{ { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[testStatus] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthrose">Hemarthrose</label>
-          <select class="form-control" name="hemarthrose" formControlName="hemarthrose" id="field_hemarthrose" data-cy="hemarthrose">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_siegeHemarthrose">Siege Hemarthrose</label>
-          <select
-            class="form-control"
-            name="siegeHemarthrose"
-            formControlName="siegeHemarthrose"
-            id="field_siegeHemarthrose"
-            data-cy="siegeHemarthrose"
-          >
-            <option [ngValue]="null"></option>
-            @for (articulationCible of articulationCibleValues; track $index) {
-              <option [value]="articulationCible">
-                {{
-                  {
-                    null: '',
-                    GENOU_GAUCHE: 'GENOU_GAUCHE',
-                    GENOU_DROIT: 'GENOU_DROIT',
-                    COUDE_GAUCHE: 'COUDE_GAUCHE',
-                    COUDE_DROIT: 'COUDE_DROIT',
-                    CHEVILLE_GAUCHE: 'CHEVILLE_GAUCHE',
-                    CHEVILLE_DROITE: 'CHEVILLE_DROITE',
-                  }[articulationCible]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_circonstanceHemarthrose">Circonstance Hemarthrose</label>
-          <select
-            class="form-control"
-            name="circonstanceHemarthrose"
-            formControlName="circonstanceHemarthrose"
-            id="field_circonstanceHemarthrose"
-            data-cy="circonstanceHemarthrose"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHemarthrose">Frequence Hemarthrose</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHemarthrose"
-            id="field_frequenceHemarthrose"
-            data-cy="frequenceHemarthrose"
-            formControlName="frequenceHemarthrose"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSuperficiel">Hematome Superficiel</label>
-          <select
-            class="form-control"
-            name="hematomeSuperficiel"
-            formControlName="hematomeSuperficiel"
-            id="field_hematomeSuperficiel"
-            data-cy="hematomeSuperficiel"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_circonstanceHematomeSuperficiel">Circonstance Hematome Superficiel</label>
-          <select
-            class="form-control"
-            name="circonstanceHematomeSuperficiel"
-            formControlName="circonstanceHematomeSuperficiel"
-            id="field_circonstanceHematomeSuperficiel"
-            data-cy="circonstanceHematomeSuperficiel"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
-
-        @let siegeHematomeSuperficielRef = editForm.get('siegeHematomeSuperficiel')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_siegeHematomeSuperficiel">Siege Hematome Superficiel</label>
-          <input
-            type="text"
-            class="form-control"
-            name="siegeHematomeSuperficiel"
-            id="field_siegeHematomeSuperficiel"
-            data-cy="siegeHematomeSuperficiel"
-            formControlName="siegeHematomeSuperficiel"
-          />
-          @if (siegeHematomeSuperficielRef.invalid && (siegeHematomeSuperficielRef.dirty || siegeHematomeSuperficielRef.touched)) {
-            <div>
-              @if (editForm.get('siegeHematomeSuperficiel')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomePsoas">Hematome Psoas</label>
-          <select
-            class="form-control"
-            name="hematomePsoas"
-            formControlName="hematomePsoas"
-            id="field_hematomePsoas"
-            data-cy="hematomePsoas"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_circonstanceHematomePsoas">Circonstance Hematome Psoas</label>
-          <select
-            class="form-control"
-            name="circonstanceHematomePsoas"
-            formControlName="circonstanceHematomePsoas"
-            id="field_circonstanceHematomePsoas"
-            data-cy="circonstanceHematomePsoas"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_recidiveHematomePsoas">Recidive Hematome Psoas</label>
-          <select
-            class="form-control"
-            name="recidiveHematomePsoas"
-            formControlName="recidiveHematomePsoas"
-            id="field_recidiveHematomePsoas"
-            data-cy="recidiveHematomePsoas"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragiesCutaneoMuqueuses">Hemorragies Cutaneo Muqueuses</label>
-          <select
-            class="form-control"
-            name="hemorragiesCutaneoMuqueuses"
-            formControlName="hemorragiesCutaneoMuqueuses"
-            id="field_hemorragiesCutaneoMuqueuses"
-            data-cy="hemorragiesCutaneoMuqueuses"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragiesCutaneoMuqueuses">Type Hemorragies Cutaneo Muqueuses</label>
-          <select
-            class="form-control"
-            name="typeHemorragiesCutaneoMuqueuses"
-            formControlName="typeHemorragiesCutaneoMuqueuses"
-            id="field_typeHemorragiesCutaneoMuqueuses"
-            data-cy="typeHemorragiesCutaneoMuqueuses"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeHemorragie of typeHemorragieValues; track $index) {
-              <option [value]="typeHemorragie">
-                {{
-                  {
-                    null: '',
-                    CHUTE_DENTAIRE: 'CHUTE_DENTAIRE',
-                    PLAIE_LANGUE: 'PLAIE_LANGUE',
-                    GINGIVORRAGIES: 'GINGIVORRAGIES',
-                    EPISTAXIS: 'EPISTAXIS',
-                    ECHYMOSES: 'ECHYMOSES',
-                  }[typeHemorragie]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHemorragiesCutaneoMuqueuses">Frequence Hemorragies Cutaneo Muqueuses</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHemorragiesCutaneoMuqueuses"
-            id="field_frequenceHemorragiesCutaneoMuqueuses"
-            data-cy="frequenceHemorragiesCutaneoMuqueuses"
-            formControlName="frequenceHemorragiesCutaneoMuqueuses"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieVisceres">Hemorragie Visceres</label>
-          <select
-            class="form-control"
-            name="hemorragieVisceres"
-            formControlName="hemorragieVisceres"
-            id="field_hemorragieVisceres"
-            data-cy="hemorragieVisceres"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragieVisceres">Type Hemorragie Visceres</label>
-          <select
-            class="form-control"
-            name="typeHemorragieVisceres"
-            formControlName="typeHemorragieVisceres"
-            id="field_typeHemorragieVisceres"
-            data-cy="typeHemorragieVisceres"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeHemorragieVisceres of typeHemorragieVisceresValues; track $index) {
-              <option [value]="typeHemorragieVisceres">
-                {{ { null: '', HEMATEMESE: 'HEMATEMESE', RECTORRAGIE: 'RECTORRAGIE', HEMATURIE: 'HEMATURIE' }[typeHemorragieVisceres] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_explorationHemorragieVisceres">Exploration Hemorragie Visceres</label>
-          <select
-            class="form-control"
-            name="explorationHemorragieVisceres"
-            formControlName="explorationHemorragieVisceres"
-            id="field_explorationHemorragieVisceres"
-            data-cy="explorationHemorragieVisceres"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        @let examenLesionHemorragieVisceresRef = editForm.get('examenLesionHemorragieVisceres')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_examenLesionHemorragieVisceres">Examen Lesion Hemorragie Visceres</label>
-          <input
-            type="text"
-            class="form-control"
-            name="examenLesionHemorragieVisceres"
-            id="field_examenLesionHemorragieVisceres"
-            data-cy="examenLesionHemorragieVisceres"
-            formControlName="examenLesionHemorragieVisceres"
-          />
-          @if (
-            examenLesionHemorragieVisceresRef.invalid &&
-            (examenLesionHemorragieVisceresRef.dirty || examenLesionHemorragieVisceresRef.touched)
-          ) {
-            <div>
-              @if (editForm.get('examenLesionHemorragieVisceres')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_saignementSNC">Saignement SNC</label>
-          <select
-            class="form-control"
-            name="saignementSNC"
-            formControlName="saignementSNC"
-            id="field_saignementSNC"
-            data-cy="saignementSNC"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_evolutionSNC">Evolution SNC</label>
-          <select class="form-control" name="evolutionSNC" formControlName="evolutionSNC" id="field_evolutionSNC" data-cy="evolutionSNC">
-            <option [ngValue]="null"></option>
-            @for (evolutionSNC of evolutionSNCValues; track $index) {
-              <option [value]="evolutionSNC">{{ { null: '', REGRESSION: 'REGRESSION', DECES: 'DECES' }[evolutionSNC] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_circoncision">Circoncision</label>
-          <select class="form-control" name="circoncision" formControlName="circoncision" id="field_circoncision" data-cy="circoncision">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_typePreparationCirconcision">Type Preparation Circoncision</label>
-          <select
-            class="form-control"
-            name="typePreparationCirconcision"
-            formControlName="typePreparationCirconcision"
-            id="field_typePreparationCirconcision"
-            data-cy="typePreparationCirconcision"
-          >
-            <option [ngValue]="null"></option>
-            @for (typePreparation of typePreparationValues; track $index) {
-              <option [value]="typePreparation">
-                {{ { null: '', PREPAREE: 'PREPAREE', NON_PREPAREE: 'NON_PREPAREE', NP: 'NP' }[typePreparation] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_suiteOperatoireCirconcision">Suite Operatoire Circoncision</label>
-          <select
-            class="form-control"
-            name="suiteOperatoireCirconcision"
-            formControlName="suiteOperatoireCirconcision"
-            id="field_suiteOperatoireCirconcision"
-            data-cy="suiteOperatoireCirconcision"
-          >
-            <option [ngValue]="null"></option>
-            @for (suiteOperatoire of suiteOperatoireValues; track $index) {
-              <option [value]="suiteOperatoire">
-                {{ { null: '', SIMPLE: 'SIMPLE', HEMORRAGIQUE: 'HEMORRAGIQUE', NP: 'NP' }[suiteOperatoire] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ageCirconcision">Age Circoncision</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageCirconcision"
-            id="field_ageCirconcision"
-            data-cy="ageCirconcision"
-            formControlName="ageCirconcision"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_avulsionDentaire">Avulsion Dentaire</label>
-          <select
-            class="form-control"
-            name="avulsionDentaire"
-            formControlName="avulsionDentaire"
-            id="field_avulsionDentaire"
-            data-cy="avulsionDentaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_typePreparationAvulsionDentaire">Type Preparation Avulsion Dentaire</label>
-          <select
-            class="form-control"
-            name="typePreparationAvulsionDentaire"
-            formControlName="typePreparationAvulsionDentaire"
-            id="field_typePreparationAvulsionDentaire"
-            data-cy="typePreparationAvulsionDentaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (typePreparation of typePreparationValues; track $index) {
-              <option [value]="typePreparation">
-                {{ { null: '', PREPAREE: 'PREPAREE', NON_PREPAREE: 'NON_PREPAREE', NP: 'NP' }[typePreparation] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_interventionChirurgicale">Intervention Chirurgicale</label>
-          <select
-            class="form-control"
-            name="interventionChirurgicale"
-            formControlName="interventionChirurgicale"
-            id="field_interventionChirurgicale"
-            data-cy="interventionChirurgicale"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        @let typeInterventionChirurgicaleRef = editForm.get('typeInterventionChirurgicale')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeInterventionChirurgicale">Type Intervention Chirurgicale</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeInterventionChirurgicale"
-            id="field_typeInterventionChirurgicale"
-            data-cy="typeInterventionChirurgicale"
-            formControlName="typeInterventionChirurgicale"
-          />
-          @if (
-            typeInterventionChirurgicaleRef.invalid && (typeInterventionChirurgicaleRef.dirty || typeInterventionChirurgicaleRef.touched)
-          ) {
-            <div>
-              @if (editForm.get('typeInterventionChirurgicale')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_accidentsHemorragiquesGraves">Accidents Hemorragiques Graves</label>
-          <select
-            class="form-control"
-            name="accidentsHemorragiquesGraves"
-            formControlName="accidentsHemorragiquesGraves"
-            id="field_accidentsHemorragiquesGraves"
-            data-cy="accidentsHemorragiquesGraves"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_circonstanceAccidentsHemorragiquesGraves">Circonstance Accidents Hemorragiques Graves</label>
-          <select
-            class="form-control"
-            name="circonstanceAccidentsHemorragiquesGraves"
-            formControlName="circonstanceAccidentsHemorragiquesGraves"
-            id="field_circonstanceAccidentsHemorragiquesGraves"
-            data-cy="circonstanceAccidentsHemorragiquesGraves"
-          >
-            <option [ngValue]="null"></option>
-            @for (accidentsGravesType of accidentsGravesTypeValues; track $index) {
-              <option [value]="accidentsGravesType">
-                {{
-                  {
-                    null: '',
-                    HEMATOMES_CEREBRALES: 'HEMATOMES_CEREBRALES',
-                    HEMOTHORAX: 'HEMOTHORAX',
-                    EDC_HEMORRAGIQUE: 'EDC_HEMORRAGIQUE',
-                    HEMATOME_COMPRESSIF: 'HEMATOME_COMPRESSIF',
-                  }[accidentsGravesType]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        @let priseEnChargeRef = editForm.get('priseEnCharge')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_priseEnCharge">Prise En Charge</label>
-          <select
-            class="form-control"
-            name="priseEnCharge"
-            formControlName="priseEnCharge"
-            id="field_priseEnCharge"
-            data-cy="priseEnCharge"
-          >
-            <option [ngValue]="null"></option>
-            @for (priseEnChargeType of priseEnChargeTypeValues; track $index) {
-              <option [value]="priseEnChargeType">
-                {{ { null: '', A_LA_DEMANDE: 'A_LA_DEMANDE', PROPHYLAXIE: 'PROPHYLAXIE' }[priseEnChargeType] }}
-              </option>
-            }
-          </select>
-          @if (priseEnChargeRef.invalid && (priseEnChargeRef.dirty || priseEnChargeRef.touched)) {
-            <div>
-              @if (editForm.get('priseEnCharge')?.errors?.required) {
-                <small class="form-text text-danger">Ce champ est obligatoire.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let causePriseEnChargeRef = editForm.get('causePriseEnCharge')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causePriseEnCharge">Cause Prise En Charge</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causePriseEnCharge"
-            id="field_causePriseEnCharge"
-            data-cy="causePriseEnCharge"
-            formControlName="causePriseEnCharge"
-          />
-          @if (causePriseEnChargeRef.invalid && (causePriseEnChargeRef.dirty || causePriseEnChargeRef.touched)) {
-            <div>
-              @if (editForm.get('causePriseEnCharge')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let doseProphylaxieRef = editForm.get('doseProphylaxie')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_doseProphylaxie">Dose Prophylaxie</label>
-          <input
-            type="text"
-            class="form-control"
-            name="doseProphylaxie"
-            id="field_doseProphylaxie"
-            data-cy="doseProphylaxie"
-            formControlName="doseProphylaxie"
-          />
-          @if (doseProphylaxieRef.invalid && (doseProphylaxieRef.dirty || doseProphylaxieRef.touched)) {
-            <div>
-              @if (editForm.get('doseProphylaxie')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 20 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceProphylaxie">Frequence Prophylaxie</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceProphylaxie"
-            id="field_frequenceProphylaxie"
-            data-cy="frequenceProphylaxie"
-            formControlName="frequenceProphylaxie"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_debutProphylaxie">Debut Prophylaxie</label>
-          <div class="input-group">
-            <input
-              id="field_debutProphylaxie"
-              data-cy="debutProphylaxie"
-              type="text"
-              class="form-control"
-              name="debutProphylaxie"
-              ngbDatepicker
-              #debutProphylaxieDp="ngbDatepicker"
-              formControlName="debutProphylaxie"
-            />
-            <button type="button" class="btn btn-secondary" (click)="debutProphylaxieDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
+        <!-- Section: Antécédents -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingAntecedents">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAntecedents" aria-expanded="false" aria-controls="collapseAntecedents">
+              Antécédents
             </button>
+          </h2>
+          <div id="collapseAntecedents" class="accordion-collapse collapse" aria-labelledby="headingAntecedents" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+                <select class="form-control" name="parentsConsanguins" formControlName="parentsConsanguins" id="field_parentsConsanguins" data-cy="parentsConsanguins">
+                  <option [ngValue]="null"></option>
+                  <option [value]="'OUI'">OUI</option>
+                  <option [value]="'NON'">NON</option>
+                  <option [value]="'NP'">NP</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
+                <input type="text" class="form-control" name="degreParenteConsanguins" id="field_degreParenteConsanguins" data-cy="degreParenteConsanguins" formControlName="degreParenteConsanguins" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_casSimilairesFamille">Cas Similaires Famille</label>
+                <select class="form-control" name="casSimilairesFamille" formControlName="casSimilairesFamille" id="field_casSimilairesFamille" data-cy="casSimilairesFamille">
+                  <option [ngValue]="null"></option>
+                  <option [value]="'OUI'">OUI</option>
+                  <option [value]="'NON'">NON</option>
+                  <option [value]="'NP'">NP</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_nbreCasSimilaires">Nbre Cas Similaires</label>
+                <input type="number" class="form-control" name="nbreCasSimilaires" id="field_nbreCasSimilaires" data-cy="nbreCasSimilaires" formControlName="nbreCasSimilaires" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_degreParenteCasSimilaires">Degre Parente Cas Similaires</label>
+                <input type="text" class="form-control" name="degreParenteCasSimilaires" id="field_degreParenteCasSimilaires" data-cy="degreParenteCasSimilaires" formControlName="degreParenteCasSimilaires" />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_modaliteInjection">Modalite Injection</label>
-          <select
-            class="form-control"
-            name="modaliteInjection"
-            formControlName="modaliteInjection"
-            id="field_modaliteInjection"
-            data-cy="modaliteInjection"
-          >
-            <option [ngValue]="null"></option>
-            @for (injectionType of injectionTypeValues; track $index) {
-              <option [value]="injectionType">
-                {{
-                  {
-                    null: '',
-                    AUTO_INJECTION: 'AUTO_INJECTION',
-                    INJECTION_PARENT: 'INJECTION_PARENT',
-                    INJECTION_HOPITAL: 'INJECTION_HOPITAL',
-                  }[injectionType]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_typeTraitementSubstitutif">Type Traitement Substitutif</label>
-          <select
-            class="form-control"
-            name="typeTraitementSubstitutif"
-            formControlName="typeTraitementSubstitutif"
-            id="field_typeTraitementSubstitutif"
-            data-cy="typeTraitementSubstitutif"
-          >
-            <option [ngValue]="null"></option>
-            @for (traitementType of traitementTypeValues; track $index) {
-              <option [value]="traitementType">
-                {{ { null: '', PLASMATIQUE: 'PLASMATIQUE', RECOMBINANT: 'RECOMBINANT' }[traitementType] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_age1ereSubstitution">Age 1 Ere Substitution</label>
-          <input
-            type="number"
-            class="form-control"
-            name="age1ereSubstitution"
-            id="field_age1ereSubstitution"
-            data-cy="age1ereSubstitution"
-            formControlName="age1ereSubstitution"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_antecedentsPSL">Antecedents PSL</label>
-          <select
-            class="form-control"
-            name="antecedentsPSL"
-            formControlName="antecedentsPSL"
-            id="field_antecedentsPSL"
-            data-cy="antecedentsPSL"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_plasmaFraisCongele">Plasma Frais Congele</label>
-          <select
-            class="form-control"
-            name="plasmaFraisCongele"
-            formControlName="plasmaFraisCongele"
-            id="field_plasmaFraisCongele"
-            data-cy="plasmaFraisCongele"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_cryoprecipite">Cryoprecipite</label>
-          <select
-            class="form-control"
-            name="cryoprecipite"
-            formControlName="cryoprecipite"
-            id="field_cryoprecipite"
-            data-cy="cryoprecipite"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_complicationsOrthopediques">Complications Orthopediques</label>
-          <select
-            class="form-control"
-            name="complicationsOrthopediques"
-            formControlName="complicationsOrthopediques"
-            id="field_complicationsOrthopediques"
-            data-cy="complicationsOrthopediques"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_typeComplicationsOrthopediques">Type Complications Orthopediques</label>
-          <select
-            class="form-control"
-            name="typeComplicationsOrthopediques"
-            formControlName="typeComplicationsOrthopediques"
-            id="field_typeComplicationsOrthopediques"
-            data-cy="typeComplicationsOrthopediques"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeComplicationsOrthopediques of typeComplicationsOrthopediquesValues; track $index) {
-              <option [value]="typeComplicationsOrthopediques">
-                {{
-                  {
-                    null: '',
-                    SYNOVITE: 'SYNOVITE',
-                    ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE: 'ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE',
-                    PSEUDOTUMEURS: 'PSEUDOTUMEURS',
-                    FRACTURES: 'FRACTURES',
-                  }[typeComplicationsOrthopediques]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_articulationCible">Articulation Cible</label>
-          <select
-            class="form-control"
-            name="articulationCible"
-            formControlName="articulationCible"
-            id="field_articulationCible"
-            data-cy="articulationCible"
-          >
-            <option [ngValue]="null"></option>
-            @for (articulationCible of articulationCibleValues; track $index) {
-              <option [value]="articulationCible">
-                {{
-                  {
-                    null: '',
-                    GENOU_GAUCHE: 'GENOU_GAUCHE',
-                    GENOU_DROIT: 'GENOU_DROIT',
-                    COUDE_GAUCHE: 'COUDE_GAUCHE',
-                    COUDE_DROIT: 'COUDE_DROIT',
-                    CHEVILLE_GAUCHE: 'CHEVILLE_GAUCHE',
-                    CHEVILLE_DROITE: 'CHEVILLE_DROITE',
-                  }[articulationCible]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_pecTherapeutique">Pec Therapeutique</label>
-          <select
-            class="form-control"
-            name="pecTherapeutique"
-            formControlName="pecTherapeutique"
-            id="field_pecTherapeutique"
-            data-cy="pecTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (pECTherapeutique of pECTherapeutiqueValues; track $index) {
-              <option [value]="pECTherapeutique">
-                {{ { null: '', RAS: 'RAS', SYNOVIORTHESE: 'SYNOVIORTHESE', PTG: 'PTG' }[pECTherapeutique] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_complicationsInhibiteurs">Complications Inhibiteurs</label>
-          <select
-            class="form-control"
-            name="complicationsInhibiteurs"
-            formControlName="complicationsInhibiteurs"
-            id="field_complicationsInhibiteurs"
-            data-cy="complicationsInhibiteurs"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxInhibiteur">Taux Inhibiteur</label>
-          <select
-            class="form-control"
-            name="tauxInhibiteur"
-            formControlName="tauxInhibiteur"
-            id="field_tauxInhibiteur"
-            data-cy="tauxInhibiteur"
-          >
-            <option [ngValue]="null"></option>
-            @for (tauxInhibiteur of tauxInhibiteurValues; track $index) {
-              <option [value]="tauxInhibiteur">
-                {{ { null: '', FAIBLE_REPONDEUR: 'FAIBLE_REPONDEUR', FORT_REPONDEUR: 'FORT_REPONDEUR', NP: 'NP' }[tauxInhibiteur] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_testRecuperationFAH">Test Recuperation FAH</label>
-          <select
-            class="form-control"
-            name="testRecuperationFAH"
-            formControlName="testRecuperationFAH"
-            id="field_testRecuperationFAH"
-            data-cy="testRecuperationFAH"
-          >
-            <option [ngValue]="null"></option>
-            @for (testStatus of testStatusValues; track $index) {
-              <option [value]="testStatus">
-                {{ { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[testStatus] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_dateRecuperationFAH">Date Recuperation FAH</label>
-          <div class="input-group">
-            <input
-              id="field_dateRecuperationFAH"
-              data-cy="dateRecuperationFAH"
-              type="text"
-              class="form-control"
-              name="dateRecuperationFAH"
-              ngbDatepicker
-              #dateRecuperationFAHDp="ngbDatepicker"
-              formControlName="dateRecuperationFAH"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateRecuperationFAHDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
+        <!-- Section: Circonstances de découverte -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingCirconstances">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCirconstances" aria-expanded="false" aria-controls="collapseCirconstances">
+              Circonstances de découverte
             </button>
+          </h2>
+          <div id="collapseCirconstances" class="accordion-collapse collapse" aria-labelledby="headingCirconstances" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_circonstanceDecouverte">Circonstance de découverte</label>
+                <input type="text" class="form-control" name="circonstanceDecouverte" id="field_circonstanceDecouverte" data-cy="circonstanceDecouverte" formControlName="circonstanceDecouverte" />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxRecuperation">Taux Recuperation</label>
-          <select
-            class="form-control"
-            name="tauxRecuperation"
-            formControlName="tauxRecuperation"
-            id="field_tauxRecuperation"
-            data-cy="tauxRecuperation"
-          >
-            <option [ngValue]="null"></option>
-            @for (tauxRecuperation of tauxRecuperationValues; track $index) {
-              <option [value]="tauxRecuperation">{{ { null: '', NORMAL: 'NORMAL', DIMINUE: 'DIMINUE' }[tauxRecuperation] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_antiFAHNonNeutralisant">Anti FAH Non Neutralisant</label>
-          <select
-            class="form-control"
-            name="antiFAHNonNeutralisant"
-            formControlName="antiFAHNonNeutralisant"
-            id="field_antiFAHNonNeutralisant"
-            data-cy="antiFAHNonNeutralisant"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_rechercheACC">Recherche ACC</label>
-          <select class="form-control" name="rechercheACC" formControlName="rechercheACC" id="field_rechercheACC" data-cy="rechercheACC">
-            <option [ngValue]="null"></option>
-            @for (rechercheACC of rechercheACCValues; track $index) {
-              <option [value]="rechercheACC">
-                {{
-                  { null: '', NON_FAITE: 'NON_FAITE', FAITE: 'FAITE', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', DOUTEUSE: 'DOUTEUSE' }[
-                    rechercheACC
-                  ]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_catTherapeutique">Cat Therapeutique</label>
-          <select
-            class="form-control"
-            name="catTherapeutique"
-            formControlName="catTherapeutique"
-            id="field_catTherapeutique"
-            data-cy="catTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (cATTherapeutique of cATTherapeutiqueValues; track $index) {
-              <option [value]="cATTherapeutique">
-                {{
-                  {
-                    null: '',
-                    AUGMENTER_DOSE_FACTEUR: 'AUGMENTER_DOSE_FACTEUR',
-                    NOVOSEVEN: 'NOVOSEVEN',
-                    FEIBA: 'FEIBA',
-                    CORTICOTHERAPIE: 'CORTICOTHERAPIE',
-                    IMMUREL: 'IMMUREL',
-                  }[cATTherapeutique]
-                }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_iti">Iti</label>
-          <select class="form-control" name="iti" formControlName="iti" id="field_iti" data-cy="iti">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        @let posologieITIRef = editForm.get('posologieITI')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_posologieITI">Posologie ITI</label>
-          <input
-            type="text"
-            class="form-control"
-            name="posologieITI"
-            id="field_posologieITI"
-            data-cy="posologieITI"
-            formControlName="posologieITI"
-          />
-          @if (posologieITIRef.invalid && (posologieITIRef.dirty || posologieITIRef.touched)) {
-            <div>
-              @if (editForm.get('posologieITI')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let dureeITIRef = editForm.get('dureeITI')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_dureeITI">Duree ITI</label>
-          <input type="text" class="form-control" name="dureeITI" id="field_dureeITI" data-cy="dureeITI" formControlName="dureeITI" />
-          @if (dureeITIRef.invalid && (dureeITIRef.dirty || dureeITIRef.touched)) {
-            <div>
-              @if (editForm.get('dureeITI')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_observanceITI">Observance ITI</label>
-          <select
-            class="form-control"
-            name="observanceITI"
-            formControlName="observanceITI"
-            id="field_observanceITI"
-            data-cy="observanceITI"
-          >
-            <option [ngValue]="null"></option>
-            @for (observance of observanceValues; track $index) {
-              <option [value]="observance">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[observance] }}</option>
-            }
-          </select>
-        </div>
-
-        @let causeNonObservanceITIRef = editForm.get('causeNonObservanceITI')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeNonObservanceITI">Cause Non Observance ITI</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeNonObservanceITI"
-            id="field_causeNonObservanceITI"
-            data-cy="causeNonObservanceITI"
-            formControlName="causeNonObservanceITI"
-          />
-          @if (causeNonObservanceITIRef.invalid && (causeNonObservanceITIRef.dirty || causeNonObservanceITIRef.touched)) {
-            <div>
-              @if (editForm.get('causeNonObservanceITI')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_evolutionInhibiteur">Evolution Inhibiteur</label>
-          <select
-            class="form-control"
-            name="evolutionInhibiteur"
-            formControlName="evolutionInhibiteur"
-            id="field_evolutionInhibiteur"
-            data-cy="evolutionInhibiteur"
-          >
-            <option [ngValue]="null"></option>
-            @for (evolutionInhibiteur of evolutionInhibiteurValues; track $index) {
-              <option [value]="evolutionInhibiteur">
-                {{ { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[evolutionInhibiteur] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_prophylaxieHemlibra">Prophylaxie Hemlibra</label>
-          <select
-            class="form-control"
-            name="prophylaxieHemlibra"
-            formControlName="prophylaxieHemlibra"
-            id="field_prophylaxieHemlibra"
-            data-cy="prophylaxieHemlibra"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDebutHemlibra">Date Debut Hemlibra</label>
-          <div class="input-group">
-            <input
-              id="field_dateDebutHemlibra"
-              data-cy="dateDebutHemlibra"
-              type="text"
-              class="form-control"
-              name="dateDebutHemlibra"
-              ngbDatepicker
-              #dateDebutHemlibraDp="ngbDatepicker"
-              formControlName="dateDebutHemlibra"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDebutHemlibraDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
+        <!-- Section: Biologie au moment du diagnostic -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingBiologie">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiologie" aria-expanded="false" aria-controls="collapseBiologie">
+              Biologie au moment du diagnostic
             </button>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_schemaTherapeutique">Schema Therapeutique</label>
-          <select
-            class="form-control"
-            name="schemaTherapeutique"
-            formControlName="schemaTherapeutique"
-            id="field_schemaTherapeutique"
-            data-cy="schemaTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (schemaTherapeutique of schemaTherapeutiqueValues; track $index) {
-              <option [value]="schemaTherapeutique">
-                {{ { null: '', HEBDOMADAIRE: 'HEBDOMADAIRE', MENSUEL: 'MENSUEL', BIMENSUEL: 'BIMENSUEL' }[schemaTherapeutique] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_efficaciteHemlibra">Efficacite Hemlibra</label>
-          <input
-            type="number"
-            class="form-control"
-            name="efficaciteHemlibra"
-            id="field_efficaciteHemlibra"
-            data-cy="efficaciteHemlibra"
-            formControlName="efficaciteHemlibra"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_serologieHBC">Serologie HBC</label>
-          <select class="form-control" name="serologieHBC" formControlName="serologieHBC" id="field_serologieHBC" data-cy="serologieHBC">
-            <option [ngValue]="null"></option>
-            @for (serologie of serologieValues; track $index) {
-              <option [value]="serologie">{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[serologie] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_serologieHVC">Serologie HVC</label>
-          <select class="form-control" name="serologieHVC" formControlName="serologieHVC" id="field_serologieHVC" data-cy="serologieHVC">
-            <option [ngValue]="null"></option>
-            @for (serologie of serologieValues; track $index) {
-              <option [value]="serologie">{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[serologie] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDecouverteVHC">Date Decouverte VHC</label>
-          <div class="input-group">
-            <input
-              id="field_dateDecouverteVHC"
-              data-cy="dateDecouverteVHC"
-              type="text"
-              class="form-control"
-              name="dateDecouverteVHC"
-              ngbDatepicker
-              #dateDecouverteVHCDp="ngbDatepicker"
-              formControlName="dateDecouverteVHC"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDecouverteVHCDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
-        </div>
-
-        @let chargeViraleVHCRef = editForm.get('chargeViraleVHC')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_chargeViraleVHC">Charge Virale VHC</label>
-          <input
-            type="text"
-            class="form-control"
-            name="chargeViraleVHC"
-            id="field_chargeViraleVHC"
-            data-cy="chargeViraleVHC"
-            formControlName="chargeViraleVHC"
-          />
-          @if (chargeViraleVHCRef.invalid && (chargeViraleVHCRef.dirty || chargeViraleVHCRef.touched)) {
-            <div>
-              @if (editForm.get('chargeViraleVHC')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 50 caractères.</small>
-              }
+          </h2>
+          <div id="collapseBiologie" class="accordion-collapse collapse" aria-labelledby="headingBiologie" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_hemogrammeHb">Hemogramme Hb</label>
+                <input type="number" class="form-control" name="hemogrammeHb" id="field_hemogrammeHb" data-cy="hemogrammeHb" formControlName="hemogrammeHb" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_hemogrammeHt">Hemogramme Ht</label>
+                <input type="number" class="form-control" name="hemogrammeHt" id="field_hemogrammeHt" data-cy="hemogrammeHt" formControlName="hemogrammeHt" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_plaquettes">Plaquettes</label>
+                <input type="number" class="form-control" name="plaquettes" id="field_plaquettes" data-cy="plaquettes" formControlName="plaquettes" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_tp">Tp</label>
+                <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
+              </div>
             </div>
-          }
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementVHC">Traitement VHC</label>
-          <select
-            class="form-control"
-            name="traitementVHC"
-            formControlName="traitementVHC"
-            id="field_traitementVHC"
-            data-cy="traitementVHC"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
+        <!-- Section: Manifestations cliniques -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingManifestations">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseManifestations" aria-expanded="false" aria-controls="collapseManifestations">
+              Manifestations cliniques
+            </button>
+          </h2>
+          <div id="collapseManifestations" class="accordion-collapse collapse" aria-labelledby="headingManifestations" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_hemarthrose">Hemarthrose</label>
+                <select class="form-control" name="hemarthrose" formControlName="hemarthrose" id="field_hemarthrose" data-cy="hemarthrose">
+                  <option [ngValue]="null"></option>
+                  <option [value]="'OUI'">OUI</option>
+                  <option [value]="'NON'">NON</option>
+                  <option [value]="'NP'">NP</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_siegeHemarthrose">Siege Hemarthrose</label>
+                <select class="form-control" name="siegeHemarthrose" formControlName="siegeHemarthrose" id="field_siegeHemarthrose" data-cy="siegeHemarthrose">
+                  <option [ngValue]="null"></option>
+                  <option [value]="'GENOU_GAUCHE'">GENOU GAUCHE</option>
+                  <option [value]="'GENOU_DROIT'">GENOU DROIT</option>
+                  <option [value]="'COUDE_GAUCHE'">COUDE GAUCHE</option>
+                  <option [value]="'COUDE_DROIT'">COUDE DROIT</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_evolutionVHC">Evolution VHC</label>
-          <select class="form-control" name="evolutionVHC" formControlName="evolutionVHC" id="field_evolutionVHC" data-cy="evolutionVHC">
-            <option [ngValue]="null"></option>
-            @for (evolutionVHC of evolutionVHCValues; track $index) {
-              <option [value]="evolutionVHC">
-                {{ { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[evolutionVHC] }}
-              </option>
-            }
-          </select>
+        <!-- Section: Prise en charge thérapeutique -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingPriseEnCharge">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePriseEnCharge" aria-expanded="false" aria-controls="collapsePriseEnCharge">
+              Prise en charge thérapeutique
+            </button>
+          </h2>
+          <div id="collapsePriseEnCharge" class="accordion-collapse collapse" aria-labelledby="headingPriseEnCharge" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_typeTraitementSubstitutif">Type Traitement Substitutif</label>
+                <select class="form-control" name="typeTraitementSubstitutif" formControlName="typeTraitementSubstitutif" id="field_typeTraitementSubstitutif" data-cy="typeTraitementSubstitutif">
+                  <option [ngValue]="null"></option>
+                  <option [value]="'PLASMATIQUE'">PLASMATIQUE</option>
+                  <option [value]="'RECOMBINANT'">RECOMBINANT</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_doseProphylaxie">Dose Prophylaxie</label>
+                <input type="text" class="form-control" name="doseProphylaxie" id="field_doseProphylaxie" data-cy="doseProphylaxie" formControlName="doseProphylaxie" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_serologieHIV">Serologie HIV</label>
-          <select class="form-control" name="serologieHIV" formControlName="serologieHIV" id="field_serologieHIV" data-cy="serologieHIV">
-            <option [ngValue]="null"></option>
-            @for (serologie of serologieValues; track $index) {
-              <option [value]="serologie">{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[serologie] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_patient">Patient</label>
-          <select
-            class="form-control"
-            id="field_patient"
-            data-cy="patient"
-            name="patient"
-            formControlName="patient"
-            [compareWith]="comparePatient"
-          >
-            <option [ngValue]="null"></option>
-            @for (patientOption of patientsSharedCollection; track $index) {
-              <option [ngValue]="patientOption">{{ patientOption.id }}</option>
-            }
-          </select>
+        <!-- Section: Complications et évolution -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingComplications">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComplications" aria-expanded="false" aria-controls="collapseComplications">
+              Complications et évolution
+            </button>
+          </h2>
+          <div id="collapseComplications" class="accordion-collapse collapse" aria-labelledby="headingComplications" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_complicationsOrthopediques">Complications Orthopediques</label>
+                <select class="form-control" name="complicationsOrthopediques" formControlName="complicationsOrthopediques" id="field_complicationsOrthopediques" data-cy="complicationsOrthopediques">
+                  <option [ngValue]="null"></option>
+                  <option [value]="'OUI'">OUI</option>
+                  <option [value]="'NON'">NON</option>
+                  <option [value]="'NP'">NP</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_typeComplicationsOrthopediques">Type Complications Orthopediques</label>
+                <select class="form-control" name="typeComplicationsOrthopediques" formControlName="typeComplicationsOrthopediques" id="field_typeComplicationsOrthopediques" data-cy="typeComplicationsOrthopediques">
+                  <option [ngValue]="null"></option>
+                  <option [value]="'SYNOVITE'">SYNOVITE</option>
+                  <option [value]="'ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE'">ARTHROPATHIE HEMOPHILIQUE CHRONIQUE</option>
+                  <option [value]="'PSEUDOTUMEURS'">PSEUDOTUMEURS</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
-        </button>
-
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
-        </button>
+      <!-- Boutons Annuler et Sauvegarder -->
+      <div class="mt-3">
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">Annuler</button>
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">Sauvegarder</button>
       </div>
     </form>
   </div>
