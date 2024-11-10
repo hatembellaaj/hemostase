@@ -130,6 +130,12 @@ enum DiagnosticType {
   DEFICIT_COMBINE
 }
 
+enum CircumstanceDecouverte {
+  FORTUITE,
+  FAMILIALE,
+  SYNDROME_HEMORRAGIQUE
+}
+
 // Entité Patient pour les informations de base
 entity Patient {
     prenom String required maxlength(50),
