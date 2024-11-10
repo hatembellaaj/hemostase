@@ -119,6 +119,17 @@ enum TraitementType {
     PLASMATIQUE, RECOMBINANT
 }
 
+// Définir l'énumération pour les types de diagnostic
+enum DiagnosticType {
+  HEMOPHILIE,
+  WILLEBRAND,
+  THROMBOPATHIE,
+  DEFICIT_FACTEUR_VII,
+  DEFICIT_FACTEUR_XI,
+  DEFICIT_FACTEUR_XIII,
+  DEFICIT_COMBINE
+}
+
 // Entité Patient pour les informations de base
 entity Patient {
     prenom String required maxlength(50),
