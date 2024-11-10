@@ -8,28 +8,42 @@
       </div>
 
       <div class="accordion" id="ficheAccordion">
-        
+
         <!-- Section Identification -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingIdentification">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIdentification" aria-expanded="true" aria-controls="collapseIdentification">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseIdentification"
+              aria-expanded="true"
+              aria-controls="collapseIdentification">
               Identification
             </button>
           </h2>
-          <div id="collapseIdentification" class="accordion-collapse collapse show" aria-labelledby="headingIdentification" data-bs-parent="#ficheAccordion">
+          <div
+            id="collapseIdentification"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingIdentification"
+            data-bs-parent="#ficheAccordion">
             <div class="accordion-body">
+              <!-- Identification Fields -->
               <div *ngIf="editForm.controls.id.value !== null" class="mb-3">
                 <label class="form-label" for="field_id">ID</label>
                 <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
               </div>
+
               <div class="mb-3">
                 <label class="form-label" for="field_dossierNumber">Dossier Number</label>
                 <input type="text" class="form-control" name="dossierNumber" id="field_dossierNumber" data-cy="dossierNumber" formControlName="dossierNumber" />
               </div>
+
               <div class="mb-3">
                 <label class="form-label" for="field_ordreNumber">Ordre Number</label>
                 <input type="text" class="form-control" name="ordreNumber" id="field_ordreNumber" data-cy="ordreNumber" formControlName="ordreNumber" />
               </div>
+
               <div class="mb-3">
                 <label class="form-label" for="field_indexNumber">Index Number</label>
                 <input type="text" class="form-control" name="indexNumber" id="field_indexNumber" data-cy="indexNumber" formControlName="indexNumber" />
@@ -41,37 +55,39 @@
         <!-- Section Diagnostic -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingDiagnostic">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiagnostic" aria-expanded="false" aria-controls="collapseDiagnostic">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseDiagnostic"
+              aria-expanded="false"
+              aria-controls="collapseDiagnostic">
               Diagnostic
             </button>
           </h2>
-          <div id="collapseDiagnostic" class="accordion-collapse collapse" aria-labelledby="headingDiagnostic" data-bs-parent="#ficheAccordion">
+          <div
+            id="collapseDiagnostic"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingDiagnostic"
+            data-bs-parent="#ficheAccordion">
             <div class="accordion-body">
+              <!-- Diagnostic Fields -->
               <div class="mb-3">
                 <label class="form-label" for="field_anneeDiagnostic">Année Diagnostic</label>
                 <input type="number" class="form-control" name="anneeDiagnostic" id="field_anneeDiagnostic" data-cy="anneeDiagnostic" formControlName="anneeDiagnostic" />
               </div>
+
               <div class="mb-3">
                 <label class="form-label" for="field_diagnostic">Diagnostic</label>
                 <select class="form-control" name="diagnostic" formControlName="diagnostic" id="field_diagnostic" data-cy="diagnostic">
                   <option [ngValue]="null"></option>
-                  <option *ngFor="let diagnosticType of diagnosticTypeValues" [value]="diagnosticType">
-                    {{ diagnosticType }}
-                  </option>
+                  <option *ngFor="let diagnosticType of diagnosticTypeValues" [value]="diagnosticType">{{ diagnosticType }}</option>
                 </select>
               </div>
+
               <div class="mb-3">
                 <label class="form-label" for="field_autreDiagnostic">Autre Diagnostic</label>
                 <input type="text" class="form-control" name="autreDiagnostic" id="field_autreDiagnostic" data-cy="autreDiagnostic" formControlName="autreDiagnostic" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_dateTestConfirmation">Date Test Confirmation</label>
-                <div class="input-group">
-                  <input id="field_dateTestConfirmation" data-cy="dateTestConfirmation" type="text" class="form-control" name="dateTestConfirmation" ngbDatepicker #dateTestConfirmationDp="ngbDatepicker" formControlName="dateTestConfirmation" />
-                  <button type="button" class="btn btn-secondary" (click)="dateTestConfirmationDp.toggle()">
-                    <fa-icon icon="calendar-alt"></fa-icon>
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -80,125 +96,71 @@
         <!-- Section Antécédents -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingAntecedents">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAntecedents" aria-expanded="false" aria-controls="collapseAntecedents">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseAntecedents"
+              aria-expanded="false"
+              aria-controls="collapseAntecedents">
               Antécédents
             </button>
           </h2>
-          <div id="collapseAntecedents" class="accordion-collapse collapse" aria-labelledby="headingAntecedents" data-bs-parent="#ficheAccordion">
+          <div
+            id="collapseAntecedents"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingAntecedents"
+            data-bs-parent="#ficheAccordion">
             <div class="accordion-body">
+              <!-- Antécédents Fields -->
               <div class="mb-3">
                 <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
                 <select class="form-control" name="parentsConsanguins" formControlName="parentsConsanguins" id="field_parentsConsanguins" data-cy="parentsConsanguins">
                   <option [ngValue]="null"></option>
-                  <option [value]="'OUI'">OUI</option>
-                  <option [value]="'NON'">NON</option>
-                  <option [value]="'NP'">NP</option>
+                  <option *ngFor="let option of ouiNonNPValues" [value]="option">{{ option }}</option>
                 </select>
               </div>
+
               <div class="mb-3">
                 <label class="form-label" for="field_degreParenteConsanguins">Degré Parenté Consanguins</label>
                 <input type="text" class="form-control" name="degreParenteConsanguins" id="field_degreParenteConsanguins" data-cy="degreParenteConsanguins" formControlName="degreParenteConsanguins" />
               </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_casSimilairesFamille">Cas Similaires dans la Famille</label>
-                <select class="form-control" name="casSimilairesFamille" formControlName="casSimilairesFamille" id="field_casSimilairesFamille" data-cy="casSimilairesFamille">
-                  <option [ngValue]="null"></option>
-                  <option [value]="'OUI'">OUI</option>
-                  <option [value]="'NON'">NON</option>
-                  <option [value]="'NP'">NP</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_nbreCasSimilaires">Nombre de Cas Similaires</label>
-                <input type="number" class="form-control" name="nbreCasSimilaires" id="field_nbreCasSimilaires" data-cy="nbreCasSimilaires" formControlName="nbreCasSimilaires" />
-              </div>
             </div>
           </div>
         </div>
 
-        <!-- Section Prise en charge thérapeutique -->
+        <!-- Section Circonstances de découverte -->
         <div class="accordion-item">
-          <h2 class="accordion-header" id="headingPriseEnCharge">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePriseEnCharge" aria-expanded="false" aria-controls="collapsePriseEnCharge">
-              Prise en charge thérapeutique
+          <h2 class="accordion-header" id="headingCircumstancesDecouverte">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseCircumstancesDecouverte"
+              aria-expanded="false"
+              aria-controls="collapseCircumstancesDecouverte">
+              Circonstances de découverte
             </button>
           </h2>
-          <div id="collapsePriseEnCharge" class="accordion-collapse collapse" aria-labelledby="headingPriseEnCharge" data-bs-parent="#ficheAccordion">
+          <div
+            id="collapseCircumstancesDecouverte"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingCircumstancesDecouverte"
+            data-bs-parent="#ficheAccordion">
             <div class="accordion-body">
+              <!-- Circonstances de découverte Fields -->
               <div class="mb-3">
-                <label class="form-label" for="field_priseEnCharge">Prise en Charge</label>
-                <select class="form-control" name="priseEnCharge" formControlName="priseEnCharge" id="field_priseEnCharge" data-cy="priseEnCharge">
+                <label class="form-label" for="field_circumstanceDecouverte">Circonstance de Découverte</label>
+                <select class="form-control" name="circumstanceDecouverte" formControlName="circumstanceDecouverte" id="field_circumstanceDecouverte" data-cy="circumstanceDecouverte">
                   <option [ngValue]="null"></option>
-                  <option [value]="'A_LA_DEMANDE'">À la demande</option>
-                  <option [value]="'PROPHYLAXIE'">Prophylaxie</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_causePriseEnCharge">Cause Prise en Charge</label>
-                <input type="text" class="form-control" name="causePriseEnCharge" id="field_causePriseEnCharge" data-cy="causePriseEnCharge" formControlName="causePriseEnCharge" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_doseProphylaxie">Dose Prophylaxie</label>
-                <input type="text" class="form-control" name="doseProphylaxie" id="field_doseProphylaxie" data-cy="doseProphylaxie" formControlName="doseProphylaxie" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_frequenceProphylaxie">Fréquence Prophylaxie</label>
-                <input type="number" class="form-control" name="frequenceProphylaxie" id="field_frequenceProphylaxie" data-cy="frequenceProphylaxie" formControlName="frequenceProphylaxie" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_debutProphylaxie">Début Prophylaxie</label>
-                <div class="input-group">
-                  <input id="field_debutProphylaxie" data-cy="debutProphylaxie" type="text" class="form-control" name="debutProphylaxie" ngbDatepicker #debutProphylaxieDp="ngbDatepicker" formControlName="debutProphylaxie" />
-                  <button type="button" class="btn btn-secondary" (click)="debutProphylaxieDp.toggle()">
-                    <fa-icon icon="calendar-alt"></fa-icon>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section Complications liées au traitement -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingComplicationsTraitement">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComplicationsTraitement" aria-expanded="false" aria-controls="collapseComplicationsTraitement">
-              Complications liées au traitement
-            </button>
-          </h2>
-          <div id="collapseComplicationsTraitement" class="accordion-collapse collapse" aria-labelledby="headingComplicationsTraitement" data-bs-parent="#ficheAccordion">
-            <div class="accordion-body">
-              <div class="mb-3">
-                <label class="form-label" for="field_complicationsOrthopediques">Complications Orthopédiques</label>
-                <select class="form-control" name="complicationsOrthopediques" formControlName="complicationsOrthopediques" id="field_complicationsOrthopediques" data-cy="complicationsOrthopediques">
-                  <option [ngValue]="null"></option>
-                  <option [value]="'OUI'">Oui</option>
-                  <option [value]="'NON'">Non</option>
-                  <option [value]="'NP'">Non précisé</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_complicationInhibiteurs">Complications Inhibiteurs</label>
-                <select class="form-control" name="complicationInhibiteurs" formControlName="complicationInhibiteurs" id="field_complicationInhibiteurs" data-cy="complicationInhibiteurs">
-                  <option [ngValue]="null"></option>
-                  <option [value]="'OUI'">Oui</option>
-                  <option [value]="'NON'">Non</option>
-                  <option [value]="'NP'">Non précisé</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="field_testRecuperationFAH">Test Récupération FAH</label>
-                <select class="form-control" name="testRecuperationFAH" formControlName="testRecuperationFAH" id="field_testRecuperationFAH" data-cy="testRecuperationFAH">
-                  <option [ngValue]="null"></option>
-                  <option [value]="'FAIT'">Fait</option>
-                  <option [value]="'NON_FAIT'">Non fait</option>
-                  <option [value]="'NORMAL'">Normal</option>
-                  <option [value]="'ALLONGE'">Allongé</option>
+                  <option *ngFor="let option of circumstanceDecouverteValues" [value]="option">{{ option }}</option>
                 </select>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Vous pouvez ajouter d'autres sections de cette manière -->
       </div>
 
       <!-- Boutons de sauvegarde et d'annulation -->
