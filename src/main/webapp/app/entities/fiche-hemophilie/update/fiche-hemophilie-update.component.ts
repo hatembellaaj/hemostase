@@ -38,7 +38,7 @@ import { FicheHemophilieService } from '../service/fiche-hemophilie.service';
 import { IFicheHemophilie } from '../fiche-hemophilie.model';
 import { FicheHemophilieFormGroup, FicheHemophilieFormService } from './fiche-hemophilie-form.service';
 import { DiagnosticType } from 'app/entities/enumerations/diagnostic-type.model';
-import { circumstanceDecouverte } from 'app/entities/enumerations/circumstance-decouverte.model';
+import { CircumstanceDecouverte } from 'app/entities/enumerations/circumstance-decouverte.model';
 
 @Component({
   standalone: true,
