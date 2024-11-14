@@ -122,7 +122,7 @@ export interface IFicheHemophilie {
   evolutionVHC?: keyof typeof EvolutionVHC | null;
   serologieHIV?: keyof typeof Serologie | null;
   patient?: Pick<IPatient, 'id'> | null;
-  circumstanceDecouverte?: CircumstanceDecouverte | null;
+  circumstanceDecouverte?: keyof typeof CircumstanceDecouverte | null;
 }
 
 export type NewFicheHemophilie = Omit<IFicheHemophilie, 'id'> & { id: null };
