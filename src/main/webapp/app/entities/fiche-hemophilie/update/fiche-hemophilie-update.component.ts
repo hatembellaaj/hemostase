@@ -75,8 +75,7 @@ export class FicheHemophilieUpdateComponent implements OnInit {
   serologieValues = Object.keys(Serologie);
   evolutionVHCValues = Object.keys(EvolutionVHC);
   diagnosticTypeValues = Object.keys(DiagnosticType);
-  circumstanceDecouverteValues  = Object.keys(CircumstanceDecouverte);
-
+  circumstanceDecouverteValues = Object.keys(CircumstanceDecouverte);
   patientsSharedCollection: IPatient[] = [];
 
   protected ficheHemophilieService = inject(FicheHemophilieService);

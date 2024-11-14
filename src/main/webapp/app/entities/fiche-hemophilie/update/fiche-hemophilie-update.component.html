@@ -8,7 +8,6 @@
       </div>
 
       <div class="accordion" id="ficheAccordion">
-
         <!-- Section Identification -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingIdentification">
@@ -18,7 +17,8 @@
               data-bs-toggle="collapse"
               data-bs-target="#collapseIdentification"
               aria-expanded="true"
-              aria-controls="collapseIdentification">
+              aria-controls="collapseIdentification"
+            >
               Identification
             </button>
           </h2>
@@ -26,7 +26,8 @@
             id="collapseIdentification"
             class="accordion-collapse collapse show"
             aria-labelledby="headingIdentification"
-            data-bs-parent="#ficheAccordion">
+            data-bs-parent="#ficheAccordion"
+          >
             <div class="accordion-body">
               <!-- Identification Fields -->
               <div *ngIf="editForm.controls.id.value !== null" class="mb-3">
@@ -36,17 +37,38 @@
 
               <div class="mb-3">
                 <label class="form-label" for="field_dossierNumber">Dossier Number</label>
-                <input type="text" class="form-control" name="dossierNumber" id="field_dossierNumber" data-cy="dossierNumber" formControlName="dossierNumber" />
+                <input
+                  type="text"
+                  class="form-control"
+                  name="dossierNumber"
+                  id="field_dossierNumber"
+                  data-cy="dossierNumber"
+                  formControlName="dossierNumber"
+                />
               </div>
 
               <div class="mb-3">
                 <label class="form-label" for="field_ordreNumber">Ordre Number</label>
-                <input type="text" class="form-control" name="ordreNumber" id="field_ordreNumber" data-cy="ordreNumber" formControlName="ordreNumber" />
+                <input
+                  type="text"
+                  class="form-control"
+                  name="ordreNumber"
+                  id="field_ordreNumber"
+                  data-cy="ordreNumber"
+                  formControlName="ordreNumber"
+                />
               </div>
 
               <div class="mb-3">
                 <label class="form-label" for="field_indexNumber">Index Number</label>
-                <input type="text" class="form-control" name="indexNumber" id="field_indexNumber" data-cy="indexNumber" formControlName="indexNumber" />
+                <input
+                  type="text"
+                  class="form-control"
+                  name="indexNumber"
+                  id="field_indexNumber"
+                  data-cy="indexNumber"
+                  formControlName="indexNumber"
+                />
               </div>
             </div>
           </div>
@@ -61,7 +83,8 @@
               data-bs-toggle="collapse"
               data-bs-target="#collapseDiagnostic"
               aria-expanded="false"
-              aria-controls="collapseDiagnostic">
+              aria-controls="collapseDiagnostic"
+            >
               Diagnostic
             </button>
           </h2>
@@ -69,12 +92,20 @@
             id="collapseDiagnostic"
             class="accordion-collapse collapse"
             aria-labelledby="headingDiagnostic"
-            data-bs-parent="#ficheAccordion">
+            data-bs-parent="#ficheAccordion"
+          >
             <div class="accordion-body">
               <!-- Diagnostic Fields -->
               <div class="mb-3">
                 <label class="form-label" for="field_anneeDiagnostic">Année Diagnostic</label>
-                <input type="number" class="form-control" name="anneeDiagnostic" id="field_anneeDiagnostic" data-cy="anneeDiagnostic" formControlName="anneeDiagnostic" />
+                <input
+                  type="number"
+                  class="form-control"
+                  name="anneeDiagnostic"
+                  id="field_anneeDiagnostic"
+                  data-cy="anneeDiagnostic"
+                  formControlName="anneeDiagnostic"
+                />
               </div>
 
               <div class="mb-3">
@@ -87,7 +118,14 @@
 
               <div class="mb-3">
                 <label class="form-label" for="field_autreDiagnostic">Autre Diagnostic</label>
-                <input type="text" class="form-control" name="autreDiagnostic" id="field_autreDiagnostic" data-cy="autreDiagnostic" formControlName="autreDiagnostic" />
+                <input
+                  type="text"
+                  class="form-control"
+                  name="autreDiagnostic"
+                  id="field_autreDiagnostic"
+                  data-cy="autreDiagnostic"
+                  formControlName="autreDiagnostic"
+                />
               </div>
             </div>
           </div>
@@ -102,7 +140,8 @@
               data-bs-toggle="collapse"
               data-bs-target="#collapseAntecedents"
               aria-expanded="false"
-              aria-controls="collapseAntecedents">
+              aria-controls="collapseAntecedents"
+            >
               Antécédents
             </button>
           </h2>
@@ -110,12 +149,19 @@
             id="collapseAntecedents"
             class="accordion-collapse collapse"
             aria-labelledby="headingAntecedents"
-            data-bs-parent="#ficheAccordion">
+            data-bs-parent="#ficheAccordion"
+          >
             <div class="accordion-body">
               <!-- Antécédents Fields -->
               <div class="mb-3">
                 <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
-                <select class="form-control" name="parentsConsanguins" formControlName="parentsConsanguins" id="field_parentsConsanguins" data-cy="parentsConsanguins">
+                <select
+                  class="form-control"
+                  name="parentsConsanguins"
+                  formControlName="parentsConsanguins"
+                  id="field_parentsConsanguins"
+                  data-cy="parentsConsanguins"
+                >
                   <option [ngValue]="null"></option>
                   <option *ngFor="let option of ouiNonNPValues" [value]="option">{{ option }}</option>
                 </select>
@@ -123,7 +169,14 @@
 
               <div class="mb-3">
                 <label class="form-label" for="field_degreParenteConsanguins">Degré Parenté Consanguins</label>
-                <input type="text" class="form-control" name="degreParenteConsanguins" id="field_degreParenteConsanguins" data-cy="degreParenteConsanguins" formControlName="degreParenteConsanguins" />
+                <input
+                  type="text"
+                  class="form-control"
+                  name="degreParenteConsanguins"
+                  id="field_degreParenteConsanguins"
+                  data-cy="degreParenteConsanguins"
+                  formControlName="degreParenteConsanguins"
+                />
               </div>
             </div>
           </div>
@@ -138,7 +191,8 @@
               data-bs-toggle="collapse"
               data-bs-target="#collapseCircumstancesDecouverte"
               aria-expanded="false"
-              aria-controls="collapseCircumstancesDecouverte">
+              aria-controls="collapseCircumstancesDecouverte"
+            >
               Circonstances de découverte
             </button>
           </h2>
@@ -146,12 +200,19 @@
             id="collapseCircumstancesDecouverte"
             class="accordion-collapse collapse"
             aria-labelledby="headingCircumstancesDecouverte"
-            data-bs-parent="#ficheAccordion">
+            data-bs-parent="#ficheAccordion"
+          >
             <div class="accordion-body">
               <!-- Circonstances de découverte Fields -->
               <div class="mb-3">
                 <label class="form-label" for="field_circumstanceDecouverte">Circonstance de Découverte</label>
-                <select class="form-control" name="circumstanceDecouverte" formControlName="circumstanceDecouverte" id="field_circumstanceDecouverte" data-cy="circumstanceDecouverte">
+                <select
+                  class="form-control"
+                  name="circumstanceDecouverte"
+                  formControlName="circumstanceDecouverte"
+                  id="field_circumstanceDecouverte"
+                  data-cy="circumstanceDecouverte"
+                >
                   <option [ngValue]="null"></option>
                   <option *ngFor="let option of circumstanceDecouverteValues" [value]="option">{{ option }}</option>
                 </select>
@@ -168,7 +229,13 @@
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
         </button>
-        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
         </button>
       </div>

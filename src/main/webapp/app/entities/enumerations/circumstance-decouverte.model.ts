@@ -3,4 +3,3 @@ export enum CircumstanceDecouverte {
   FAMILIALE = 'FAMILIALE',
   SYNDROME_HEMORRAGIQUE = 'SYNDROME_HEMORRAGIQUE',
 }
-
