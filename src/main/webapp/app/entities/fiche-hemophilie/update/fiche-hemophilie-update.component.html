@@ -8,220 +8,202 @@
       </div>
 
       <div class="accordion" id="ficheAccordion">
+
         <!-- Section Identification -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingIdentification">
-            <button
-              class="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseIdentification"
-              aria-expanded="true"
-              aria-controls="collapseIdentification"
-            >
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIdentification" aria-expanded="true" aria-controls="collapseIdentification">
               Identification
             </button>
           </h2>
-          <div
-            id="collapseIdentification"
-            class="accordion-collapse collapse show"
-            aria-labelledby="headingIdentification"
-            data-bs-parent="#ficheAccordion"
-          >
+          <div id="collapseIdentification" class="accordion-collapse collapse show" aria-labelledby="headingIdentification" data-bs-parent="#ficheAccordion">
             <div class="accordion-body">
-              <!-- Identification Fields -->
-              <div *ngIf="editForm.controls.id.value !== null" class="mb-3">
-                <label class="form-label" for="field_id">ID</label>
-                <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-              </div>
-
               <div class="mb-3">
                 <label class="form-label" for="field_dossierNumber">Dossier Number</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="dossierNumber"
-                  id="field_dossierNumber"
-                  data-cy="dossierNumber"
-                  formControlName="dossierNumber"
-                />
+                <input type="text" class="form-control" name="dossierNumber" id="field_dossierNumber" data-cy="dossierNumber" formControlName="dossierNumber" required maxlength="50" />
               </div>
-
               <div class="mb-3">
                 <label class="form-label" for="field_ordreNumber">Ordre Number</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="ordreNumber"
-                  id="field_ordreNumber"
-                  data-cy="ordreNumber"
-                  formControlName="ordreNumber"
-                />
+                <input type="text" class="form-control" name="ordreNumber" id="field_ordreNumber" data-cy="ordreNumber" formControlName="ordreNumber" maxlength="50" />
               </div>
-
               <div class="mb-3">
                 <label class="form-label" for="field_indexNumber">Index Number</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="indexNumber"
-                  id="field_indexNumber"
-                  data-cy="indexNumber"
-                  formControlName="indexNumber"
-                />
+                <input type="text" class="form-control" name="indexNumber" id="field_indexNumber" data-cy="indexNumber" formControlName="indexNumber" maxlength="50" />
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Section Diagnostic -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingDiagnostic">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseDiagnostic"
-              aria-expanded="false"
-              aria-controls="collapseDiagnostic"
-            >
-              Diagnostic
-            </button>
-          </h2>
-          <div
-            id="collapseDiagnostic"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingDiagnostic"
-            data-bs-parent="#ficheAccordion"
-          >
-            <div class="accordion-body">
-              <!-- Diagnostic Fields -->
-              <div class="mb-3">
-                <label class="form-label" for="field_anneeDiagnostic">Année Diagnostic</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="anneeDiagnostic"
-                  id="field_anneeDiagnostic"
-                  data-cy="anneeDiagnostic"
-                  formControlName="anneeDiagnostic"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="field_diagnostic">Diagnostic</label>
-                <select class="form-control" name="diagnostic" formControlName="diagnostic" id="field_diagnostic" data-cy="diagnostic">
-                  <option [ngValue]="null"></option>
-                  <option *ngFor="let diagnosticType of diagnosticTypeValues" [value]="diagnosticType">{{ diagnosticType }}</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="field_autreDiagnostic">Autre Diagnostic</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="autreDiagnostic"
-                  id="field_autreDiagnostic"
-                  data-cy="autreDiagnostic"
-                  formControlName="autreDiagnostic"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section Antécédents -->
+        <!-- Section Antécédents familiaux -->
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingAntecedents">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseAntecedents"
-              aria-expanded="false"
-              aria-controls="collapseAntecedents"
-            >
-              Antécédents
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAntecedents" aria-expanded="false" aria-controls="collapseAntecedents">
+              Antécédents familiaux
             </button>
           </h2>
-          <div
-            id="collapseAntecedents"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingAntecedents"
-            data-bs-parent="#ficheAccordion"
-          >
+          <div id="collapseAntecedents" class="accordion-collapse collapse" aria-labelledby="headingAntecedents" data-bs-parent="#ficheAccordion">
             <div class="accordion-body">
-              <!-- Antécédents Fields -->
               <div class="mb-3">
                 <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
-                <select
-                  class="form-control"
-                  name="parentsConsanguins"
-                  formControlName="parentsConsanguins"
-                  id="field_parentsConsanguins"
-                  data-cy="parentsConsanguins"
-                >
-                  <option [ngValue]="null"></option>
+                <select class="form-control" name="parentsConsanguins" formControlName="parentsConsanguins" id="field_parentsConsanguins" data-cy="parentsConsanguins">
                   <option *ngFor="let option of ouiNonNPValues" [value]="option">{{ option }}</option>
                 </select>
               </div>
-
               <div class="mb-3">
                 <label class="form-label" for="field_degreParenteConsanguins">Degré Parenté Consanguins</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="degreParenteConsanguins"
-                  id="field_degreParenteConsanguins"
-                  data-cy="degreParenteConsanguins"
-                  formControlName="degreParenteConsanguins"
-                />
+                <input type="text" class="form-control" name="degreParenteConsanguins" id="field_degreParenteConsanguins" data-cy="degreParenteConsanguins" formControlName="degreParenteConsanguins" maxlength="50" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_casSimilairesFamille">Cas Similaires dans la Famille</label>
+                <select class="form-control" name="casSimilairesFamille" formControlName="casSimilairesFamille" id="field_casSimilairesFamille" data-cy="casSimilairesFamille">
+                  <option *ngFor="let option of ouiNonNPValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_nbreCasSimilaires">Nombre de Cas Similaires</label>
+                <input type="number" class="form-control" name="nbreCasSimilaires" id="field_nbreCasSimilaires" data-cy="nbreCasSimilaires" formControlName="nbreCasSimilaires" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_degreParenteCasSimilaires">Degré Parenté des Cas Similaires</label>
+                <input type="text" class="form-control" name="degreParenteCasSimilaires" id="field_degreParenteCasSimilaires" data-cy="degreParenteCasSimilaires" formControlName="degreParenteCasSimilaires" maxlength="50" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_casDecesSyndromeHemorragique">Cas de Décès par Syndrome Hémorragique</label>
+                <select class="form-control" name="casDecesSyndromeHemorragique" formControlName="casDecesSyndromeHemorragique" id="field_casDecesSyndromeHemorragique" data-cy="casDecesSyndromeHemorragique">
+                  <option *ngFor="let option of ouiNonNPValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_nbreCasDeces">Nombre de Cas de Décès</label>
+                <input type="number" class="form-control" name="nbreCasDeces" id="field_nbreCasDeces" data-cy="nbreCasDeces" formControlName="nbreCasDeces" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_formeHemophilie">Forme d'Hémophilie</label>
+                <select class="form-control" name="formeHemophilie" formControlName="formeHemophilie" id="field_formeHemophilie" data-cy="formeHemophilie">
+                  <option *ngFor="let option of formeHemophilieValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_nbreFreres">Nombre de Frères</label>
+                <input type="number" class="form-control" name="nbreFreres" id="field_nbreFreres" data-cy="nbreFreres" formControlName="nbreFreres" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_nbreSoeurs">Nombre de Soeurs</label>
+                <input type="number" class="form-control" name="nbreSoeurs" id="field_nbreSoeurs" data-cy="nbreSoeurs" formControlName="nbreSoeurs" />
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Section Circonstances de découverte -->
+        <!-- Section Biologie au moment du diagnostic -->
         <div class="accordion-item">
-          <h2 class="accordion-header" id="headingCircumstancesDecouverte">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseCircumstancesDecouverte"
-              aria-expanded="false"
-              aria-controls="collapseCircumstancesDecouverte"
-            >
-              Circonstances de découverte
+          <h2 class="accordion-header" id="headingBiologie">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBiologie" aria-expanded="false" aria-controls="collapseBiologie">
+              Biologie au moment du diagnostic
             </button>
           </h2>
-          <div
-            id="collapseCircumstancesDecouverte"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingCircumstancesDecouverte"
-            data-bs-parent="#ficheAccordion"
-          >
+          <div id="collapseBiologie" class="accordion-collapse collapse" aria-labelledby="headingBiologie" data-bs-parent="#ficheAccordion">
             <div class="accordion-body">
-              <!-- Circonstances de découverte Fields -->
               <div class="mb-3">
-                <label class="form-label" for="field_circumstanceDecouverte">Circonstance de Découverte</label>
-                <select
-                  class="form-control"
-                  name="circumstanceDecouverte"
-                  formControlName="circumstanceDecouverte"
-                  id="field_circumstanceDecouverte"
-                  data-cy="circumstanceDecouverte"
-                >
-                  <option [ngValue]="null"></option>
-                  <option *ngFor="let option of circumstanceDecouverteValues" [value]="option">{{ option }}</option>
+                <label class="form-label" for="field_dateTestConfirmation">Date du Test de Confirmation</label>
+                <input type="date" class="form-control" name="dateTestConfirmation" id="field_dateTestConfirmation" data-cy="dateTestConfirmation" formControlName="dateTestConfirmation" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_hemogrammeHb">Hémogramme Hb</label>
+                <input type="number" class="form-control" name="hemogrammeHb" id="field_hemogrammeHb" data-cy="hemogrammeHb" formControlName="hemogrammeHb" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_hemogrammeHt">Hémogramme Ht</label>
+                <input type="number" class="form-control" name="hemogrammeHt" id="field_hemogrammeHt" data-cy="hemogrammeHt" formControlName="hemogrammeHt" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_plaquettes">Plaquettes</label>
+                <input type="number" class="form-control" name="plaquettes" id="field_plaquettes" data-cy="plaquettes" formControlName="plaquettes" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_tp">TP</label>
+                <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_fibrinogene">Fibrinogène</label>
+                <input type="number" class="form-control" name="fibrinogene" id="field_fibrinogene" data-cy="fibrinogene" formControlName="fibrinogene" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_tcaMT">TCA MT</label>
+                <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_tcaMT2h">TCA MT 2h</label>
+                <input type="number" class="form-control" name="tcaMT2h" id="field_tcaMT2h" data-cy="tcaMT2h" formControlName="tcaMT2h" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_tcaTemoin2h">TCA Témoin 2h</label>
+                <input type="number" class="form-control" name="tcaTemoin2h" id="field_tcaTemoin2h" data-cy="tcaTemoin2h" formControlName="tcaTemoin2h" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_ts">TS</label>
+                <select class="form-control" name="ts" formControlName="ts" id="field_ts" data-cy="ts">
+                  <option *ngFor="let option of testStatusValues" [value]="option">{{ option }}</option>
                 </select>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Vous pouvez ajouter d'autres sections de cette manière -->
+        <!-- Section Manifestations cliniques -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingManifestations">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseManifestations" aria-expanded="false" aria-controls="collapseManifestations">
+              Manifestations cliniques
+            </button>
+          </h2>
+          <div id="collapseManifestations" class="accordion-collapse collapse" aria-labelledby="headingManifestations" data-bs-parent="#ficheAccordion">
+            <div class="accordion-body">
+              <div class="mb-3">
+                <label class="form-label" for="field_hemarthrose">Hémarthrose</label>
+                <select class="form-control" name="hemarthrose" formControlName="hemarthrose" id="field_hemarthrose" data-cy="hemarthrose">
+                  <option *ngFor="let option of ouiNonNPValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_siegeHemarthrose">Siège de l'Hémarthrose</label>
+                <select class="form-control" name="siegeHemarthrose" formControlName="siegeHemarthrose" id="field_siegeHemarthrose" data-cy="siegeHemarthrose">
+                  <option *ngFor="let option of articulationCibleValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_circonstanceHemarthrose">Circonstance de l'Hémarthrose</label>
+                <select class="form-control" name="circonstanceHemarthrose" formControlName="circonstanceHemarthrose" id="field_circonstanceHemarthrose" data-cy="circonstanceHemarthrose">
+                  <option *ngFor="let option of typeManifestationValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_frequenceHemarthrose">Fréquence de l'Hémarthrose</label>
+                <input type="number" class="form-control" name="frequenceHemarthrose" id="field_frequenceHemarthrose" data-cy="frequenceHemarthrose" formControlName="frequenceHemarthrose" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_hematomeSuperficiel">Hématome Superficiel</label>
+                <select class="form-control" name="hematomeSuperficiel" formControlName="hematomeSuperficiel" id="field_hematomeSuperficiel" data-cy="hematomeSuperficiel">
+                  <option *ngFor="let option of ouiNonNPValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_circonstanceHematomeSuperficiel">Circonstance de l'Hématome Superficiel</label>
+                <select class="form-control" name="circonstanceHematomeSuperficiel" formControlName="circonstanceHematomeSuperficiel" id="field_circonstanceHematomeSuperficiel" data-cy="circonstanceHematomeSuperficiel">
+                  <option *ngFor="let option of typeManifestationValues" [value]="option">{{ option }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_siegeHematomeSuperficiel">Siège de l'Hématome Superficiel</label>
+                <input type="text" class="form-control" name="siegeHematomeSuperficiel" id="field_siegeHematomeSuperficiel" data-cy="siegeHematomeSuperficiel" formControlName="siegeHematomeSuperficiel" maxlength="50" />
+              </div>
+              <!-- Autres champs de manifestations cliniques suivent le même modèle -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Autres sections ici, comme par exemple Circoncision, Traitement, et Complications -->
+        
       </div>
 
       <!-- Boutons de sauvegarde et d'annulation -->
@@ -229,13 +211,7 @@
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
         </button>
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
         </button>
       </div>
