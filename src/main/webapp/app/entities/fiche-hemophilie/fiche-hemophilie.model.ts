@@ -25,6 +25,7 @@ import { EvolutionInhibiteur } from 'app/entities/enumerations/evolution-inhibit
 import { SchemaTherapeutique } from 'app/entities/enumerations/schema-therapeutique.model';
 import { Serologie } from 'app/entities/enumerations/serologie.model';
 import { EvolutionVHC } from 'app/entities/enumerations/evolution-vhc.model';
+import { CircumstanceDecouverte } from 'app/entities/enumerations/circumstance-decouverte.model';
 
 export interface IFicheHemophilie {
   id: number;
@@ -121,6 +122,7 @@ export interface IFicheHemophilie {
   evolutionVHC?: keyof typeof EvolutionVHC | null;
   serologieHIV?: keyof typeof Serologie | null;
   patient?: Pick<IPatient, 'id'> | null;
+  circumstanceDecouverte?: CircumstanceDecouverte | null;
 }
 
 export type NewFicheHemophilie = Omit<IFicheHemophilie, 'id'> & { id: null };
