@@ -1,0 +1,154 @@
+{
+  "annotations": {
+    "changelogDate": "20241130104744"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "nomJeuneFille",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "profession",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Gender",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "ageActuel",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "origine",
+      "fieldType": "Region",
+      "fieldValues": "SFAX,GABES,GAFSA,KEBILI,TOZEUR,MEDNINE,TATAOUINE,SBZ,KASSERINE,MAHDIA,KAIRAOUANE,MONASTIR,SOUSSE,AUTRE"
+    },
+    {
+      "fieldName": "autreOrigine",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "etatCivil",
+      "fieldType": "CivilStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CELIBATAIRE,MARIE,DIVORCE,NP"
+    },
+    {
+      "fieldName": "couvertureSociale",
+      "fieldType": "CouvertureSociale",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CNAM,INDIGENT,NP"
+    },
+    {
+      "fieldName": "prenomPere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "professionPere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "nomPrenomMere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "professionMere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "medecinTraitant",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "serviceOrigine",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "biologisteResponsableDg",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "diagnostic",
+      "fieldType": "DiagnosticType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "HEMOPHILIE,WILLEBRAND,THROMBOPATHIE,DEFICIT_FACTEUR_VII,DEFICIT_FACTEUR_XI,DEFICIT_FACTEUR_XIII,DEFICIT_COMBINE,AUTRE"
+    },
+    {
+      "fieldName": "autreDiagnostic",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "anneeDiagnostic",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "consentementRegistre",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "dateEnregistrementRegistre",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "Patient",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

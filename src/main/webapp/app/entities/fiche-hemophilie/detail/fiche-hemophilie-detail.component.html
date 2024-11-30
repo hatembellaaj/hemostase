@@ -1,0 +1,585 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ficheHemophilie(); as ficheHemophilieRef) {
+      <div>
+        <h2 data-cy="ficheHemophilieDetailsHeading"><span>Fiche Hemophilie</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.id }}</span>
+          </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.indexNumber }}</span>
+          </dd>
+          <dt><span>Parents Consanguins</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.parentsConsanguins ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Degre Parente Consanguins</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.degreParenteConsanguins }}</span>
+          </dd>
+          <dt><span>Cas Similaires Famille</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.casSimilairesFamille ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nbre Cas Similaires</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.nbreCasSimilaires }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas Similaires</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.degreParenteCasSimilaires }}</span>
+          </dd>
+          <dt><span>Cas Deces Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.casDecesSyndromeHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nbre Cas Deces</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.nbreCasDeces }}</span>
+          </dd>
+          <dt><span>Forme Hemophilie</span></dt>
+          <dd>
+            <span>{{
+              { null: '', SPORADIQUE: 'SPORADIQUE', HEREDITAIRE: 'HEREDITAIRE', NP: 'NP' }[ficheHemophilieRef.formeHemophilie ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Nbre Freres</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.nbreFreres }}</span>
+          </dd>
+          <dt><span>Nbre Soeurs</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.nbreSoeurs }}</span>
+          </dd>
+          <dt><span>Circonstance Decouverte</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FORTUITE: 'FORTUITE', FAMILIALE: 'FAMILIALE', SYNDROME_HEMORRAGIQUE: 'SYNDROME_HEMORRAGIQUE' }[
+                ficheHemophilieRef.circonstanceDecouverte ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Date Test Confirmation</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dateTestConfirmation | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Hemogramme Hb</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.hemogrammeHb }}</span>
+          </dd>
+          <dt><span>Hemogramme Ht</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.hemogrammeHt }}</span>
+          </dd>
+          <dt><span>Plaquettes</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.plaquettes }}</span>
+          </dd>
+          <dt><span>Tp</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.tp }}</span>
+          </dd>
+          <dt><span>Fibrinogene</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.fibrinogene }}</span>
+          </dd>
+          <dt><span>Tca MT</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.tcaMT }}</span>
+          </dd>
+          <dt><span>Tca MT 2 H</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.tcaMT2h }}</span>
+          </dd>
+          <dt><span>Tca Temoin 2 H</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.tcaTemoin2h }}</span>
+          </dd>
+          <dt><span>Ts</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[ficheHemophilieRef.ts ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Pfa</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[ficheHemophilieRef.pfa ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Dosage Facteur VIII</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dosageFacteurVIII }}</span>
+          </dd>
+          <dt><span>Dosage Facteur IX</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dosageFacteurIX }}</span>
+          </dd>
+          <dt><span>Dosage Facteur VW Activite</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dosageFacteurVWActivite }}</span>
+          </dd>
+          <dt><span>Dosage Facteur VW Antigene</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dosageFacteurVWAntigene }}</span>
+          </dd>
+          <dt><span>Forme Clinique</span></dt>
+          <dd>
+            <span>{{ { null: '', A: 'A', B: 'B' }[ficheHemophilieRef.formeClinique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Severite</span></dt>
+          <dd>
+            <span>{{ { null: '', SEVERE: 'SEVERE', MODEREE: 'MODEREE', MINEURE: 'MINEURE' }[ficheHemophilieRef.severite ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Exploration Moleculaire</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.explorationMoleculaire }}</span>
+          </dd>
+          <dt><span>Hemarthrose</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.hemarthrose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Siege Hemarthrose</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                GENOU_GAUCHE: 'GENOU_GAUCHE',
+                GENOU_DROIT: 'GENOU_DROIT',
+                COUDE_GAUCHE: 'COUDE_GAUCHE',
+                COUDE_DROIT: 'COUDE_DROIT',
+                CHEVILLE_GAUCHE: 'CHEVILLE_GAUCHE',
+                CHEVILLE_DROITE: 'CHEVILLE_DROITE',
+                EPAULE_GAUCHE: 'EPAULE_GAUCHE',
+                EPAULE_DROITE: 'EPAULE_DROITE',
+                POIGNET_GAUCHE: 'POIGNET_GAUCHE',
+                POIGNET_DROIT: 'POIGNET_DROIT',
+                HANCHE_GAUCHE: 'HANCHE_GAUCHE',
+                HANCHE_DROITE: 'HANCHE_DROITE',
+              }[ficheHemophilieRef.siegeHemarthrose ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Circonstance Hemarthrose</span></dt>
+          <dd>
+            <span>{{
+              { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheHemophilieRef.circonstanceHemarthrose ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Frequence Hemarthrose</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.frequenceHemarthrose }}</span>
+          </dd>
+          <dt><span>Hematome Superficiel</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.hematomeSuperficiel ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circonstance Hematome Superficiel</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.circonstanceHematomeSuperficiel }}</span>
+          </dd>
+          <dt><span>Siege Hematome Superficiel</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.siegeHematomeSuperficiel }}</span>
+          </dd>
+          <dt><span>Hematome Psoas</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.hematomePsoas ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circonstance Hematome Psoas</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.circonstanceHematomePsoas }}</span>
+          </dd>
+          <dt><span>Recidive Hematome Psoas</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.recidiveHematomePsoas ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemorragies Cutaneo Muqueuses</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.hemorragiesCutaneoMuqueuses ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Hemorragies Cutaneo Muqueuses</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeHemorragiesCutaneoMuqueuses }}</span>
+          </dd>
+          <dt><span>Frequence Hemorragies Cutaneo Muqueuses</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.frequenceHemorragiesCutaneoMuqueuses }}</span>
+          </dd>
+          <dt><span>Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.hemorragieVisceres ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeHemorragieVisceres }}</span>
+          </dd>
+          <dt><span>Exploration Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.explorationHemorragieVisceres ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Examen Lesion Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.examenLesionHemorragieVisceres }}</span>
+          </dd>
+          <dt><span>Saignement SNC</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.saignementSNC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Evolution SNC</span></dt>
+          <dd>
+            <span>{{ { null: '', REGRESSION: 'REGRESSION', DECES: 'DECES' }[ficheHemophilieRef.evolutionSNC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circoncision</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.circoncision ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Preparation Circoncision</span></dt>
+          <dd>
+            <span>{{
+              { null: '', PREPAREE: 'PREPAREE', NON_PREPAREE: 'NON_PREPAREE', NP: 'NP' }[
+                ficheHemophilieRef.typePreparationCirconcision ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Suite Operatoire Circoncision</span></dt>
+          <dd>
+            <span>{{
+              { null: '', SIMPLE: 'SIMPLE', HEMORRAGIQUE: 'HEMORRAGIQUE', NP: 'NP' }[
+                ficheHemophilieRef.suiteOperatoireCirconcision ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Age Circoncision</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.ageCirconcision }}</span>
+          </dd>
+          <dt><span>Avulsion Dentaire</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.avulsionDentaire ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Preparation Avulsion Dentaire</span></dt>
+          <dd>
+            <span>{{
+              { null: '', PREPAREE: 'PREPAREE', NON_PREPAREE: 'NON_PREPAREE', NP: 'NP' }[
+                ficheHemophilieRef.typePreparationAvulsionDentaire ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Intervention Chirurgicale</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.interventionChirurgicale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Intervention Chirurgicale</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeInterventionChirurgicale }}</span>
+          </dd>
+          <dt><span>Accidents Hemorragiques Graves</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.accidentsHemorragiquesGraves ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circonstance Accidents Hemorragiques Graves</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.circonstanceAccidentsHemorragiquesGraves }}</span>
+          </dd>
+          <dt><span>Prise En Charge</span></dt>
+          <dd>
+            <span>{{
+              { null: '', A_LA_DEMANDE: 'A_LA_DEMANDE', PROPHYLAXIE: 'PROPHYLAXIE' }[ficheHemophilieRef.priseEnCharge ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Prise En Charge</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.causePriseEnCharge }}</span>
+          </dd>
+          <dt><span>Dose Prophylaxie</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.doseProphylaxie }}</span>
+          </dd>
+          <dt><span>Frequence Prophylaxie</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.frequenceProphylaxie }}</span>
+          </dd>
+          <dt><span>Debut Prophylaxie</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.debutProphylaxie | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Modalite Injection</span></dt>
+          <dd>
+            <span>{{
+              { null: '', AUTO_INJECTION: 'AUTO_INJECTION', INJECTION_PARENT: 'INJECTION_PARENT', INJECTION_HOPITAL: 'INJECTION_HOPITAL' }[
+                ficheHemophilieRef.modaliteInjection ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Type Traitement Substitutif</span></dt>
+          <dd>
+            <span>{{
+              { null: '', PLASMATIQUE: 'PLASMATIQUE', RECOMBINANT: 'RECOMBINANT' }[ficheHemophilieRef.typeTraitementSubstitutif ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Age 1 Ere Substitution</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.age1ereSubstitution }}</span>
+          </dd>
+          <dt><span>Antecedents PSL</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.antecedentsPSL ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Plasma Frais Congele</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.plasmaFraisCongele ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cryoprecipite</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.cryoprecipite ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Complications Orthopediques</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.complicationsOrthopediques ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Complications Orthopediques</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SYNOVITE: 'SYNOVITE',
+                ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE: 'ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE',
+                PSEUDOTUMEURS: 'PSEUDOTUMEURS',
+                FRACTURES: 'FRACTURES',
+              }[ficheHemophilieRef.typeComplicationsOrthopediques ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Articulation Cible</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                GENOU_GAUCHE: 'GENOU_GAUCHE',
+                GENOU_DROIT: 'GENOU_DROIT',
+                COUDE_GAUCHE: 'COUDE_GAUCHE',
+                COUDE_DROIT: 'COUDE_DROIT',
+                CHEVILLE_GAUCHE: 'CHEVILLE_GAUCHE',
+                CHEVILLE_DROITE: 'CHEVILLE_DROITE',
+                EPAULE_GAUCHE: 'EPAULE_GAUCHE',
+                EPAULE_DROITE: 'EPAULE_DROITE',
+                POIGNET_GAUCHE: 'POIGNET_GAUCHE',
+                POIGNET_DROIT: 'POIGNET_DROIT',
+                HANCHE_GAUCHE: 'HANCHE_GAUCHE',
+                HANCHE_DROITE: 'HANCHE_DROITE',
+              }[ficheHemophilieRef.articulationCible ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Pec Therapeutique</span></dt>
+          <dd>
+            <span>{{
+              { null: '', RAS: 'RAS', SYNOVIORTHESE: 'SYNOVIORTHESE', PTG: 'PTG' }[ficheHemophilieRef.pecTherapeutique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Complications Inhibiteurs</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.complicationsInhibiteurs ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Taux Inhibiteur</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FAIBLE_REPONDEUR: 'FAIBLE_REPONDEUR', FORT_REPONDEUR: 'FORT_REPONDEUR', NP: 'NP' }[
+                ficheHemophilieRef.tauxInhibiteur ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Test Recuperation FAH</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[
+                ficheHemophilieRef.testRecuperationFAH ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Date Recuperation FAH</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dateRecuperationFAH | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Taux Recuperation</span></dt>
+          <dd>
+            <span>{{ { null: '', NORMAL: 'NORMAL', DIMINUE: 'DIMINUE' }[ficheHemophilieRef.tauxRecuperation ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Anti FAH Non Neutralisant</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.antiFAHNonNeutralisant ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Recherche ACC</span></dt>
+          <dd>
+            <span>{{
+              { null: '', NON_FAITE: 'NON_FAITE', FAITE: 'FAITE', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', DOUTEUSE: 'DOUTEUSE' }[
+                ficheHemophilieRef.rechercheACC ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Cat Therapeutique</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                AUGMENTER_DOSE_FACTEUR: 'AUGMENTER_DOSE_FACTEUR',
+                NOVOSEVEN: 'NOVOSEVEN',
+                FEIBA: 'FEIBA',
+                CORTICOTHERAPIE: 'CORTICOTHERAPIE',
+                IMMUREL: 'IMMUREL',
+              }[ficheHemophilieRef.catTherapeutique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Iti</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.iti ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Posologie ITI</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.posologieITI }}</span>
+          </dd>
+          <dt><span>Duree ITI</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dureeITI }}</span>
+          </dd>
+          <dt><span>Observance ITI</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.observanceITI ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cause Non Observance ITI</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.causeNonObservanceITI }}</span>
+          </dd>
+          <dt><span>Evolution Inhibiteur</span></dt>
+          <dd>
+            <span>{{
+              { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[ficheHemophilieRef.evolutionInhibiteur ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Prophylaxie Hemlibra</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.prophylaxieHemlibra ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Debut Hemlibra</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dateDebutHemlibra | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Schema Therapeutique</span></dt>
+          <dd>
+            <span>{{
+              { null: '', HEBDOMADAIRE: 'HEBDOMADAIRE', MENSUEL: 'MENSUEL', BIMENSUEL: 'BIMENSUEL' }[
+                ficheHemophilieRef.schemaTherapeutique ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Efficacite Hemlibra</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.efficaciteHemlibra }}</span>
+          </dd>
+          <dt><span>Serologie HBC</span></dt>
+          <dd>
+            <span>{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[ficheHemophilieRef.serologieHBC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Serologie HVC</span></dt>
+          <dd>
+            <span>{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[ficheHemophilieRef.serologieHVC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Decouverte VHC</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dateDecouverteVHC | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Charge Virale VHC</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.chargeViraleVHC }}</span>
+          </dd>
+          <dt><span>Traitement VHC</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.traitementVHC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Evolution VHC</span></dt>
+          <dd>
+            <span>{{
+              { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[ficheHemophilieRef.evolutionVHC ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Serologie HIV</span></dt>
+          <dd>
+            <span>{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[ficheHemophilieRef.serologieHIV ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Vie Sociale</span></dt>
+          <dd>
+            <span>{{
+              { null: '', PRESCOLAIRE: 'PRESCOLAIRE', SCOLARISE: 'SCOLARISE', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE' }[
+                ficheHemophilieRef.vieSociale ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Marie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.marie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Enfants</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.enfants ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Handicap</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.handicap ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Handicap</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeHandicap }}</span>
+          </dd>
+          <dt><span>Activite Sportive</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.activiteSportive ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Activite Sportive</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeActiviteSportive }}</span>
+          </dd>
+          <dt><span>Decede</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.decede ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cause Date Deces</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.causeDateDeces }}</span>
+          </dd>
+          <dt><span>Patient</span></dt>
+          <dd>
+            @if (ficheHemophilie()!.patient) {
+              <div>
+                <a [routerLink]="['/patient', ficheHemophilie()!.patient?.id, 'view']">{{ ficheHemophilieRef.patient?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche-hemophilie', ficheHemophilieRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

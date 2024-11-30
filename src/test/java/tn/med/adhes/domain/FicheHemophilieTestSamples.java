@@ -1,0 +1,130 @@
+package tn.med.adhes.domain;
+
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+
+public class FicheHemophilieTestSamples {
+
+    private static final Random random = new Random();
+    private static final AtomicLong longCount = new AtomicLong(random.nextInt() + (2 * Integer.MAX_VALUE));
+    private static final AtomicInteger intCount = new AtomicInteger(random.nextInt() + (2 * Short.MAX_VALUE));
+
+    public static FicheHemophilie getFicheHemophilieSample1() {
+        return new FicheHemophilie()
+            .id(1L)
+            .dossierNumber("dossierNumber1")
+            .ordreNumber("ordreNumber1")
+            .indexNumber("indexNumber1")
+            .degreParenteConsanguins("degreParenteConsanguins1")
+            .nbreCasSimilaires(1)
+            .degreParenteCasSimilaires("degreParenteCasSimilaires1")
+            .nbreCasDeces(1)
+            .nbreFreres(1)
+            .nbreSoeurs(1)
+            .plaquettes(1)
+            .explorationMoleculaire("explorationMoleculaire1")
+            .frequenceHemarthrose(1)
+            .circonstanceHematomeSuperficiel("circonstanceHematomeSuperficiel1")
+            .siegeHematomeSuperficiel("siegeHematomeSuperficiel1")
+            .circonstanceHematomePsoas("circonstanceHematomePsoas1")
+            .typeHemorragiesCutaneoMuqueuses("typeHemorragiesCutaneoMuqueuses1")
+            .frequenceHemorragiesCutaneoMuqueuses(1)
+            .typeHemorragieVisceres("typeHemorragieVisceres1")
+            .examenLesionHemorragieVisceres("examenLesionHemorragieVisceres1")
+            .ageCirconcision(1)
+            .typeInterventionChirurgicale("typeInterventionChirurgicale1")
+            .circonstanceAccidentsHemorragiquesGraves("circonstanceAccidentsHemorragiquesGraves1")
+            .causePriseEnCharge("causePriseEnCharge1")
+            .doseProphylaxie("doseProphylaxie1")
+            .frequenceProphylaxie(1)
+            .age1ereSubstitution(1)
+            .posologieITI("posologieITI1")
+            .dureeITI("dureeITI1")
+            .causeNonObservanceITI("causeNonObservanceITI1")
+            .efficaciteHemlibra(1)
+            .chargeViraleVHC("chargeViraleVHC1")
+            .typeHandicap("typeHandicap1")
+            .typeActiviteSportive("typeActiviteSportive1")
+            .causeDateDeces("causeDateDeces1");
+    }
+
+    public static FicheHemophilie getFicheHemophilieSample2() {
+        return new FicheHemophilie()
+            .id(2L)
+            .dossierNumber("dossierNumber2")
+            .ordreNumber("ordreNumber2")
+            .indexNumber("indexNumber2")
+            .degreParenteConsanguins("degreParenteConsanguins2")
+            .nbreCasSimilaires(2)
+            .degreParenteCasSimilaires("degreParenteCasSimilaires2")
+            .nbreCasDeces(2)
+            .nbreFreres(2)
+            .nbreSoeurs(2)
+            .plaquettes(2)
+            .explorationMoleculaire("explorationMoleculaire2")
+            .frequenceHemarthrose(2)
+            .circonstanceHematomeSuperficiel("circonstanceHematomeSuperficiel2")
+            .siegeHematomeSuperficiel("siegeHematomeSuperficiel2")
+            .circonstanceHematomePsoas("circonstanceHematomePsoas2")
+            .typeHemorragiesCutaneoMuqueuses("typeHemorragiesCutaneoMuqueuses2")
+            .frequenceHemorragiesCutaneoMuqueuses(2)
+            .typeHemorragieVisceres("typeHemorragieVisceres2")
+            .examenLesionHemorragieVisceres("examenLesionHemorragieVisceres2")
+            .ageCirconcision(2)
+            .typeInterventionChirurgicale("typeInterventionChirurgicale2")
+            .circonstanceAccidentsHemorragiquesGraves("circonstanceAccidentsHemorragiquesGraves2")
+            .causePriseEnCharge("causePriseEnCharge2")
+            .doseProphylaxie("doseProphylaxie2")
+            .frequenceProphylaxie(2)
+            .age1ereSubstitution(2)
+            .posologieITI("posologieITI2")
+            .dureeITI("dureeITI2")
+            .causeNonObservanceITI("causeNonObservanceITI2")
+            .efficaciteHemlibra(2)
+            .chargeViraleVHC("chargeViraleVHC2")
+            .typeHandicap("typeHandicap2")
+            .typeActiviteSportive("typeActiviteSportive2")
+            .causeDateDeces("causeDateDeces2");
+    }
+
+    public static FicheHemophilie getFicheHemophilieRandomSampleGenerator() {
+        return new FicheHemophilie()
+            .id(longCount.incrementAndGet())
+            .dossierNumber(UUID.randomUUID().toString())
+            .ordreNumber(UUID.randomUUID().toString())
+            .indexNumber(UUID.randomUUID().toString())
+            .degreParenteConsanguins(UUID.randomUUID().toString())
+            .nbreCasSimilaires(intCount.incrementAndGet())
+            .degreParenteCasSimilaires(UUID.randomUUID().toString())
+            .nbreCasDeces(intCount.incrementAndGet())
+            .nbreFreres(intCount.incrementAndGet())
+            .nbreSoeurs(intCount.incrementAndGet())
+            .plaquettes(intCount.incrementAndGet())
+            .explorationMoleculaire(UUID.randomUUID().toString())
+            .frequenceHemarthrose(intCount.incrementAndGet())
+            .circonstanceHematomeSuperficiel(UUID.randomUUID().toString())
+            .siegeHematomeSuperficiel(UUID.randomUUID().toString())
+            .circonstanceHematomePsoas(UUID.randomUUID().toString())
+            .typeHemorragiesCutaneoMuqueuses(UUID.randomUUID().toString())
+            .frequenceHemorragiesCutaneoMuqueuses(intCount.incrementAndGet())
+            .typeHemorragieVisceres(UUID.randomUUID().toString())
+            .examenLesionHemorragieVisceres(UUID.randomUUID().toString())
+            .ageCirconcision(intCount.incrementAndGet())
+            .typeInterventionChirurgicale(UUID.randomUUID().toString())
+            .circonstanceAccidentsHemorragiquesGraves(UUID.randomUUID().toString())
+            .causePriseEnCharge(UUID.randomUUID().toString())
+            .doseProphylaxie(UUID.randomUUID().toString())
+            .frequenceProphylaxie(intCount.incrementAndGet())
+            .age1ereSubstitution(intCount.incrementAndGet())
+            .posologieITI(UUID.randomUUID().toString())
+            .dureeITI(UUID.randomUUID().toString())
+            .causeNonObservanceITI(UUID.randomUUID().toString())
+            .efficaciteHemlibra(intCount.incrementAndGet())
+            .chargeViraleVHC(UUID.randomUUID().toString())
+            .typeHandicap(UUID.randomUUID().toString())
+            .typeActiviteSportive(UUID.randomUUID().toString())
+            .causeDateDeces(UUID.randomUUID().toString());
+    }
+}
