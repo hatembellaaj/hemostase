@@ -3,6 +3,69 @@
     <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-fiche-hemophilie-heading" data-cy="FicheHemophilieCreateUpdateHeading">Créer ou éditer un Fiche Hemophilie</h2>
 
+      <div class="accordion" id="ficheAccordion">
+        <!-- Accordéon Section 1: Identification -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingIdentification">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseIdentification"
+              aria-expanded="true"
+              aria-controls="collapseIdentification"
+            >
+              Identification
+            </button>
+          </h2>
+          <div
+            id="collapseIdentification"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingIdentification"
+            data-bs-parent="#ficheAccordion"
+          >
+            <div class="accordion-body">
+              <!-- Champs pour la section Identification -->
+              <div class="mb-3">
+                <label class="form-label" for="field_dossierNumber">Dossier Number</label>
+                <input type="text" class="form-control" id="field_dossierNumber" formControlName="dossierNumber" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="field_ordreNumber">Ordre Number</label>
+                <input type="text" class="form-control" id="field_ordreNumber" formControlName="ordreNumber" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordéon Section 2: Diagnostic -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingDiagnostic">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseDiagnostic"
+              aria-expanded="false"
+              aria-controls="collapseDiagnostic"
+            >
+              Diagnostic
+            </button>
+          </h2>
+          <div
+            id="collapseDiagnostic"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingDiagnostic"
+            data-bs-parent="#ficheAccordion"
+          >
+            <div class="accordion-body">
+              <!-- Contenu pour la section Diagnostic -->
+              <p>Les champs liés au diagnostic seront ici.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div>
         <jhi-alert-error></jhi-alert-error>
 
