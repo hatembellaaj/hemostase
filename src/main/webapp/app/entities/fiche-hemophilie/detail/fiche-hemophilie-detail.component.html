@@ -1,0 +1,234 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ficheHemophilie(); as ficheHemophilieRef) {
+      <div>
+        <h2 data-cy="ficheHemophilieDetailsHeading"><span>Fiche Hemophilie</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.id }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.prenom }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.nom }}</span>
+          </dd>
+          <dt><span>Nom Jeune Fille</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.nomJeuneFille }}</span>
+          </dd>
+          <dt><span>Profession</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.profession }}</span>
+          </dd>
+          <dt><span>Sexe</span></dt>
+          <dd>
+            <span>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[ficheHemophilieRef.sexe ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Naissance</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dateNaissance | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Actuel</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.ageActuel }}</span>
+          </dd>
+          <dt><span>Origine</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SFAX: 'SFAX',
+                GABES: 'GABES',
+                GAFSA: 'GAFSA',
+                KEBILI: 'KEBILI',
+                TOZEUR: 'TOZEUR',
+                MEDNINE: 'MEDNINE',
+                TATAOUINE: 'TATAOUINE',
+                SBZ: 'SBZ',
+                KASSERINE: 'KASSERINE',
+                MAHDIA: 'MAHDIA',
+                KAIRAOUANE: 'KAIRAOUANE',
+                MONASTIR: 'MONASTIR',
+                SOUSSE: 'SOUSSE',
+                AUTRE: 'AUTRE',
+              }[ficheHemophilieRef.origine ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Origine</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.autreOrigine }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.adresse }}</span>
+          </dd>
+          <dt><span>Telephone</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.telephone }}</span>
+          </dd>
+          <dt><span>Etat Civil</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[ficheHemophilieRef.etatCivil ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Couverture Sociale</span></dt>
+          <dd>
+            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheHemophilieRef.couvertureSociale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Prenom Pere</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.prenomPere }}</span>
+          </dd>
+          <dt><span>Profession Pere</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.professionPere }}</span>
+          </dd>
+          <dt><span>Nom Prenom Mere</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.nomPrenomMere }}</span>
+          </dd>
+          <dt><span>Profession Mere</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.professionMere }}</span>
+          </dd>
+          <dt><span>Medecin Traitant</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.medecinTraitant }}</span>
+          </dd>
+          <dt><span>Service Origine</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.serviceOrigine }}</span>
+          </dd>
+          <dt><span>Biologiste Responsable Dg</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.biologisteResponsableDg }}</span>
+          </dd>
+          <dt><span>Diagnostic</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMOPHILIE: 'HEMOPHILIE',
+                WILLEBRAND: 'WILLEBRAND',
+                THROMBOPATHIE: 'THROMBOPATHIE',
+                DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+                AUTRE: 'AUTRE',
+              }[ficheHemophilieRef.diagnostic ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.autreDiagnostic }}</span>
+          </dd>
+          <dt><span>Annee Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.anneeDiagnostic }}</span>
+          </dd>
+          <dt><span>Consentement Registre</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.consentementRegistre ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Enregistrement Registre</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dateEnregistrementRegistre | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.indexNumber }}</span>
+          </dd>
+          <dt><span>Degre Parente Consanguins</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.degreParenteConsanguins }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas Similaires</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.degreParenteCasSimilaires }}</span>
+          </dd>
+          <dt><span>Type Hemorragies Cutaneo Muqueuses</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeHemorragiesCutaneoMuqueuses }}</span>
+          </dd>
+          <dt><span>Circonstance Hematome Superficiel</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.circonstanceHematomeSuperficiel }}</span>
+          </dd>
+          <dt><span>Siege Hematome Superficiel</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.siegeHematomeSuperficiel }}</span>
+          </dd>
+          <dt><span>Circonstance Hematome Psoas</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.circonstanceHematomePsoas }}</span>
+          </dd>
+          <dt><span>Circonstance Accidents Hemorragiques Graves</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.circonstanceAccidentsHemorragiquesGraves }}</span>
+          </dd>
+          <dt><span>Type Intervention Chirurgicale</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeInterventionChirurgicale }}</span>
+          </dd>
+          <dt><span>Cause Prise En Charge</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.causePriseEnCharge }}</span>
+          </dd>
+          <dt><span>Posologie ITI</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.posologieITI }}</span>
+          </dd>
+          <dt><span>Duree ITI</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dureeITI }}</span>
+          </dd>
+          <dt><span>Cause Non Observance ITI</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.causeNonObservanceITI }}</span>
+          </dd>
+          <dt><span>Type Handicap</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeHandicap }}</span>
+          </dd>
+          <dt><span>Type Activite Sportive</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.typeActiviteSportive }}</span>
+          </dd>
+          <dt><span>Cause Date Deces</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.causeDateDeces }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche-hemophilie', ficheHemophilieRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

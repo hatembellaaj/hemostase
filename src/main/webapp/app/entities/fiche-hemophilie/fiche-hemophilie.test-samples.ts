@@ -1,0 +1,107 @@
+import dayjs from 'dayjs/esm';
+
+import { IFicheHemophilie, NewFicheHemophilie } from './fiche-hemophilie.model';
+
+export const sampleWithRequiredData: IFicheHemophilie = {
+  id: 26071,
+  prenom: 'autant antagoniste',
+  nom: 'avare',
+  sexe: 'MASCULIN',
+  etatCivil: 'CELIBATAIRE',
+  couvertureSociale: 'NP',
+  diagnostic: 'AUTRE',
+  dossierNumber: 'cependant impromptu',
+};
+
+export const sampleWithPartialData: IFicheHemophilie = {
+  id: 24384,
+  prenom: 'coin-coin',
+  nom: 'de peur de',
+  nomJeuneFille: 'aïe derrière',
+  sexe: 'FEMININ',
+  ageActuel: 271,
+  autreOrigine: 'deviner',
+  adresse: 'responsable',
+  telephone: '0680663113',
+  etatCivil: 'MARIE',
+  couvertureSociale: 'CNAM',
+  professionPere: 'arrière',
+  serviceOrigine: 'afin que',
+  biologisteResponsableDg: 'près',
+  diagnostic: 'DEFICIT_FACTEUR_XI',
+  anneeDiagnostic: 21546,
+  dateEnregistrementRegistre: dayjs('2024-12-05'),
+  dossierNumber: 'd’autant que quoique',
+  indexNumber: 'clac parlementaire',
+  circonstanceHematomeSuperficiel: 'premièrement',
+  circonstanceHematomePsoas: 'après que en bas de vouh',
+  circonstanceAccidentsHemorragiquesGraves: 'secours',
+  typeInterventionChirurgicale: 'hôte ensemble',
+  causePriseEnCharge: 'en decà de',
+  posologieITI: 'de façon à',
+  typeActiviteSportive: 'heurter pourpre',
+  causeDateDeces: "ouf aujourd'hui",
+};
+
+export const sampleWithFullData: IFicheHemophilie = {
+  id: 29837,
+  prenom: 'moderne',
+  nom: 'au cas où',
+  nomJeuneFille: 'plouf d’autant que téméra',
+  profession: 'à moins de psitt',
+  sexe: 'MASCULIN',
+  dateNaissance: dayjs('2024-12-04'),
+  ageActuel: 10941,
+  origine: 'SOUSSE',
+  autreOrigine: 'ronron avant-hier',
+  adresse: 'aussi au cas où aigre',
+  telephone: '0125656589',
+  etatCivil: 'CELIBATAIRE',
+  couvertureSociale: 'INDIGENT',
+  prenomPere: 'antique chut',
+  professionPere: 'ensuite',
+  nomPrenomMere: 'déjeuner pff tsoin-tsoin',
+  professionMere: 'clac',
+  medecinTraitant: 'tic-tac',
+  serviceOrigine: 'guère antagoniste de mani',
+  biologisteResponsableDg: 'hebdomadaire bien que mem',
+  diagnostic: 'DEFICIT_FACTEUR_XI',
+  autreDiagnostic: 'pauvre grrr',
+  anneeDiagnostic: 29307,
+  consentementRegistre: 'NON',
+  dateEnregistrementRegistre: dayjs('2024-12-05'),
+  dossierNumber: 'bien chut',
+  ordreNumber: 'personnel professionnel b',
+  indexNumber: 'bon membre du personnel j',
+  degreParenteConsanguins: 'dense entre',
+  degreParenteCasSimilaires: 'miaou',
+  typeHemorragiesCutaneoMuqueuses: 'vouh voter accorder',
+  circonstanceHematomeSuperficiel: 'ralentir séculaire de sor',
+  siegeHematomeSuperficiel: 'premièrement',
+  circonstanceHematomePsoas: 'insuffisamment rôder',
+  circonstanceAccidentsHemorragiquesGraves: 'susciter tôt',
+  typeInterventionChirurgicale: 'pschitt',
+  causePriseEnCharge: 'sus détourner diplomate',
+  posologieITI: 'étant donné que',
+  dureeITI: 'former groin groin',
+  causeNonObservanceITI: 'totalement',
+  typeHandicap: 'chut',
+  typeActiviteSportive: 'discuter alentour',
+  causeDateDeces: 'oups longtemps',
+};
+
+export const sampleWithNewData: NewFicheHemophilie = {
+  prenom: 'meuh instruire',
+  nom: 'puisque euh avare',
+  sexe: 'MASCULIN',
+  etatCivil: 'NP',
+  couvertureSociale: 'NP',
+  diagnostic: 'DEFICIT_FACTEUR_XI',
+  dossierNumber: 'pacifique',
+  id: null,
+};
+
+Object.freeze(sampleWithNewData);
+Object.freeze(sampleWithRequiredData);
+Object.freeze(sampleWithPartialData);
+Object.freeze(sampleWithFullData);

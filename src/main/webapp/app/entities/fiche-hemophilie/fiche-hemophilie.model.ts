@@ -1,0 +1,56 @@
+import dayjs from 'dayjs/esm';
+import { Gender } from 'app/entities/enumerations/gender.model';
+import { Region } from 'app/entities/enumerations/region.model';
+import { CivilStatus } from 'app/entities/enumerations/civil-status.model';
+import { CouvertureSociale } from 'app/entities/enumerations/couverture-sociale.model';
+import { DiagnosticType } from 'app/entities/enumerations/diagnostic-type.model';
+import { OuiNonNP } from 'app/entities/enumerations/oui-non-np.model';
+
+export interface IFicheHemophilie {
+  id: number;
+  prenom?: string | null;
+  nom?: string | null;
+  nomJeuneFille?: string | null;
+  profession?: string | null;
+  sexe?: keyof typeof Gender | null;
+  dateNaissance?: dayjs.Dayjs | null;
+  ageActuel?: number | null;
+  origine?: keyof typeof Region | null;
+  autreOrigine?: string | null;
+  adresse?: string | null;
+  telephone?: string | null;
+  etatCivil?: keyof typeof CivilStatus | null;
+  couvertureSociale?: keyof typeof CouvertureSociale | null;
+  prenomPere?: string | null;
+  professionPere?: string | null;
+  nomPrenomMere?: string | null;
+  professionMere?: string | null;
+  medecinTraitant?: string | null;
+  serviceOrigine?: string | null;
+  biologisteResponsableDg?: string | null;
+  diagnostic?: keyof typeof DiagnosticType | null;
+  autreDiagnostic?: string | null;
+  anneeDiagnostic?: number | null;
+  consentementRegistre?: keyof typeof OuiNonNP | null;
+  dateEnregistrementRegistre?: dayjs.Dayjs | null;
+  dossierNumber?: string | null;
+  ordreNumber?: string | null;
+  indexNumber?: string | null;
+  degreParenteConsanguins?: string | null;
+  degreParenteCasSimilaires?: string | null;
+  typeHemorragiesCutaneoMuqueuses?: string | null;
+  circonstanceHematomeSuperficiel?: string | null;
+  siegeHematomeSuperficiel?: string | null;
+  circonstanceHematomePsoas?: string | null;
+  circonstanceAccidentsHemorragiquesGraves?: string | null;
+  typeInterventionChirurgicale?: string | null;
+  causePriseEnCharge?: string | null;
+  posologieITI?: string | null;
+  dureeITI?: string | null;
+  causeNonObservanceITI?: string | null;
+  typeHandicap?: string | null;
+  typeActiviteSportive?: string | null;
+  causeDateDeces?: string | null;
+}
+
+export type NewFicheHemophilie = Omit<IFicheHemophilie, 'id'> & { id: null };

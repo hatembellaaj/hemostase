@@ -1,0 +1,133 @@
+package org.adhes.hemostase.domain;
+
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+
+public class FicheHemophilieTestSamples {
+
+    private static final Random random = new Random();
+    private static final AtomicLong longCount = new AtomicLong(random.nextInt() + (2 * Integer.MAX_VALUE));
+    private static final AtomicInteger intCount = new AtomicInteger(random.nextInt() + (2 * Short.MAX_VALUE));
+
+    public static FicheHemophilie getFicheHemophilieSample1() {
+        return new FicheHemophilie()
+            .id(1L)
+            .prenom("prenom1")
+            .nom("nom1")
+            .nomJeuneFille("nomJeuneFille1")
+            .profession("profession1")
+            .ageActuel(1)
+            .autreOrigine("autreOrigine1")
+            .adresse("adresse1")
+            .telephone("telephone1")
+            .prenomPere("prenomPere1")
+            .professionPere("professionPere1")
+            .nomPrenomMere("nomPrenomMere1")
+            .professionMere("professionMere1")
+            .medecinTraitant("medecinTraitant1")
+            .serviceOrigine("serviceOrigine1")
+            .biologisteResponsableDg("biologisteResponsableDg1")
+            .autreDiagnostic("autreDiagnostic1")
+            .anneeDiagnostic(1)
+            .dossierNumber("dossierNumber1")
+            .ordreNumber("ordreNumber1")
+            .indexNumber("indexNumber1")
+            .degreParenteConsanguins("degreParenteConsanguins1")
+            .degreParenteCasSimilaires("degreParenteCasSimilaires1")
+            .typeHemorragiesCutaneoMuqueuses("typeHemorragiesCutaneoMuqueuses1")
+            .circonstanceHematomeSuperficiel("circonstanceHematomeSuperficiel1")
+            .siegeHematomeSuperficiel("siegeHematomeSuperficiel1")
+            .circonstanceHematomePsoas("circonstanceHematomePsoas1")
+            .circonstanceAccidentsHemorragiquesGraves("circonstanceAccidentsHemorragiquesGraves1")
+            .typeInterventionChirurgicale("typeInterventionChirurgicale1")
+            .causePriseEnCharge("causePriseEnCharge1")
+            .posologieITI("posologieITI1")
+            .dureeITI("dureeITI1")
+            .causeNonObservanceITI("causeNonObservanceITI1")
+            .typeHandicap("typeHandicap1")
+            .typeActiviteSportive("typeActiviteSportive1")
+            .causeDateDeces("causeDateDeces1");
+    }
+
+    public static FicheHemophilie getFicheHemophilieSample2() {
+        return new FicheHemophilie()
+            .id(2L)
+            .prenom("prenom2")
+            .nom("nom2")
+            .nomJeuneFille("nomJeuneFille2")
+            .profession("profession2")
+            .ageActuel(2)
+            .autreOrigine("autreOrigine2")
+            .adresse("adresse2")
+            .telephone("telephone2")
+            .prenomPere("prenomPere2")
+            .professionPere("professionPere2")
+            .nomPrenomMere("nomPrenomMere2")
+            .professionMere("professionMere2")
+            .medecinTraitant("medecinTraitant2")
+            .serviceOrigine("serviceOrigine2")
+            .biologisteResponsableDg("biologisteResponsableDg2")
+            .autreDiagnostic("autreDiagnostic2")
+            .anneeDiagnostic(2)
+            .dossierNumber("dossierNumber2")
+            .ordreNumber("ordreNumber2")
+            .indexNumber("indexNumber2")
+            .degreParenteConsanguins("degreParenteConsanguins2")
+            .degreParenteCasSimilaires("degreParenteCasSimilaires2")
+            .typeHemorragiesCutaneoMuqueuses("typeHemorragiesCutaneoMuqueuses2")
+            .circonstanceHematomeSuperficiel("circonstanceHematomeSuperficiel2")
+            .siegeHematomeSuperficiel("siegeHematomeSuperficiel2")
+            .circonstanceHematomePsoas("circonstanceHematomePsoas2")
+            .circonstanceAccidentsHemorragiquesGraves("circonstanceAccidentsHemorragiquesGraves2")
+            .typeInterventionChirurgicale("typeInterventionChirurgicale2")
+            .causePriseEnCharge("causePriseEnCharge2")
+            .posologieITI("posologieITI2")
+            .dureeITI("dureeITI2")
+            .causeNonObservanceITI("causeNonObservanceITI2")
+            .typeHandicap("typeHandicap2")
+            .typeActiviteSportive("typeActiviteSportive2")
+            .causeDateDeces("causeDateDeces2");
+    }
+
+    public static FicheHemophilie getFicheHemophilieRandomSampleGenerator() {
+        return new FicheHemophilie()
+            .id(longCount.incrementAndGet())
+            .prenom(UUID.randomUUID().toString())
+            .nom(UUID.randomUUID().toString())
+            .nomJeuneFille(UUID.randomUUID().toString())
+            .profession(UUID.randomUUID().toString())
+            .ageActuel(intCount.incrementAndGet())
+            .autreOrigine(UUID.randomUUID().toString())
+            .adresse(UUID.randomUUID().toString())
+            .telephone(UUID.randomUUID().toString())
+            .prenomPere(UUID.randomUUID().toString())
+            .professionPere(UUID.randomUUID().toString())
+            .nomPrenomMere(UUID.randomUUID().toString())
+            .professionMere(UUID.randomUUID().toString())
+            .medecinTraitant(UUID.randomUUID().toString())
+            .serviceOrigine(UUID.randomUUID().toString())
+            .biologisteResponsableDg(UUID.randomUUID().toString())
+            .autreDiagnostic(UUID.randomUUID().toString())
+            .anneeDiagnostic(intCount.incrementAndGet())
+            .dossierNumber(UUID.randomUUID().toString())
+            .ordreNumber(UUID.randomUUID().toString())
+            .indexNumber(UUID.randomUUID().toString())
+            .degreParenteConsanguins(UUID.randomUUID().toString())
+            .degreParenteCasSimilaires(UUID.randomUUID().toString())
+            .typeHemorragiesCutaneoMuqueuses(UUID.randomUUID().toString())
+            .circonstanceHematomeSuperficiel(UUID.randomUUID().toString())
+            .siegeHematomeSuperficiel(UUID.randomUUID().toString())
+            .circonstanceHematomePsoas(UUID.randomUUID().toString())
+            .circonstanceAccidentsHemorragiquesGraves(UUID.randomUUID().toString())
+            .typeInterventionChirurgicale(UUID.randomUUID().toString())
+            .causePriseEnCharge(UUID.randomUUID().toString())
+            .posologieITI(UUID.randomUUID().toString())
+            .dureeITI(UUID.randomUUID().toString())
+            .causeNonObservanceITI(UUID.randomUUID().toString())
+            .typeHandicap(UUID.randomUUID().toString())
+            .typeActiviteSportive(UUID.randomUUID().toString())
+            .causeDateDeces(UUID.randomUUID().toString());
+    }
+}

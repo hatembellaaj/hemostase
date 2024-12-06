@@ -21,6 +21,9 @@ logging:
     org.adhes.hemostase: DEBUG
 
 spring:
+  docker:
+    compose:
+      enabled: false
   devtools:
     restart:
       enabled: true
@@ -34,7 +37,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mariadb://localhost:3306/adhes2024?useLegacyDatetimeCode=false
     username: root
-    password:
+    password: Hemophilie2024$$$
     hikari:
       poolName: Hikari
       auto-commit: false
