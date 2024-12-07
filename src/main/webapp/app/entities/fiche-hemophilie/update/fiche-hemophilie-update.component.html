@@ -43,6 +43,60 @@
                 <label class="form-label" for="field_ordreNumber">Numéro d'ordre</label>
                 <input type="text" class="form-control" id="field_ordreNumber" formControlName="ordreNumber" />
               </div>
+
+
+              @let prenomRef = editForm.get('prenom')!;
+              <div class="mb-3">
+                <label class="form-label" for="field_prenom">Prenom</label>
+                <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+                @if (prenomRef.invalid && (prenomRef.dirty || prenomRef.touched)) {
+                  <div>
+                    @if (editForm.get('prenom')?.errors?.required) {
+                      <small class="form-text text-danger">Ce champ est obligatoire.</small>
+                    }
+                    @if (editForm.get('prenom')?.errors?.maxlength) {
+                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                    }
+                  </div>
+                }
+              </div>
+      
+              @let nomRef = editForm.get('nom')!;
+              <div class="mb-3">
+                <label class="form-label" for="field_nom">Nom</label>
+                <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+                @if (nomRef.invalid && (nomRef.dirty || nomRef.touched)) {
+                  <div>
+                    @if (editForm.get('nom')?.errors?.required) {
+                      <small class="form-text text-danger">Ce champ est obligatoire.</small>
+                    }
+                    @if (editForm.get('nom')?.errors?.maxlength) {
+                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                    }
+                  </div>
+                }
+              </div>
+      
+              @let nomJeuneFilleRef = editForm.get('nomJeuneFille')!;
+              <div class="mb-3">
+                <label class="form-label" for="field_nomJeuneFille">Nom Jeune Fille</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nomJeuneFille"
+                  id="field_nomJeuneFille"
+                  data-cy="nomJeuneFille"
+                  formControlName="nomJeuneFille"
+                />
+                @if (nomJeuneFilleRef.invalid && (nomJeuneFilleRef.dirty || nomJeuneFilleRef.touched)) {
+                  <div>
+                    @if (editForm.get('nomJeuneFille')?.errors?.maxlength) {
+                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                    }
+                  </div>
+                }
+              </div>
+      
             </div>
           </div>
         </div>
@@ -74,57 +128,6 @@
 
 
 
-        @let prenomRef = editForm.get('prenom')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_prenom">Prenom</label>
-          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
-          @if (prenomRef.invalid && (prenomRef.dirty || prenomRef.touched)) {
-            <div>
-              @if (editForm.get('prenom')?.errors?.required) {
-                <small class="form-text text-danger">Ce champ est obligatoire.</small>
-              }
-              @if (editForm.get('prenom')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let nomRef = editForm.get('nom')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_nom">Nom</label>
-          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
-          @if (nomRef.invalid && (nomRef.dirty || nomRef.touched)) {
-            <div>
-              @if (editForm.get('nom')?.errors?.required) {
-                <small class="form-text text-danger">Ce champ est obligatoire.</small>
-              }
-              @if (editForm.get('nom')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let nomJeuneFilleRef = editForm.get('nomJeuneFille')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_nomJeuneFille">Nom Jeune Fille</label>
-          <input
-            type="text"
-            class="form-control"
-            name="nomJeuneFille"
-            id="field_nomJeuneFille"
-            data-cy="nomJeuneFille"
-            formControlName="nomJeuneFille"
-          />
-          @if (nomJeuneFilleRef.invalid && (nomJeuneFilleRef.dirty || nomJeuneFilleRef.touched)) {
-            <div>
-              @if (editForm.get('nomJeuneFille')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
 
         @let professionRef = editForm.get('profession')!;
         <div class="mb-3">
