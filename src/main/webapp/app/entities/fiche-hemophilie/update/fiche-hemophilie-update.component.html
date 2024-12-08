@@ -647,91 +647,7 @@
                 }
               </div>
       
-              @let typeHemorragiesCutaneoMuqueusesRef = editForm.get('typeHemorragiesCutaneoMuqueuses')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_typeHemorragiesCutaneoMuqueuses">Type Hemorragies Cutaneo Muqueuses</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="typeHemorragiesCutaneoMuqueuses"
-                  id="field_typeHemorragiesCutaneoMuqueuses"
-                  data-cy="typeHemorragiesCutaneoMuqueuses"
-                  formControlName="typeHemorragiesCutaneoMuqueuses"
-                />
-                @if (
-                  typeHemorragiesCutaneoMuqueusesRef.invalid &&
-                  (typeHemorragiesCutaneoMuqueusesRef.dirty || typeHemorragiesCutaneoMuqueusesRef.touched)
-                ) {
-                  <div>
-                    @if (editForm.get('typeHemorragiesCutaneoMuqueuses')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let circonstanceHematomeSuperficielRef = editForm.get('circonstanceHematomeSuperficiel')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_circonstanceHematomeSuperficiel">Circonstance Hematome Superficiel</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="circonstanceHematomeSuperficiel"
-                  id="field_circonstanceHematomeSuperficiel"
-                  data-cy="circonstanceHematomeSuperficiel"
-                  formControlName="circonstanceHematomeSuperficiel"
-                />
-                @if (
-                  circonstanceHematomeSuperficielRef.invalid &&
-                  (circonstanceHematomeSuperficielRef.dirty || circonstanceHematomeSuperficielRef.touched)
-                ) {
-                  <div>
-                    @if (editForm.get('circonstanceHematomeSuperficiel')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let siegeHematomeSuperficielRef = editForm.get('siegeHematomeSuperficiel')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_siegeHematomeSuperficiel">Siege Hematome Superficiel</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="siegeHematomeSuperficiel"
-                  id="field_siegeHematomeSuperficiel"
-                  data-cy="siegeHematomeSuperficiel"
-                  formControlName="siegeHematomeSuperficiel"
-                />
-                @if (siegeHematomeSuperficielRef.invalid && (siegeHematomeSuperficielRef.dirty || siegeHematomeSuperficielRef.touched)) {
-                  <div>
-                    @if (editForm.get('siegeHematomeSuperficiel')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let circonstanceHematomePsoasRef = editForm.get('circonstanceHematomePsoas')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_circonstanceHematomePsoas">Circonstance Hematome Psoas</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="circonstanceHematomePsoas"
-                  id="field_circonstanceHematomePsoas"
-                  data-cy="circonstanceHematomePsoas"
-                  formControlName="circonstanceHematomePsoas"
-                />
-                @if (circonstanceHematomePsoasRef.invalid && (circonstanceHematomePsoasRef.dirty || circonstanceHematomePsoasRef.touched)) {
-                  <div>
-                    @if (editForm.get('circonstanceHematomePsoas')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
+
       
               @let circonstanceAccidentsHemorragiquesGravesRef = editForm.get('circonstanceAccidentsHemorragiquesGraves')!;
               <div class="mb-3">
@@ -756,160 +672,11 @@
                 }
               </div>
       
-              @let typeInterventionChirurgicaleRef = editForm.get('typeInterventionChirurgicale')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_typeInterventionChirurgicale">Type Intervention Chirurgicale</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="typeInterventionChirurgicale"
-                  id="field_typeInterventionChirurgicale"
-                  data-cy="typeInterventionChirurgicale"
-                  formControlName="typeInterventionChirurgicale"
-                />
-                @if (
-                  typeInterventionChirurgicaleRef.invalid && (typeInterventionChirurgicaleRef.dirty || typeInterventionChirurgicaleRef.touched)
-                ) {
-                  <div>
-                    @if (editForm.get('typeInterventionChirurgicale')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
+
       
-              @let causePriseEnChargeRef = editForm.get('causePriseEnCharge')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_causePriseEnCharge">Cause Prise En Charge</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="causePriseEnCharge"
-                  id="field_causePriseEnCharge"
-                  data-cy="causePriseEnCharge"
-                  formControlName="causePriseEnCharge"
-                />
-                @if (causePriseEnChargeRef.invalid && (causePriseEnChargeRef.dirty || causePriseEnChargeRef.touched)) {
-                  <div>
-                    @if (editForm.get('causePriseEnCharge')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
+
       
-              @let posologieITIRef = editForm.get('posologieITI')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_posologieITI">Posologie ITI</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="posologieITI"
-                  id="field_posologieITI"
-                  data-cy="posologieITI"
-                  formControlName="posologieITI"
-                />
-                @if (posologieITIRef.invalid && (posologieITIRef.dirty || posologieITIRef.touched)) {
-                  <div>
-                    @if (editForm.get('posologieITI')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let dureeITIRef = editForm.get('dureeITI')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_dureeITI">Duree ITI</label>
-                <input type="text" class="form-control" name="dureeITI" id="field_dureeITI" data-cy="dureeITI" formControlName="dureeITI" />
-                @if (dureeITIRef.invalid && (dureeITIRef.dirty || dureeITIRef.touched)) {
-                  <div>
-                    @if (editForm.get('dureeITI')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let causeNonObservanceITIRef = editForm.get('causeNonObservanceITI')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_causeNonObservanceITI">Cause Non Observance ITI</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="causeNonObservanceITI"
-                  id="field_causeNonObservanceITI"
-                  data-cy="causeNonObservanceITI"
-                  formControlName="causeNonObservanceITI"
-                />
-                @if (causeNonObservanceITIRef.invalid && (causeNonObservanceITIRef.dirty || causeNonObservanceITIRef.touched)) {
-                  <div>
-                    @if (editForm.get('causeNonObservanceITI')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let typeHandicapRef = editForm.get('typeHandicap')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_typeHandicap">Type Handicap</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="typeHandicap"
-                  id="field_typeHandicap"
-                  data-cy="typeHandicap"
-                  formControlName="typeHandicap"
-                />
-                @if (typeHandicapRef.invalid && (typeHandicapRef.dirty || typeHandicapRef.touched)) {
-                  <div>
-                    @if (editForm.get('typeHandicap')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let typeActiviteSportiveRef = editForm.get('typeActiviteSportive')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_typeActiviteSportive">Type Activite Sportive</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="typeActiviteSportive"
-                  id="field_typeActiviteSportive"
-                  data-cy="typeActiviteSportive"
-                  formControlName="typeActiviteSportive"
-                />
-                @if (typeActiviteSportiveRef.invalid && (typeActiviteSportiveRef.dirty || typeActiviteSportiveRef.touched)) {
-                  <div>
-                    @if (editForm.get('typeActiviteSportive')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
-      
-              @let causeDateDecesRef = editForm.get('causeDateDeces')!;
-              <div class="mb-3">
-                <label class="form-label" for="field_causeDateDeces">Cause Date Deces</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="causeDateDeces"
-                  id="field_causeDateDeces"
-                  data-cy="causeDateDeces"
-                  formControlName="causeDateDeces"
-                />
-                @if (causeDateDecesRef.invalid && (causeDateDecesRef.dirty || causeDateDecesRef.touched)) {
-                  <div>
-                    @if (editForm.get('causeDateDeces')?.errors?.maxlength) {
-                      <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-                    }
-                  </div>
-                }
-              </div>
+
             </div>
 
           </div>
@@ -996,7 +763,114 @@
           data-bs-parent="#ficheAccordion"
         >
           <div class="accordion-body">
-              Mettre ici le contenu de ManifestationsCliniques 
+            @let typeHemorragiesCutaneoMuqueusesRef = editForm.get('typeHemorragiesCutaneoMuqueuses')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_typeHemorragiesCutaneoMuqueuses">Type Hemorragies Cutaneo Muqueuses</label>
+              <input
+                type="text"
+                class="form-control"
+                name="typeHemorragiesCutaneoMuqueuses"
+                id="field_typeHemorragiesCutaneoMuqueuses"
+                data-cy="typeHemorragiesCutaneoMuqueuses"
+                formControlName="typeHemorragiesCutaneoMuqueuses"
+              />
+              @if (
+                typeHemorragiesCutaneoMuqueusesRef.invalid &&
+                (typeHemorragiesCutaneoMuqueusesRef.dirty || typeHemorragiesCutaneoMuqueusesRef.touched)
+              ) {
+                <div>
+                  @if (editForm.get('typeHemorragiesCutaneoMuqueuses')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+    
+            @let circonstanceHematomeSuperficielRef = editForm.get('circonstanceHematomeSuperficiel')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_circonstanceHematomeSuperficiel">Circonstance Hematome Superficiel</label>
+              <input
+                type="text"
+                class="form-control"
+                name="circonstanceHematomeSuperficiel"
+                id="field_circonstanceHematomeSuperficiel"
+                data-cy="circonstanceHematomeSuperficiel"
+                formControlName="circonstanceHematomeSuperficiel"
+              />
+              @if (
+                circonstanceHematomeSuperficielRef.invalid &&
+                (circonstanceHematomeSuperficielRef.dirty || circonstanceHematomeSuperficielRef.touched)
+              ) {
+                <div>
+                  @if (editForm.get('circonstanceHematomeSuperficiel')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+    
+            @let siegeHematomeSuperficielRef = editForm.get('siegeHematomeSuperficiel')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_siegeHematomeSuperficiel">Siege Hematome Superficiel</label>
+              <input
+                type="text"
+                class="form-control"
+                name="siegeHematomeSuperficiel"
+                id="field_siegeHematomeSuperficiel"
+                data-cy="siegeHematomeSuperficiel"
+                formControlName="siegeHematomeSuperficiel"
+              />
+              @if (siegeHematomeSuperficielRef.invalid && (siegeHematomeSuperficielRef.dirty || siegeHematomeSuperficielRef.touched)) {
+                <div>
+                  @if (editForm.get('siegeHematomeSuperficiel')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+    
+            @let circonstanceHematomePsoasRef = editForm.get('circonstanceHematomePsoas')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_circonstanceHematomePsoas">Circonstance Hematome Psoas</label>
+              <input
+                type="text"
+                class="form-control"
+                name="circonstanceHematomePsoas"
+                id="field_circonstanceHematomePsoas"
+                data-cy="circonstanceHematomePsoas"
+                formControlName="circonstanceHematomePsoas"
+              />
+              @if (circonstanceHematomePsoasRef.invalid && (circonstanceHematomePsoasRef.dirty || circonstanceHematomePsoasRef.touched)) {
+                <div>
+                  @if (editForm.get('circonstanceHematomePsoas')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+
+            @let typeInterventionChirurgicaleRef = editForm.get('typeInterventionChirurgicale')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_typeInterventionChirurgicale">Type Intervention Chirurgicale</label>
+              <input
+                type="text"
+                class="form-control"
+                name="typeInterventionChirurgicale"
+                id="field_typeInterventionChirurgicale"
+                data-cy="typeInterventionChirurgicale"
+                formControlName="typeInterventionChirurgicale"
+              />
+              @if (
+                typeInterventionChirurgicaleRef.invalid && (typeInterventionChirurgicaleRef.dirty || typeInterventionChirurgicaleRef.touched)
+              ) {
+                <div>
+                  @if (editForm.get('typeInterventionChirurgicale')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+
 
           </div>
         </div>
@@ -1024,7 +898,78 @@
           data-bs-parent="#ficheAccordion"
         >
           <div class="accordion-body">
-              Mettre ici le contenu de Prise En Charge Therapeutique 
+            @let causePriseEnChargeRef = editForm.get('causePriseEnCharge')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_causePriseEnCharge">Cause Prise En Charge</label>
+              <input
+                type="text"
+                class="form-control"
+                name="causePriseEnCharge"
+                id="field_causePriseEnCharge"
+                data-cy="causePriseEnCharge"
+                formControlName="causePriseEnCharge"
+              />
+              @if (causePriseEnChargeRef.invalid && (causePriseEnChargeRef.dirty || causePriseEnChargeRef.touched)) {
+                <div>
+                  @if (editForm.get('causePriseEnCharge')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+    
+            @let posologieITIRef = editForm.get('posologieITI')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_posologieITI">Posologie ITI</label>
+              <input
+                type="text"
+                class="form-control"
+                name="posologieITI"
+                id="field_posologieITI"
+                data-cy="posologieITI"
+                formControlName="posologieITI"
+              />
+              @if (posologieITIRef.invalid && (posologieITIRef.dirty || posologieITIRef.touched)) {
+                <div>
+                  @if (editForm.get('posologieITI')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+    
+            @let dureeITIRef = editForm.get('dureeITI')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_dureeITI">Duree ITI</label>
+              <input type="text" class="form-control" name="dureeITI" id="field_dureeITI" data-cy="dureeITI" formControlName="dureeITI" />
+              @if (dureeITIRef.invalid && (dureeITIRef.dirty || dureeITIRef.touched)) {
+                <div>
+                  @if (editForm.get('dureeITI')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div>
+    
+            @let causeNonObservanceITIRef = editForm.get('causeNonObservanceITI')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_causeNonObservanceITI">Cause Non Observance ITI</label>
+              <input
+                type="text"
+                class="form-control"
+                name="causeNonObservanceITI"
+                id="field_causeNonObservanceITI"
+                data-cy="causeNonObservanceITI"
+                formControlName="causeNonObservanceITI"
+              />
+              @if (causeNonObservanceITIRef.invalid && (causeNonObservanceITIRef.dirty || causeNonObservanceITIRef.touched)) {
+                <div>
+                  @if (editForm.get('causeNonObservanceITI')?.errors?.maxlength) {
+                    <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                  }
+                </div>
+              }
+            </div> 
 
           </div>
         </div>
@@ -1080,7 +1025,65 @@
         data-bs-parent="#ficheAccordion"
       >
         <div class="accordion-body">
-            Mettre ici le contenu de Evolution 
+          @let typeHandicapRef = editForm.get('typeHandicap')!;
+          <div class="mb-3">
+            <label class="form-label" for="field_typeHandicap">Type Handicap</label>
+            <input
+              type="text"
+              class="form-control"
+              name="typeHandicap"
+              id="field_typeHandicap"
+              data-cy="typeHandicap"
+              formControlName="typeHandicap"
+            />
+            @if (typeHandicapRef.invalid && (typeHandicapRef.dirty || typeHandicapRef.touched)) {
+              <div>
+                @if (editForm.get('typeHandicap')?.errors?.maxlength) {
+                  <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                }
+              </div>
+            }
+          </div>
+  
+          @let typeActiviteSportiveRef = editForm.get('typeActiviteSportive')!;
+          <div class="mb-3">
+            <label class="form-label" for="field_typeActiviteSportive">Type Activite Sportive</label>
+            <input
+              type="text"
+              class="form-control"
+              name="typeActiviteSportive"
+              id="field_typeActiviteSportive"
+              data-cy="typeActiviteSportive"
+              formControlName="typeActiviteSportive"
+            />
+            @if (typeActiviteSportiveRef.invalid && (typeActiviteSportiveRef.dirty || typeActiviteSportiveRef.touched)) {
+              <div>
+                @if (editForm.get('typeActiviteSportive')?.errors?.maxlength) {
+                  <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                }
+              </div>
+            }
+          </div>
+  
+          @let causeDateDecesRef = editForm.get('causeDateDeces')!;
+          <div class="mb-3">
+            <label class="form-label" for="field_causeDateDeces">Cause Date Deces</label>
+            <input
+              type="text"
+              class="form-control"
+              name="causeDateDeces"
+              id="field_causeDateDeces"
+              data-cy="causeDateDeces"
+              formControlName="causeDateDeces"
+            />
+            @if (causeDateDecesRef.invalid && (causeDateDecesRef.dirty || causeDateDecesRef.touched)) {
+              <div>
+                @if (editForm.get('causeDateDeces')?.errors?.maxlength) {
+                  <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+                }
+              </div>
+            }
+          </div>
 
         </div>
       </div>
