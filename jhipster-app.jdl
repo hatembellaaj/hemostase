@@ -194,6 +194,29 @@ entity FicheHemophilie {
     ageDiagnosticMois Integer, // Âge au moment du diagnostic en mois
     ageDiagnosticAnnees Integer, // Âge au moment du diagnostic en années
 
+    // IV. Biologie au moment du diagnostic
+    dateTestConfirmation LocalDate, // Date du test de confirmation
+    hb Float, // Hb (g/dl)
+    ht Float, // Ht (%)
+    plaquettes Integer, // Plaquettes (/mm3)
+    tp Float, // TP (%)
+    fibrinogene Float, // Fibrinogène (g/l)
+    tcaMT Float, // TCA (M/T) (sec)
+    tcaMTTotal Float, // TCA (M+T) (sec)
+    tcaMT2h Float, // TCA (M+T) 2h (sec)
+    tcaTemoin2h Float, // TCA (Témoin) 2h (sec)
+    ts OuiNonNP, // TS NF / fait / normal / allongé
+    pfa OuiNonNP, // PFA NF / fait / normal / allongé
+    dosageFacteurVIII Float, // Dosage du facteur VIII (%)
+    dosageFacteurIX Float, // Dosage du facteur IX (%)
+    dosageFacteurVWActivite Float, // Dosage du facteur vW Activité (%)
+    dosageFacteurVWAntigene Float, // Dosage du facteur vW Antigène (%)
+    formeClinique FormeClinique required, // Forme clinique : A ou B
+    severite Severite required, // Sévérité : sévère, modérée ou mineure
+    explorationMoleculaire OuiNonNP, // Exploration moléculaire NF / fait
+    inversionIntron22 Boolean, // Inversion de l'intron 22 (true/false)
+    autreExplorationMoleculaire String maxlength(25), // Autre exploration moléculaire (texte libre)
+
 
     typeHemorragiesCutaneoMuqueuses String maxlength(25),
     circonstanceHematomeSuperficiel String maxlength(25),
