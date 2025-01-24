@@ -184,6 +184,17 @@ entity FicheHemophilie {
     fratrieNbFreres Integer, // Nombre de frères
     fratrieNbSoeurs Integer, // Nombre de sœurs
 
+    //Circonstances de découverte
+    decouverteFortuite OuiNonNP, // Découverte fortuite
+    enqueteFamiliale OuiNonNP, // Enquête familiale
+    explorationSyndrome OuiNonNP, // Exploration d'un syndrome hémorragique
+    typesSyndromeHemorragique TypeSyndromeHemorragique, // Types de syndrome hémorragique (liste)
+    datePremierSigneClinique LocalDate, // Date du 1er signe clinique évocateur
+    ageDiagnosticJours Integer, // Âge au moment du diagnostic en jours
+    ageDiagnosticMois Integer, // Âge au moment du diagnostic en mois
+    ageDiagnosticAnnees Integer, // Âge au moment du diagnostic en années
+
+
     typeHemorragiesCutaneoMuqueuses String maxlength(25),
     circonstanceHematomeSuperficiel String maxlength(25),
     siegeHematomeSuperficiel String maxlength(25),
