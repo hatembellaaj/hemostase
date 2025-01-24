@@ -135,6 +135,10 @@ enum VieSociale {
     PRESCOLAIRE, SCOLARISE, CHOMEUR, TRAVAILLE
 }
 
+enum DegreeParente {
+    FRERE, COUSIN, LOINTAIN
+}
+
 // Fusion des entités Patient et FicheHemophilie
 entity FicheHemophilie {
     // Attributs Patient
@@ -168,8 +172,18 @@ entity FicheHemophilie {
     dossierNumber String required maxlength(25),
     ordreNumber String maxlength(25),
     indexNumber String maxlength(25),
-    degreParenteConsanguins String maxlength(25),
-    degreParenteCasSimilaires String maxlength(25),
+    // Modification 1 : Parents consanguins
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins String maxlength(25), // Degré de parenté si parents consanguins
+    casSimilaires OuiNonNP,
+    nombreCas Integer,
+    degreParenteCasSimilaires DegreeParente,
+    decesSyndromeHemorragique OuiNonNP, // Cas de décès par syndrome hémorragique
+    nombreDeces Integer, // Nombre de cas de décès
+    formeHemophilie FormeHemophilie required, // Forme d'hémophilie : sporadique ou héréditaire
+    fratrieNbFreres Integer, // Nombre de frères
+    fratrieNbSoeurs Integer, // Nombre de sœurs
+
     typeHemorragiesCutaneoMuqueuses String maxlength(25),
     circonstanceHematomeSuperficiel String maxlength(25),
     siegeHematomeSuperficiel String maxlength(25),
