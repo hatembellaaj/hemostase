@@ -95,12 +95,24 @@ enum TypeHemorragie {
     CHUTE_DENTAIRE, PLAIE_LANGUE, GINGIVORRAGIES, EPISTAXIS, ECHYMOSES
 }
 
+enum TypeHemorragieCutaneoMuqueuse {
+    CHUTE_DENTAIRE, PLAIE_LANGUE, GINGIVORRAGIES, EPISTAXIS, ECHYMOSES
+}
+
 enum TypeHemorragieVisceres {
     HEMATEMESE, RECTORRAGIE, HEMATURIE
 }
 
 enum EvolutionSNC {
     REGRESSION, DECES
+}
+
+enum TypeAccidentHemorragiqueGrave {
+    HEMATOMES_CEREBRALES, HEMOTHORAX, EDC_HEMORRAGIQUE, HEMATOME_COMPRESSIF
+}
+
+enum SuiteOperatoire {
+    SIMPLE, HEMORRAGIQUE
 }
 
 enum AccidentsGravesType {
@@ -219,52 +231,52 @@ entity FicheHemophilie {
 
     // V. Manifestations cliniques
     // 1. Hémarthrose
-    hemarthrose OuiNon,
+    hemarthrose OuiNonNP,
     hemarthroseSiege String maxlength(50), // Liste des articulations touchées
     hemarthroseType TypeHemorragie,
     hemarthroseFrequenceAn Integer, // Fréquence par an
 
     // 2. Hématome superficiel
-    hematomeSuperficiel OuiNon,
+    hematomeSuperficiel OuiNonNP,
     hematomeSuperficielType TypeHemorragie,
     hematomeSuperficielSiege String maxlength(50),
 
     // 3. Hématome du psoas
-    hematomePsoas OuiNon,
+    hematomePsoas OuiNonNP,
     hematomePsoasType TypeHemorragie,
-    hematomePsoasRecidive OuiNon,
+    hematomePsoasRecidive OuiNonNP,
 
     // 4. Hémorragies cutanéo-muqueuses
-    hemorragiesCutaneoMuqueuses OuiNon,
+    hemorragiesCutaneoMuqueuses OuiNonNP,
     hemorragiesCutaneoMuqueusesTypes TypeHemorragieCutaneoMuqueuse, // Enumération pour les types
     hemorragiesCutaneoMuqueusesFrequenceAn Integer, // Fréquence par an
 
     // 5. Hémorragie des viscères
-    hemorragieVisceres OuiNon,
+    hemorragieVisceres OuiNonNP,
     hemorragieVisceresType TypeHemorragieViscere,
     hemorragieVisceresExploration OuiNonNP,
     hemorragieVisceresExamen String maxlength(100), // Examen et lésions sous-jacentes
 
     // 6. Saignement du SNC
-    saignementSNC OuiNon,
+    saignementSNC OuiNonNP,
     saignementSNCEvolution EvolutionSNC,
 
     // 7. Circoncision
     circoncision OuiNonNP,
-    circoncisionPreparation OuiNon,
+    circoncisionPreparation OuiNonNP,
     circoncisionSuiteOperatoire SuiteOperatoire,
     circoncisionAge Integer, // Âge lors de la circoncision
 
     // 8. Avulsion dentaire
-    avulsionDentaire OuiNon,
-    avulsionDentairePreparation OuiNon,
+    avulsionDentaire OuiNonNP,
+    avulsionDentairePreparation OuiNonNP,
 
     // 9. Intervention chirurgicale
-    interventionChirurgicale OuiNon,
+    interventionChirurgicale OuiNonNP,
     interventionChirurgicaleType String maxlength(100),
 
     // 10. Accidents hémorragiques graves
-    accidentsHemorragiquesGraves OuiNon,
+    accidentsHemorragiquesGraves OuiNonNP,
     accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave // Enumération pour les types
 
 
