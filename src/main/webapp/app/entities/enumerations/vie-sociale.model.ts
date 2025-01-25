@@ -1,0 +1,9 @@
+export enum VieSociale {
+  PRESCOLAIRE = 'PRESCOLAIRE',
+
+  SCOLARISE = 'SCOLARISE',
+
+  CHOMEUR = 'CHOMEUR',
+
+  TRAVAILLE = 'TRAVAILLE',
+}
