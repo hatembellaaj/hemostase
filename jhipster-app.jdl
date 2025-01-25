@@ -39,9 +39,6 @@ enum SuiteOperatoire {
     SIMPLE, HEMORRAGIQUE, NP
 }
 
-enum TypeComplicationsOrthopediques {
-    SYNOVITE, ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE, PSEUDOTUMEURS, FRACTURES
-}
 
 enum ArticulationCible {
     GENOU_GAUCHE, GENOU_DROIT, COUDE_GAUCHE, COUDE_DROIT, CHEVILLE_GAUCHE, CHEVILLE_DROITE, EPAULE_GAUCHE, EPAULE_DROITE, POIGNET_GAUCHE, POIGNET_DROIT, HANCHE_GAUCHE, HANCHE_DROITE
@@ -111,10 +108,6 @@ enum TypeAccidentHemorragiqueGrave {
     HEMATOMES_CEREBRALES, HEMOTHORAX, EDC_HEMORRAGIQUE, HEMATOME_COMPRESSIF
 }
 
-enum SuiteOperatoire {
-    SIMPLE, HEMORRAGIQUE
-}
-
 enum AccidentsGravesType {
     HEMATOMES_CEREBRALES, HEMOTHORAX, EDC_HEMORRAGIQUE, HEMATOME_COMPRESSIF
 }
@@ -161,9 +154,7 @@ enum ModaliteTraitement {
 enum OuiNon {
     OUI, NON
 }
-enum TypeComplicationOrthopedique {
-    SYNOVITE, ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE, PSEUDOTUMEURS, FRACTURES
-}
+
 enum PECTherapeutique {
     RAS, SYNOVIORTHOSE, PTG
 }
@@ -221,7 +212,7 @@ entity FicheHemophilie {
     decouverteFortuite OuiNonNP, // Découverte fortuite
     enqueteFamiliale OuiNonNP, // Enquête familiale
     explorationSyndrome OuiNonNP, // Exploration d'un syndrome hémorragique
-    typesSyndromeHemorragique TypeSyndromeHemorragique, // Types de syndrome hémorragique (liste)
+    typesSyndromeHemorragique List<TypeSyndromeHemorragique> // Types de syndrome hémorragique (liste)
     datePremierSigneClinique LocalDate, // Date du 1er signe clinique évocateur
     ageDiagnosticJours Integer, // Âge au moment du diagnostic en jours
     ageDiagnosticMois Integer, // Âge au moment du diagnostic en mois
@@ -298,7 +289,7 @@ entity FicheHemophilie {
 
     // 10. Accidents hémorragiques graves
     accidentsHemorragiquesGraves OuiNonNP,
-    accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave // Enumération pour les types
+    accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave, // Enumération pour les types
 
     // VI. Prise en charge thérapeutique
     priseEnChargeTherapeutique TypePriseEnCharge, // Prise en charge à la demande ou prophylaxie
