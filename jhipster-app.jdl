@@ -217,6 +217,57 @@ entity FicheHemophilie {
     inversionIntron22 Boolean, // Inversion de l'intron 22 (true/false)
     autreExplorationMoleculaire String maxlength(25), // Autre exploration moléculaire (texte libre)
 
+    // V. Manifestations cliniques
+    // 1. Hémarthrose
+    hemarthrose OuiNon,
+    hemarthroseSiege String maxlength(50), // Liste des articulations touchées
+    hemarthroseType TypeHemorragie,
+    hemarthroseFrequenceAn Integer, // Fréquence par an
+
+    // 2. Hématome superficiel
+    hematomeSuperficiel OuiNon,
+    hematomeSuperficielType TypeHemorragie,
+    hematomeSuperficielSiege String maxlength(50),
+
+    // 3. Hématome du psoas
+    hematomePsoas OuiNon,
+    hematomePsoasType TypeHemorragie,
+    hematomePsoasRecidive OuiNon,
+
+    // 4. Hémorragies cutanéo-muqueuses
+    hemorragiesCutaneoMuqueuses OuiNon,
+    hemorragiesCutaneoMuqueusesTypes TypeHemorragieCutaneoMuqueuse, // Enumération pour les types
+    hemorragiesCutaneoMuqueusesFrequenceAn Integer, // Fréquence par an
+
+    // 5. Hémorragie des viscères
+    hemorragieVisceres OuiNon,
+    hemorragieVisceresType TypeHemorragieViscere,
+    hemorragieVisceresExploration OuiNonNP,
+    hemorragieVisceresExamen String maxlength(100), // Examen et lésions sous-jacentes
+
+    // 6. Saignement du SNC
+    saignementSNC OuiNon,
+    saignementSNCEvolution EvolutionSNC,
+
+    // 7. Circoncision
+    circoncision OuiNonNP,
+    circoncisionPreparation OuiNon,
+    circoncisionSuiteOperatoire SuiteOperatoire,
+    circoncisionAge Integer, // Âge lors de la circoncision
+
+    // 8. Avulsion dentaire
+    avulsionDentaire OuiNon,
+    avulsionDentairePreparation OuiNon,
+
+    // 9. Intervention chirurgicale
+    interventionChirurgicale OuiNon,
+    interventionChirurgicaleType String maxlength(100),
+
+    // 10. Accidents hémorragiques graves
+    accidentsHemorragiquesGraves OuiNon,
+    accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave // Enumération pour les types
+
+
 
     typeHemorragiesCutaneoMuqueuses String maxlength(25),
     circonstanceHematomeSuperficiel String maxlength(25),
