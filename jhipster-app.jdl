@@ -369,20 +369,27 @@ entity FicheHemophilie {
     evolutionVHC EvolutionVHC, // Évolution du VHC : Disparition ou Persistance
     serologieHIV Serologie // Sérologie HIV : Positive, Négative, NP
 
-    typeHemorragiesCutaneoMuqueuses String maxlength(25),
-    circonstanceHematomeSuperficiel String maxlength(25),
-    siegeHematomeSuperficiel String maxlength(25),
-    circonstanceHematomePsoas String maxlength(25),
-    circonstanceAccidentsHemorragiquesGraves String maxlength(25),
-    typeInterventionChirurgicale String maxlength(25),
-    causePriseEnCharge String maxlength(25),
-    posologieITI String maxlength(25),
-    dureeITI String maxlength(25),
-    causeNonObservanceITI String maxlength(25),
-    typeHandicap String maxlength(25),
-    typeActiviteSportive String maxlength(25),
-    causeDateDeces String maxlength(25)
-    // autres champs comme ils sont, mais limitez les champs à texte à 25 caractères
+    // VIII. EVOLUTION
+    // 1. Vie sociale
+    vieSociale VieSociale, // Situation sociale : préscolaire, scolarisé, chômeur, travaille
+
+    // 2. Mariage
+    marie OuiNon, // Indique si la personne est mariée
+    enfants OuiNon, // Si marié, indique s'il y a des enfants
+
+    // 3. Handicap
+    handicap OuiNon, // Présence ou non d'un handicap
+    typeHandicap String maxlength(100), // Type de handicap, si applicable
+
+    // 4. Activité sportive
+    activiteSportive OuiNon, // Pratique ou non d'une activité sportive
+    typeActiviteSportive String maxlength(100), // Type d'activité sportive, si applicable
+
+    // 5. Décès
+    decede OuiNon, // Indique si la personne est décédée
+    causeDeces String maxlength(100), // Cause du décès, si applicable
+    dateDeces LocalDate // Date du décès, si applicable
+
 }
 
 // Options de génération
