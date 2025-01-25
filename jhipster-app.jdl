@@ -131,6 +131,10 @@ enum TraitementType {
     PLASMATIQUE, RECOMBINANT
 }
 
+enum TypePriseEnCharge {
+    A_LA_DEMANDE, PROPHYLAXIE
+}
+
 enum CircumstanceDecouverte {
     FORTUITE, FAMILIALE, SYNDROME_HEMORRAGIQUE
 }
@@ -150,6 +154,11 @@ enum VieSociale {
 enum DegreeParente {
     FRERE, COUSIN, LOINTAIN
 }
+enum ModaliteTraitement {
+    PLASMATIQUE, RECOMBINANT
+}
+
+
 
 // Fusion des entités Patient et FicheHemophilie
 entity FicheHemophilie {
@@ -278,6 +287,21 @@ entity FicheHemophilie {
     // 10. Accidents hémorragiques graves
     accidentsHemorragiquesGraves OuiNonNP,
     accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave // Enumération pour les types
+
+    // VI. Prise en charge thérapeutique
+    priseEnChargeTherapeutique TypePriseEnCharge, // Prise en charge à la demande ou prophylaxie
+    causePriseEnCharge String maxlength(100), // Cause si prise en charge à la demande
+    prophylaxieDoseFrequence String maxlength(100), // Dose et fréquence (nbre/sem)
+    dateDebutProphylaxie LocalDate, // Date de début de la prophylaxie
+    
+    injectionType InjectionType, // Modalité d'injection : auto, parent, ou hôpital
+    modaliteTraitement ModaliteTraitement, // Modalité du traitement substitutif : plasmatique ou recombinant
+    typeTraitementSubstitutif String maxlength(100), // Type spécifique du traitement
+    agePremiereSubstitution Integer, // Âge de la première substitution
+
+    antecedentsTraitementPSL OuiNonNP, // Antécédents de traitement par PSL (oui/non)
+    plasmaFraisCongele OuiNonNP, // Plasma frais congelé (PFC)
+    cryoprecipite OuiNonNP // Cryoprécipité
 
 
 
