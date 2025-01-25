@@ -158,6 +158,18 @@ enum ModaliteTraitement {
     PLASMATIQUE, RECOMBINANT
 }
 
+enum OuiNon {
+    OUI, NON
+}
+enum TypeComplicationOrthopedique {
+    SYNOVITE, ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE, PSEUDOTUMEURS, FRACTURES
+}
+enum PECTherapeutique {
+    RAS, SYNOVIORTHOSE, PTG
+}
+enum AntiFAHStatus {
+    NON_NEUTRALISANT, NEGATIF
+}
 
 
 // Fusion des entités Patient et FicheHemophilie
@@ -304,6 +316,58 @@ entity FicheHemophilie {
     cryoprecipite OuiNonNP // Cryoprécipité
 
 
+    // VII.Complications liées au traitement :
+    // Type de complications orthopédiques
+    synovite OuiNon, // Synovite
+    arthropathieHemophiliqueChronique OuiNon, // Arthropathie hémophilique chronique
+    pseudotumeurs OuiNon, // Pseudotumeurs
+    fractures OuiNon, // Fractures
+
+    // Si arthropathie hémophilique
+    articulationCible ArticulationCible, // Articulations cibles pour arthropathie
+    pecTherapeutique PECTherapeutique, // Prise en charge thérapeutique
+
+    // 2/ Les inhibiteurs
+    inhibiteurs OuiNonNP, // Présence ou non d'inhibiteurs
+    tauxInhibiteur TauxInhibiteur, // Niveau des inhibiteurs
+    testRecuperationFAH OuiNon, // Test de récupération du FAH réalisé ou non
+    dateTestRecuperation LocalDate // Date du test de récupération du FAH, si réalisé
+
+    // Taux de récupération
+    tauxRecuperation TauxRecuperation, // Taux de récupération : Normal ou Diminué
+    antiFAHNonNeutralisant OuiNon, // Anti-FAH non neutralisant : Oui/Non
+    antiFAHNégatif OuiNon, // Anti-FAH négatif : Oui/Non
+
+    // Recherche d’ACC type LA associé
+    rechercheACC RechercheACC, // Recherche ACC (Non faite, Faite, Positive, Négative, Douteuse)
+
+    // CAT thérapeutique
+    augmenterDoseFacteur OuiNon, // Augmenter dose de facteur
+    novoseven OuiNon, // Novoseven
+    feiba OuiNon, // Feiba
+    corticotherapie OuiNon, // Corticothérapie
+    immurel OuiNon, // Immurel
+
+    iti OuiNon, // ITI : Oui/Non
+    posologieITI String maxlength(100), // Posologie ITI
+    dureeITI String maxlength(100), // Durée ITI
+    observanceITI OuiNonNP, // Observance : Oui/Non/NP
+    causeNonObservance String maxlength(100), // Cause de non-observance
+
+    evolutionInhibiteur EvolutionInhibiteur, // Évolution des inhibiteurs : Disparition ou Persistance
+    prophylaxieHemlibra OuiNon, // Prophylaxie par Hemlibra : Oui/Non
+    dateDebutHemlibra LocalDate, // Date de début de la prophylaxie par Hemlibra
+    schemaTherapeutique SchemaTherapeutique, // Schéma thérapeutique : Hebdomadaire, Mensuel, Bimensuel
+    efficaciteHemlibra Integer, // Nombre d’accidents hémorragiques/6 mois
+
+    // 3. Complications virales
+    serologieHBC Serologie, // Sérologie HBC : Positive, Négative, NP
+    serologieHVC Serologie, // Sérologie HVC : Positive, Négative, NP
+    dateDecouverteVHC LocalDate, // Date de découverte du VHC
+    chargeViraleVHC String maxlength(100), // Charge virale pour le VHC
+    traitementVHC OuiNonNP, // Traitement VHC : Oui/Non/NP
+    evolutionVHC EvolutionVHC, // Évolution du VHC : Disparition ou Persistance
+    serologieHIV Serologie // Sérologie HIV : Positive, Négative, NP
 
     typeHemorragiesCutaneoMuqueuses String maxlength(25),
     circonstanceHematomeSuperficiel String maxlength(25),
