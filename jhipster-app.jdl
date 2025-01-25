@@ -212,7 +212,14 @@ entity FicheHemophilie {
     decouverteFortuite OuiNonNP, // Découverte fortuite
     enqueteFamiliale OuiNonNP, // Enquête familiale
     explorationSyndrome OuiNonNP, // Exploration d'un syndrome hémorragique
-    typesSyndromeHemorragique List<TypeSyndromeHemorragique> // Types de syndrome hémorragique (liste)
+    cutaneoMuqueux OuiNon
+    hemarthrose OuiNon
+    hematomePostTraumatique OuiNon
+    plaiePostTraumatique OuiNon
+    hemorragiePostCirconcision OuiNon
+    hemorragiePostChirurgie OuiNon
+    hemorragieCerebrale OuiNon
+    hemorragieDigestive OuiNon
     datePremierSigneClinique LocalDate, // Date du 1er signe clinique évocateur
     ageDiagnosticJours Integer, // Âge au moment du diagnostic en jours
     ageDiagnosticMois Integer, // Âge au moment du diagnostic en mois
