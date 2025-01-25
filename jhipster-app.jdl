@@ -1,6 +1,6 @@
-// Enums pour gérer les choix
+// Enums pour gerer les choix
 enum OuiNonNP {
-    OUI, NON, NP // NP = Non Précisé
+    OUI, NON, NP // NP = Non Precise
 }
 
 enum Gender {
@@ -96,7 +96,7 @@ enum TypeHemorragieCutaneoMuqueuse {
     CHUTE_DENTAIRE, PLAIE_LANGUE, GINGIVORRAGIES, EPISTAXIS, ECHYMOSES
 }
 
-enum TypeHemorragieVisceres {
+enum TypeHemorragieViscere {
     HEMATEMESE, RECTORRAGIE, HEMATURIE
 }
 
@@ -163,7 +163,7 @@ enum AntiFAHStatus {
 }
 
 
-// Fusion des entités Patient et FicheHemophilie
+// Fusion des entites Patient et FicheHemophilie
 entity FicheHemophilie {
     // Attributs Patient
     prenom String required maxlength(25),
@@ -198,20 +198,20 @@ entity FicheHemophilie {
     indexNumber String maxlength(25),
     // Modification 1 : Parents consanguins
     parentsConsanguins OuiNonNP,
-    degreParenteConsanguins String maxlength(25), // Degré de parenté si parents consanguins
+    degreParenteConsanguins String maxlength(25), // Degre de parente si parents consanguins
     casSimilaires OuiNonNP,
     nombreCas Integer,
     degreParenteCasSimilaires DegreeParente,
-    decesSyndromeHemorragique OuiNonNP, // Cas de décès par syndrome hémorragique
-    nombreDeces Integer, // Nombre de cas de décès
-    formeHemophilie FormeHemophilie required, // Forme d'hémophilie : sporadique ou héréditaire
-    fratrieNbFreres Integer, // Nombre de frères
+    decesSyndromeHemorragique OuiNonNP, // Cas de deces par syndrome hemorragique
+    nombreDeces Integer, // Nombre de cas de deces
+    formeHemophilie FormeHemophilie required, // Forme d'hemophilie : sporadique ou hereditaire
+    fratrieNbFreres Integer, // Nombre de freres
     fratrieNbSoeurs Integer, // Nombre de sœurs
 
-    //Circonstances de découverte
-    decouverteFortuite OuiNonNP, // Découverte fortuite
+    //Circonstances de decouverte
+    decouverteFortuite OuiNonNP, // Decouverte fortuite
     enqueteFamiliale OuiNonNP, // Enquête familiale
-    explorationSyndrome OuiNonNP, // Exploration d'un syndrome hémorragique
+    explorationSyndrome OuiNonNP, // Exploration d'un syndrome hemorragique
     cutaneoMuqueux OuiNon
     hemarthrose OuiNon
     hematomePostTraumatique OuiNon
@@ -220,10 +220,10 @@ entity FicheHemophilie {
     hemorragiePostChirurgie OuiNon
     hemorragieCerebrale OuiNon
     hemorragieDigestive OuiNon
-    datePremierSigneClinique LocalDate, // Date du 1er signe clinique évocateur
+    datePremierSigneClinique LocalDate, // Date du 1er signe clinique evocateur
     ageDiagnosticJours Integer, // Âge au moment du diagnostic en jours
     ageDiagnosticMois Integer, // Âge au moment du diagnostic en mois
-    ageDiagnosticAnnees Integer, // Âge au moment du diagnostic en années
+    ageDiagnosticAnnees Integer, // Âge au moment du diagnostic en annees
 
     // IV. Biologie au moment du diagnostic
     dateTestConfirmation LocalDate, // Date du test de confirmation
@@ -231,50 +231,50 @@ entity FicheHemophilie {
     ht Float, // Ht (%)
     plaquettes Integer, // Plaquettes (/mm3)
     tp Float, // TP (%)
-    fibrinogene Float, // Fibrinogène (g/l)
+    fibrinogene Float, // Fibrinogene (g/l)
     tcaMT Float, // TCA (M/T) (sec)
     tcaMTTotal Float, // TCA (M+T) (sec)
     tcaMT2h Float, // TCA (M+T) 2h (sec)
-    tcaTemoin2h Float, // TCA (Témoin) 2h (sec)
-    ts OuiNonNP, // TS NF / fait / normal / allongé
-    pfa OuiNonNP, // PFA NF / fait / normal / allongé
+    tcaTemoin2h Float, // TCA (Temoin) 2h (sec)
+    ts OuiNonNP, // TS NF / fait / normal / allonge
+    pfa OuiNonNP, // PFA NF / fait / normal / allonge
     dosageFacteurVIII Float, // Dosage du facteur VIII (%)
     dosageFacteurIX Float, // Dosage du facteur IX (%)
-    dosageFacteurVWActivite Float, // Dosage du facteur vW Activité (%)
-    dosageFacteurVWAntigene Float, // Dosage du facteur vW Antigène (%)
+    dosageFacteurVWActivite Float, // Dosage du facteur vW Activite (%)
+    dosageFacteurVWAntigene Float, // Dosage du facteur vW Antigene (%)
     formeClinique FormeClinique required, // Forme clinique : A ou B
-    severite Severite required, // Sévérité : sévère, modérée ou mineure
-    explorationMoleculaire OuiNonNP, // Exploration moléculaire NF / fait
+    severite Severite required, // Severite : severe, moderee ou mineure
+    explorationMoleculaire OuiNonNP, // Exploration moleculaire NF / fait
     inversionIntron22 Boolean, // Inversion de l'intron 22 (true/false)
-    autreExplorationMoleculaire String maxlength(25), // Autre exploration moléculaire (texte libre)
+    autreExplorationMoleculaire String maxlength(25), // Autre exploration moleculaire (texte libre)
 
     // V. Manifestations cliniques
-    // 1. Hémarthrose
+    // 1. Hemarthrose
     hemarthrose OuiNonNP,
-    hemarthroseSiege String maxlength(50), // Liste des articulations touchées
+    hemarthroseSiege String maxlength(50), // Liste des articulations touchees
     hemarthroseType TypeHemorragie,
-    hemarthroseFrequenceAn Integer, // Fréquence par an
+    hemarthroseFrequenceAn Integer, // Frequence par an
 
-    // 2. Hématome superficiel
+    // 2. Hematome superficiel
     hematomeSuperficiel OuiNonNP,
     hematomeSuperficielType TypeHemorragie,
     hematomeSuperficielSiege String maxlength(50),
 
-    // 3. Hématome du psoas
+    // 3. Hematome du psoas
     hematomePsoas OuiNonNP,
     hematomePsoasType TypeHemorragie,
     hematomePsoasRecidive OuiNonNP,
 
-    // 4. Hémorragies cutanéo-muqueuses
+    // 4. Hemorragies cutaneo-muqueuses
     hemorragiesCutaneoMuqueuses OuiNonNP,
-    hemorragiesCutaneoMuqueusesTypes TypeHemorragieCutaneoMuqueuse, // Enumération pour les types
-    hemorragiesCutaneoMuqueusesFrequenceAn Integer, // Fréquence par an
+    hemorragiesCutaneoMuqueusesTypes TypeHemorragieCutaneoMuqueuse, // Enumeration pour les types
+    hemorragiesCutaneoMuqueusesFrequenceAn Integer, // Frequence par an
 
-    // 5. Hémorragie des viscères
+    // 5. Hemorragie des visceres
     hemorragieVisceres OuiNonNP,
     hemorragieVisceresType TypeHemorragieViscere,
     hemorragieVisceresExploration OuiNonNP,
-    hemorragieVisceresExamen String maxlength(100), // Examen et lésions sous-jacentes
+    hemorragieVisceresExamen String maxlength(100), // Examen et lesions sous-jacentes
 
     // 6. Saignement du SNC
     saignementSNC OuiNonNP,
@@ -294,104 +294,103 @@ entity FicheHemophilie {
     interventionChirurgicale OuiNonNP,
     interventionChirurgicaleType String maxlength(100),
 
-    // 10. Accidents hémorragiques graves
+    // 10. Accidents hemorragiques graves
     accidentsHemorragiquesGraves OuiNonNP,
-    accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave, // Enumération pour les types
+    accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave, // Enumeration pour les types
 
-    // VI. Prise en charge thérapeutique
+    // VI. Prise en charge therapeutique
     priseEnChargeTherapeutique TypePriseEnCharge, // Prise en charge à la demande ou prophylaxie
     causePriseEnCharge String maxlength(100), // Cause si prise en charge à la demande
-    prophylaxieDoseFrequence String maxlength(100), // Dose et fréquence (nbre/sem)
-    dateDebutProphylaxie LocalDate, // Date de début de la prophylaxie
+    prophylaxieDoseFrequence String maxlength(100), // Dose et frequence (nbre/sem)
+    dateDebutProphylaxie LocalDate, // Date de debut de la prophylaxie
     
-    injectionType InjectionType, // Modalité d'injection : auto, parent, ou hôpital
-    modaliteTraitement ModaliteTraitement, // Modalité du traitement substitutif : plasmatique ou recombinant
-    typeTraitementSubstitutif String maxlength(100), // Type spécifique du traitement
-    agePremiereSubstitution Integer, // Âge de la première substitution
+    injectionType InjectionType, // Modalite d'injection : auto, parent, ou hôpital
+    modaliteTraitement ModaliteTraitement, // Modalite du traitement substitutif : plasmatique ou recombinant
+    typeTraitementSubstitutif String maxlength(100), // Type specifique du traitement
+    agePremiereSubstitution Integer, // Âge de la premiere substitution
 
-    antecedentsTraitementPSL OuiNonNP, // Antécédents de traitement par PSL (oui/non)
-    plasmaFraisCongele OuiNonNP, // Plasma frais congelé (PFC)
-    cryoprecipite OuiNonNP // Cryoprécipité
+    antecedentsTraitementPSL OuiNonNP, // Antecedents de traitement par PSL (oui/non)
+    plasmaFraisCongele OuiNonNP, // Plasma frais congele (PFC)
+    cryoprecipite OuiNonNP // Cryoprecipite
 
 
-    // VII.Complications liées au traitement :
-    // Type de complications orthopédiques
+    // VII.Complications liees au traitement :
+    // Type de complications orthopediques
     synovite OuiNon, // Synovite
-    arthropathieHemophiliqueChronique OuiNon, // Arthropathie hémophilique chronique
+    arthropathieHemophiliqueChronique OuiNon, // Arthropathie hemophilique chronique
     pseudotumeurs OuiNon, // Pseudotumeurs
     fractures OuiNon, // Fractures
 
-    // Si arthropathie hémophilique
+    // Si arthropathie hemophilique
     articulationCible ArticulationCible, // Articulations cibles pour arthropathie
-    pecTherapeutique PECTherapeutique, // Prise en charge thérapeutique
+    pecTherapeutique PECTherapeutique, // Prise en charge therapeutique
 
     // 2/ Les inhibiteurs
-    inhibiteurs OuiNonNP, // Présence ou non d'inhibiteurs
+    inhibiteurs OuiNonNP, // Presence ou non d'inhibiteurs
     tauxInhibiteur TauxInhibiteur, // Niveau des inhibiteurs
-    testRecuperationFAH OuiNon, // Test de récupération du FAH réalisé ou non
-    dateTestRecuperation LocalDate // Date du test de récupération du FAH, si réalisé
+    testRecuperationFAH OuiNon, // Test de recuperation du FAH realise ou non
+    dateTestRecuperation LocalDate // Date du test de recuperation du FAH, si realise
 
-    // Taux de récupération
-    tauxRecuperation TauxRecuperation, // Taux de récupération : Normal ou Diminué
+    // Taux de recuperation
+    tauxRecuperation TauxRecuperation, // Taux de recuperation : Normal ou Diminue
     antiFAHNonNeutralisant OuiNon, // Anti-FAH non neutralisant : Oui/Non
-    antiFAHNégatif OuiNon, // Anti-FAH négatif : Oui/Non
+    antiFAHNegatif OuiNon, // Anti-FAH negatif : Oui/Non
 
-    // Recherche d’ACC type LA associé
-    rechercheACC RechercheACC, // Recherche ACC (Non faite, Faite, Positive, Négative, Douteuse)
+    // Recherche d’ACC type LA associe
+    rechercheACC RechercheACC, // Recherche ACC (Non faite, Faite, Positive, Negative, Douteuse)
 
-    // CAT thérapeutique
+    // CAT therapeutique
     augmenterDoseFacteur OuiNon, // Augmenter dose de facteur
     novoseven OuiNon, // Novoseven
     feiba OuiNon, // Feiba
-    corticotherapie OuiNon, // Corticothérapie
+    corticotherapie OuiNon, // Corticotherapie
     immurel OuiNon, // Immurel
 
     iti OuiNon, // ITI : Oui/Non
     posologieITI String maxlength(100), // Posologie ITI
-    dureeITI String maxlength(100), // Durée ITI
+    dureeITI String maxlength(100), // Duree ITI
     observanceITI OuiNonNP, // Observance : Oui/Non/NP
     causeNonObservance String maxlength(100), // Cause de non-observance
 
     evolutionInhibiteur EvolutionInhibiteur, // Évolution des inhibiteurs : Disparition ou Persistance
     prophylaxieHemlibra OuiNon, // Prophylaxie par Hemlibra : Oui/Non
-    dateDebutHemlibra LocalDate, // Date de début de la prophylaxie par Hemlibra
-    schemaTherapeutique SchemaTherapeutique, // Schéma thérapeutique : Hebdomadaire, Mensuel, Bimensuel
-    efficaciteHemlibra Integer, // Nombre d’accidents hémorragiques/6 mois
+    dateDebutHemlibra LocalDate, // Date de debut de la prophylaxie par Hemlibra
+    schemaTherapeutique SchemaTherapeutique, // Schema therapeutique : Hebdomadaire, Mensuel, Bimensuel
+    efficaciteHemlibra Integer, // Nombre d’accidents hemorragiques/6 mois
 
     // 3. Complications virales
-    serologieHBC Serologie, // Sérologie HBC : Positive, Négative, NP
-    serologieHVC Serologie, // Sérologie HVC : Positive, Négative, NP
-    dateDecouverteVHC LocalDate, // Date de découverte du VHC
+    serologieHBC Serologie, // Serologie HBC : Positive, Negative, NP
+    serologieHVC Serologie, // Serologie HVC : Positive, Negative, NP
+    dateDecouverteVHC LocalDate, // Date de decouverte du VHC
     chargeViraleVHC String maxlength(100), // Charge virale pour le VHC
     traitementVHC OuiNonNP, // Traitement VHC : Oui/Non/NP
     evolutionVHC EvolutionVHC, // Évolution du VHC : Disparition ou Persistance
-    serologieHIV Serologie // Sérologie HIV : Positive, Négative, NP
+    serologieHIV Serologie // Serologie HIV : Positive, Negative, NP
 
     // VIII. EVOLUTION
     // 1. Vie sociale
-    vieSociale VieSociale, // Situation sociale : préscolaire, scolarisé, chômeur, travaille
+    vieSociale VieSociale, // Situation sociale : prescolaire, scolarise, chômeur, travaille
 
     // 2. Mariage
-    marie OuiNon, // Indique si la personne est mariée
-    enfants OuiNon, // Si marié, indique s'il y a des enfants
+    marie OuiNon, // Indique si la personne est mariee
+    enfants OuiNon, // Si marie, indique s'il y a des enfants
 
     // 3. Handicap
-    handicap OuiNon, // Présence ou non d'un handicap
+    handicap OuiNon, // Presence ou non d'un handicap
     typeHandicap String maxlength(100), // Type de handicap, si applicable
 
-    // 4. Activité sportive
-    activiteSportive OuiNon, // Pratique ou non d'une activité sportive
-    typeActiviteSportive String maxlength(100), // Type d'activité sportive, si applicable
+    // 4. Activite sportive
+    activiteSportive OuiNon, // Pratique ou non d'une activite sportive
+    typeActiviteSportive String maxlength(100), // Type d'activite sportive, si applicable
 
-    // 5. Décès
-    decede OuiNon, // Indique si la personne est décédée
-    causeDeces String maxlength(100), // Cause du décès, si applicable
-    dateDeces LocalDate // Date du décès, si applicable
+    // 5. Deces
+    decede OuiNon, // Indique si la personne est decedee
+    causeDeces String maxlength(100), // Cause du deces, si applicable
+    dateDeces LocalDate // Date du deces, si applicable
 
 }
 
-// Options de génération
+// Options de generation
 dto * with mapstruct
 paginate FicheHemophilie with pagination
 service all with serviceClass
-
