@@ -573,7 +573,154 @@
   >
     <div class="accordion-body">
       <!-- Contenu pour la section Antécédents -->
-      <p>Ajoutez ici les informations relatives aux antécédents du patient.</p>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+          <select
+            class="form-control"
+            name="parentsConsanguins"
+            formControlName="parentsConsanguins"
+            id="field_parentsConsanguins"
+            data-cy="parentsConsanguins"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        @let degreParenteConsanguinsRef = editForm.get('degreParenteConsanguins')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
+          <input
+            type="text"
+            class="form-control"
+            name="degreParenteConsanguins"
+            id="field_degreParenteConsanguins"
+            data-cy="degreParenteConsanguins"
+            formControlName="degreParenteConsanguins"
+          />
+          @if (degreParenteConsanguinsRef.invalid && (degreParenteConsanguinsRef.dirty || degreParenteConsanguinsRef.touched)) {
+            <div>
+              @if (editForm.get('degreParenteConsanguins')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
+          <select
+            class="form-control"
+            name="casSimilaires"
+            formControlName="casSimilaires"
+            id="field_casSimilaires"
+            data-cy="casSimilaires"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreCas">Nombre Cas</label>
+          <input type="number" class="form-control" name="nombreCas" id="field_nombreCas" data-cy="nombreCas" formControlName="nombreCas" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_degreParenteCasSimilaires">Degre Parente Cas Similaires</label>
+          <select
+            class="form-control"
+            name="degreParenteCasSimilaires"
+            formControlName="degreParenteCasSimilaires"
+            id="field_degreParenteCasSimilaires"
+            data-cy="degreParenteCasSimilaires"
+          >
+            <option [ngValue]="null"></option>
+            @for (degreeParente of degreeParenteValues; track $index) {
+              <option [value]="degreeParente">
+                {{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[degreeParente] }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_decesSyndromeHemorragique">Deces Syndrome Hemorragique</label>
+          <select
+            class="form-control"
+            name="decesSyndromeHemorragique"
+            formControlName="decesSyndromeHemorragique"
+            id="field_decesSyndromeHemorragique"
+            data-cy="decesSyndromeHemorragique"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreDeces">Nombre Deces</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreDeces"
+            id="field_nombreDeces"
+            data-cy="nombreDeces"
+            formControlName="nombreDeces"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_formeHemophilie">Forme Hemophilie</label>
+          <select
+            class="form-control"
+            name="formeHemophilie"
+            formControlName="formeHemophilie"
+            id="field_formeHemophilie"
+            data-cy="formeHemophilie"
+          >
+            <option [ngValue]="null"></option>
+            @for (formeHemophilie of formeHemophilieValues; track $index) {
+              <option [value]="formeHemophilie">
+                {{ { null: '', SPORADIQUE: 'SPORADIQUE', HEREDITAIRE: 'HEREDITAIRE', NP: 'NP' }[formeHemophilie] }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fratrieNbFreres">Fratrie Nb Freres</label>
+          <input
+            type="number"
+            class="form-control"
+            name="fratrieNbFreres"
+            id="field_fratrieNbFreres"
+            data-cy="fratrieNbFreres"
+            formControlName="fratrieNbFreres"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fratrieNbSoeurs">Fratrie Nb Soeurs</label>
+          <input
+            type="number"
+            class="form-control"
+            name="fratrieNbSoeurs"
+            id="field_fratrieNbSoeurs"
+            data-cy="fratrieNbSoeurs"
+            formControlName="fratrieNbSoeurs"
+          />
+        </div>
+
+
+      
     </div>
   </div>
 </div>
