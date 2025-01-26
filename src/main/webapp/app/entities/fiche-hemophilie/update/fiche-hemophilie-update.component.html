@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-fiche-hemophilie-heading" data-cy="FicheHemophilieCreateUpdateHeading">Créer ou éditer un Fiche Hemophilie</h2>
+      <h2 id="jhi-fiche-hemophilie-heading" data-cy="FicheHemophilieCreateUpdateHeading">Créer ou éditer une Fiche Hemophilie</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -546,40 +546,210 @@
             </button>
           </div>
         </div>
-
-
-                
-
               </div>
             </div>
           </div>
 
-          <!-- Accordéon Section 2: Biologie -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingBiologie">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseBiologie"
-                aria-expanded="false"
-                aria-controls="collapseBiologie"
-              >
-                Biologie
-              </button>
-            </h2>
-            <div
-              id="collapseBiologie"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingBiologie"
-              data-bs-parent="#ficheAccordion"
-            >
-              <div class="accordion-body">
-                <!-- Champs pour la section Biologie -->
-                <p>Contenu de la section Biologie</p>
-              </div>
-            </div>
-          </div>
+
+<!-- Accordéon Section 2: Antécédents -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingAntecedents">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseAntecedents"
+      aria-expanded="false"
+      aria-controls="collapseAntecedents"
+    >
+      Antécédents
+    </button>
+  </h2>
+  <div
+    id="collapseAntecedents"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingAntecedents"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Antécédents -->
+      <p>Ajoutez ici les informations relatives aux antécédents du patient.</p>
+    </div>
+  </div>
+</div>
+
+
+          <!-- Accordéon Section 3: Circonstances de découverte -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingCirconstances">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseCirconstances"
+      aria-expanded="false"
+      aria-controls="collapseCirconstances"
+    >
+      Circonstances de découverte
+    </button>
+  </h2>
+  <div
+    id="collapseCirconstances"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingCirconstances"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Circonstances de découverte -->
+      <p>Ajoutez ici les informations concernant les circonstances de découverte.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 4: Biologie au moment du diagnostic -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingBiologie">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseBiologie"
+      aria-expanded="false"
+      aria-controls="collapseBiologie"
+    >
+      Biologie au moment du diagnostic
+    </button>
+  </h2>
+  <div
+    id="collapseBiologie"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingBiologie"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Biologie -->
+      <p>Ajoutez ici les informations sur la biologie au moment du diagnostic.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 5: Manifestations cliniques -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingManifestations">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseManifestations"
+      aria-expanded="false"
+      aria-controls="collapseManifestations"
+    >
+      Manifestations cliniques
+    </button>
+  </h2>
+  <div
+    id="collapseManifestations"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingManifestations"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Manifestations cliniques -->
+      <p>Ajoutez ici les informations sur les manifestations cliniques.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 6: Prise en charge thérapeutique -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingPriseEnCharge">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsePriseEnCharge"
+      aria-expanded="false"
+      aria-controls="collapsePriseEnCharge"
+    >
+      Prise en charge thérapeutique
+    </button>
+  </h2>
+  <div
+    id="collapsePriseEnCharge"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingPriseEnCharge"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Prise en charge thérapeutique -->
+      <p>Ajoutez ici les informations sur la prise en charge thérapeutique.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 7: Complications liées au traitement -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingComplications">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseComplications"
+      aria-expanded="false"
+      aria-controls="collapseComplications"
+    >
+      Complications liées au traitement
+    </button>
+  </h2>
+  <div
+    id="collapseComplications"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingComplications"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Complications -->
+      <p>Ajoutez ici les informations sur les complications liées au traitement.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 8: EVOLUTION -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingEvolution">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseEvolution"
+      aria-expanded="false"
+      aria-controls="collapseEvolution"
+    >
+      EVOLUTION
+    </button>
+  </h2>
+  <div
+    id="collapseEvolution"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingEvolution"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section EVOLUTION -->
+      <p>Ajoutez ici les informations sur l'évolution du patient.</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
         </div>
 
 
