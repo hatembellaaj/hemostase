@@ -44,6 +44,11 @@ enum ArticulationCible {
     GENOU_GAUCHE, GENOU_DROIT, COUDE_GAUCHE, COUDE_DROIT, CHEVILLE_GAUCHE, CHEVILLE_DROITE, EPAULE_GAUCHE, EPAULE_DROITE, POIGNET_GAUCHE, POIGNET_DROIT, HANCHE_GAUCHE, HANCHE_DROITE
 }
 
+enum Articulation {
+    COUDE_DROIT, COUDE_GAUCHE, GENOU_DROIT, GENOU_GAUCHE, CHEVILLE_DROITE, CHEVILLE_GAUCHE,
+    EPAULE_DROITE, EPAULE_GAUCHE, POIGNET_DROIT, POIGNET_GAUCHE, HANCHE_DROITE, HANCHE_GAUCHE
+}
+
 enum PECTherapeutique {
     RAS, SYNOVIORTHESE, PTG
 }
@@ -209,9 +214,7 @@ entity FicheHemophilie {
     fratrieNbSoeurs Integer, // Nombre de sœurs
 
     //Circonstances de decouverte
-    decouverteFortuite OuiNonNP , // Decouverte fortuite
-    enqueteFamiliale OuiNonNP , // Enquête familiale
-    explorationSyndrome OuiNonNP, // Exploration d'un syndrome hemorragique
+    circonstancesDecouverte CircumstanceDecouverte required,
     cutaneoMuqueux Boolean,
     hemarthrose Boolean,
     hematomePostTraumatique Boolean,
@@ -236,8 +239,8 @@ entity FicheHemophilie {
     tcaMTTotal Float, // TCA (M+T) (sec)
     tcaMT2h Float, // TCA (M+T) 2h (sec)
     tcaTemoin2h Float, // TCA (Temoin) 2h (sec)
-    ts OuiNonNP , // TS NF / fait / normal / allonge
-    pfa OuiNonNP , // PFA NF / fait / normal / allonge
+    ts TestStatus, // TS NF / fait / normal / allonge
+    pfa TestStatus, // PFA NF / fait / normal / allonge
     dosageFacteurVIII Float, // Dosage du facteur VIII (%)
     dosageFacteurIX Float, // Dosage du facteur IX (%)
     dosageFacteurVWActivite Float, // Dosage du facteur vW Activite (%)
