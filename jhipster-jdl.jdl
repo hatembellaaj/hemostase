@@ -171,8 +171,8 @@ enum AntiFAHStatus {
 // Fusion des entites Patient et FicheHemophilie
 entity FicheHemophilie {
     // Attributs Patient
-    prenom String ,
-    nom String ,
+    prenom String  maxlength(25),
+    nom String  maxlength(25),
     nomJeuneFille String maxlength(25),
     profession String maxlength(25),
     sexe Gender required,
