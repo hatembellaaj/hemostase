@@ -255,12 +255,12 @@ entity FicheHemophilie {
     // 1. Hemarthrose
     hemarthrose OuiNonNP ,
     hemarthroseSiege String maxlength(25), // Liste des articulations touchees
-    hemarthroseType TypeHemorragie ,
+    hemarthroseType TypeManifestation ,
     hemarthroseFrequenceAn Integer, // Frequence par an
 
     // 2. Hematome superficiel
     hematomeSuperficiel OuiNonNP ,
-    hematomeSuperficielType TypeHemorragie ,
+    hematomeSuperficielType TypeManifestation,
     hematomeSuperficielSiege String maxlength(25),
 
     // 3. Hematome du psoas
@@ -319,6 +319,7 @@ entity FicheHemophilie {
 
     // VII.Complications liees au traitement :
     // Type de complications orthopediques
+    orthopediques OuiNonNP,
     synovite Boolean, // Synovite
     arthropathieHemophiliqueChronique Boolean, // Arthropathie hemophilique chronique
     pseudotumeurs Boolean, // Pseudotumeurs
@@ -386,11 +387,11 @@ entity FicheHemophilie {
     vieSociale VieSociale , // Situation sociale : prescolaire, scolarise, chômeur, travaille
 
     // 2. Mariage
-    marie Boolean, // Indique si la personne est mariee
-    enfants Boolean, // Si marie, indique s'il y a des enfants
+    marie OuiNonNP, // Indique si la personne est mariee
+    enfants OuiNonNP, // Si marie, indique s'il y a des enfants
 
     // 3. Handicap
-    handicap Boolean, // Presence ou non d'un handicap
+    handicap OuiNonNP, // Presence ou non d'un handicap
     typeHandicap String maxlength(25), // Type de handicap, si applicable
 
     // 4. Activite sportive
