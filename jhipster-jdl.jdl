@@ -324,8 +324,19 @@ entity FicheHemophilie {
     pseudotumeurs Boolean, // Pseudotumeurs
     fractures Boolean, // Fractures
 
-    // Si arthropathie hemophilique
-    articulationCible ArticulationCible , // Articulations cibles pour arthropathie
+    coudeDroit Boolean,
+    coudeGauche Boolean,
+    genouDroit Boolean,
+    genouGauche Boolean,
+    chevilleDroite Boolean,
+    chevilleGauche Boolean,
+    epauleDroite Boolean,
+    epauleGauche Boolean,
+    poignetDroit Boolean,
+    poignetGauche Boolean,
+    hancheDroite Boolean,
+    hancheGauche Boolean,
+
     pecTherapeutique PECTherapeutique , // Prise en charge therapeutique
 
     // 2/ Les inhibiteurs
