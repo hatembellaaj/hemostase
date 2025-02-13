@@ -44,7 +44,7 @@
             <column name="adresse" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="telephone" type="varchar(20)">
+            <column name="telephone" type="varchar(15)">
                 <constraints nullable="true" />
             </column>
             <column name="etat_civil" type="text">
@@ -119,7 +119,7 @@
             <column name="nombre_deces" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="forme_hemophilie" type="varchar(25)">
+            <column name="forme_hemophilie" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="fratrie_nb_freres" type="integer">
@@ -128,13 +128,13 @@
             <column name="fratrie_nb_soeurs" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="circonstances_decouverte" type="varchar(25)">
+            <column name="circonstances_decouverte" type="text">
                 <constraints nullable="false" />
             </column>
             <column name="cutaneo_muqueux" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="hemarthrose" type="varchar(25)">
+            <column name="hemarthrose" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="hematome_post_traumatique" type="boolean">
@@ -197,10 +197,10 @@
             <column name="tca_temoin_2_h" type="${floatType}">
                 <constraints nullable="true" />
             </column>
-            <column name="ts" type="varchar(25)">
+            <column name="ts" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="pfa" type="varchar(25)">
+            <column name="pfa" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="dosage_facteur_viii" type="${floatType}">
@@ -215,139 +215,139 @@
             <column name="dosage_facteur_vw_antigene" type="${floatType}">
                 <constraints nullable="true" />
             </column>
-            <column name="forme_clinique" type="varchar(25)">
+            <column name="forme_clinique" type="text">
                 <constraints nullable="false" />
             </column>
-            <column name="severite" type="varchar(25)">
+            <column name="severite" type="text">
                 <constraints nullable="false" />
             </column>
-            <column name="exploration_moleculaire" type="varchar(25)">
+            <column name="exploration_moleculaire" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="inversion_intron_22" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="autre_exploration_moleculaire" type="varchar(25)">
+            <column name="autre_exploration_moleculaire" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hemarthrose_siege" type="varchar(25)">
+            <column name="hemarthrose_siege" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hemarthrose_type" type="varchar(25)">
+            <column name="hemarthrose_type" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="hemarthrose_frequence_an" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="hematome_superficiel" type="varchar(25)">
+            <column name="hematome_superficiel" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hematome_superficiel_type" type="varchar(25)">
+            <column name="hematome_superficiel_type" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hematome_superficiel_siege" type="varchar(25)">
+            <column name="hematome_superficiel_siege" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hematome_psoas" type="varchar(25)">
+            <column name="hematome_psoas" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hematome_psoas_type" type="varchar(25)">
+            <column name="hematome_psoas_type" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hematome_psoas_recidive" type="varchar(25)">
+            <column name="hematome_psoas_recidive" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hemorragies_cutaneo_muqueuses" type="varchar(25)">
+            <column name="hemorragies_cutaneo_muqueuses" type="vtext">
                 <constraints nullable="true" />
             </column>
-            <column name="hemorragies_cutaneo_muqueuses_types" type="varchar(25)">
+            <column name="hemorragies_cutaneo_muqueuses_types" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="hemorragies_cutaneo_muqueuses_frequence_an" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="hemorragie_visceres" type="varchar(25)">
+            <column name="hemorragie_visceres" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hemorragie_visceres_type" type="varchar(25)">
+            <column name="hemorragie_visceres_type" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hemorragie_visceres_exploration" type="varchar(25)">
+            <column name="hemorragie_visceres_exploration" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hemorragie_visceres_examen" type="varchar(25)">
+            <column name="hemorragie_visceres_examen" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="saignement_snc" type="varchar(25)">
+            <column name="saignement_snc" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="saignement_snc_evolution" type="varchar(25)">
+            <column name="saignement_snc_evolution" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="circoncision" type="varchar(25)">
+            <column name="circoncision" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="circoncision_preparation" type="varchar(25)">
+            <column name="circoncision_preparation" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="circoncision_suite_operatoire" type="varchar(25)">
+            <column name="circoncision_suite_operatoire" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="circoncision_age" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="avulsion_dentaire" type="varchar(25)">
+            <column name="avulsion_dentaire" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="avulsion_dentaire_preparation" type="varchar(25)">
+            <column name="avulsion_dentaire_preparation" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="intervention_chirurgicale" type="varchar(25)">
+            <column name="intervention_chirurgicale" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="intervention_chirurgicale_type" type="varchar(25)">
+            <column name="intervention_chirurgicale_type" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="accidents_hemorragiques_graves" type="varchar(25)">
+            <column name="accidents_hemorragiques_graves" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="accidents_hemorragiques_graves_types" type="varchar(25)">
+            <column name="accidents_hemorragiques_graves_types" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="prise_en_charge_therapeutique" type="varchar(25)">
+            <column name="prise_en_charge_therapeutique" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="cause_prise_en_charge" type="varchar(25)">
+            <column name="cause_prise_en_charge" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="prophylaxie_dose_frequence" type="varchar(25)">
+            <column name="prophylaxie_dose_frequence" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="date_debut_prophylaxie" type="date">
                 <constraints nullable="true" />
             </column>
-	    <column name="injection_type" type="varchar(25)">
+	    <column name="injection_type" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="modalite_traitement" type="varchar(25)">
+            <column name="modalite_traitement" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="type_traitement_substitutif" type="varchar(25)">
+            <column name="type_traitement_substitutif" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="age_premiere_substitution" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="antecedents_traitement_psl" type="varchar(25)">
+            <column name="antecedents_traitement_psl" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="plasma_frais_congele" type="varchar(25)">
+            <column name="plasma_frais_congele" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="cryoprecipite" type="varchar(25)">
+            <column name="cryoprecipite" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="orthopediques" type="varchar(25)">
+            <column name="orthopediques" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="synovite" type="boolean">
@@ -398,13 +398,13 @@
             <column name="hanche_gauche" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="pec_therapeutique" type="varchar(25)">
+            <column name="pec_therapeutique" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="inhibiteurs" type="varchar(25)">
+            <column name="inhibiteurs" type="text">
                 <constraints nullable="true" />
             </column>
-	    <column name="taux_inhibiteur" type="varchar(25)">
+	    <column name="taux_inhibiteur" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="test_recuperation_fah" type="boolean">
@@ -413,7 +413,7 @@
             <column name="date_test_recuperation" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="taux_recuperation" type="varchar(25)">
+            <column name="taux_recuperation" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="anti_fah_non_neutralisant" type="boolean">
@@ -422,7 +422,7 @@
             <column name="anti_fah_negatif" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="recherche_acc" type="varchar(25)">
+            <column name="recherche_acc" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="augmenter_dose_facteur" type="boolean">
@@ -443,19 +443,19 @@
             <column name="iti" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="posologie_iti" type="varchar(25)">
+            <column name="posologie_iti" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="duree_iti" type="varchar(25)">
+            <column name="duree_iti" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="observance_iti" type="varchar(25)">
+            <column name="observance_iti" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="cause_non_observance" type="varchar(25)">
+            <column name="cause_non_observance" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="evolution_inhibiteur" type="varchar(25)">
+            <column name="evolution_inhibiteur" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="prophylaxie_hemlibra" type="boolean">
@@ -464,58 +464,58 @@
             <column name="date_debut_hemlibra" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="schema_therapeutique" type="varchar(25)">
+            <column name="schema_therapeutique" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="efficacite_hemlibra" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="serologie_hbc" type="varchar(25)">
+            <column name="serologie_hbc" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="serologie_hvc" type="varchar(25)">
+            <column name="serologie_hvc" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="date_decouverte_vhc" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="charge_virale_vhc" type="varchar(25)">
+            <column name="charge_virale_vhc" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="traitement_vhc" type="varchar(25)">
+            <column name="traitement_vhc" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="evolution_vhc" type="varchar(25)">
+            <column name="evolution_vhc" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="serologie_hiv" type="varchar(25)">
+            <column name="serologie_hiv" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="vie_sociale" type="varchar(25)">
+            <column name="vie_sociale" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="marie" type="varchar(25)">
+            <column name="marie" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="enfants" type="varchar(25)">
+            <column name="enfants" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="handicap" type="varchar(25)">
+            <column name="handicap" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="type_handicap" type="varchar(25)">
+            <column name="type_handicap" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="activite_sportive" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="type_activite_sportive" type="varchar(25)">
+            <column name="type_activite_sportive" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="decede" type="boolean">
                 <constraints nullable="true" />
             </column>
-            <column name="cause_deces" type="varchar(25)">
+            <column name="cause_deces" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="date_deces" type="date">
