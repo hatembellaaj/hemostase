@@ -90,8 +90,10 @@ entity FicheThrombopathie {
     resultatEtudeGenetique String maxlength(255),
     
     // Diagnostic retenu
-    typeThrombopathie ThrombopathieType required,
-    autreThrombopathie String maxlength(255),
+    thrombasthenieGlanzmann Boolean,
+    maladieBernardSoulier Boolean,
+    autreThrombopathie Boolean,
+    autreThrombopathieDetails String maxlength(255)
     
     // Manifestations cliniques
     ecchymose OuiNonNP,
