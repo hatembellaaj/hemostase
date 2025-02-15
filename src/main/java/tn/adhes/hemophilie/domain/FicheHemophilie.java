@@ -199,10 +199,6 @@ public class FicheHemophilie implements Serializable {
     private Integer fratrieNbSoeurs;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "enquete_familiale")
-    private OuiNonNP enqueteFamiliale;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "exploration_syndrome")
     private OuiNonNP explorationSyndrome;
 
@@ -1132,20 +1128,6 @@ public class FicheHemophilie implements Serializable {
 
     public void setFratrieNbSoeurs(Integer fratrieNbSoeurs) {
         this.fratrieNbSoeurs = fratrieNbSoeurs;
-    }
-
-
-    public OuiNonNP getEnqueteFamiliale() {
-        return this.enqueteFamiliale;
-    }
-
-    public FicheHemophilie enqueteFamiliale(OuiNonNP enqueteFamiliale) {
-        this.setEnqueteFamiliale(enqueteFamiliale);
-        return this;
-    }
-
-    public void setEnqueteFamiliale(OuiNonNP enqueteFamiliale) {
-        this.enqueteFamiliale = enqueteFamiliale;
     }
 
     public OuiNonNP getExplorationSyndrome() {
@@ -2757,7 +2739,6 @@ public class FicheHemophilie implements Serializable {
             ", formeHemophilie='" + getFormeHemophilie() + "'" +
             ", fratrieNbFreres=" + getFratrieNbFreres() +
             ", fratrieNbSoeurs=" + getFratrieNbSoeurs() +
-            ", enqueteFamiliale='" + getEnqueteFamiliale() + "'" +
             ", explorationSyndrome='" + getExplorationSyndrome() + "'" +
             ", cutaneoMuqueux='" + getCutaneoMuqueux() + "'" +
             ", hemarthrose='" + getHemarthrose() + "'" +
