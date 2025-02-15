@@ -1134,14 +1134,6 @@ public class FicheHemophilie implements Serializable {
         this.fratrieNbSoeurs = fratrieNbSoeurs;
     }
 
-    public OuiNonNP getDecouverteFortuite() {
-        return this.decouverteFortuite;
-    }
-
-    public FicheHemophilie decouverteFortuite(OuiNonNP decouverteFortuite) {
-        this.setDecouverteFortuite(decouverteFortuite);
-        return this;
-    }
 
     public void setDecouverteFortuite(OuiNonNP decouverteFortuite) {
         this.decouverteFortuite = decouverteFortuite;
