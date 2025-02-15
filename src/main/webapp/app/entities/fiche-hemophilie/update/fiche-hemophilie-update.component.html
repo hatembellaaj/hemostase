@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-fiche-hemophilie-heading" data-cy="FicheHemophilieCreateUpdateHeading">Créer ou éditer un Fiche Hemophilie</h2>
+      <h2 id="jhi-fiche-hemophilie-heading" data-cy="FicheHemophilieCreateUpdateHeading">Créer ou éditer une Fiche Hemophilie</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -13,8 +13,35 @@
           </div>
         }
 
+
+        <div class="accordion" id="ficheAccordion">
+          <!-- Accordéon Section 1: Identification -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingIdentification">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseIdentification"
+                aria-expanded="true"
+                aria-controls="collapseIdentification"
+              >
+                Identification
+              </button>
+            </h2>
+            <div
+              id="collapseIdentification"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingIdentification"
+              data-bs-parent="#ficheAccordion"
+            >
+              <div class="accordion-body">
+                <!-- Champs pour la section Identification -->
+
+
+        
         <div class="mb-3">
-          <label class="form-label" for="field_dossierNumber">Dossier Number</label>
+          <label class="form-label" for="field_dossierNumber">Numéro Dossier </label>
           <input
             type="text"
             class="form-control"
@@ -27,7 +54,7 @@
 
         @let ordreNumberRef = editForm.get('ordreNumber')!;
         <div class="mb-3">
-          <label class="form-label" for="field_ordreNumber">Ordre Number</label>
+          <label class="form-label" for="field_ordreNumber">Numéro Ordre </label>
           <input
             type="text"
             class="form-control"
@@ -47,7 +74,7 @@
 
         @let indexNumberRef = editForm.get('indexNumber')!;
         <div class="mb-3">
-          <label class="form-label" for="field_indexNumber">Index Number</label>
+          <label class="form-label" for="field_indexNumber">Numéro Index </label>
           <input
             type="text"
             class="form-control"
@@ -591,6 +618,36 @@
           </div>
         </div>
 
+
+              </div>
+            </div>
+          </div>
+
+
+<!-- Accordéon Section 2: Antécédents -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingAntecedents">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseAntecedents"
+      aria-expanded="false"
+      aria-controls="collapseAntecedents"
+    >
+      Antécédents
+    </button>
+  </h2>
+  <div
+    id="collapseAntecedents"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingAntecedents"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Antécédents -->
+
+                
         <div class="mb-3">
           <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
           <select
@@ -735,6 +792,34 @@
             formControlName="fratrieNbSoeurs"
           />
         </div>
+
+          </div>
+  </div>
+</div>
+
+
+          <!-- Accordéon Section 3: Circonstances de découverte -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingCirconstances">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseCirconstances"
+      aria-expanded="false"
+      aria-controls="collapseCirconstances"
+    >
+      Circonstances de découverte
+    </button>
+  </h2>
+  <div
+    id="collapseCirconstances"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingCirconstances"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Circonstances de découverte -->
 
         @let circonstancesDecouverteRef = editForm.get('circonstancesDecouverte')!;
         <div class="mb-3">
@@ -917,6 +1002,36 @@
           />
         </div>
 
+
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 4: Biologie au moment du diagnostic -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingBiologie">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseBiologie"
+      aria-expanded="false"
+      aria-controls="collapseBiologie"
+    >
+      Biologie au moment du diagnostic
+    </button>
+  </h2>
+  <div
+    id="collapseBiologie"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingBiologie"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Biologie -->
+
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_dateTestConfirmation">Date Test Confirmation</label>
           <div class="input-group">
@@ -1187,6 +1302,34 @@
           </select>
         </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 5: Manifestations cliniques -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingManifestations">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseManifestations"
+      aria-expanded="false"
+      aria-controls="collapseManifestations"
+    >
+      Manifestations cliniques
+    </button>
+  </h2>
+  <div
+    id="collapseManifestations"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingManifestations"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+
+
+      
         @let hemarthroseSiegeRef = editForm.get('hemarthroseSiege')!;
         <div class="mb-3">
           <label class="form-label" for="field_hemarthroseSiege">Hemarthrose Siege</label>
@@ -1671,6 +1814,35 @@
           </select>
         </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 6: Prise en charge thérapeutique -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingPriseEnCharge">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsePriseEnCharge"
+      aria-expanded="false"
+      aria-controls="collapsePriseEnCharge"
+    >
+      Prise en charge thérapeutique
+    </button>
+  </h2>
+  <div
+    id="collapsePriseEnCharge"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingPriseEnCharge"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Prise en charge thérapeutique -->
+
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_priseEnChargeTherapeutique">Prise En Charge Therapeutique</label>
           <select
@@ -1887,6 +2059,38 @@
           </select>
         </div>
 
+
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 7: Complications liées au traitement -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingComplications">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseComplications"
+      aria-expanded="false"
+      aria-controls="collapseComplications"
+    >
+      Complications liées au traitement
+    </button>
+  </h2>
+  <div
+    id="collapseComplications"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingComplications"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Complications -->
+
+
+
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_synovite">Synovite</label>
           <input type="checkbox" class="form-check" name="synovite" id="field_synovite" data-cy="synovite" formControlName="synovite" />
@@ -2487,6 +2691,36 @@
           </select>
         </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 8: EVOLUTION -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingEvolution">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseEvolution"
+      aria-expanded="false"
+      aria-controls="collapseEvolution"
+    >
+      EVOLUTION
+    </button>
+  </h2>
+  <div
+    id="collapseEvolution"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingEvolution"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section EVOLUTION -->
+
+
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_vieSociale">Vie Sociale</label>
           <select class="form-control" name="vieSociale" formControlName="vieSociale" id="field_vieSociale" data-cy="vieSociale">
@@ -2625,7 +2859,9 @@
           </div>
         </div>
       </div>
-
+    </div>
+  </div>
+</div>
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
