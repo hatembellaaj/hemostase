@@ -97,9 +97,13 @@ entity FicheThrombopathie {
     
     // Manifestations cliniques
     ecchymose OuiNonNP,
+    typeEcchymose TypeManifestation,
     gingivorragies OuiNonNP,
+    typeGingivorragies TypeManifestation,
     epistaxis OuiNonNP,
+    typeEpistaxis TypeManifestation,
     hematome OuiNonNP,
+    typeHematome TypeManifestation,
     siegelHematome String maxlength(255),
     menoMetrorragies OuiNonNP,
     frequenceMenoMetrorragies Integer,
@@ -159,6 +163,10 @@ enum CirconstanceDiagnostic {
 
 enum ThrombopathieType {
     THROMBASTHENIE_GLANZMANN, MALADIE_BERNARD_SOULIER, AUTRE
+}
+
+enum TypeManifestation {
+    SPONTANE, PROVOQUE
 }
 
 // Configuration
