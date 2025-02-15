@@ -1872,7 +1872,6 @@ class FicheHemophilieResourceIT {
             .formeHemophilie(UPDATED_FORME_HEMOPHILIE)
             .fratrieNbFreres(UPDATED_FRATRIE_NB_FRERES)
             .fratrieNbSoeurs(UPDATED_FRATRIE_NB_SOEURS)
-            .explorationSyndrome(UPDATED_EXPLORATION_SYNDROME)
             .cutaneoMuqueux(UPDATED_CUTANEO_MUQUEUX)
             .hemarthrose(UPDATED_HEMARTHROSE)
             .hematomePostTraumatique(UPDATED_HEMATOME_POST_TRAUMATIQUE)
