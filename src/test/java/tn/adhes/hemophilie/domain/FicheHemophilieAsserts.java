@@ -107,9 +107,6 @@ public class FicheHemophilieAsserts {
             .satisfies(e -> assertThat(e.getFormeHemophilie()).as("check formeHemophilie").isEqualTo(actual.getFormeHemophilie()))
             .satisfies(e -> assertThat(e.getFratrieNbFreres()).as("check fratrieNbFreres").isEqualTo(actual.getFratrieNbFreres()))
             .satisfies(e -> assertThat(e.getFratrieNbSoeurs()).as("check fratrieNbSoeurs").isEqualTo(actual.getFratrieNbSoeurs()))
-            .satisfies(e ->
-                assertThat(e.getExplorationSyndrome()).as("check explorationSyndrome").isEqualTo(actual.getExplorationSyndrome())
-            )
             .satisfies(e -> assertThat(e.getCutaneoMuqueux()).as("check cutaneoMuqueux").isEqualTo(actual.getCutaneoMuqueux()))
             .satisfies(e -> assertThat(e.getHemarthrose()).as("check hemarthrose").isEqualTo(actual.getHemarthrose()))
             .satisfies(e ->
