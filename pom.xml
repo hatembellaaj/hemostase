@@ -76,6 +76,7 @@
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <spring-cloud-dependencies.version>2023.0.3</spring-cloud-dependencies.version>
         <springdoc-openapi-starter-webmvc-api.version>2.6.0</springdoc-openapi-starter-webmvc-api.version>
+        <liquibase.plugin.password>Hemophilie2024$$$</liquibase.plugin.password>
     </properties>
 
     <dependencyManagement>
@@ -794,7 +795,7 @@
                         <driver>org.mariadb.jdbc.Driver</driver>
                         <url>jdbc:mariadb://127.0.0.1:3306/adhes2025?useUnicode=true&amp;characterEncoding=utf8</url>
                         <username>root</username>
-                        <password>Hemophilie2024\$\$\$</password>
+                        <password>${liquibase.plugin.password}</password>
                         <verbose>true</verbose>
                         <logging>debug</logging>
                         <contexts>!test</contexts>
