@@ -1135,10 +1135,6 @@ public class FicheHemophilie implements Serializable {
     }
 
 
-    public void setDecouverteFortuite(OuiNonNP decouverteFortuite) {
-        this.decouverteFortuite = decouverteFortuite;
-    }
-
     public OuiNonNP getEnqueteFamiliale() {
         return this.enqueteFamiliale;
     }
@@ -2761,7 +2757,6 @@ public class FicheHemophilie implements Serializable {
             ", formeHemophilie='" + getFormeHemophilie() + "'" +
             ", fratrieNbFreres=" + getFratrieNbFreres() +
             ", fratrieNbSoeurs=" + getFratrieNbSoeurs() +
-            ", decouverteFortuite='" + getDecouverteFortuite() + "'" +
             ", enqueteFamiliale='" + getEnqueteFamiliale() + "'" +
             ", explorationSyndrome='" + getExplorationSyndrome() + "'" +
             ", cutaneoMuqueux='" + getCutaneoMuqueux() + "'" +
