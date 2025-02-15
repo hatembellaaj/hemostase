@@ -956,14 +956,7 @@
         </profile>
         <profile>
             <id>prod</id>
-            <properties>
-                <!-- default Spring profiles -->
-                <liquibase-plugin.url>jdbc:mariadb://127.0.0.1:3306/adhes2025?user=root&password=Hemophilie2024$$$&useUnicode=true&characterEncoding=utf8</liquibase-plugin.url>
-                <liquibase-plugin.username>root</liquibase-plugin.username>
-		<liquibase-plugin.password>Hemophilie2024$$$</liquibase-plugin.password>
-		<profile.test>testprod</profile.test>
-                <spring.profiles.active>prod${profile.api-docs}${profile.tls}${profile.e2e}${profile.no-liquibase}</spring.profiles.active>
-            </properties>
+
             <build>
                 <plugins>
                     <plugin>
