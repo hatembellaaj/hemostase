@@ -73,6 +73,9 @@ entity FicheThrombopathie {
     plaquettes Integer,
     frottisSanguin String maxlength(255),
     ts Float,
+    toPfa Float,
+    toPfa100ColEpi Float,
+    toPfa100ColAdp Float,
     tp Float,
     tca Float,
     
