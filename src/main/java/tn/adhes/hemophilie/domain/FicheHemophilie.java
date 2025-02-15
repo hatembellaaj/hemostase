@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import tn.adhes.hemophilie.domain.enumeration.ArticulationCible;
 import tn.adhes.hemophilie.domain.enumeration.CivilStatus;
 import tn.adhes.hemophilie.domain.enumeration.CouvertureSociale;
 import tn.adhes.hemophilie.domain.enumeration.DegreeParente;
@@ -472,10 +471,6 @@ public class FicheHemophilie implements Serializable {
 
     @Column(name = "fractures")
     private Boolean fractures;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "articulation_cible")
-    private ArticulationCible articulationCible;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "pec_therapeutique")
@@ -2131,17 +2126,6 @@ public class FicheHemophilie implements Serializable {
         this.fractures = fractures;
     }
 
-    public ArticulationCible getArticulationCible() {
-        return this.articulationCible;
-    }
-
-    public FicheHemophilie articulationCible(ArticulationCible articulationCible) {
-        this.setArticulationCible(articulationCible);
-        return this;
-    }
-
-    public void setArticulationCible(ArticulationCible articulationCible) {
-        this.articulationCible = articulationCible;
     }
 
     public PECTherapeutique getPecTherapeutique() {
@@ -2816,7 +2800,6 @@ public class FicheHemophilie implements Serializable {
             ", arthropathieHemophiliqueChronique='" + getArthropathieHemophiliqueChronique() + "'" +
             ", pseudotumeurs='" + getPseudotumeurs() + "'" +
             ", fractures='" + getFractures() + "'" +
-            ", articulationCible='" + getArticulationCible() + "'" +
             ", pecTherapeutique='" + getPecTherapeutique() + "'" +
             ", inhibiteurs='" + getInhibiteurs() + "'" +
             ", tauxInhibiteur='" + getTauxInhibiteur() + "'" +
