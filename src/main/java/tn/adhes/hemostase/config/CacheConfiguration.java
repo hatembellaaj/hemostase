@@ -41,6 +41,7 @@ public class CacheConfiguration {
             createCache(cm, tn.adhes.hemostase.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, tn.adhes.hemostase.repository.UserRepository.USERS_BY_EMAIL_CACHE);
             createCache(cm, tn.adhes.hemostase.domain.Authority.class.getName());
+            createCache(cm, tn.adhes.hemostase.domain.FicheHemophilie.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

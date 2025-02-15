@@ -1,0 +1,411 @@
+// Enums pour gerer les choix
+enum OuiNonNP {
+    OUI, NON, NP // NP = Non Precise
+}
+
+enum Gender {
+    MASCULIN, FEMININ
+}
+
+enum Region {
+    SFAX, GABES, GAFSA, KEBILI, TOZEUR, MEDNINE, TATAOUINE, SBZ, KASSERINE, MAHDIA, KAIRAOUANE, MONASTIR, SOUSSE, AUTRE
+}
+
+enum CivilStatus {
+    CELIBATAIRE, MARIE, DIVORCE, NP
+}
+
+enum CouvertureSociale {
+    CNAM, INDIGENT, NP
+}
+
+enum DiagnosticType {
+    HEMOPHILIE, WILLEBRAND, THROMBOPATHIE, DEFICIT_FACTEUR_VII, DEFICIT_FACTEUR_XI, DEFICIT_FACTEUR_XIII, DEFICIT_COMBINE, AUTRE
+}
+
+enum FormeHemophilie {
+    SPORADIQUE, HEREDITAIRE, NP
+}
+
+enum TypeManifestation {
+    SPONTANE, PROVOQUE
+}
+
+enum TypePreparation {
+    PREPAREE, NON_PREPAREE, NP
+}
+
+enum SuiteOperatoire {
+    SIMPLE, HEMORRAGIQUE, NP
+}
+
+
+enum ArticulationCible {
+    GENOU_GAUCHE, GENOU_DROIT, COUDE_GAUCHE, COUDE_DROIT, CHEVILLE_GAUCHE, CHEVILLE_DROITE, EPAULE_GAUCHE, EPAULE_DROITE, POIGNET_GAUCHE, POIGNET_DROIT, HANCHE_GAUCHE, HANCHE_DROITE
+}
+
+enum Articulation {
+    COUDE_DROIT, COUDE_GAUCHE, GENOU_DROIT, GENOU_GAUCHE, CHEVILLE_DROITE, CHEVILLE_GAUCHE,
+    EPAULE_DROITE, EPAULE_GAUCHE, POIGNET_DROIT, POIGNET_GAUCHE, HANCHE_DROITE, HANCHE_GAUCHE
+}
+
+enum PECTherapeutique {
+    RAS, SYNOVIORTHESE, PTG
+}
+
+enum TauxInhibiteur {
+    FAIBLE_REPONDEUR, FORT_REPONDEUR, NP
+}
+
+enum TauxRecuperation {
+    NORMAL, DIMINUE
+}
+
+enum RechercheACC {
+    NON_FAITE, FAITE, POSITIVE, NEGATIVE, DOUTEUSE
+}
+
+enum CATTherapeutique {
+    AUGMENTER_DOSE_FACTEUR, NOVOSEVEN, FEIBA, CORTICOTHERAPIE, IMMUREL
+}
+
+enum Observance {
+    OUI, NON, NP
+}
+
+enum EvolutionInhibiteur {
+    DISPARITION, PERSISTANCE
+}
+
+enum SchemaTherapeutique {
+    HEBDOMADAIRE, MENSUEL, BIMENSUEL
+}
+
+enum Serologie {
+    POSITIVE, NEGATIVE, NP
+}
+
+enum EvolutionVHC {
+    DISPARITION, PERSISTANCE
+}
+
+enum TestStatus {
+    FAIT, NON_FAIT, NORMAL, ALLONGE
+}
+
+enum TypeHemorragie {
+    CHUTE_DENTAIRE, PLAIE_LANGUE, GINGIVORRAGIES, EPISTAXIS, ECHYMOSES
+}
+
+enum TypeHemorragieCutaneoMuqueuse {
+    CHUTE_DENTAIRE, PLAIE_LANGUE, GINGIVORRAGIES, EPISTAXIS, ECHYMOSES
+}
+
+enum TypeHemorragieViscere {
+    HEMATEMESE, RECTORRAGIE, HEMATURIE
+}
+
+enum EvolutionSNC {
+    REGRESSION, DECES
+}
+
+enum TypeAccidentHemorragiqueGrave {
+    HEMATOMES_CEREBRALES, HEMOTHORAX, EDC_HEMORRAGIQUE, HEMATOME_COMPRESSIF
+}
+
+enum AccidentsGravesType {
+    HEMATOMES_CEREBRALES, HEMOTHORAX, EDC_HEMORRAGIQUE, HEMATOME_COMPRESSIF
+}
+
+enum PriseEnChargeType {
+    A_LA_DEMANDE, PROPHYLAXIE
+}
+
+enum InjectionType {
+    AUTO_INJECTION, INJECTION_PARENT, INJECTION_HOPITAL
+}
+
+enum TraitementType {
+    PLASMATIQUE, RECOMBINANT
+}
+
+enum TypePriseEnCharge {
+    A_LA_DEMANDE, PROPHYLAXIE
+}
+
+enum CircumstanceDecouverte {
+    FORTUITE, FAMILIALE, SYNDROME_HEMORRAGIQUE
+}
+
+enum FormeClinique {
+    A, B
+}
+
+enum Severite {
+    SEVERE, MODEREE, MINEURE
+}
+
+enum VieSociale {
+    PRESCOLAIRE, SCOLARISE, CHOMEUR, TRAVAILLE
+}
+
+enum DegreeParente {
+    FRERE, COUSIN, LOINTAIN
+}
+enum ModaliteTraitement {
+    PLASMATIQUE, RECOMBINANT
+}
+
+enum OuiNon {
+    OUI, NON
+}
+
+enum PECTherapeutique {
+    RAS, SYNOVIORTHOSE, PTG
+}
+enum AntiFAHStatus {
+    NON_NEUTRALISANT, NEGATIF
+}
+
+
+// Fusion des entites Patient et FicheHemophilie
+entity FicheHemophilie {
+    // Attributs Patient
+    prenom String  maxlength(25),
+    nom String  maxlength(25),
+    nomJeuneFille String maxlength(25),
+    profession String maxlength(25),
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String maxlength(25), // Si "origine" est "Autre"
+    adresse String maxlength(25),
+    telephone String maxlength(20),
+    etatCivil CivilStatus required,
+    couvertureSociale CouvertureSociale required,
+    prenomPere String maxlength(25),
+    professionPere String maxlength(25),
+    nomPrenomMere String maxlength(25),
+    professionMere String maxlength(25),
+    medecinTraitant String maxlength(25),
+    serviceOrigine String maxlength(25),
+    biologisteResponsableDg String maxlength(25),
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(25),
+    anneeDiagnostic Integer,
+    consentementRegistre OuiNonNP,
+    dateEnregistrementRegistre LocalDate,
+    
+    // Attributs FicheHemophilie
+    dossierNumber String ,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
+    // Modification 1 : Parents consanguins
+    parentsConsanguins OuiNonNP ,
+    degreParenteConsanguins String maxlength(25), // Degre de parente si parents consanguins
+    casSimilaires OuiNonNP ,
+    nombreCas Integer,
+    degreParenteCasSimilaires DegreeParente,
+    decesSyndromeHemorragique OuiNonNP , // Cas de deces par syndrome hemorragique
+    nombreDeces Integer, // Nombre de cas de deces
+    formeHemophilie FormeHemophilie , // Forme d'hemophilie : sporadique ou hereditaire
+    fratrieNbFreres Integer, // Nombre de freres
+    fratrieNbSoeurs Integer, // Nombre de sœurs
+
+    //Circonstances de decouverte
+    circonstancesDecouverte CircumstanceDecouverte required,
+    cutaneoMuqueux Boolean,
+    hemarthrose Boolean,
+    hematomePostTraumatique Boolean,
+    plaiePostTraumatique Boolean,
+    hemorragiePostCirconcision Boolean,
+    hemorragiePostChirurgie Boolean,
+    hemorragieCerebrale Boolean,
+    hemorragieDigestive Boolean,
+    datePremierSigneClinique LocalDate, // Date du 1er signe clinique evocateur
+    ageDiagnosticJours Integer, // Âge au moment du diagnostic en jours
+    ageDiagnosticMois Integer, // Âge au moment du diagnostic en mois
+    ageDiagnosticAnnees Integer, // Âge au moment du diagnostic en annees
+
+    // IV. Biologie au moment du diagnostic
+    dateTestConfirmation LocalDate, // Date du test de confirmation
+    hb Float, // Hb (g/dl)
+    ht Float, // Ht (%)
+    plaquettes Integer, // Plaquettes (/mm3)
+    tp Float, // TP (%)
+    fibrinogene Float, // Fibrinogene (g/l)
+    tcaMT Float, // TCA (M/T) (sec)
+    tcaMTTotal Float, // TCA (M+T) (sec)
+    tcaMT2h Float, // TCA (M+T) 2h (sec)
+    tcaTemoin2h Float, // TCA (Temoin) 2h (sec)
+    ts TestStatus, // TS NF / fait / normal / allonge
+    pfa TestStatus, // PFA NF / fait / normal / allonge
+    dosageFacteurVIII Float, // Dosage du facteur VIII (%)
+    dosageFacteurIX Float, // Dosage du facteur IX (%)
+    dosageFacteurVWActivite Float, // Dosage du facteur vW Activite (%)
+    dosageFacteurVWAntigene Float, // Dosage du facteur vW Antigene (%)
+    formeClinique FormeClinique required, // Forme clinique : A ou B
+    severite Severite required, // Severite : severe, moderee ou mineure
+    explorationMoleculaire OuiNonNP , // Exploration moleculaire NF / fait
+    inversionIntron22 Boolean, // Inversion de l'intron 22 (true/false)
+    autreExplorationMoleculaire String maxlength(25), // Autre exploration moleculaire (texte libre)
+
+    // V. Manifestations cliniques
+    // 1. Hemarthrose
+    hemarthrose OuiNonNP ,
+    hemarthroseSiege String maxlength(25), // Liste des articulations touchees
+    hemarthroseType TypeManifestation ,
+    hemarthroseFrequenceAn Integer, // Frequence par an
+
+    // 2. Hematome superficiel
+    hematomeSuperficiel OuiNonNP ,
+    hematomeSuperficielType TypeManifestation,
+    hematomeSuperficielSiege String maxlength(25),
+
+    // 3. Hematome du psoas
+    hematomePsoas OuiNonNP ,
+    hematomePsoasType TypeHemorragie ,
+    hematomePsoasRecidive OuiNonNP ,
+
+    // 4. Hemorragies cutaneo-muqueuses
+    hemorragiesCutaneoMuqueuses OuiNonNP ,
+    hemorragiesCutaneoMuqueusesTypes TypeHemorragieCutaneoMuqueuse, // Enumeration pour les types
+    hemorragiesCutaneoMuqueusesFrequenceAn Integer, // Frequence par an
+
+    // 5. Hemorragie des visceres
+    hemorragieVisceres OuiNonNP ,
+    hemorragieVisceresType TypeHemorragieViscere ,
+    hemorragieVisceresExploration OuiNonNP ,
+    hemorragieVisceresExamen String maxlength(25), // Examen et lesions sous-jacentes
+
+    // 6. Saignement du SNC
+    saignementSNC OuiNonNP ,
+    saignementSNCEvolution EvolutionSNC ,
+
+    // 7. Circoncision
+    circoncision OuiNonNP ,
+    circoncisionPreparation OuiNonNP ,
+    circoncisionSuiteOperatoire SuiteOperatoire ,
+    circoncisionAge Integer, // Âge lors de la circoncision
+
+    // 8. Avulsion dentaire
+    avulsionDentaire OuiNonNP ,
+    avulsionDentairePreparation OuiNonNP ,
+
+    // 9. Intervention chirurgicale
+    interventionChirurgicale OuiNonNP ,
+    interventionChirurgicaleType String maxlength(25),
+
+    // 10. Accidents hemorragiques graves
+    accidentsHemorragiquesGraves OuiNonNP ,
+    accidentsHemorragiquesGravesTypes TypeAccidentHemorragiqueGrave , // Enumeration pour les types
+
+    // VI. Prise en charge therapeutique
+    priseEnChargeTherapeutique TypePriseEnCharge , // Prise en charge à la demande ou prophylaxie
+    causePriseEnCharge String maxlength(25), // Cause si prise en charge à la demande
+    prophylaxieDoseFrequence String maxlength(25), // Dose et frequence (nbre/sem)
+    dateDebutProphylaxie LocalDate, // Date de debut de la prophylaxie
+    
+    injectionType InjectionType , // Modalite d'injection : auto, parent, ou hôpital
+    modaliteTraitement ModaliteTraitement , // Modalite du traitement substitutif : plasmatique ou recombinant
+    typeTraitementSubstitutif String maxlength(25), // Type specifique du traitement
+    agePremiereSubstitution Integer, // Âge de la premiere substitution
+
+    antecedentsTraitementPSL OuiNonNP , // Antecedents de traitement par PSL (oui/non)
+    plasmaFraisCongele OuiNonNP , // Plasma frais congele (PFC)
+    cryoprecipite OuiNonNP , // Cryoprecipite
+
+
+    // VII.Complications liees au traitement :
+    // Type de complications orthopediques
+    orthopediques OuiNonNP,
+    synovite Boolean, // Synovite
+    arthropathieHemophiliqueChronique Boolean, // Arthropathie hemophilique chronique
+    pseudotumeurs Boolean, // Pseudotumeurs
+    fractures Boolean, // Fractures
+
+    coudeDroit Boolean,
+    coudeGauche Boolean,
+    genouDroit Boolean,
+    genouGauche Boolean,
+    chevilleDroite Boolean,
+    chevilleGauche Boolean,
+    epauleDroite Boolean,
+    epauleGauche Boolean,
+    poignetDroit Boolean,
+    poignetGauche Boolean,
+    hancheDroite Boolean,
+    hancheGauche Boolean,
+
+    pecTherapeutique PECTherapeutique , // Prise en charge therapeutique
+
+    // 2/ Les inhibiteurs
+    inhibiteurs OuiNonNP , // Presence ou non d'inhibiteurs
+    tauxInhibiteur TauxInhibiteur , // Niveau des inhibiteurs
+    testRecuperationFAH Boolean, // Test de recuperation du FAH realise ou non
+    dateTestRecuperation LocalDate, // Date du test de recuperation du FAH, si realise
+
+    // Taux de recuperation
+    tauxRecuperation TauxRecuperation , // Taux de recuperation : Normal ou Diminue
+    antiFAHNonNeutralisant Boolean, // Anti-FAH non neutralisant : Oui/Non
+    antiFAHNegatif Boolean, // Anti-FAH negatif : Oui/Non
+
+    // Recherche d’ACC type LA associe
+    rechercheACC RechercheACC , // Recherche ACC (Non faite, Faite, Positive, Negative, Douteuse)
+
+    // CAT therapeutique
+    augmenterDoseFacteur Boolean, // Augmenter dose de facteur
+    novoseven Boolean, // Novoseven
+    feiba Boolean, // Feiba
+    corticotherapie Boolean, // Corticotherapie
+    immurel Boolean, // Immurel
+
+    iti Boolean, // ITI : Oui/Non
+    posologieITI String maxlength(25), // Posologie ITI
+    dureeITI String maxlength(25), // Duree ITI
+    observanceITI OuiNonNP , // Observance : Oui/Non/NP
+    causeNonObservance String maxlength(25), // Cause de non-observance
+
+    evolutionInhibiteur EvolutionInhibiteur , // Évolution des inhibiteurs : Disparition ou Persistance
+    prophylaxieHemlibra Boolean, // Prophylaxie par Hemlibra : Oui/Non
+    dateDebutHemlibra LocalDate, // Date de debut de la prophylaxie par Hemlibra
+    schemaTherapeutique SchemaTherapeutique , // Schema therapeutique : Hebdomadaire, Mensuel, Bimensuel
+    efficaciteHemlibra Integer, // Nombre d’accidents hemorragiques/6 mois
+
+    // 3. Complications virales
+    serologieHBC Serologie , // Serologie HBC : Positive, Negative, NP
+    serologieHVC Serologie , // Serologie HVC : Positive, Negative, NP
+    dateDecouverteVHC LocalDate, // Date de decouverte du VHC
+    chargeViraleVHC String maxlength(25), // Charge virale pour le VHC
+    traitementVHC OuiNonNP , // Traitement VHC : Oui/Non/NP
+    evolutionVHC EvolutionVHC , // Évolution du VHC : Disparition ou Persistance
+    serologieHIV Serologie , // Serologie HIV : Positive, Negative, NP
+
+    // VIII. EVOLUTION
+    // 1. Vie sociale
+    vieSociale VieSociale , // Situation sociale : prescolaire, scolarise, chômeur, travaille
+
+    // 2. Mariage
+    marie OuiNonNP, // Indique si la personne est mariee
+    enfants OuiNonNP, // Si marie, indique s'il y a des enfants
+
+    // 3. Handicap
+    handicap OuiNonNP, // Presence ou non d'un handicap
+    typeHandicap String maxlength(25), // Type de handicap, si applicable
+
+    // 4. Activite sportive
+    activiteSportive Boolean,// Pratique ou non d'une activite sportive
+    typeActiviteSportive String maxlength(25), // Type d'activite sportive, si applicable
+
+    // 5. Deces
+    decede Boolean,// Indique si la personne est decedee
+    causeDeces String maxlength(25), // Cause du deces, si applicable
+    dateDeces LocalDate // Date du deces, si applicable
+
+}
+
+// Options de generation
+dto * with mapstruct
+paginate FicheHemophilie with pagination
+service all with serviceClass

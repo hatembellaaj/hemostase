@@ -1,0 +1,5 @@
+export enum EvolutionVHC {
+  DISPARITION = 'DISPARITION',
+
+  PERSISTANCE = 'PERSISTANCE',
+}

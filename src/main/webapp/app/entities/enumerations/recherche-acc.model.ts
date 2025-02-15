@@ -1,0 +1,11 @@
+export enum RechercheACC {
+  NON_FAITE = 'NON_FAITE',
+
+  FAITE = 'FAITE',
+
+  POSITIVE = 'POSITIVE',
+
+  NEGATIVE = 'NEGATIVE',
+
+  DOUTEUSE = 'DOUTEUSE',
+}

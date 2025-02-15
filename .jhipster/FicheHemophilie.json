@@ -1,0 +1,826 @@
+{
+  "annotations": {
+    "changelogDate": "20250215122434"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "nomJeuneFille",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "profession",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Gender",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "ageActuel",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "origine",
+      "fieldType": "Region",
+      "fieldValues": "SFAX,GABES,GAFSA,KEBILI,TOZEUR,MEDNINE,TATAOUINE,SBZ,KASSERINE,MAHDIA,KAIRAOUANE,MONASTIR,SOUSSE,AUTRE"
+    },
+    {
+      "fieldName": "autreOrigine",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "etatCivil",
+      "fieldType": "CivilStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CELIBATAIRE,MARIE,DIVORCE,NP"
+    },
+    {
+      "fieldName": "couvertureSociale",
+      "fieldType": "CouvertureSociale",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CNAM,INDIGENT,NP"
+    },
+    {
+      "fieldName": "prenomPere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "professionPere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "nomPrenomMere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "professionMere",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "medecinTraitant",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "serviceOrigine",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "biologisteResponsableDg",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "diagnostic",
+      "fieldType": "DiagnosticType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "HEMOPHILIE,WILLEBRAND,THROMBOPATHIE,DEFICIT_FACTEUR_VII,DEFICIT_FACTEUR_XI,DEFICIT_FACTEUR_XIII,DEFICIT_COMBINE,AUTRE"
+    },
+    {
+      "fieldName": "autreDiagnostic",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "anneeDiagnostic",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "consentementRegistre",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "dateEnregistrementRegistre",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dossierNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ordreNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "indexNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "parentsConsanguins",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "degreParenteConsanguins",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "casSimilaires",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "nombreCas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "degreParenteCasSimilaires",
+      "fieldType": "DegreeParente",
+      "fieldValues": "FRERE,COUSIN,LOINTAIN"
+    },
+    {
+      "fieldName": "decesSyndromeHemorragique",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "nombreDeces",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "formeHemophilie",
+      "fieldType": "FormeHemophilie",
+      "fieldValues": "SPORADIQUE,HEREDITAIRE,NP"
+    },
+    {
+      "fieldName": "fratrieNbFreres",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fratrieNbSoeurs",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "circonstancesDecouverte",
+      "fieldType": "CircumstanceDecouverte",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "FORTUITE,FAMILIALE,SYNDROME_HEMORRAGIQUE"
+    },
+    {
+      "fieldName": "cutaneoMuqueux",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hemarthrose",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "hematomePostTraumatique",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "plaiePostTraumatique",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hemorragiePostCirconcision",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hemorragiePostChirurgie",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hemorragieCerebrale",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hemorragieDigestive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "datePremierSigneClinique",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "ageDiagnosticJours",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ageDiagnosticMois",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ageDiagnosticAnnees",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateTestConfirmation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "hb",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "ht",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "plaquettes",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tp",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "fibrinogene",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tcaMT",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tcaMTTotal",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tcaMT2h",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "tcaTemoin2h",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "ts",
+      "fieldType": "TestStatus",
+      "fieldValues": "FAIT,NON_FAIT,NORMAL,ALLONGE"
+    },
+    {
+      "fieldName": "pfa",
+      "fieldType": "TestStatus",
+      "fieldValues": "FAIT,NON_FAIT,NORMAL,ALLONGE"
+    },
+    {
+      "fieldName": "dosageFacteurVIII",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "dosageFacteurIX",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "dosageFacteurVWActivite",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "dosageFacteurVWAntigene",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "formeClinique",
+      "fieldType": "FormeClinique",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "A,B"
+    },
+    {
+      "fieldName": "severite",
+      "fieldType": "Severite",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SEVERE,MODEREE,MINEURE"
+    },
+    {
+      "fieldName": "explorationMoleculaire",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "inversionIntron22",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "autreExplorationMoleculaire",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "hemarthroseSiege",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "hemarthroseType",
+      "fieldType": "TypeManifestation",
+      "fieldValues": "SPONTANE,PROVOQUE"
+    },
+    {
+      "fieldName": "hemarthroseFrequenceAn",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "hematomeSuperficiel",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "hematomeSuperficielType",
+      "fieldType": "TypeManifestation",
+      "fieldValues": "SPONTANE,PROVOQUE"
+    },
+    {
+      "fieldName": "hematomeSuperficielSiege",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "hematomePsoas",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "hematomePsoasType",
+      "fieldType": "TypeHemorragie",
+      "fieldValues": "CHUTE_DENTAIRE,PLAIE_LANGUE,GINGIVORRAGIES,EPISTAXIS,ECHYMOSES"
+    },
+    {
+      "fieldName": "hematomePsoasRecidive",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "hemorragiesCutaneoMuqueuses",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "hemorragiesCutaneoMuqueusesTypes",
+      "fieldType": "TypeHemorragieCutaneoMuqueuse",
+      "fieldValues": "CHUTE_DENTAIRE,PLAIE_LANGUE,GINGIVORRAGIES,EPISTAXIS,ECHYMOSES"
+    },
+    {
+      "fieldName": "hemorragiesCutaneoMuqueusesFrequenceAn",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "hemorragieVisceres",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "hemorragieVisceresType",
+      "fieldType": "TypeHemorragieViscere",
+      "fieldValues": "HEMATEMESE,RECTORRAGIE,HEMATURIE"
+    },
+    {
+      "fieldName": "hemorragieVisceresExploration",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "hemorragieVisceresExamen",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "saignementSNC",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "saignementSNCEvolution",
+      "fieldType": "EvolutionSNC",
+      "fieldValues": "REGRESSION,DECES"
+    },
+    {
+      "fieldName": "circoncision",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "circoncisionPreparation",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "circoncisionSuiteOperatoire",
+      "fieldType": "SuiteOperatoire",
+      "fieldValues": "SIMPLE,HEMORRAGIQUE,NP"
+    },
+    {
+      "fieldName": "circoncisionAge",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "avulsionDentaire",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "avulsionDentairePreparation",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "interventionChirurgicale",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "interventionChirurgicaleType",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "accidentsHemorragiquesGraves",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "accidentsHemorragiquesGravesTypes",
+      "fieldType": "TypeAccidentHemorragiqueGrave",
+      "fieldValues": "HEMATOMES_CEREBRALES,HEMOTHORAX,EDC_HEMORRAGIQUE,HEMATOME_COMPRESSIF"
+    },
+    {
+      "fieldName": "priseEnChargeTherapeutique",
+      "fieldType": "TypePriseEnCharge",
+      "fieldValues": "A_LA_DEMANDE,PROPHYLAXIE"
+    },
+    {
+      "fieldName": "causePriseEnCharge",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "prophylaxieDoseFrequence",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "dateDebutProphylaxie",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "injectionType",
+      "fieldType": "InjectionType",
+      "fieldValues": "AUTO_INJECTION,INJECTION_PARENT,INJECTION_HOPITAL"
+    },
+    {
+      "fieldName": "modaliteTraitement",
+      "fieldType": "ModaliteTraitement",
+      "fieldValues": "PLASMATIQUE,RECOMBINANT"
+    },
+    {
+      "fieldName": "typeTraitementSubstitutif",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "agePremiereSubstitution",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "antecedentsTraitementPSL",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "plasmaFraisCongele",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "cryoprecipite",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "orthopediques",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "synovite",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "arthropathieHemophiliqueChronique",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "pseudotumeurs",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fractures",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "coudeDroit",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "coudeGauche",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "genouDroit",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "genouGauche",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "chevilleDroite",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "chevilleGauche",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "epauleDroite",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "epauleGauche",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "poignetDroit",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "poignetGauche",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hancheDroite",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hancheGauche",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "pecTherapeutique",
+      "fieldType": "PECTherapeutique",
+      "fieldValues": "RAS,SYNOVIORTHOSE,PTG"
+    },
+    {
+      "fieldName": "inhibiteurs",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "tauxInhibiteur",
+      "fieldType": "TauxInhibiteur",
+      "fieldValues": "FAIBLE_REPONDEUR,FORT_REPONDEUR,NP"
+    },
+    {
+      "fieldName": "testRecuperationFAH",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateTestRecuperation",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "tauxRecuperation",
+      "fieldType": "TauxRecuperation",
+      "fieldValues": "NORMAL,DIMINUE"
+    },
+    {
+      "fieldName": "antiFAHNonNeutralisant",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "antiFAHNegatif",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "rechercheACC",
+      "fieldType": "RechercheACC",
+      "fieldValues": "NON_FAITE,FAITE,POSITIVE,NEGATIVE,DOUTEUSE"
+    },
+    {
+      "fieldName": "augmenterDoseFacteur",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "novoseven",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "feiba",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "corticotherapie",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "immurel",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "iti",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "posologieITI",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "dureeITI",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "observanceITI",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "causeNonObservance",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "evolutionInhibiteur",
+      "fieldType": "EvolutionInhibiteur",
+      "fieldValues": "DISPARITION,PERSISTANCE"
+    },
+    {
+      "fieldName": "prophylaxieHemlibra",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateDebutHemlibra",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "schemaTherapeutique",
+      "fieldType": "SchemaTherapeutique",
+      "fieldValues": "HEBDOMADAIRE,MENSUEL,BIMENSUEL"
+    },
+    {
+      "fieldName": "efficaciteHemlibra",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "serologieHBC",
+      "fieldType": "Serologie",
+      "fieldValues": "POSITIVE,NEGATIVE,NP"
+    },
+    {
+      "fieldName": "serologieHVC",
+      "fieldType": "Serologie",
+      "fieldValues": "POSITIVE,NEGATIVE,NP"
+    },
+    {
+      "fieldName": "dateDecouverteVHC",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "chargeViraleVHC",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "traitementVHC",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "evolutionVHC",
+      "fieldType": "EvolutionVHC",
+      "fieldValues": "DISPARITION,PERSISTANCE"
+    },
+    {
+      "fieldName": "serologieHIV",
+      "fieldType": "Serologie",
+      "fieldValues": "POSITIVE,NEGATIVE,NP"
+    },
+    {
+      "fieldName": "vieSociale",
+      "fieldType": "VieSociale",
+      "fieldValues": "PRESCOLAIRE,SCOLARISE,CHOMEUR,TRAVAILLE"
+    },
+    {
+      "fieldName": "marie",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "enfants",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "handicap",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
+    },
+    {
+      "fieldName": "typeHandicap",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "activiteSportive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "typeActiviteSportive",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "decede",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "causeDeces",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "dateDeces",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "FicheHemophilie",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

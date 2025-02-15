@@ -1,0 +1,1604 @@
+<div>
+  <h2 id="page-heading" data-cy="FicheHemophilieHeading">
+    <span>FicheHemophilies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-fiche-hemophilie"
+        [routerLink]="['/fiche-hemophilie/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Créer un nouveau Fiche Hemophilie</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (ficheHemophilies?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Aucun Fiche Hemophilie trouvé</span>
+    </div>
+  }
+
+  @if (ficheHemophilies && ficheHemophilies.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenom">
+              <div class="d-flex">
+                <span>Prenom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nom">
+              <div class="d-flex">
+                <span>Nom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomJeuneFille">
+              <div class="d-flex">
+                <span>Nom Jeune Fille</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="profession">
+              <div class="d-flex">
+                <span>Profession</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sexe">
+              <div class="d-flex">
+                <span>Sexe</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateNaissance">
+              <div class="d-flex">
+                <span>Date Naissance</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageActuel">
+              <div class="d-flex">
+                <span>Age Actuel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="origine">
+              <div class="d-flex">
+                <span>Origine</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreOrigine">
+              <div class="d-flex">
+                <span>Autre Origine</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adresse">
+              <div class="d-flex">
+                <span>Adresse</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telephone">
+              <div class="d-flex">
+                <span>Telephone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatCivil">
+              <div class="d-flex">
+                <span>Etat Civil</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="couvertureSociale">
+              <div class="d-flex">
+                <span>Couverture Sociale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenomPere">
+              <div class="d-flex">
+                <span>Prenom Pere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="professionPere">
+              <div class="d-flex">
+                <span>Profession Pere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomPrenomMere">
+              <div class="d-flex">
+                <span>Nom Prenom Mere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="professionMere">
+              <div class="d-flex">
+                <span>Profession Mere</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="medecinTraitant">
+              <div class="d-flex">
+                <span>Medecin Traitant</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serviceOrigine">
+              <div class="d-flex">
+                <span>Service Origine</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="biologisteResponsableDg">
+              <div class="d-flex">
+                <span>Biologiste Responsable Dg</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diagnostic">
+              <div class="d-flex">
+                <span>Diagnostic</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreDiagnostic">
+              <div class="d-flex">
+                <span>Autre Diagnostic</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anneeDiagnostic">
+              <div class="d-flex">
+                <span>Annee Diagnostic</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="consentementRegistre">
+              <div class="d-flex">
+                <span>Consentement Registre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEnregistrementRegistre">
+              <div class="d-flex">
+                <span>Date Enregistrement Registre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dossierNumber">
+              <div class="d-flex">
+                <span>Dossier Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordreNumber">
+              <div class="d-flex">
+                <span>Ordre Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="indexNumber">
+              <div class="d-flex">
+                <span>Index Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="parentsConsanguins">
+              <div class="d-flex">
+                <span>Parents Consanguins</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="degreParenteConsanguins">
+              <div class="d-flex">
+                <span>Degre Parente Consanguins</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="casSimilaires">
+              <div class="d-flex">
+                <span>Cas Similaires</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombreCas">
+              <div class="d-flex">
+                <span>Nombre Cas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="degreParenteCasSimilaires">
+              <div class="d-flex">
+                <span>Degre Parente Cas Similaires</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="decesSyndromeHemorragique">
+              <div class="d-flex">
+                <span>Deces Syndrome Hemorragique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombreDeces">
+              <div class="d-flex">
+                <span>Nombre Deces</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="formeHemophilie">
+              <div class="d-flex">
+                <span>Forme Hemophilie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fratrieNbFreres">
+              <div class="d-flex">
+                <span>Fratrie Nb Freres</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fratrieNbSoeurs">
+              <div class="d-flex">
+                <span>Fratrie Nb Soeurs</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="circonstancesDecouverte">
+              <div class="d-flex">
+                <span>Circonstances Decouverte</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cutaneoMuqueux">
+              <div class="d-flex">
+                <span>Cutaneo Muqueux</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemarthrose">
+              <div class="d-flex">
+                <span>Hemarthrose</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hematomePostTraumatique">
+              <div class="d-flex">
+                <span>Hematome Post Traumatique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="plaiePostTraumatique">
+              <div class="d-flex">
+                <span>Plaie Post Traumatique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragiePostCirconcision">
+              <div class="d-flex">
+                <span>Hemorragie Post Circoncision</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragiePostChirurgie">
+              <div class="d-flex">
+                <span>Hemorragie Post Chirurgie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragieCerebrale">
+              <div class="d-flex">
+                <span>Hemorragie Cerebrale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragieDigestive">
+              <div class="d-flex">
+                <span>Hemorragie Digestive</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="datePremierSigneClinique">
+              <div class="d-flex">
+                <span>Date Premier Signe Clinique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageDiagnosticJours">
+              <div class="d-flex">
+                <span>Age Diagnostic Jours</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageDiagnosticMois">
+              <div class="d-flex">
+                <span>Age Diagnostic Mois</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ageDiagnosticAnnees">
+              <div class="d-flex">
+                <span>Age Diagnostic Annees</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateTestConfirmation">
+              <div class="d-flex">
+                <span>Date Test Confirmation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hb">
+              <div class="d-flex">
+                <span>Hb</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ht">
+              <div class="d-flex">
+                <span>Ht</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="plaquettes">
+              <div class="d-flex">
+                <span>Plaquettes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tp">
+              <div class="d-flex">
+                <span>Tp</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fibrinogene">
+              <div class="d-flex">
+                <span>Fibrinogene</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tcaMT">
+              <div class="d-flex">
+                <span>Tca MT</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tcaMTTotal">
+              <div class="d-flex">
+                <span>Tca MT Total</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tcaMT2h">
+              <div class="d-flex">
+                <span>Tca MT 2 H</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tcaTemoin2h">
+              <div class="d-flex">
+                <span>Tca Temoin 2 H</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ts">
+              <div class="d-flex">
+                <span>Ts</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pfa">
+              <div class="d-flex">
+                <span>Pfa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dosageFacteurVIII">
+              <div class="d-flex">
+                <span>Dosage Facteur VIII</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dosageFacteurIX">
+              <div class="d-flex">
+                <span>Dosage Facteur IX</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dosageFacteurVWActivite">
+              <div class="d-flex">
+                <span>Dosage Facteur VW Activite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dosageFacteurVWAntigene">
+              <div class="d-flex">
+                <span>Dosage Facteur VW Antigene</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="formeClinique">
+              <div class="d-flex">
+                <span>Forme Clinique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="severite">
+              <div class="d-flex">
+                <span>Severite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="explorationMoleculaire">
+              <div class="d-flex">
+                <span>Exploration Moleculaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="inversionIntron22">
+              <div class="d-flex">
+                <span>Inversion Intron 22</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreExplorationMoleculaire">
+              <div class="d-flex">
+                <span>Autre Exploration Moleculaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemarthroseSiege">
+              <div class="d-flex">
+                <span>Hemarthrose Siege</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemarthroseType">
+              <div class="d-flex">
+                <span>Hemarthrose Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemarthroseFrequenceAn">
+              <div class="d-flex">
+                <span>Hemarthrose Frequence An</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hematomeSuperficiel">
+              <div class="d-flex">
+                <span>Hematome Superficiel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hematomeSuperficielType">
+              <div class="d-flex">
+                <span>Hematome Superficiel Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hematomeSuperficielSiege">
+              <div class="d-flex">
+                <span>Hematome Superficiel Siege</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hematomePsoas">
+              <div class="d-flex">
+                <span>Hematome Psoas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hematomePsoasType">
+              <div class="d-flex">
+                <span>Hematome Psoas Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hematomePsoasRecidive">
+              <div class="d-flex">
+                <span>Hematome Psoas Recidive</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragiesCutaneoMuqueuses">
+              <div class="d-flex">
+                <span>Hemorragies Cutaneo Muqueuses</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragiesCutaneoMuqueusesTypes">
+              <div class="d-flex">
+                <span>Hemorragies Cutaneo Muqueuses Types</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragiesCutaneoMuqueusesFrequenceAn">
+              <div class="d-flex">
+                <span>Hemorragies Cutaneo Muqueuses Frequence An</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragieVisceres">
+              <div class="d-flex">
+                <span>Hemorragie Visceres</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragieVisceresType">
+              <div class="d-flex">
+                <span>Hemorragie Visceres Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragieVisceresExploration">
+              <div class="d-flex">
+                <span>Hemorragie Visceres Exploration</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hemorragieVisceresExamen">
+              <div class="d-flex">
+                <span>Hemorragie Visceres Examen</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="saignementSNC">
+              <div class="d-flex">
+                <span>Saignement SNC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="saignementSNCEvolution">
+              <div class="d-flex">
+                <span>Saignement SNC Evolution</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="circoncision">
+              <div class="d-flex">
+                <span>Circoncision</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="circoncisionPreparation">
+              <div class="d-flex">
+                <span>Circoncision Preparation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="circoncisionSuiteOperatoire">
+              <div class="d-flex">
+                <span>Circoncision Suite Operatoire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="circoncisionAge">
+              <div class="d-flex">
+                <span>Circoncision Age</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="avulsionDentaire">
+              <div class="d-flex">
+                <span>Avulsion Dentaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="avulsionDentairePreparation">
+              <div class="d-flex">
+                <span>Avulsion Dentaire Preparation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="interventionChirurgicale">
+              <div class="d-flex">
+                <span>Intervention Chirurgicale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="interventionChirurgicaleType">
+              <div class="d-flex">
+                <span>Intervention Chirurgicale Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="accidentsHemorragiquesGraves">
+              <div class="d-flex">
+                <span>Accidents Hemorragiques Graves</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="accidentsHemorragiquesGravesTypes">
+              <div class="d-flex">
+                <span>Accidents Hemorragiques Graves Types</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="priseEnChargeTherapeutique">
+              <div class="d-flex">
+                <span>Prise En Charge Therapeutique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="causePriseEnCharge">
+              <div class="d-flex">
+                <span>Cause Prise En Charge</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prophylaxieDoseFrequence">
+              <div class="d-flex">
+                <span>Prophylaxie Dose Frequence</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDebutProphylaxie">
+              <div class="d-flex">
+                <span>Date Debut Prophylaxie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="injectionType">
+              <div class="d-flex">
+                <span>Injection Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="modaliteTraitement">
+              <div class="d-flex">
+                <span>Modalite Traitement</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeTraitementSubstitutif">
+              <div class="d-flex">
+                <span>Type Traitement Substitutif</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agePremiereSubstitution">
+              <div class="d-flex">
+                <span>Age Premiere Substitution</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="antecedentsTraitementPSL">
+              <div class="d-flex">
+                <span>Antecedents Traitement PSL</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="plasmaFraisCongele">
+              <div class="d-flex">
+                <span>Plasma Frais Congele</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cryoprecipite">
+              <div class="d-flex">
+                <span>Cryoprecipite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="orthopediques">
+              <div class="d-flex">
+                <span>Orthopediques</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="synovite">
+              <div class="d-flex">
+                <span>Synovite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="arthropathieHemophiliqueChronique">
+              <div class="d-flex">
+                <span>Arthropathie Hemophilique Chronique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pseudotumeurs">
+              <div class="d-flex">
+                <span>Pseudotumeurs</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fractures">
+              <div class="d-flex">
+                <span>Fractures</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="coudeDroit">
+              <div class="d-flex">
+                <span>Coude Droit</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="coudeGauche">
+              <div class="d-flex">
+                <span>Coude Gauche</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="genouDroit">
+              <div class="d-flex">
+                <span>Genou Droit</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="genouGauche">
+              <div class="d-flex">
+                <span>Genou Gauche</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="chevilleDroite">
+              <div class="d-flex">
+                <span>Cheville Droite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="chevilleGauche">
+              <div class="d-flex">
+                <span>Cheville Gauche</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="epauleDroite">
+              <div class="d-flex">
+                <span>Epaule Droite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="epauleGauche">
+              <div class="d-flex">
+                <span>Epaule Gauche</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="poignetDroit">
+              <div class="d-flex">
+                <span>Poignet Droit</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="poignetGauche">
+              <div class="d-flex">
+                <span>Poignet Gauche</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hancheDroite">
+              <div class="d-flex">
+                <span>Hanche Droite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hancheGauche">
+              <div class="d-flex">
+                <span>Hanche Gauche</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pecTherapeutique">
+              <div class="d-flex">
+                <span>Pec Therapeutique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="inhibiteurs">
+              <div class="d-flex">
+                <span>Inhibiteurs</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tauxInhibiteur">
+              <div class="d-flex">
+                <span>Taux Inhibiteur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="testRecuperationFAH">
+              <div class="d-flex">
+                <span>Test Recuperation FAH</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateTestRecuperation">
+              <div class="d-flex">
+                <span>Date Test Recuperation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tauxRecuperation">
+              <div class="d-flex">
+                <span>Taux Recuperation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="antiFAHNonNeutralisant">
+              <div class="d-flex">
+                <span>Anti FAH Non Neutralisant</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="antiFAHNegatif">
+              <div class="d-flex">
+                <span>Anti FAH Negatif</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="rechercheACC">
+              <div class="d-flex">
+                <span>Recherche ACC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="augmenterDoseFacteur">
+              <div class="d-flex">
+                <span>Augmenter Dose Facteur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="novoseven">
+              <div class="d-flex">
+                <span>Novoseven</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="feiba">
+              <div class="d-flex">
+                <span>Feiba</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="corticotherapie">
+              <div class="d-flex">
+                <span>Corticotherapie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="immurel">
+              <div class="d-flex">
+                <span>Immurel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="iti">
+              <div class="d-flex">
+                <span>Iti</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="posologieITI">
+              <div class="d-flex">
+                <span>Posologie ITI</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dureeITI">
+              <div class="d-flex">
+                <span>Duree ITI</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observanceITI">
+              <div class="d-flex">
+                <span>Observance ITI</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="causeNonObservance">
+              <div class="d-flex">
+                <span>Cause Non Observance</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="evolutionInhibiteur">
+              <div class="d-flex">
+                <span>Evolution Inhibiteur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prophylaxieHemlibra">
+              <div class="d-flex">
+                <span>Prophylaxie Hemlibra</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDebutHemlibra">
+              <div class="d-flex">
+                <span>Date Debut Hemlibra</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="schemaTherapeutique">
+              <div class="d-flex">
+                <span>Schema Therapeutique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="efficaciteHemlibra">
+              <div class="d-flex">
+                <span>Efficacite Hemlibra</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serologieHBC">
+              <div class="d-flex">
+                <span>Serologie HBC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serologieHVC">
+              <div class="d-flex">
+                <span>Serologie HVC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDecouverteVHC">
+              <div class="d-flex">
+                <span>Date Decouverte VHC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="chargeViraleVHC">
+              <div class="d-flex">
+                <span>Charge Virale VHC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="traitementVHC">
+              <div class="d-flex">
+                <span>Traitement VHC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="evolutionVHC">
+              <div class="d-flex">
+                <span>Evolution VHC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serologieHIV">
+              <div class="d-flex">
+                <span>Serologie HIV</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vieSociale">
+              <div class="d-flex">
+                <span>Vie Sociale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="marie">
+              <div class="d-flex">
+                <span>Marie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="enfants">
+              <div class="d-flex">
+                <span>Enfants</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="handicap">
+              <div class="d-flex">
+                <span>Handicap</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeHandicap">
+              <div class="d-flex">
+                <span>Type Handicap</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="activiteSportive">
+              <div class="d-flex">
+                <span>Activite Sportive</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeActiviteSportive">
+              <div class="d-flex">
+                <span>Type Activite Sportive</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="decede">
+              <div class="d-flex">
+                <span>Decede</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="causeDeces">
+              <div class="d-flex">
+                <span>Cause Deces</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDeces">
+              <div class="d-flex">
+                <span>Date Deces</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ficheHemophilie of ficheHemophilies; track trackId(ficheHemophilie)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/fiche-hemophilie', ficheHemophilie.id, 'view']">{{ ficheHemophilie.id }}</a>
+              </td>
+              <td>{{ ficheHemophilie.prenom }}</td>
+              <td>{{ ficheHemophilie.nom }}</td>
+              <td>{{ ficheHemophilie.nomJeuneFille }}</td>
+              <td>{{ ficheHemophilie.profession }}</td>
+              <td>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[ficheHemophilie.sexe ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.dateNaissance | formatMediumDate }}</td>
+              <td>{{ ficheHemophilie.ageActuel }}</td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    SFAX: 'SFAX',
+                    GABES: 'GABES',
+                    GAFSA: 'GAFSA',
+                    KEBILI: 'KEBILI',
+                    TOZEUR: 'TOZEUR',
+                    MEDNINE: 'MEDNINE',
+                    TATAOUINE: 'TATAOUINE',
+                    SBZ: 'SBZ',
+                    KASSERINE: 'KASSERINE',
+                    MAHDIA: 'MAHDIA',
+                    KAIRAOUANE: 'KAIRAOUANE',
+                    MONASTIR: 'MONASTIR',
+                    SOUSSE: 'SOUSSE',
+                    AUTRE: 'AUTRE',
+                  }[ficheHemophilie.origine ?? 'null']
+                }}
+              </td>
+              <td>{{ ficheHemophilie.autreOrigine }}</td>
+              <td>{{ ficheHemophilie.adresse }}</td>
+              <td>{{ ficheHemophilie.telephone }}</td>
+              <td>
+                {{
+                  { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[
+                    ficheHemophilie.etatCivil ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheHemophilie.couvertureSociale ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.prenomPere }}</td>
+              <td>{{ ficheHemophilie.professionPere }}</td>
+              <td>{{ ficheHemophilie.nomPrenomMere }}</td>
+              <td>{{ ficheHemophilie.professionMere }}</td>
+              <td>{{ ficheHemophilie.medecinTraitant }}</td>
+              <td>{{ ficheHemophilie.serviceOrigine }}</td>
+              <td>{{ ficheHemophilie.biologisteResponsableDg }}</td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    HEMOPHILIE: 'HEMOPHILIE',
+                    WILLEBRAND: 'WILLEBRAND',
+                    THROMBOPATHIE: 'THROMBOPATHIE',
+                    DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                    DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                    DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                    DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+                    AUTRE: 'AUTRE',
+                  }[ficheHemophilie.diagnostic ?? 'null']
+                }}
+              </td>
+              <td>{{ ficheHemophilie.autreDiagnostic }}</td>
+              <td>{{ ficheHemophilie.anneeDiagnostic }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.consentementRegistre ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.dateEnregistrementRegistre | formatMediumDate }}</td>
+              <td>{{ ficheHemophilie.dossierNumber }}</td>
+              <td>{{ ficheHemophilie.ordreNumber }}</td>
+              <td>{{ ficheHemophilie.indexNumber }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.parentsConsanguins ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.degreParenteConsanguins }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.casSimilaires ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.nombreCas }}</td>
+              <td>
+                {{
+                  { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheHemophilie.degreParenteCasSimilaires ?? 'null']
+                }}
+              </td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.decesSyndromeHemorragique ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.nombreDeces }}</td>
+              <td>
+                {{
+                  { null: '', SPORADIQUE: 'SPORADIQUE', HEREDITAIRE: 'HEREDITAIRE', NP: 'NP' }[ficheHemophilie.formeHemophilie ?? 'null']
+                }}
+              </td>
+              <td>{{ ficheHemophilie.fratrieNbFreres }}</td>
+              <td>{{ ficheHemophilie.fratrieNbSoeurs }}</td>
+              <td>
+                {{
+                  { null: '', FORTUITE: 'FORTUITE', FAMILIALE: 'FAMILIALE', SYNDROME_HEMORRAGIQUE: 'SYNDROME_HEMORRAGIQUE' }[
+                    ficheHemophilie.circonstancesDecouverte ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ ficheHemophilie.cutaneoMuqueux }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hemarthrose ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.hematomePostTraumatique }}</td>
+              <td>{{ ficheHemophilie.plaiePostTraumatique }}</td>
+              <td>{{ ficheHemophilie.hemorragiePostCirconcision }}</td>
+              <td>{{ ficheHemophilie.hemorragiePostChirurgie }}</td>
+              <td>{{ ficheHemophilie.hemorragieCerebrale }}</td>
+              <td>{{ ficheHemophilie.hemorragieDigestive }}</td>
+              <td>{{ ficheHemophilie.datePremierSigneClinique | formatMediumDate }}</td>
+              <td>{{ ficheHemophilie.ageDiagnosticJours }}</td>
+              <td>{{ ficheHemophilie.ageDiagnosticMois }}</td>
+              <td>{{ ficheHemophilie.ageDiagnosticAnnees }}</td>
+              <td>{{ ficheHemophilie.dateTestConfirmation | formatMediumDate }}</td>
+              <td>{{ ficheHemophilie.hb }}</td>
+              <td>{{ ficheHemophilie.ht }}</td>
+              <td>{{ ficheHemophilie.plaquettes }}</td>
+              <td>{{ ficheHemophilie.tp }}</td>
+              <td>{{ ficheHemophilie.fibrinogene }}</td>
+              <td>{{ ficheHemophilie.tcaMT }}</td>
+              <td>{{ ficheHemophilie.tcaMTTotal }}</td>
+              <td>{{ ficheHemophilie.tcaMT2h }}</td>
+              <td>{{ ficheHemophilie.tcaTemoin2h }}</td>
+              <td>
+                {{ { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[ficheHemophilie.ts ?? 'null'] }}
+              </td>
+              <td>
+                {{ { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[ficheHemophilie.pfa ?? 'null'] }}
+              </td>
+              <td>{{ ficheHemophilie.dosageFacteurVIII }}</td>
+              <td>{{ ficheHemophilie.dosageFacteurIX }}</td>
+              <td>{{ ficheHemophilie.dosageFacteurVWActivite }}</td>
+              <td>{{ ficheHemophilie.dosageFacteurVWAntigene }}</td>
+              <td>{{ { null: '', A: 'A', B: 'B' }[ficheHemophilie.formeClinique ?? 'null'] }}</td>
+              <td>{{ { null: '', SEVERE: 'SEVERE', MODEREE: 'MODEREE', MINEURE: 'MINEURE' }[ficheHemophilie.severite ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.explorationMoleculaire ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.inversionIntron22 }}</td>
+              <td>{{ ficheHemophilie.autreExplorationMoleculaire }}</td>
+              <td>{{ ficheHemophilie.hemarthroseSiege }}</td>
+              <td>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheHemophilie.hemarthroseType ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.hemarthroseFrequenceAn }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hematomeSuperficiel ?? 'null'] }}</td>
+              <td>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheHemophilie.hematomeSuperficielType ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.hematomeSuperficielSiege }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hematomePsoas ?? 'null'] }}</td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    CHUTE_DENTAIRE: 'CHUTE_DENTAIRE',
+                    PLAIE_LANGUE: 'PLAIE_LANGUE',
+                    GINGIVORRAGIES: 'GINGIVORRAGIES',
+                    EPISTAXIS: 'EPISTAXIS',
+                    ECHYMOSES: 'ECHYMOSES',
+                  }[ficheHemophilie.hematomePsoasType ?? 'null']
+                }}
+              </td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hematomePsoasRecidive ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hemorragiesCutaneoMuqueuses ?? 'null'] }}</td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    CHUTE_DENTAIRE: 'CHUTE_DENTAIRE',
+                    PLAIE_LANGUE: 'PLAIE_LANGUE',
+                    GINGIVORRAGIES: 'GINGIVORRAGIES',
+                    EPISTAXIS: 'EPISTAXIS',
+                    ECHYMOSES: 'ECHYMOSES',
+                  }[ficheHemophilie.hemorragiesCutaneoMuqueusesTypes ?? 'null']
+                }}
+              </td>
+              <td>{{ ficheHemophilie.hemorragiesCutaneoMuqueusesFrequenceAn }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hemorragieVisceres ?? 'null'] }}</td>
+              <td>
+                {{
+                  { null: '', HEMATEMESE: 'HEMATEMESE', RECTORRAGIE: 'RECTORRAGIE', HEMATURIE: 'HEMATURIE' }[
+                    ficheHemophilie.hemorragieVisceresType ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hemorragieVisceresExploration ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.hemorragieVisceresExamen }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.saignementSNC ?? 'null'] }}</td>
+              <td>{{ { null: '', REGRESSION: 'REGRESSION', DECES: 'DECES' }[ficheHemophilie.saignementSNCEvolution ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.circoncision ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.circoncisionPreparation ?? 'null'] }}</td>
+              <td>
+                {{
+                  { null: '', SIMPLE: 'SIMPLE', HEMORRAGIQUE: 'HEMORRAGIQUE', NP: 'NP' }[
+                    ficheHemophilie.circoncisionSuiteOperatoire ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ ficheHemophilie.circoncisionAge }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.avulsionDentaire ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.avulsionDentairePreparation ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.interventionChirurgicale ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.interventionChirurgicaleType }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.accidentsHemorragiquesGraves ?? 'null'] }}</td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    HEMATOMES_CEREBRALES: 'HEMATOMES_CEREBRALES',
+                    HEMOTHORAX: 'HEMOTHORAX',
+                    EDC_HEMORRAGIQUE: 'EDC_HEMORRAGIQUE',
+                    HEMATOME_COMPRESSIF: 'HEMATOME_COMPRESSIF',
+                  }[ficheHemophilie.accidentsHemorragiquesGravesTypes ?? 'null']
+                }}
+              </td>
+              <td>
+                {{
+                  { null: '', A_LA_DEMANDE: 'A_LA_DEMANDE', PROPHYLAXIE: 'PROPHYLAXIE' }[
+                    ficheHemophilie.priseEnChargeTherapeutique ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ ficheHemophilie.causePriseEnCharge }}</td>
+              <td>{{ ficheHemophilie.prophylaxieDoseFrequence }}</td>
+              <td>{{ ficheHemophilie.dateDebutProphylaxie | formatMediumDate }}</td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    AUTO_INJECTION: 'AUTO_INJECTION',
+                    INJECTION_PARENT: 'INJECTION_PARENT',
+                    INJECTION_HOPITAL: 'INJECTION_HOPITAL',
+                  }[ficheHemophilie.injectionType ?? 'null']
+                }}
+              </td>
+              <td>
+                {{ { null: '', PLASMATIQUE: 'PLASMATIQUE', RECOMBINANT: 'RECOMBINANT' }[ficheHemophilie.modaliteTraitement ?? 'null'] }}
+              </td>
+              <td>{{ ficheHemophilie.typeTraitementSubstitutif }}</td>
+              <td>{{ ficheHemophilie.agePremiereSubstitution }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.antecedentsTraitementPSL ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.plasmaFraisCongele ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.cryoprecipite ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.orthopediques ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.synovite }}</td>
+              <td>{{ ficheHemophilie.arthropathieHemophiliqueChronique }}</td>
+              <td>{{ ficheHemophilie.pseudotumeurs }}</td>
+              <td>{{ ficheHemophilie.fractures }}</td>
+              <td>{{ ficheHemophilie.coudeDroit }}</td>
+              <td>{{ ficheHemophilie.coudeGauche }}</td>
+              <td>{{ ficheHemophilie.genouDroit }}</td>
+              <td>{{ ficheHemophilie.genouGauche }}</td>
+              <td>{{ ficheHemophilie.chevilleDroite }}</td>
+              <td>{{ ficheHemophilie.chevilleGauche }}</td>
+              <td>{{ ficheHemophilie.epauleDroite }}</td>
+              <td>{{ ficheHemophilie.epauleGauche }}</td>
+              <td>{{ ficheHemophilie.poignetDroit }}</td>
+              <td>{{ ficheHemophilie.poignetGauche }}</td>
+              <td>{{ ficheHemophilie.hancheDroite }}</td>
+              <td>{{ ficheHemophilie.hancheGauche }}</td>
+              <td>
+                {{ { null: '', RAS: 'RAS', SYNOVIORTHOSE: 'SYNOVIORTHOSE', PTG: 'PTG' }[ficheHemophilie.pecTherapeutique ?? 'null'] }}
+              </td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.inhibiteurs ?? 'null'] }}</td>
+              <td>
+                {{
+                  { null: '', FAIBLE_REPONDEUR: 'FAIBLE_REPONDEUR', FORT_REPONDEUR: 'FORT_REPONDEUR', NP: 'NP' }[
+                    ficheHemophilie.tauxInhibiteur ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ ficheHemophilie.testRecuperationFAH }}</td>
+              <td>{{ ficheHemophilie.dateTestRecuperation | formatMediumDate }}</td>
+              <td>{{ { null: '', NORMAL: 'NORMAL', DIMINUE: 'DIMINUE' }[ficheHemophilie.tauxRecuperation ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.antiFAHNonNeutralisant }}</td>
+              <td>{{ ficheHemophilie.antiFAHNegatif }}</td>
+              <td>
+                {{
+                  { null: '', NON_FAITE: 'NON_FAITE', FAITE: 'FAITE', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', DOUTEUSE: 'DOUTEUSE' }[
+                    ficheHemophilie.rechercheACC ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ ficheHemophilie.augmenterDoseFacteur }}</td>
+              <td>{{ ficheHemophilie.novoseven }}</td>
+              <td>{{ ficheHemophilie.feiba }}</td>
+              <td>{{ ficheHemophilie.corticotherapie }}</td>
+              <td>{{ ficheHemophilie.immurel }}</td>
+              <td>{{ ficheHemophilie.iti }}</td>
+              <td>{{ ficheHemophilie.posologieITI }}</td>
+              <td>{{ ficheHemophilie.dureeITI }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.observanceITI ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.causeNonObservance }}</td>
+              <td>
+                {{ { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[ficheHemophilie.evolutionInhibiteur ?? 'null'] }}
+              </td>
+              <td>{{ ficheHemophilie.prophylaxieHemlibra }}</td>
+              <td>{{ ficheHemophilie.dateDebutHemlibra | formatMediumDate }}</td>
+              <td>
+                {{
+                  { null: '', HEBDOMADAIRE: 'HEBDOMADAIRE', MENSUEL: 'MENSUEL', BIMENSUEL: 'BIMENSUEL' }[
+                    ficheHemophilie.schemaTherapeutique ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ ficheHemophilie.efficaciteHemlibra }}</td>
+              <td>{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[ficheHemophilie.serologieHBC ?? 'null'] }}</td>
+              <td>{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[ficheHemophilie.serologieHVC ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.dateDecouverteVHC | formatMediumDate }}</td>
+              <td>{{ ficheHemophilie.chargeViraleVHC }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.traitementVHC ?? 'null'] }}</td>
+              <td>{{ { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[ficheHemophilie.evolutionVHC ?? 'null'] }}</td>
+              <td>{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[ficheHemophilie.serologieHIV ?? 'null'] }}</td>
+              <td>
+                {{
+                  { null: '', PRESCOLAIRE: 'PRESCOLAIRE', SCOLARISE: 'SCOLARISE', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE' }[
+                    ficheHemophilie.vieSociale ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.marie ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.enfants ?? 'null'] }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.handicap ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.typeHandicap }}</td>
+              <td>{{ ficheHemophilie.activiteSportive }}</td>
+              <td>{{ ficheHemophilie.typeActiviteSportive }}</td>
+              <td>{{ ficheHemophilie.decede }}</td>
+              <td>{{ ficheHemophilie.causeDeces }}</td>
+              <td>{{ ficheHemophilie.dateDeces | formatMediumDate }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/fiche-hemophilie', ficheHemophilie.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Voir</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/fiche-hemophilie', ficheHemophilie.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(ficheHemophilie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (ficheHemophilies && ficheHemophilies.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>
