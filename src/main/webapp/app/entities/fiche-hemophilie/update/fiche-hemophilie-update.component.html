@@ -36,7 +36,60 @@
             >
               <div class="accordion-body">
                 <!-- Champs pour la section Identification -->
-        
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dossierNumber">Numéro Dossier </label>
+          <input
+            type="text"
+            class="form-control"
+            name="dossierNumber"
+            id="field_dossierNumber"
+            data-cy="dossierNumber"
+            formControlName="dossierNumber"
+          />
+        </div>
+
+        @let ordreNumberRef = editForm.get('ordreNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_ordreNumber">Numéro Ordre </label>
+          <input
+            type="text"
+            class="form-control"
+            name="ordreNumber"
+            id="field_ordreNumber"
+            data-cy="ordreNumber"
+            formControlName="ordreNumber"
+          />
+          @if (ordreNumberRef.invalid && (ordreNumberRef.dirty || ordreNumberRef.touched)) {
+            <div>
+              @if (editForm.get('ordreNumber')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let indexNumberRef = editForm.get('indexNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_indexNumber">Numéro Index </label>
+          <input
+            type="text"
+            class="form-control"
+            name="indexNumber"
+            id="field_indexNumber"
+            data-cy="indexNumber"
+            formControlName="indexNumber"
+          />
+          @if (indexNumberRef.invalid && (indexNumberRef.dirty || indexNumberRef.touched)) {
+            <div>
+              @if (editForm.get('indexNumber')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+                
         @let prenomRef = editForm.get('prenom')!;
         <div class="mb-3">
           <label class="form-label" for="field_prenom">Prenom</label>
@@ -103,6 +156,27 @@
           }
         </div>
 
+        @let etatCivilRef = editForm.get('etatCivil')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_etatCivil">Etat Civil</label>
+          <select class="form-control" name="etatCivil" formControlName="etatCivil" id="field_etatCivil" data-cy="etatCivil">
+            <option [ngValue]="null"></option>
+            @for (civilStatus of civilStatusValues; track $index) {
+              <option [value]="civilStatus">
+                {{ { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[civilStatus] }}
+              </option>
+            }
+          </select>
+          @if (etatCivilRef.invalid && (etatCivilRef.dirty || etatCivilRef.touched)) {
+            <div>
+              @if (editForm.get('etatCivil')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+                
         @let sexeRef = editForm.get('sexe')!;
         <div class="mb-3">
           <label class="form-label" for="field_sexe">Sexe</label>
@@ -221,25 +295,7 @@
           }
         </div>
 
-        @let etatCivilRef = editForm.get('etatCivil')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_etatCivil">Etat Civil</label>
-          <select class="form-control" name="etatCivil" formControlName="etatCivil" id="field_etatCivil" data-cy="etatCivil">
-            <option [ngValue]="null"></option>
-            @for (civilStatus of civilStatusValues; track $index) {
-              <option [value]="civilStatus">
-                {{ { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[civilStatus] }}
-              </option>
-            }
-          </select>
-          @if (etatCivilRef.invalid && (etatCivilRef.dirty || etatCivilRef.touched)) {
-            <div>
-              @if (editForm.get('etatCivil')?.errors?.required) {
-                <small class="form-text text-danger">Ce champ est obligatoire.</small>
-              }
-            </div>
-          }
-        </div>
+
 
         @let couvertureSocialeRef = editForm.get('couvertureSociale')!;
         <div class="mb-3">
@@ -505,59 +561,6 @@
             </button>
           </div>
         </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_dossierNumber">Dossier Number</label>
-          <input
-            type="text"
-            class="form-control"
-            name="dossierNumber"
-            id="field_dossierNumber"
-            data-cy="dossierNumber"
-            formControlName="dossierNumber"
-          />
-        </div>
-
-        @let ordreNumberRef = editForm.get('ordreNumber')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_ordreNumber">Ordre Number</label>
-          <input
-            type="text"
-            class="form-control"
-            name="ordreNumber"
-            id="field_ordreNumber"
-            data-cy="ordreNumber"
-            formControlName="ordreNumber"
-          />
-          @if (ordreNumberRef.invalid && (ordreNumberRef.dirty || ordreNumberRef.touched)) {
-            <div>
-              @if (editForm.get('ordreNumber')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let indexNumberRef = editForm.get('indexNumber')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_indexNumber">Index Number</label>
-          <input
-            type="text"
-            class="form-control"
-            name="indexNumber"
-            id="field_indexNumber"
-            data-cy="indexNumber"
-            formControlName="indexNumber"
-          />
-          @if (indexNumberRef.invalid && (indexNumberRef.dirty || indexNumberRef.touched)) {
-            <div>
-              @if (editForm.get('indexNumber')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
               </div>
             </div>
           </div>
