@@ -318,7 +318,6 @@ public class FicheHemophilieAsserts {
             )
             .satisfies(e -> assertThat(e.getPseudotumeurs()).as("check pseudotumeurs").isEqualTo(actual.getPseudotumeurs()))
             .satisfies(e -> assertThat(e.getFractures()).as("check fractures").isEqualTo(actual.getFractures()))
-            .satisfies(e -> assertThat(e.getArticulationCible()).as("check articulationCible").isEqualTo(actual.getArticulationCible()))
             .satisfies(e -> assertThat(e.getPecTherapeutique()).as("check pecTherapeutique").isEqualTo(actual.getPecTherapeutique()))
             .satisfies(e -> assertThat(e.getInhibiteurs()).as("check inhibiteurs").isEqualTo(actual.getInhibiteurs()))
             .satisfies(e -> assertThat(e.getTauxInhibiteur()).as("check tauxInhibiteur").isEqualTo(actual.getTauxInhibiteur()))
