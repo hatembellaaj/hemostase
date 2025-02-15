@@ -43,7 +43,7 @@ entity FicheThrombopathie {
     nombreDeces Integer,
     typeHemorragie String maxlength(255),
     lienParenteDeces String maxlength(255),
-    enqueteFamiliale OuiNonNP,
+    enqueteFamiliale FaiteNonFaite,
     antecedentsMedicaux String maxlength(255),
     antecedentsChirurgicaux OuiNonNP,
     typeChirurgie String maxlength(255),
@@ -53,8 +53,10 @@ entity FicheThrombopathie {
     agePremierSigneHemorragique Integer,
     typeSyndromeHemorragique String maxlength(255),
     ageDiagnostic Integer,
-    circonstanceDiagnostic CirconstanceDiagnostic,
-    autreCirconstanceDiagnostic String maxlength(255),
+    decouverteFortuite Boolean,
+    enqueteFamilialeBool Boolean,
+    explorationSyndromeHemorragique Boolean
+    typeCirconstanceDiagnostic String maxlength(255),
     
     // Biologie
     bilanHemostase String maxlength(255),
