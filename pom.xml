@@ -792,7 +792,7 @@
                     <configuration>
                         <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
                         <driver>org.mariadb.jdbc.Driver</driver>
-                        <url>jdbc:mariadb://localhost:3306/adhes2025</url>
+                        <url>jdbc:mariadb://127.0.0.1:3306/adhes2025?user=root&password=Hemophilie2024$$$&useUnicode=true&characterEncoding=utf8</url>
                         <username>root</username>
                         <password>Hemophilie2024$$$</password>
                         <verbose>true</verbose>
@@ -845,7 +845,7 @@
             </activation>
             <properties>
                 <!-- default Spring profiles -->
-		<liquibase-plugin.url>jdbc:mariadb://localhost:3306/adhes2025</liquibase-plugin.url>
+		<liquibase-plugin.url>jdbc:mariadb://127.0.0.1:3306/adhes2025?user=root&password=Hemophilie2024$$$&useUnicode=true&characterEncoding=utf8</liquibase-plugin.url>
                 <liquibase-plugin.username>root</liquibase-plugin.username>
 		<liquibase-plugin.password>Hemophilie2024$$$</liquibase-plugin.password>
 		<profile.test>testdev</profile.test>
@@ -966,7 +966,7 @@
             <id>prod</id>
             <properties>
                 <!-- default Spring profiles -->
-                <liquibase-plugin.url>jdbc:mariadb://localhost:3306/adhes2025</liquibase-plugin.url>
+                <liquibase-plugin.url>jdbc:mariadb://127.0.0.1:3306/adhes2025?user=root&password=Hemophilie2024$$$&useUnicode=true&characterEncoding=utf8</liquibase-plugin.url>
                 <liquibase-plugin.username>root</liquibase-plugin.username>
 		<liquibase-plugin.password>Hemophilie2024$$$</liquibase-plugin.password>
 		<profile.test>testprod</profile.test>
