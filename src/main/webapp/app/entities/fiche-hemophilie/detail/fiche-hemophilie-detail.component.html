@@ -236,7 +236,7 @@
           </dd>
           <dt><span>Hemarthrose</span></dt>
           <dd>
-            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.hemarthrose ?? 'null'] }}</span>
+            <span>{{ ficheHemophilieRef.hemarthrose }}</span>
           </dd>
           <dt><span>Hematome Post Traumatique</span></dt>
           <dd>
@@ -365,6 +365,10 @@
           <dt><span>Autre Exploration Moleculaire</span></dt>
           <dd>
             <span>{{ ficheHemophilieRef.autreExplorationMoleculaire }}</span>
+          </dd>
+          <dt><span>Hemarthrose MC</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilieRef.hemarthroseMC ?? 'null'] }}</span>
           </dd>
           <dt><span>Hemarthrose Siege</span></dt>
           <dd>

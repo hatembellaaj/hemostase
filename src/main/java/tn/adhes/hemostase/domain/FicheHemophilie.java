@@ -217,9 +217,8 @@ public class FicheHemophilie implements Serializable {
     @Column(name = "cutaneo_muqueux")
     private Boolean cutaneoMuqueux;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "hemarthrose")
-    private OuiNonNP hemarthrose;
+    private Boolean hemarthrose;
 
     @Column(name = "hematome_post_traumatique")
     private Boolean hematomePostTraumatique;
@@ -321,6 +320,10 @@ public class FicheHemophilie implements Serializable {
     @Size(max = 25)
     @Column(name = "autre_exploration_moleculaire", length = 25)
     private String autreExplorationMoleculaire;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "hemarthrose_mc")
+    private OuiNonNP hemarthroseMC;
 
     @Size(max = 25)
     @Column(name = "hemarthrose_siege", length = 25)
@@ -1233,16 +1236,16 @@ public class FicheHemophilie implements Serializable {
         this.cutaneoMuqueux = cutaneoMuqueux;
     }
 
-    public OuiNonNP getHemarthrose() {
+    public Boolean getHemarthrose() {
         return this.hemarthrose;
     }
 
-    public FicheHemophilie hemarthrose(OuiNonNP hemarthrose) {
+    public FicheHemophilie hemarthrose(Boolean hemarthrose) {
         this.setHemarthrose(hemarthrose);
         return this;
     }
 
-    public void setHemarthrose(OuiNonNP hemarthrose) {
+    public void setHemarthrose(Boolean hemarthrose) {
         this.hemarthrose = hemarthrose;
     }
 
@@ -1647,6 +1650,19 @@ public class FicheHemophilie implements Serializable {
 
     public void setAutreExplorationMoleculaire(String autreExplorationMoleculaire) {
         this.autreExplorationMoleculaire = autreExplorationMoleculaire;
+    }
+
+    public OuiNonNP getHemarthroseMC() {
+        return this.hemarthroseMC;
+    }
+
+    public FicheHemophilie hemarthroseMC(OuiNonNP hemarthroseMC) {
+        this.setHemarthroseMC(hemarthroseMC);
+        return this;
+    }
+
+    public void setHemarthroseMC(OuiNonNP hemarthroseMC) {
+        this.hemarthroseMC = hemarthroseMC;
     }
 
     public String getHemarthroseSiege() {
@@ -3008,6 +3024,7 @@ public class FicheHemophilie implements Serializable {
             ", explorationMoleculaire='" + getExplorationMoleculaire() + "'" +
             ", inversionIntron22='" + getInversionIntron22() + "'" +
             ", autreExplorationMoleculaire='" + getAutreExplorationMoleculaire() + "'" +
+            ", hemarthroseMC='" + getHemarthroseMC() + "'" +
             ", hemarthroseSiege='" + getHemarthroseSiege() + "'" +
             ", hemarthroseType='" + getHemarthroseType() + "'" +
             ", hemarthroseFrequenceAn=" + getHemarthroseFrequenceAn() +

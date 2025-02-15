@@ -560,6 +560,13 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="hemarthroseMC">
+              <div class="d-flex">
+                <span>Hemarthrose MC</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col" jhiSortBy="hemarthroseSiege">
               <div class="d-flex">
                 <span>Hemarthrose Siege</span>
@@ -1357,7 +1364,7 @@
                 }}
               </td>
               <td>{{ ficheHemophilie.cutaneoMuqueux }}</td>
-              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hemarthrose ?? 'null'] }}</td>
+              <td>{{ ficheHemophilie.hemarthrose }}</td>
               <td>{{ ficheHemophilie.hematomePostTraumatique }}</td>
               <td>{{ ficheHemophilie.plaiePostTraumatique }}</td>
               <td>{{ ficheHemophilie.hemorragiePostCirconcision }}</td>
@@ -1393,6 +1400,7 @@
               <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.explorationMoleculaire ?? 'null'] }}</td>
               <td>{{ ficheHemophilie.inversionIntron22 }}</td>
               <td>{{ ficheHemophilie.autreExplorationMoleculaire }}</td>
+              <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.hemarthroseMC ?? 'null'] }}</td>
               <td>{{ ficheHemophilie.hemarthroseSiege }}</td>
               <td>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheHemophilie.hemarthroseType ?? 'null'] }}</td>
               <td>{{ ficheHemophilie.hemarthroseFrequenceAn }}</td>

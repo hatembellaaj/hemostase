@@ -232,8 +232,7 @@
     },
     {
       "fieldName": "hemarthrose",
-      "fieldType": "OuiNonNP",
-      "fieldValues": "OUI,NON,NP"
+      "fieldType": "Boolean"
     },
     {
       "fieldName": "hematomePostTraumatique",
@@ -367,6 +366,11 @@
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "hemarthroseMC",
+      "fieldType": "OuiNonNP",
+      "fieldValues": "OUI,NON,NP"
     },
     {
       "fieldName": "hemarthroseSiege",

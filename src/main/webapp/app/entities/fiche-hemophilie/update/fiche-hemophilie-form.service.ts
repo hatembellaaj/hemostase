@@ -18,6 +18,7 @@ type FicheHemophilieFormDefaults = Pick<
   NewFicheHemophilie,
   | 'id'
   | 'cutaneoMuqueux'
+  | 'hemarthrose'
   | 'hematomePostTraumatique'
   | 'plaiePostTraumatique'
   | 'hemorragiePostCirconcision'
@@ -131,6 +132,7 @@ type FicheHemophilieFormGroupContent = {
   explorationMoleculaire: FormControl<IFicheHemophilie['explorationMoleculaire']>;
   inversionIntron22: FormControl<IFicheHemophilie['inversionIntron22']>;
   autreExplorationMoleculaire: FormControl<IFicheHemophilie['autreExplorationMoleculaire']>;
+  hemarthroseMC: FormControl<IFicheHemophilie['hemarthroseMC']>;
   hemarthroseSiege: FormControl<IFicheHemophilie['hemarthroseSiege']>;
   hemarthroseType: FormControl<IFicheHemophilie['hemarthroseType']>;
   hemarthroseFrequenceAn: FormControl<IFicheHemophilie['hemarthroseFrequenceAn']>;
@@ -377,6 +379,7 @@ export class FicheHemophilieFormService {
       autreExplorationMoleculaire: new FormControl(ficheHemophilieRawValue.autreExplorationMoleculaire, {
         validators: [Validators.maxLength(25)],
       }),
+      hemarthroseMC: new FormControl(ficheHemophilieRawValue.hemarthroseMC),
       hemarthroseSiege: new FormControl(ficheHemophilieRawValue.hemarthroseSiege, {
         validators: [Validators.maxLength(25)],
       }),
@@ -523,6 +526,7 @@ export class FicheHemophilieFormService {
     return {
       id: null,
       cutaneoMuqueux: false,
+      hemarthrose: false,
       hematomePostTraumatique: false,
       plaiePostTraumatique: false,
       hemorragiePostCirconcision: false,

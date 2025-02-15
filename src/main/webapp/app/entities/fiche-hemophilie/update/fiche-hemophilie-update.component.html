@@ -780,12 +780,14 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_hemarthrose">Hemarthrose</label>
-          <select class="form-control" name="hemarthrose" formControlName="hemarthrose" id="field_hemarthrose" data-cy="hemarthrose">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hemarthrose"
+            id="field_hemarthrose"
+            data-cy="hemarthrose"
+            formControlName="hemarthrose"
+          />
         </div>
 
         <div class="mb-3">
@@ -1167,6 +1169,22 @@
               }
             </div>
           }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hemarthroseMC">Hemarthrose MC</label>
+          <select
+            class="form-control"
+            name="hemarthroseMC"
+            formControlName="hemarthroseMC"
+            id="field_hemarthroseMC"
+            data-cy="hemarthroseMC"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
         </div>
 
         @let hemarthroseSiegeRef = editForm.get('hemarthroseSiege')!;

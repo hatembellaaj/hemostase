@@ -189,6 +189,7 @@ public class FicheHemophilieAsserts {
                     .as("check autreExplorationMoleculaire")
                     .isEqualTo(actual.getAutreExplorationMoleculaire())
             )
+            .satisfies(e -> assertThat(e.getHemarthroseMC()).as("check hemarthroseMC").isEqualTo(actual.getHemarthroseMC()))
             .satisfies(e -> assertThat(e.getHemarthroseSiege()).as("check hemarthroseSiege").isEqualTo(actual.getHemarthroseSiege()))
             .satisfies(e -> assertThat(e.getHemarthroseType()).as("check hemarthroseType").isEqualTo(actual.getHemarthroseType()))
             .satisfies(e ->

@@ -76,7 +76,7 @@ export interface IFicheHemophilie {
   fratrieNbSoeurs?: number | null;
   circonstancesDecouverte?: keyof typeof CircumstanceDecouverte | null;
   cutaneoMuqueux?: boolean | null;
-  hemarthrose?: keyof typeof OuiNonNP | null;
+  hemarthrose?: boolean | null;
   hematomePostTraumatique?: boolean | null;
   plaiePostTraumatique?: boolean | null;
   hemorragiePostCirconcision?: boolean | null;
@@ -108,6 +108,7 @@ export interface IFicheHemophilie {
   explorationMoleculaire?: keyof typeof OuiNonNP | null;
   inversionIntron22?: boolean | null;
   autreExplorationMoleculaire?: string | null;
+  hemarthroseMC?: keyof typeof OuiNonNP | null;
   hemarthroseSiege?: string | null;
   hemarthroseType?: keyof typeof TypeManifestation | null;
   hemarthroseFrequenceAn?: number | null;

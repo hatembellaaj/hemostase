@@ -154,7 +154,7 @@ public class FicheHemophilieDTO implements Serializable {
 
     private Boolean cutaneoMuqueux;
 
-    private OuiNonNP hemarthrose;
+    private Boolean hemarthrose;
 
     private Boolean hematomePostTraumatique;
 
@@ -220,6 +220,8 @@ public class FicheHemophilieDTO implements Serializable {
 
     @Size(max = 25)
     private String autreExplorationMoleculaire;
+
+    private OuiNonNP hemarthroseMC;
 
     @Size(max = 25)
     private String hemarthroseSiege;
@@ -773,11 +775,11 @@ public class FicheHemophilieDTO implements Serializable {
         this.cutaneoMuqueux = cutaneoMuqueux;
     }
 
-    public OuiNonNP getHemarthrose() {
+    public Boolean getHemarthrose() {
         return hemarthrose;
     }
 
-    public void setHemarthrose(OuiNonNP hemarthrose) {
+    public void setHemarthrose(Boolean hemarthrose) {
         this.hemarthrose = hemarthrose;
     }
 
@@ -1027,6 +1029,14 @@ public class FicheHemophilieDTO implements Serializable {
 
     public void setAutreExplorationMoleculaire(String autreExplorationMoleculaire) {
         this.autreExplorationMoleculaire = autreExplorationMoleculaire;
+    }
+
+    public OuiNonNP getHemarthroseMC() {
+        return hemarthroseMC;
+    }
+
+    public void setHemarthroseMC(OuiNonNP hemarthroseMC) {
+        this.hemarthroseMC = hemarthroseMC;
     }
 
     public String getHemarthroseSiege() {
@@ -1905,6 +1915,7 @@ public class FicheHemophilieDTO implements Serializable {
             ", explorationMoleculaire='" + getExplorationMoleculaire() + "'" +
             ", inversionIntron22='" + getInversionIntron22() + "'" +
             ", autreExplorationMoleculaire='" + getAutreExplorationMoleculaire() + "'" +
+            ", hemarthroseMC='" + getHemarthroseMC() + "'" +
             ", hemarthroseSiege='" + getHemarthroseSiege() + "'" +
             ", hemarthroseType='" + getHemarthroseType() + "'" +
             ", hemarthroseFrequenceAn=" + getHemarthroseFrequenceAn() +
