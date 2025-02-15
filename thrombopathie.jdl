@@ -57,7 +57,13 @@ entity FicheThrombopathie {
     enqueteFamilialeBool Boolean,
     explorationSyndromeHemorragique Boolean
     typeCirconstanceDiagnostic String maxlength(255),
-    
+
+    // Manifestations cliniques
+    eczema OuiNonNP,
+    syndromeDysmorphique OuiNonNP,
+    albinisme OuiNonNP,
+    arthrogrypose OuiNonNP
+
     // Biologie
     bilanHemostase String maxlength(255),
     gb Integer,
