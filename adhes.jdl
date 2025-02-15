@@ -264,7 +264,7 @@ entity FicheHemophilie {
 
     // V. Manifestations cliniques
     // 1. Hemarthrose
-    hemarthrose OuiNonNP ,
+    hemarthroseMC OuiNonNP ,
     hemarthroseSiege String maxlength(25), // Liste des articulations touchees
     hemarthroseType TypeManifestation ,
     hemarthroseFrequenceAn Integer, // Frequence par an
