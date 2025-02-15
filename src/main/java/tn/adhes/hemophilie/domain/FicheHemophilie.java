@@ -2109,7 +2109,6 @@ public class FicheHemophilie implements Serializable {
         this.fractures = fractures;
     }
 
-    }
 
     public PECTherapeutique getPecTherapeutique() {
         return this.pecTherapeutique;
