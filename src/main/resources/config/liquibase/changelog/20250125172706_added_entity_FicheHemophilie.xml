@@ -257,7 +257,7 @@
             <column name="hematome_psoas_recidive" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="hemorragies_cutaneo_muqueuses" type="vtext">
+            <column name="hemorragies_cutaneo_muqueuses" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="hemorragies_cutaneo_muqueuses_types" type="text">
