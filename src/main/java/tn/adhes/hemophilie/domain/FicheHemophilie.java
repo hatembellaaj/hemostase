@@ -199,10 +199,6 @@ public class FicheHemophilie implements Serializable {
     private Integer fratrieNbSoeurs;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "decouverte_fortuite")
-    private OuiNonNP decouverteFortuite;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "enquete_familiale")
     private OuiNonNP enqueteFamiliale;
 
