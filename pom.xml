@@ -794,7 +794,7 @@
                         <driver>org.mariadb.jdbc.Driver</driver>
                         <url>jdbc:mariadb://127.0.0.1:3306/adhes2025?useUnicode=true&amp;characterEncoding=utf8</url>
                         <username>root</username>
-                        <password>Hemophilie2024$$$</password>
+                        <password>Hemophilie2024\$\$\$</password>
                         <verbose>true</verbose>
                         <logging>debug</logging>
                         <contexts>!test</contexts>
