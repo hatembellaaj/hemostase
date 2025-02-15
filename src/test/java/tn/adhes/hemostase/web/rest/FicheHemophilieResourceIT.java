@@ -73,6 +73,7 @@ import tn.adhes.hemostase.domain.enumeration.SchemaTherapeutique;
 import tn.adhes.hemostase.domain.enumeration.Serologie;
 import tn.adhes.hemostase.domain.enumeration.Serologie;
 import tn.adhes.hemostase.domain.enumeration.Serologie;
+import tn.adhes.hemostase.domain.enumeration.ServiceCliniqueType;
 import tn.adhes.hemostase.domain.enumeration.Severite;
 import tn.adhes.hemostase.domain.enumeration.SuiteOperatoire;
 import tn.adhes.hemostase.domain.enumeration.TauxInhibiteur;
@@ -99,6 +100,15 @@ import tn.adhes.hemostase.service.mapper.FicheHemophilieMapper;
 @WithMockUser
 class FicheHemophilieResourceIT {
 
+    private static final String DEFAULT_DOSSIER_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_DOSSIER_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ORDRE_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_ORDRE_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_INDEX_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_INDEX_NUMBER = "BBBBBBBBBB";
+
     private static final String DEFAULT_PRENOM = "AAAAAAAAAA";
     private static final String UPDATED_PRENOM = "BBBBBBBBBB";
 
@@ -110,6 +120,18 @@ class FicheHemophilieResourceIT {
 
     private static final String DEFAULT_PROFESSION = "AAAAAAAAAA";
     private static final String UPDATED_PROFESSION = "BBBBBBBBBB";
+
+    private static final CivilStatus DEFAULT_ETAT_CIVIL = CivilStatus.CELIBATAIRE;
+    private static final CivilStatus UPDATED_ETAT_CIVIL = CivilStatus.MARIE;
+
+    private static final ServiceCliniqueType DEFAULT_SERVICE_CLINIQUE = ServiceCliniqueType.HTO;
+    private static final ServiceCliniqueType UPDATED_SERVICE_CLINIQUE = ServiceCliniqueType.PRIVE;
+
+    private static final String DEFAULT_AUTRE_SERVICE_CLINIQUE = "AAAAAAAAAA";
+    private static final String UPDATED_AUTRE_SERVICE_CLINIQUE = "BBBBBBBBBB";
+
+    private static final CouvertureSociale DEFAULT_COUVERTURE_SOCIALE = CouvertureSociale.CNAM;
+    private static final CouvertureSociale UPDATED_COUVERTURE_SOCIALE = CouvertureSociale.INDIGENT;
 
     private static final Gender DEFAULT_SEXE = Gender.MASCULIN;
     private static final Gender UPDATED_SEXE = Gender.FEMININ;
@@ -131,12 +153,6 @@ class FicheHemophilieResourceIT {
 
     private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
     private static final String UPDATED_TELEPHONE = "BBBBBBBBBB";
-
-    private static final CivilStatus DEFAULT_ETAT_CIVIL = CivilStatus.CELIBATAIRE;
-    private static final CivilStatus UPDATED_ETAT_CIVIL = CivilStatus.MARIE;
-
-    private static final CouvertureSociale DEFAULT_COUVERTURE_SOCIALE = CouvertureSociale.CNAM;
-    private static final CouvertureSociale UPDATED_COUVERTURE_SOCIALE = CouvertureSociale.INDIGENT;
 
     private static final String DEFAULT_PRENOM_PERE = "AAAAAAAAAA";
     private static final String UPDATED_PRENOM_PERE = "BBBBBBBBBB";
@@ -173,15 +189,6 @@ class FicheHemophilieResourceIT {
 
     private static final LocalDate DEFAULT_DATE_ENREGISTREMENT_REGISTRE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE_ENREGISTREMENT_REGISTRE = LocalDate.now(ZoneId.systemDefault());
-
-    private static final String DEFAULT_DOSSIER_NUMBER = "AAAAAAAAAA";
-    private static final String UPDATED_DOSSIER_NUMBER = "BBBBBBBBBB";
-
-    private static final String DEFAULT_ORDRE_NUMBER = "AAAAAAAAAA";
-    private static final String UPDATED_ORDRE_NUMBER = "BBBBBBBBBB";
-
-    private static final String DEFAULT_INDEX_NUMBER = "AAAAAAAAAA";
-    private static final String UPDATED_INDEX_NUMBER = "BBBBBBBBBB";
 
     private static final OuiNonNP DEFAULT_PARENTS_CONSANGUINS = OuiNonNP.OUI;
     private static final OuiNonNP UPDATED_PARENTS_CONSANGUINS = OuiNonNP.NON;
@@ -643,10 +650,17 @@ class FicheHemophilieResourceIT {
      */
     public static FicheHemophilie createEntity() {
         return new FicheHemophilie()
+            .dossierNumber(DEFAULT_DOSSIER_NUMBER)
+            .ordreNumber(DEFAULT_ORDRE_NUMBER)
+            .indexNumber(DEFAULT_INDEX_NUMBER)
             .prenom(DEFAULT_PRENOM)
             .nom(DEFAULT_NOM)
             .nomJeuneFille(DEFAULT_NOM_JEUNE_FILLE)
             .profession(DEFAULT_PROFESSION)
+            .etatCivil(DEFAULT_ETAT_CIVIL)
+            .serviceClinique(DEFAULT_SERVICE_CLINIQUE)
+            .autreServiceClinique(DEFAULT_AUTRE_SERVICE_CLINIQUE)
+            .couvertureSociale(DEFAULT_COUVERTURE_SOCIALE)
             .sexe(DEFAULT_SEXE)
             .dateNaissance(DEFAULT_DATE_NAISSANCE)
             .ageActuel(DEFAULT_AGE_ACTUEL)
@@ -654,8 +668,6 @@ class FicheHemophilieResourceIT {
             .autreOrigine(DEFAULT_AUTRE_ORIGINE)
             .adresse(DEFAULT_ADRESSE)
             .telephone(DEFAULT_TELEPHONE)
-            .etatCivil(DEFAULT_ETAT_CIVIL)
-            .couvertureSociale(DEFAULT_COUVERTURE_SOCIALE)
             .prenomPere(DEFAULT_PRENOM_PERE)
             .professionPere(DEFAULT_PROFESSION_PERE)
             .nomPrenomMere(DEFAULT_NOM_PRENOM_MERE)
@@ -668,9 +680,6 @@ class FicheHemophilieResourceIT {
             .anneeDiagnostic(DEFAULT_ANNEE_DIAGNOSTIC)
             .consentementRegistre(DEFAULT_CONSENTEMENT_REGISTRE)
             .dateEnregistrementRegistre(DEFAULT_DATE_ENREGISTREMENT_REGISTRE)
-            .dossierNumber(DEFAULT_DOSSIER_NUMBER)
-            .ordreNumber(DEFAULT_ORDRE_NUMBER)
-            .indexNumber(DEFAULT_INDEX_NUMBER)
             .parentsConsanguins(DEFAULT_PARENTS_CONSANGUINS)
             .degreParenteConsanguins(DEFAULT_DEGRE_PARENTE_CONSANGUINS)
             .casSimilaires(DEFAULT_CAS_SIMILAIRES)
@@ -822,10 +831,17 @@ class FicheHemophilieResourceIT {
      */
     public static FicheHemophilie createUpdatedEntity() {
         return new FicheHemophilie()
+            .dossierNumber(UPDATED_DOSSIER_NUMBER)
+            .ordreNumber(UPDATED_ORDRE_NUMBER)
+            .indexNumber(UPDATED_INDEX_NUMBER)
             .prenom(UPDATED_PRENOM)
             .nom(UPDATED_NOM)
             .nomJeuneFille(UPDATED_NOM_JEUNE_FILLE)
             .profession(UPDATED_PROFESSION)
+            .etatCivil(UPDATED_ETAT_CIVIL)
+            .serviceClinique(UPDATED_SERVICE_CLINIQUE)
+            .autreServiceClinique(UPDATED_AUTRE_SERVICE_CLINIQUE)
+            .couvertureSociale(UPDATED_COUVERTURE_SOCIALE)
             .sexe(UPDATED_SEXE)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .ageActuel(UPDATED_AGE_ACTUEL)
@@ -833,8 +849,6 @@ class FicheHemophilieResourceIT {
             .autreOrigine(UPDATED_AUTRE_ORIGINE)
             .adresse(UPDATED_ADRESSE)
             .telephone(UPDATED_TELEPHONE)
-            .etatCivil(UPDATED_ETAT_CIVIL)
-            .couvertureSociale(UPDATED_COUVERTURE_SOCIALE)
             .prenomPere(UPDATED_PRENOM_PERE)
             .professionPere(UPDATED_PROFESSION_PERE)
             .nomPrenomMere(UPDATED_NOM_PRENOM_MERE)
@@ -847,9 +861,6 @@ class FicheHemophilieResourceIT {
             .anneeDiagnostic(UPDATED_ANNEE_DIAGNOSTIC)
             .consentementRegistre(UPDATED_CONSENTEMENT_REGISTRE)
             .dateEnregistrementRegistre(UPDATED_DATE_ENREGISTREMENT_REGISTRE)
-            .dossierNumber(UPDATED_DOSSIER_NUMBER)
-            .ordreNumber(UPDATED_ORDRE_NUMBER)
-            .indexNumber(UPDATED_INDEX_NUMBER)
             .parentsConsanguins(UPDATED_PARENTS_CONSANGUINS)
             .degreParenteConsanguins(UPDATED_DEGRE_PARENTE_CONSANGUINS)
             .casSimilaires(UPDATED_CAS_SIMILAIRES)
@@ -1050,23 +1061,6 @@ class FicheHemophilieResourceIT {
 
     @Test
     @Transactional
-    void checkSexeIsRequired() throws Exception {
-        long databaseSizeBeforeTest = getRepositoryCount();
-        // set the field null
-        ficheHemophilie.setSexe(null);
-
-        // Create the FicheHemophilie, which fails.
-        FicheHemophilieDTO ficheHemophilieDTO = ficheHemophilieMapper.toDto(ficheHemophilie);
-
-        restFicheHemophilieMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(ficheHemophilieDTO)))
-            .andExpect(status().isBadRequest());
-
-        assertSameRepositoryCount(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     void checkEtatCivilIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
@@ -1084,10 +1078,44 @@ class FicheHemophilieResourceIT {
 
     @Test
     @Transactional
+    void checkServiceCliniqueIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        ficheHemophilie.setServiceClinique(null);
+
+        // Create the FicheHemophilie, which fails.
+        FicheHemophilieDTO ficheHemophilieDTO = ficheHemophilieMapper.toDto(ficheHemophilie);
+
+        restFicheHemophilieMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(ficheHemophilieDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkCouvertureSocialeIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
         ficheHemophilie.setCouvertureSociale(null);
+
+        // Create the FicheHemophilie, which fails.
+        FicheHemophilieDTO ficheHemophilieDTO = ficheHemophilieMapper.toDto(ficheHemophilie);
+
+        restFicheHemophilieMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(ficheHemophilieDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkSexeIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        ficheHemophilie.setSexe(null);
 
         // Create the FicheHemophilie, which fails.
         FicheHemophilieDTO ficheHemophilieDTO = ficheHemophilieMapper.toDto(ficheHemophilie);
@@ -1179,10 +1207,17 @@ class FicheHemophilieResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(ficheHemophilie.getId().intValue())))
+            .andExpect(jsonPath("$.[*].dossierNumber").value(hasItem(DEFAULT_DOSSIER_NUMBER)))
+            .andExpect(jsonPath("$.[*].ordreNumber").value(hasItem(DEFAULT_ORDRE_NUMBER)))
+            .andExpect(jsonPath("$.[*].indexNumber").value(hasItem(DEFAULT_INDEX_NUMBER)))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].nomJeuneFille").value(hasItem(DEFAULT_NOM_JEUNE_FILLE)))
             .andExpect(jsonPath("$.[*].profession").value(hasItem(DEFAULT_PROFESSION)))
+            .andExpect(jsonPath("$.[*].etatCivil").value(hasItem(DEFAULT_ETAT_CIVIL.toString())))
+            .andExpect(jsonPath("$.[*].serviceClinique").value(hasItem(DEFAULT_SERVICE_CLINIQUE.toString())))
+            .andExpect(jsonPath("$.[*].autreServiceClinique").value(hasItem(DEFAULT_AUTRE_SERVICE_CLINIQUE)))
+            .andExpect(jsonPath("$.[*].couvertureSociale").value(hasItem(DEFAULT_COUVERTURE_SOCIALE.toString())))
             .andExpect(jsonPath("$.[*].sexe").value(hasItem(DEFAULT_SEXE.toString())))
             .andExpect(jsonPath("$.[*].dateNaissance").value(hasItem(DEFAULT_DATE_NAISSANCE.toString())))
             .andExpect(jsonPath("$.[*].ageActuel").value(hasItem(DEFAULT_AGE_ACTUEL)))
@@ -1190,8 +1225,6 @@ class FicheHemophilieResourceIT {
             .andExpect(jsonPath("$.[*].autreOrigine").value(hasItem(DEFAULT_AUTRE_ORIGINE)))
             .andExpect(jsonPath("$.[*].adresse").value(hasItem(DEFAULT_ADRESSE)))
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
-            .andExpect(jsonPath("$.[*].etatCivil").value(hasItem(DEFAULT_ETAT_CIVIL.toString())))
-            .andExpect(jsonPath("$.[*].couvertureSociale").value(hasItem(DEFAULT_COUVERTURE_SOCIALE.toString())))
             .andExpect(jsonPath("$.[*].prenomPere").value(hasItem(DEFAULT_PRENOM_PERE)))
             .andExpect(jsonPath("$.[*].professionPere").value(hasItem(DEFAULT_PROFESSION_PERE)))
             .andExpect(jsonPath("$.[*].nomPrenomMere").value(hasItem(DEFAULT_NOM_PRENOM_MERE)))
@@ -1204,9 +1237,6 @@ class FicheHemophilieResourceIT {
             .andExpect(jsonPath("$.[*].anneeDiagnostic").value(hasItem(DEFAULT_ANNEE_DIAGNOSTIC)))
             .andExpect(jsonPath("$.[*].consentementRegistre").value(hasItem(DEFAULT_CONSENTEMENT_REGISTRE.toString())))
             .andExpect(jsonPath("$.[*].dateEnregistrementRegistre").value(hasItem(DEFAULT_DATE_ENREGISTREMENT_REGISTRE.toString())))
-            .andExpect(jsonPath("$.[*].dossierNumber").value(hasItem(DEFAULT_DOSSIER_NUMBER)))
-            .andExpect(jsonPath("$.[*].ordreNumber").value(hasItem(DEFAULT_ORDRE_NUMBER)))
-            .andExpect(jsonPath("$.[*].indexNumber").value(hasItem(DEFAULT_INDEX_NUMBER)))
             .andExpect(jsonPath("$.[*].parentsConsanguins").value(hasItem(DEFAULT_PARENTS_CONSANGUINS.toString())))
             .andExpect(jsonPath("$.[*].degreParenteConsanguins").value(hasItem(DEFAULT_DEGRE_PARENTE_CONSANGUINS)))
             .andExpect(jsonPath("$.[*].casSimilaires").value(hasItem(DEFAULT_CAS_SIMILAIRES.toString())))
@@ -1372,10 +1402,17 @@ class FicheHemophilieResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(ficheHemophilie.getId().intValue()))
+            .andExpect(jsonPath("$.dossierNumber").value(DEFAULT_DOSSIER_NUMBER))
+            .andExpect(jsonPath("$.ordreNumber").value(DEFAULT_ORDRE_NUMBER))
+            .andExpect(jsonPath("$.indexNumber").value(DEFAULT_INDEX_NUMBER))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.nomJeuneFille").value(DEFAULT_NOM_JEUNE_FILLE))
             .andExpect(jsonPath("$.profession").value(DEFAULT_PROFESSION))
+            .andExpect(jsonPath("$.etatCivil").value(DEFAULT_ETAT_CIVIL.toString()))
+            .andExpect(jsonPath("$.serviceClinique").value(DEFAULT_SERVICE_CLINIQUE.toString()))
+            .andExpect(jsonPath("$.autreServiceClinique").value(DEFAULT_AUTRE_SERVICE_CLINIQUE))
+            .andExpect(jsonPath("$.couvertureSociale").value(DEFAULT_COUVERTURE_SOCIALE.toString()))
             .andExpect(jsonPath("$.sexe").value(DEFAULT_SEXE.toString()))
             .andExpect(jsonPath("$.dateNaissance").value(DEFAULT_DATE_NAISSANCE.toString()))
             .andExpect(jsonPath("$.ageActuel").value(DEFAULT_AGE_ACTUEL))
@@ -1383,8 +1420,6 @@ class FicheHemophilieResourceIT {
             .andExpect(jsonPath("$.autreOrigine").value(DEFAULT_AUTRE_ORIGINE))
             .andExpect(jsonPath("$.adresse").value(DEFAULT_ADRESSE))
             .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE))
-            .andExpect(jsonPath("$.etatCivil").value(DEFAULT_ETAT_CIVIL.toString()))
-            .andExpect(jsonPath("$.couvertureSociale").value(DEFAULT_COUVERTURE_SOCIALE.toString()))
             .andExpect(jsonPath("$.prenomPere").value(DEFAULT_PRENOM_PERE))
             .andExpect(jsonPath("$.professionPere").value(DEFAULT_PROFESSION_PERE))
             .andExpect(jsonPath("$.nomPrenomMere").value(DEFAULT_NOM_PRENOM_MERE))
@@ -1397,9 +1432,6 @@ class FicheHemophilieResourceIT {
             .andExpect(jsonPath("$.anneeDiagnostic").value(DEFAULT_ANNEE_DIAGNOSTIC))
             .andExpect(jsonPath("$.consentementRegistre").value(DEFAULT_CONSENTEMENT_REGISTRE.toString()))
             .andExpect(jsonPath("$.dateEnregistrementRegistre").value(DEFAULT_DATE_ENREGISTREMENT_REGISTRE.toString()))
-            .andExpect(jsonPath("$.dossierNumber").value(DEFAULT_DOSSIER_NUMBER))
-            .andExpect(jsonPath("$.ordreNumber").value(DEFAULT_ORDRE_NUMBER))
-            .andExpect(jsonPath("$.indexNumber").value(DEFAULT_INDEX_NUMBER))
             .andExpect(jsonPath("$.parentsConsanguins").value(DEFAULT_PARENTS_CONSANGUINS.toString()))
             .andExpect(jsonPath("$.degreParenteConsanguins").value(DEFAULT_DEGRE_PARENTE_CONSANGUINS))
             .andExpect(jsonPath("$.casSimilaires").value(DEFAULT_CAS_SIMILAIRES.toString()))
@@ -1563,10 +1595,17 @@ class FicheHemophilieResourceIT {
         // Disconnect from session so that the updates on updatedFicheHemophilie are not directly saved in db
         em.detach(updatedFicheHemophilie);
         updatedFicheHemophilie
+            .dossierNumber(UPDATED_DOSSIER_NUMBER)
+            .ordreNumber(UPDATED_ORDRE_NUMBER)
+            .indexNumber(UPDATED_INDEX_NUMBER)
             .prenom(UPDATED_PRENOM)
             .nom(UPDATED_NOM)
             .nomJeuneFille(UPDATED_NOM_JEUNE_FILLE)
             .profession(UPDATED_PROFESSION)
+            .etatCivil(UPDATED_ETAT_CIVIL)
+            .serviceClinique(UPDATED_SERVICE_CLINIQUE)
+            .autreServiceClinique(UPDATED_AUTRE_SERVICE_CLINIQUE)
+            .couvertureSociale(UPDATED_COUVERTURE_SOCIALE)
             .sexe(UPDATED_SEXE)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .ageActuel(UPDATED_AGE_ACTUEL)
@@ -1574,8 +1613,6 @@ class FicheHemophilieResourceIT {
             .autreOrigine(UPDATED_AUTRE_ORIGINE)
             .adresse(UPDATED_ADRESSE)
             .telephone(UPDATED_TELEPHONE)
-            .etatCivil(UPDATED_ETAT_CIVIL)
-            .couvertureSociale(UPDATED_COUVERTURE_SOCIALE)
             .prenomPere(UPDATED_PRENOM_PERE)
             .professionPere(UPDATED_PROFESSION_PERE)
             .nomPrenomMere(UPDATED_NOM_PRENOM_MERE)
@@ -1588,9 +1625,6 @@ class FicheHemophilieResourceIT {
             .anneeDiagnostic(UPDATED_ANNEE_DIAGNOSTIC)
             .consentementRegistre(UPDATED_CONSENTEMENT_REGISTRE)
             .dateEnregistrementRegistre(UPDATED_DATE_ENREGISTREMENT_REGISTRE)
-            .dossierNumber(UPDATED_DOSSIER_NUMBER)
-            .ordreNumber(UPDATED_ORDRE_NUMBER)
-            .indexNumber(UPDATED_INDEX_NUMBER)
             .parentsConsanguins(UPDATED_PARENTS_CONSANGUINS)
             .degreParenteConsanguins(UPDATED_DEGRE_PARENTE_CONSANGUINS)
             .casSimilaires(UPDATED_CAS_SIMILAIRES)
@@ -1822,94 +1856,87 @@ class FicheHemophilieResourceIT {
         partialUpdatedFicheHemophilie.setId(ficheHemophilie.getId());
 
         partialUpdatedFicheHemophilie
-            .prenom(UPDATED_PRENOM)
-            .nom(UPDATED_NOM)
+            .dossierNumber(UPDATED_DOSSIER_NUMBER)
+            .nomJeuneFille(UPDATED_NOM_JEUNE_FILLE)
             .profession(UPDATED_PROFESSION)
-            .dateNaissance(UPDATED_DATE_NAISSANCE)
-            .ageActuel(UPDATED_AGE_ACTUEL)
+            .sexe(UPDATED_SEXE)
             .origine(UPDATED_ORIGINE)
-            .etatCivil(UPDATED_ETAT_CIVIL)
-            .couvertureSociale(UPDATED_COUVERTURE_SOCIALE)
+            .adresse(UPDATED_ADRESSE)
+            .telephone(UPDATED_TELEPHONE)
             .prenomPere(UPDATED_PRENOM_PERE)
-            .professionPere(UPDATED_PROFESSION_PERE)
-            .professionMere(UPDATED_PROFESSION_MERE)
+            .nomPrenomMere(UPDATED_NOM_PRENOM_MERE)
             .medecinTraitant(UPDATED_MEDECIN_TRAITANT)
             .biologisteResponsableDg(UPDATED_BIOLOGISTE_RESPONSABLE_DG)
-            .diagnostic(UPDATED_DIAGNOSTIC)
-            .autreDiagnostic(UPDATED_AUTRE_DIAGNOSTIC)
             .anneeDiagnostic(UPDATED_ANNEE_DIAGNOSTIC)
-            .consentementRegistre(UPDATED_CONSENTEMENT_REGISTRE)
-            .ordreNumber(UPDATED_ORDRE_NUMBER)
-            .indexNumber(UPDATED_INDEX_NUMBER)
-            .casSimilaires(UPDATED_CAS_SIMILAIRES)
+            .dateEnregistrementRegistre(UPDATED_DATE_ENREGISTREMENT_REGISTRE)
             .nombreCas(UPDATED_NOMBRE_CAS)
             .degreParenteCasSimilaires(UPDATED_DEGRE_PARENTE_CAS_SIMILAIRES)
-            .nombreDeces(UPDATED_NOMBRE_DECES)
-            .formeHemophilie(UPDATED_FORME_HEMOPHILIE)
-            .fratrieNbFreres(UPDATED_FRATRIE_NB_FRERES)
             .fratrieNbSoeurs(UPDATED_FRATRIE_NB_SOEURS)
-            .circonstancesDecouverte(UPDATED_CIRCONSTANCES_DECOUVERTE)
-            .cutaneoMuqueux(UPDATED_CUTANEO_MUQUEUX)
-            .hematomePostTraumatique(UPDATED_HEMATOME_POST_TRAUMATIQUE)
+            .hemarthrose(UPDATED_HEMARTHROSE)
+            .hemorragiePostCirconcision(UPDATED_HEMORRAGIE_POST_CIRCONCISION)
+            .hemorragiePostChirurgie(UPDATED_HEMORRAGIE_POST_CHIRURGIE)
+            .hemorragieCerebrale(UPDATED_HEMORRAGIE_CEREBRALE)
             .hemorragieDigestive(UPDATED_HEMORRAGIE_DIGESTIVE)
-            .datePremierSigneClinique(UPDATED_DATE_PREMIER_SIGNE_CLINIQUE)
+            .ageDiagnosticJours(UPDATED_AGE_DIAGNOSTIC_JOURS)
+            .ageDiagnosticMois(UPDATED_AGE_DIAGNOSTIC_MOIS)
+            .dateTestConfirmation(UPDATED_DATE_TEST_CONFIRMATION)
             .hb(UPDATED_HB)
             .tp(UPDATED_TP)
-            .tcaMT(UPDATED_TCA_MT)
+            .fibrinogene(UPDATED_FIBRINOGENE)
             .tcaMTTotal(UPDATED_TCA_MT_TOTAL)
             .tcaMT2h(UPDATED_TCA_MT_2_H)
             .ts(UPDATED_TS)
-            .dosageFacteurVIII(UPDATED_DOSAGE_FACTEUR_VIII)
-            .dosageFacteurVWActivite(UPDATED_DOSAGE_FACTEUR_VW_ACTIVITE)
+            .formeClinique(UPDATED_FORME_CLINIQUE)
             .severite(UPDATED_SEVERITE)
             .inversionIntron22(UPDATED_INVERSION_INTRON_22)
+            .hemarthroseType(UPDATED_HEMARTHROSE_TYPE)
             .hemarthroseFrequenceAn(UPDATED_HEMARTHROSE_FREQUENCE_AN)
             .hematomeSuperficiel(UPDATED_HEMATOME_SUPERFICIEL)
-            .hematomePsoasRecidive(UPDATED_HEMATOME_PSOAS_RECIDIVE)
+            .hematomeSuperficielSiege(UPDATED_HEMATOME_SUPERFICIEL_SIEGE)
+            .hematomePsoasType(UPDATED_HEMATOME_PSOAS_TYPE)
             .hemorragiesCutaneoMuqueusesFrequenceAn(UPDATED_HEMORRAGIES_CUTANEO_MUQUEUSES_FREQUENCE_AN)
-            .hemorragieVisceresExploration(UPDATED_HEMORRAGIE_VISCERES_EXPLORATION)
+            .hemorragieVisceres(UPDATED_HEMORRAGIE_VISCERES)
+            .hemorragieVisceresType(UPDATED_HEMORRAGIE_VISCERES_TYPE)
             .hemorragieVisceresExamen(UPDATED_HEMORRAGIE_VISCERES_EXAMEN)
             .saignementSNC(UPDATED_SAIGNEMENT_SNC)
             .saignementSNCEvolution(UPDATED_SAIGNEMENT_SNC_EVOLUTION)
-            .circoncisionPreparation(UPDATED_CIRCONCISION_PREPARATION)
-            .circoncisionSuiteOperatoire(UPDATED_CIRCONCISION_SUITE_OPERATOIRE)
             .avulsionDentaire(UPDATED_AVULSION_DENTAIRE)
             .avulsionDentairePreparation(UPDATED_AVULSION_DENTAIRE_PREPARATION)
+            .interventionChirurgicale(UPDATED_INTERVENTION_CHIRURGICALE)
+            .interventionChirurgicaleType(UPDATED_INTERVENTION_CHIRURGICALE_TYPE)
             .accidentsHemorragiquesGraves(UPDATED_ACCIDENTS_HEMORRAGIQUES_GRAVES)
-            .accidentsHemorragiquesGravesTypes(UPDATED_ACCIDENTS_HEMORRAGIQUES_GRAVES_TYPES)
-            .causePriseEnCharge(UPDATED_CAUSE_PRISE_EN_CHARGE)
             .prophylaxieDoseFrequence(UPDATED_PROPHYLAXIE_DOSE_FREQUENCE)
+            .dateDebutProphylaxie(UPDATED_DATE_DEBUT_PROPHYLAXIE)
             .injectionType(UPDATED_INJECTION_TYPE)
-            .cryoprecipite(UPDATED_CRYOPRECIPITE)
-            .orthopediques(UPDATED_ORTHOPEDIQUES)
             .arthropathieHemophiliqueChronique(UPDATED_ARTHROPATHIE_HEMOPHILIQUE_CHRONIQUE)
             .coudeDroit(UPDATED_COUDE_DROIT)
             .coudeGauche(UPDATED_COUDE_GAUCHE)
             .genouDroit(UPDATED_GENOU_DROIT)
+            .genouGauche(UPDATED_GENOU_GAUCHE)
             .chevilleDroite(UPDATED_CHEVILLE_DROITE)
-            .epauleDroite(UPDATED_EPAULE_DROITE)
+            .chevilleGauche(UPDATED_CHEVILLE_GAUCHE)
+            .poignetDroit(UPDATED_POIGNET_DROIT)
             .hancheDroite(UPDATED_HANCHE_DROITE)
             .hancheGauche(UPDATED_HANCHE_GAUCHE)
-            .pecTherapeutique(UPDATED_PEC_THERAPEUTIQUE)
-            .tauxInhibiteur(UPDATED_TAUX_INHIBITEUR)
-            .testRecuperationFAH(UPDATED_TEST_RECUPERATION_FAH)
+            .inhibiteurs(UPDATED_INHIBITEURS)
             .dateTestRecuperation(UPDATED_DATE_TEST_RECUPERATION)
+            .tauxRecuperation(UPDATED_TAUX_RECUPERATION)
+            .antiFAHNonNeutralisant(UPDATED_ANTI_FAH_NON_NEUTRALISANT)
+            .antiFAHNegatif(UPDATED_ANTI_FAH_NEGATIF)
+            .rechercheACC(UPDATED_RECHERCHE_ACC)
             .augmenterDoseFacteur(UPDATED_AUGMENTER_DOSE_FACTEUR)
             .novoseven(UPDATED_NOVOSEVEN)
-            .feiba(UPDATED_FEIBA)
-            .corticotherapie(UPDATED_CORTICOTHERAPIE)
-            .immurel(UPDATED_IMMUREL)
-            .observanceITI(UPDATED_OBSERVANCE_ITI)
-            .causeNonObservance(UPDATED_CAUSE_NON_OBSERVANCE)
-            .evolutionInhibiteur(UPDATED_EVOLUTION_INHIBITEUR)
+            .iti(UPDATED_ITI)
+            .dateDebutHemlibra(UPDATED_DATE_DEBUT_HEMLIBRA)
+            .schemaTherapeutique(UPDATED_SCHEMA_THERAPEUTIQUE)
+            .efficaciteHemlibra(UPDATED_EFFICACITE_HEMLIBRA)
             .traitementVHC(UPDATED_TRAITEMENT_VHC)
+            .evolutionVHC(UPDATED_EVOLUTION_VHC)
             .vieSociale(UPDATED_VIE_SOCIALE)
             .marie(UPDATED_MARIE)
-            .enfants(UPDATED_ENFANTS)
-            .handicap(UPDATED_HANDICAP)
             .typeHandicap(UPDATED_TYPE_HANDICAP)
             .activiteSportive(UPDATED_ACTIVITE_SPORTIVE)
-            .causeDeces(UPDATED_CAUSE_DECES);
+            .decede(UPDATED_DECEDE);
 
         restFicheHemophilieMockMvc
             .perform(
@@ -1941,10 +1968,17 @@ class FicheHemophilieResourceIT {
         partialUpdatedFicheHemophilie.setId(ficheHemophilie.getId());
 
         partialUpdatedFicheHemophilie
+            .dossierNumber(UPDATED_DOSSIER_NUMBER)
+            .ordreNumber(UPDATED_ORDRE_NUMBER)
+            .indexNumber(UPDATED_INDEX_NUMBER)
             .prenom(UPDATED_PRENOM)
             .nom(UPDATED_NOM)
             .nomJeuneFille(UPDATED_NOM_JEUNE_FILLE)
             .profession(UPDATED_PROFESSION)
+            .etatCivil(UPDATED_ETAT_CIVIL)
+            .serviceClinique(UPDATED_SERVICE_CLINIQUE)
+            .autreServiceClinique(UPDATED_AUTRE_SERVICE_CLINIQUE)
+            .couvertureSociale(UPDATED_COUVERTURE_SOCIALE)
             .sexe(UPDATED_SEXE)
             .dateNaissance(UPDATED_DATE_NAISSANCE)
             .ageActuel(UPDATED_AGE_ACTUEL)
@@ -1952,8 +1986,6 @@ class FicheHemophilieResourceIT {
             .autreOrigine(UPDATED_AUTRE_ORIGINE)
             .adresse(UPDATED_ADRESSE)
             .telephone(UPDATED_TELEPHONE)
-            .etatCivil(UPDATED_ETAT_CIVIL)
-            .couvertureSociale(UPDATED_COUVERTURE_SOCIALE)
             .prenomPere(UPDATED_PRENOM_PERE)
             .professionPere(UPDATED_PROFESSION_PERE)
             .nomPrenomMere(UPDATED_NOM_PRENOM_MERE)
@@ -1966,9 +1998,6 @@ class FicheHemophilieResourceIT {
             .anneeDiagnostic(UPDATED_ANNEE_DIAGNOSTIC)
             .consentementRegistre(UPDATED_CONSENTEMENT_REGISTRE)
             .dateEnregistrementRegistre(UPDATED_DATE_ENREGISTREMENT_REGISTRE)
-            .dossierNumber(UPDATED_DOSSIER_NUMBER)
-            .ordreNumber(UPDATED_ORDRE_NUMBER)
-            .indexNumber(UPDATED_INDEX_NUMBER)
             .parentsConsanguins(UPDATED_PARENTS_CONSANGUINS)
             .degreParenteConsanguins(UPDATED_DEGRE_PARENTE_CONSANGUINS)
             .casSimilaires(UPDATED_CAS_SIMILAIRES)

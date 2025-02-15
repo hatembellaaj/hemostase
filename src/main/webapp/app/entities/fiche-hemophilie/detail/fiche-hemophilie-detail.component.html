@@ -15,6 +15,18 @@
           <dd>
             <span>{{ ficheHemophilieRef.id }}</span>
           </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.indexNumber }}</span>
+          </dd>
           <dt><span>Prenom</span></dt>
           <dd>
             <span>{{ ficheHemophilieRef.prenom }}</span>
@@ -30,6 +42,35 @@
           <dt><span>Profession</span></dt>
           <dd>
             <span>{{ ficheHemophilieRef.profession }}</span>
+          </dd>
+          <dt><span>Etat Civil</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[ficheHemophilieRef.etatCivil ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Service Clinique</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HTO: 'HTO',
+                PRIVE: 'PRIVE',
+                PEDIATRIE_A: 'PEDIATRIE_A',
+                PEDIATRIE_B: 'PEDIATRIE_B',
+                PUR: 'PUR',
+                GYNECO: 'GYNECO',
+                AUTRE: 'AUTRE',
+              }[ficheHemophilieRef.serviceClinique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Service Clinique</span></dt>
+          <dd>
+            <span>{{ ficheHemophilieRef.autreServiceClinique }}</span>
+          </dd>
+          <dt><span>Couverture Sociale</span></dt>
+          <dd>
+            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheHemophilieRef.couvertureSociale ?? 'null'] }}</span>
           </dd>
           <dt><span>Sexe</span></dt>
           <dd>
@@ -76,16 +117,6 @@
           <dt><span>Telephone</span></dt>
           <dd>
             <span>{{ ficheHemophilieRef.telephone }}</span>
-          </dd>
-          <dt><span>Etat Civil</span></dt>
-          <dd>
-            <span>{{
-              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[ficheHemophilieRef.etatCivil ?? 'null']
-            }}</span>
-          </dd>
-          <dt><span>Couverture Sociale</span></dt>
-          <dd>
-            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheHemophilieRef.couvertureSociale ?? 'null'] }}</span>
           </dd>
           <dt><span>Prenom Pere</span></dt>
           <dd>
@@ -146,18 +177,6 @@
           <dt><span>Date Enregistrement Registre</span></dt>
           <dd>
             <span>{{ ficheHemophilieRef.dateEnregistrementRegistre | formatMediumDate }}</span>
-          </dd>
-          <dt><span>Dossier Number</span></dt>
-          <dd>
-            <span>{{ ficheHemophilieRef.dossierNumber }}</span>
-          </dd>
-          <dt><span>Ordre Number</span></dt>
-          <dd>
-            <span>{{ ficheHemophilieRef.ordreNumber }}</span>
-          </dd>
-          <dt><span>Index Number</span></dt>
-          <dd>
-            <span>{{ ficheHemophilieRef.indexNumber }}</span>
           </dd>
           <dt><span>Parents Consanguins</span></dt>
           <dd>

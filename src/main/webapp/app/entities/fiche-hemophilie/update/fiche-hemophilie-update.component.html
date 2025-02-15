@@ -13,32 +13,8 @@
           </div>
         }
 
-        <div class="accordion" id="ficheAccordion">
-          <!-- Accordéon Section 1: Identification -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingIdentification">
-              <button
-                class="accordion-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseIdentification"
-                aria-expanded="true"
-                aria-controls="collapseIdentification"
-              >
-                Identification
-              </button>
-            </h2>
-            <div
-              id="collapseIdentification"
-              class="accordion-collapse collapse show"
-              aria-labelledby="headingIdentification"
-              data-bs-parent="#ficheAccordion"
-            >
-              <div class="accordion-body">
-                <!-- Champs pour la section Identification -->
-
         <div class="mb-3">
-          <label class="form-label" for="field_dossierNumber">Numéro Dossier </label>
+          <label class="form-label" for="field_dossierNumber">Dossier Number</label>
           <input
             type="text"
             class="form-control"
@@ -51,7 +27,7 @@
 
         @let ordreNumberRef = editForm.get('ordreNumber')!;
         <div class="mb-3">
-          <label class="form-label" for="field_ordreNumber">Numéro Ordre </label>
+          <label class="form-label" for="field_ordreNumber">Ordre Number</label>
           <input
             type="text"
             class="form-control"
@@ -71,7 +47,7 @@
 
         @let indexNumberRef = editForm.get('indexNumber')!;
         <div class="mb-3">
-          <label class="form-label" for="field_indexNumber">Numéro Index </label>
+          <label class="form-label" for="field_indexNumber">Index Number</label>
           <input
             type="text"
             class="form-control"
@@ -89,7 +65,6 @@
           }
         </div>
 
-                
         @let prenomRef = editForm.get('prenom')!;
         <div class="mb-3">
           <label class="form-label" for="field_prenom">Prenom</label>
@@ -176,7 +151,89 @@
           }
         </div>
 
-                
+        @let serviceCliniqueRef = editForm.get('serviceClinique')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceClinique">Service Clinique</label>
+          <select
+            class="form-control"
+            name="serviceClinique"
+            formControlName="serviceClinique"
+            id="field_serviceClinique"
+            data-cy="serviceClinique"
+          >
+            <option [ngValue]="null"></option>
+            @for (serviceCliniqueType of serviceCliniqueTypeValues; track $index) {
+              <option [value]="serviceCliniqueType">
+                {{
+                  {
+                    null: '',
+                    HTO: 'HTO',
+                    PRIVE: 'PRIVE',
+                    PEDIATRIE_A: 'PEDIATRIE_A',
+                    PEDIATRIE_B: 'PEDIATRIE_B',
+                    PUR: 'PUR',
+                    GYNECO: 'GYNECO',
+                    AUTRE: 'AUTRE',
+                  }[serviceCliniqueType]
+                }}
+              </option>
+            }
+          </select>
+          @if (serviceCliniqueRef.invalid && (serviceCliniqueRef.dirty || serviceCliniqueRef.touched)) {
+            <div>
+              @if (editForm.get('serviceClinique')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let autreServiceCliniqueRef = editForm.get('autreServiceClinique')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_autreServiceClinique">Autre Service Clinique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreServiceClinique"
+            id="field_autreServiceClinique"
+            data-cy="autreServiceClinique"
+            formControlName="autreServiceClinique"
+          />
+          @if (autreServiceCliniqueRef.invalid && (autreServiceCliniqueRef.dirty || autreServiceCliniqueRef.touched)) {
+            <div>
+              @if (editForm.get('autreServiceClinique')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let couvertureSocialeRef = editForm.get('couvertureSociale')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_couvertureSociale">Couverture Sociale</label>
+          <select
+            class="form-control"
+            name="couvertureSociale"
+            formControlName="couvertureSociale"
+            id="field_couvertureSociale"
+            data-cy="couvertureSociale"
+          >
+            <option [ngValue]="null"></option>
+            @for (couvertureSociale of couvertureSocialeValues; track $index) {
+              <option [value]="couvertureSociale">
+                {{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[couvertureSociale] }}
+              </option>
+            }
+          </select>
+          @if (couvertureSocialeRef.invalid && (couvertureSocialeRef.dirty || couvertureSocialeRef.touched)) {
+            <div>
+              @if (editForm.get('couvertureSociale')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
         @let sexeRef = editForm.get('sexe')!;
         <div class="mb-3">
           <label class="form-label" for="field_sexe">Sexe</label>
@@ -290,34 +347,6 @@
             <div>
               @if (editForm.get('telephone')?.errors?.maxlength) {
                 <small class="form-text text-danger">Ce champ doit faire moins de 20 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-
-
-        @let couvertureSocialeRef = editForm.get('couvertureSociale')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_couvertureSociale">Couverture Sociale</label>
-          <select
-            class="form-control"
-            name="couvertureSociale"
-            formControlName="couvertureSociale"
-            id="field_couvertureSociale"
-            data-cy="couvertureSociale"
-          >
-            <option [ngValue]="null"></option>
-            @for (couvertureSociale of couvertureSocialeValues; track $index) {
-              <option [value]="couvertureSociale">
-                {{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[couvertureSociale] }}
-              </option>
-            }
-          </select>
-          @if (couvertureSocialeRef.invalid && (couvertureSocialeRef.dirty || couvertureSocialeRef.touched)) {
-            <div>
-              @if (editForm.get('couvertureSociale')?.errors?.required) {
-                <small class="form-text text-danger">Ce champ est obligatoire.</small>
               }
             </div>
           }
@@ -561,34 +590,7 @@
             </button>
           </div>
         </div>
-              </div>
-            </div>
-          </div>
 
-
-<!-- Accordéon Section 2: Antécédents -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingAntecedents">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseAntecedents"
-      aria-expanded="false"
-      aria-controls="collapseAntecedents"
-    >
-      Antécédents
-    </button>
-  </h2>
-  <div
-    id="collapseAntecedents"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingAntecedents"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section Antécédents -->
-                
         <div class="mb-3">
           <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
           <select
@@ -734,36 +736,6 @@
           />
         </div>
 
-    </div>
-  </div>
-</div>
-
-
-          <!-- Accordéon Section 3: Circonstances de découverte -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingCirconstances">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseCirconstances"
-      aria-expanded="false"
-      aria-controls="collapseCirconstances"
-    >
-      Circonstances de découverte
-    </button>
-  </h2>
-  <div
-    id="collapseCirconstances"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingCirconstances"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section Circonstances de découverte -->
-
-
-      
         @let circonstancesDecouverteRef = editForm.get('circonstancesDecouverte')!;
         <div class="mb-3">
           <label class="form-label" for="field_circonstancesDecouverte">Circonstances Decouverte</label>
@@ -943,36 +915,6 @@
           />
         </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- Accordéon Section 4: Biologie au moment du diagnostic -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingBiologie">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseBiologie"
-      aria-expanded="false"
-      aria-controls="collapseBiologie"
-    >
-      Biologie au moment du diagnostic
-    </button>
-  </h2>
-  <div
-    id="collapseBiologie"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingBiologie"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section Biologie -->
-
-
-
-      
         <div class="mb-3">
           <label class="form-label" for="field_dateTestConfirmation">Date Test Confirmation</label>
           <div class="input-group">
@@ -1227,33 +1169,6 @@
           }
         </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- Accordéon Section 5: Manifestations cliniques -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingManifestations">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseManifestations"
-      aria-expanded="false"
-      aria-controls="collapseManifestations"
-    >
-      Manifestations cliniques
-    </button>
-  </h2>
-  <div
-    id="collapseManifestations"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingManifestations"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-
-      
         @let hemarthroseSiegeRef = editForm.get('hemarthroseSiege')!;
         <div class="mb-3">
           <label class="form-label" for="field_hemarthroseSiege">Hemarthrose Siege</label>
@@ -1738,36 +1653,6 @@
           </select>
         </div>
 
-
-    </div>
-  </div>
-</div>
-
-<!-- Accordéon Section 6: Prise en charge thérapeutique -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingPriseEnCharge">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapsePriseEnCharge"
-      aria-expanded="false"
-      aria-controls="collapsePriseEnCharge"
-    >
-      Prise en charge thérapeutique
-    </button>
-  </h2>
-  <div
-    id="collapsePriseEnCharge"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingPriseEnCharge"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section Prise en charge thérapeutique -->
-
-
-      
         <div class="mb-3">
           <label class="form-label" for="field_priseEnChargeTherapeutique">Prise En Charge Therapeutique</label>
           <select
@@ -1984,37 +1869,6 @@
           </select>
         </div>
 
-
-    </div>
-  </div>
-</div>
-
-<!-- Accordéon Section 7: Complications liées au traitement -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingComplications">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseComplications"
-      aria-expanded="false"
-      aria-controls="collapseComplications"
-    >
-      Complications liées au traitement
-    </button>
-  </h2>
-  <div
-    id="collapseComplications"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingComplications"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section Complications -->
-      
-
-
-      
         <div class="mb-3">
           <label class="form-label" for="field_synovite">Synovite</label>
           <input type="checkbox" class="form-check" name="synovite" id="field_synovite" data-cy="synovite" formControlName="synovite" />
@@ -2615,36 +2469,6 @@
           </select>
         </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- Accordéon Section 8: EVOLUTION -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingEvolution">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseEvolution"
-      aria-expanded="false"
-      aria-controls="collapseEvolution"
-    >
-      EVOLUTION
-    </button>
-  </h2>
-  <div
-    id="collapseEvolution"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingEvolution"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section EVOLUTION -->
-
-
-
-      
         <div class="mb-3">
           <label class="form-label" for="field_vieSociale">Vie Sociale</label>
           <select class="form-control" name="vieSociale" formControlName="vieSociale" id="field_vieSociale" data-cy="vieSociale">
@@ -2783,10 +2607,6 @@
           </div>
         </div>
       </div>
-    </div>
-    </div>
-  </div>
-</div>
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">

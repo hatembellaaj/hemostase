@@ -42,6 +42,27 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="dossierNumber">
+              <div class="d-flex">
+                <span>Dossier Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordreNumber">
+              <div class="d-flex">
+                <span>Ordre Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="indexNumber">
+              <div class="d-flex">
+                <span>Index Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col" jhiSortBy="prenom">
               <div class="d-flex">
                 <span>Prenom</span>
@@ -66,6 +87,34 @@
             <th scope="col" jhiSortBy="profession">
               <div class="d-flex">
                 <span>Profession</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatCivil">
+              <div class="d-flex">
+                <span>Etat Civil</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serviceClinique">
+              <div class="d-flex">
+                <span>Service Clinique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autreServiceClinique">
+              <div class="d-flex">
+                <span>Autre Service Clinique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="couvertureSociale">
+              <div class="d-flex">
+                <span>Couverture Sociale</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
@@ -115,20 +164,6 @@
             <th scope="col" jhiSortBy="telephone">
               <div class="d-flex">
                 <span>Telephone</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="etatCivil">
-              <div class="d-flex">
-                <span>Etat Civil</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="couvertureSociale">
-              <div class="d-flex">
-                <span>Couverture Sociale</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
@@ -213,27 +248,6 @@
             <th scope="col" jhiSortBy="dateEnregistrementRegistre">
               <div class="d-flex">
                 <span>Date Enregistrement Registre</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="dossierNumber">
-              <div class="d-flex">
-                <span>Dossier Number</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="ordreNumber">
-              <div class="d-flex">
-                <span>Ordre Number</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="indexNumber">
-              <div class="d-flex">
-                <span>Index Number</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
@@ -1234,10 +1248,36 @@
               <td>
                 <a [routerLink]="['/fiche-hemophilie', ficheHemophilie.id, 'view']">{{ ficheHemophilie.id }}</a>
               </td>
+              <td>{{ ficheHemophilie.dossierNumber }}</td>
+              <td>{{ ficheHemophilie.ordreNumber }}</td>
+              <td>{{ ficheHemophilie.indexNumber }}</td>
               <td>{{ ficheHemophilie.prenom }}</td>
               <td>{{ ficheHemophilie.nom }}</td>
               <td>{{ ficheHemophilie.nomJeuneFille }}</td>
               <td>{{ ficheHemophilie.profession }}</td>
+              <td>
+                {{
+                  { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[
+                    ficheHemophilie.etatCivil ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>
+                {{
+                  {
+                    null: '',
+                    HTO: 'HTO',
+                    PRIVE: 'PRIVE',
+                    PEDIATRIE_A: 'PEDIATRIE_A',
+                    PEDIATRIE_B: 'PEDIATRIE_B',
+                    PUR: 'PUR',
+                    GYNECO: 'GYNECO',
+                    AUTRE: 'AUTRE',
+                  }[ficheHemophilie.serviceClinique ?? 'null']
+                }}
+              </td>
+              <td>{{ ficheHemophilie.autreServiceClinique }}</td>
+              <td>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheHemophilie.couvertureSociale ?? 'null'] }}</td>
               <td>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[ficheHemophilie.sexe ?? 'null'] }}</td>
               <td>{{ ficheHemophilie.dateNaissance | formatMediumDate }}</td>
               <td>{{ ficheHemophilie.ageActuel }}</td>
@@ -1265,14 +1305,6 @@
               <td>{{ ficheHemophilie.autreOrigine }}</td>
               <td>{{ ficheHemophilie.adresse }}</td>
               <td>{{ ficheHemophilie.telephone }}</td>
-              <td>
-                {{
-                  { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[
-                    ficheHemophilie.etatCivil ?? 'null'
-                  ]
-                }}
-              </td>
-              <td>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheHemophilie.couvertureSociale ?? 'null'] }}</td>
               <td>{{ ficheHemophilie.prenomPere }}</td>
               <td>{{ ficheHemophilie.professionPere }}</td>
               <td>{{ ficheHemophilie.nomPrenomMere }}</td>
@@ -1299,9 +1331,6 @@
               <td>{{ ficheHemophilie.anneeDiagnostic }}</td>
               <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.consentementRegistre ?? 'null'] }}</td>
               <td>{{ ficheHemophilie.dateEnregistrementRegistre | formatMediumDate }}</td>
-              <td>{{ ficheHemophilie.dossierNumber }}</td>
-              <td>{{ ficheHemophilie.ordreNumber }}</td>
-              <td>{{ ficheHemophilie.indexNumber }}</td>
               <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.parentsConsanguins ?? 'null'] }}</td>
               <td>{{ ficheHemophilie.degreParenteConsanguins }}</td>
               <td>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheHemophilie.casSimilaires ?? 'null'] }}</td>

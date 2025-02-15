@@ -7,10 +7,11 @@ import { finalize } from 'rxjs/operators';
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { CivilStatus } from 'app/entities/enumerations/civil-status.model';
+import { ServiceCliniqueType } from 'app/entities/enumerations/service-clinique-type.model';
+import { CouvertureSociale } from 'app/entities/enumerations/couverture-sociale.model';
 import { Gender } from 'app/entities/enumerations/gender.model';
 import { Region } from 'app/entities/enumerations/region.model';
-import { CivilStatus } from 'app/entities/enumerations/civil-status.model';
-import { CouvertureSociale } from 'app/entities/enumerations/couverture-sociale.model';
 import { DiagnosticType } from 'app/entities/enumerations/diagnostic-type.model';
 import { OuiNonNP } from 'app/entities/enumerations/oui-non-np.model';
 import { DegreeParente } from 'app/entities/enumerations/degree-parente.model';
@@ -51,10 +52,11 @@ import { FicheHemophilieFormGroup, FicheHemophilieFormService } from './fiche-he
 export class FicheHemophilieUpdateComponent implements OnInit {
   isSaving = false;
   ficheHemophilie: IFicheHemophilie | null = null;
+  civilStatusValues = Object.keys(CivilStatus);
+  serviceCliniqueTypeValues = Object.keys(ServiceCliniqueType);
+  couvertureSocialeValues = Object.keys(CouvertureSociale);
   genderValues = Object.keys(Gender);
   regionValues = Object.keys(Region);
-  civilStatusValues = Object.keys(CivilStatus);
-  couvertureSocialeValues = Object.keys(CouvertureSociale);
   diagnosticTypeValues = Object.keys(DiagnosticType);
   ouiNonNPValues = Object.keys(OuiNonNP);
   degreeParenteValues = Object.keys(DegreeParente);

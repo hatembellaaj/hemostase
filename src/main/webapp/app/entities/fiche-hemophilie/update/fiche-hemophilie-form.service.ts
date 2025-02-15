@@ -57,10 +57,17 @@ type FicheHemophilieFormDefaults = Pick<
 
 type FicheHemophilieFormGroupContent = {
   id: FormControl<IFicheHemophilie['id'] | NewFicheHemophilie['id']>;
+  dossierNumber: FormControl<IFicheHemophilie['dossierNumber']>;
+  ordreNumber: FormControl<IFicheHemophilie['ordreNumber']>;
+  indexNumber: FormControl<IFicheHemophilie['indexNumber']>;
   prenom: FormControl<IFicheHemophilie['prenom']>;
   nom: FormControl<IFicheHemophilie['nom']>;
   nomJeuneFille: FormControl<IFicheHemophilie['nomJeuneFille']>;
   profession: FormControl<IFicheHemophilie['profession']>;
+  etatCivil: FormControl<IFicheHemophilie['etatCivil']>;
+  serviceClinique: FormControl<IFicheHemophilie['serviceClinique']>;
+  autreServiceClinique: FormControl<IFicheHemophilie['autreServiceClinique']>;
+  couvertureSociale: FormControl<IFicheHemophilie['couvertureSociale']>;
   sexe: FormControl<IFicheHemophilie['sexe']>;
   dateNaissance: FormControl<IFicheHemophilie['dateNaissance']>;
   ageActuel: FormControl<IFicheHemophilie['ageActuel']>;
@@ -68,8 +75,6 @@ type FicheHemophilieFormGroupContent = {
   autreOrigine: FormControl<IFicheHemophilie['autreOrigine']>;
   adresse: FormControl<IFicheHemophilie['adresse']>;
   telephone: FormControl<IFicheHemophilie['telephone']>;
-  etatCivil: FormControl<IFicheHemophilie['etatCivil']>;
-  couvertureSociale: FormControl<IFicheHemophilie['couvertureSociale']>;
   prenomPere: FormControl<IFicheHemophilie['prenomPere']>;
   professionPere: FormControl<IFicheHemophilie['professionPere']>;
   nomPrenomMere: FormControl<IFicheHemophilie['nomPrenomMere']>;
@@ -82,9 +87,6 @@ type FicheHemophilieFormGroupContent = {
   anneeDiagnostic: FormControl<IFicheHemophilie['anneeDiagnostic']>;
   consentementRegistre: FormControl<IFicheHemophilie['consentementRegistre']>;
   dateEnregistrementRegistre: FormControl<IFicheHemophilie['dateEnregistrementRegistre']>;
-  dossierNumber: FormControl<IFicheHemophilie['dossierNumber']>;
-  ordreNumber: FormControl<IFicheHemophilie['ordreNumber']>;
-  indexNumber: FormControl<IFicheHemophilie['indexNumber']>;
   parentsConsanguins: FormControl<IFicheHemophilie['parentsConsanguins']>;
   degreParenteConsanguins: FormControl<IFicheHemophilie['degreParenteConsanguins']>;
   casSimilaires: FormControl<IFicheHemophilie['casSimilaires']>;
@@ -245,6 +247,13 @@ export class FicheHemophilieFormService {
           validators: [Validators.required],
         },
       ),
+      dossierNumber: new FormControl(ficheHemophilieRawValue.dossierNumber),
+      ordreNumber: new FormControl(ficheHemophilieRawValue.ordreNumber, {
+        validators: [Validators.maxLength(25)],
+      }),
+      indexNumber: new FormControl(ficheHemophilieRawValue.indexNumber, {
+        validators: [Validators.maxLength(25)],
+      }),
       prenom: new FormControl(ficheHemophilieRawValue.prenom, {
         validators: [Validators.maxLength(25)],
       }),
@@ -256,6 +265,18 @@ export class FicheHemophilieFormService {
       }),
       profession: new FormControl(ficheHemophilieRawValue.profession, {
         validators: [Validators.maxLength(25)],
+      }),
+      etatCivil: new FormControl(ficheHemophilieRawValue.etatCivil, {
+        validators: [Validators.required],
+      }),
+      serviceClinique: new FormControl(ficheHemophilieRawValue.serviceClinique, {
+        validators: [Validators.required],
+      }),
+      autreServiceClinique: new FormControl(ficheHemophilieRawValue.autreServiceClinique, {
+        validators: [Validators.maxLength(255)],
+      }),
+      couvertureSociale: new FormControl(ficheHemophilieRawValue.couvertureSociale, {
+        validators: [Validators.required],
       }),
       sexe: new FormControl(ficheHemophilieRawValue.sexe, {
         validators: [Validators.required],
@@ -271,12 +292,6 @@ export class FicheHemophilieFormService {
       }),
       telephone: new FormControl(ficheHemophilieRawValue.telephone, {
         validators: [Validators.maxLength(20)],
-      }),
-      etatCivil: new FormControl(ficheHemophilieRawValue.etatCivil, {
-        validators: [Validators.required],
-      }),
-      couvertureSociale: new FormControl(ficheHemophilieRawValue.couvertureSociale, {
-        validators: [Validators.required],
       }),
       prenomPere: new FormControl(ficheHemophilieRawValue.prenomPere, {
         validators: [Validators.maxLength(25)],
@@ -308,13 +323,6 @@ export class FicheHemophilieFormService {
       anneeDiagnostic: new FormControl(ficheHemophilieRawValue.anneeDiagnostic),
       consentementRegistre: new FormControl(ficheHemophilieRawValue.consentementRegistre),
       dateEnregistrementRegistre: new FormControl(ficheHemophilieRawValue.dateEnregistrementRegistre),
-      dossierNumber: new FormControl(ficheHemophilieRawValue.dossierNumber),
-      ordreNumber: new FormControl(ficheHemophilieRawValue.ordreNumber, {
-        validators: [Validators.maxLength(25)],
-      }),
-      indexNumber: new FormControl(ficheHemophilieRawValue.indexNumber, {
-        validators: [Validators.maxLength(25)],
-      }),
       parentsConsanguins: new FormControl(ficheHemophilieRawValue.parentsConsanguins),
       degreParenteConsanguins: new FormControl(ficheHemophilieRawValue.degreParenteConsanguins, {
         validators: [Validators.maxLength(25)],

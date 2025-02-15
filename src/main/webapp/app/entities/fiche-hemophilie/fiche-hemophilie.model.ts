@@ -1,8 +1,9 @@
 import dayjs from 'dayjs/esm';
+import { CivilStatus } from 'app/entities/enumerations/civil-status.model';
+import { ServiceCliniqueType } from 'app/entities/enumerations/service-clinique-type.model';
+import { CouvertureSociale } from 'app/entities/enumerations/couverture-sociale.model';
 import { Gender } from 'app/entities/enumerations/gender.model';
 import { Region } from 'app/entities/enumerations/region.model';
-import { CivilStatus } from 'app/entities/enumerations/civil-status.model';
-import { CouvertureSociale } from 'app/entities/enumerations/couverture-sociale.model';
 import { DiagnosticType } from 'app/entities/enumerations/diagnostic-type.model';
 import { OuiNonNP } from 'app/entities/enumerations/oui-non-np.model';
 import { DegreeParente } from 'app/entities/enumerations/degree-parente.model';
@@ -33,10 +34,17 @@ import { VieSociale } from 'app/entities/enumerations/vie-sociale.model';
 
 export interface IFicheHemophilie {
   id: number;
+  dossierNumber?: string | null;
+  ordreNumber?: string | null;
+  indexNumber?: string | null;
   prenom?: string | null;
   nom?: string | null;
   nomJeuneFille?: string | null;
   profession?: string | null;
+  etatCivil?: keyof typeof CivilStatus | null;
+  serviceClinique?: keyof typeof ServiceCliniqueType | null;
+  autreServiceClinique?: string | null;
+  couvertureSociale?: keyof typeof CouvertureSociale | null;
   sexe?: keyof typeof Gender | null;
   dateNaissance?: dayjs.Dayjs | null;
   ageActuel?: number | null;
@@ -44,8 +52,6 @@ export interface IFicheHemophilie {
   autreOrigine?: string | null;
   adresse?: string | null;
   telephone?: string | null;
-  etatCivil?: keyof typeof CivilStatus | null;
-  couvertureSociale?: keyof typeof CouvertureSociale | null;
   prenomPere?: string | null;
   professionPere?: string | null;
   nomPrenomMere?: string | null;
@@ -58,9 +64,6 @@ export interface IFicheHemophilie {
   anneeDiagnostic?: number | null;
   consentementRegistre?: keyof typeof OuiNonNP | null;
   dateEnregistrementRegistre?: dayjs.Dayjs | null;
-  dossierNumber?: string | null;
-  ordreNumber?: string | null;
-  indexNumber?: string | null;
   parentsConsanguins?: keyof typeof OuiNonNP | null;
   degreParenteConsanguins?: string | null;
   casSimilaires?: keyof typeof OuiNonNP | null;

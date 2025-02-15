@@ -23,6 +23,7 @@ import tn.adhes.hemostase.domain.enumeration.RechercheACC;
 import tn.adhes.hemostase.domain.enumeration.Region;
 import tn.adhes.hemostase.domain.enumeration.SchemaTherapeutique;
 import tn.adhes.hemostase.domain.enumeration.Serologie;
+import tn.adhes.hemostase.domain.enumeration.ServiceCliniqueType;
 import tn.adhes.hemostase.domain.enumeration.Severite;
 import tn.adhes.hemostase.domain.enumeration.SuiteOperatoire;
 import tn.adhes.hemostase.domain.enumeration.TauxInhibiteur;
@@ -52,6 +53,17 @@ public class FicheHemophilie implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "dossier_number")
+    private String dossierNumber;
+
+    @Size(max = 25)
+    @Column(name = "ordre_number", length = 25)
+    private String ordreNumber;
+
+    @Size(max = 25)
+    @Column(name = "index_number", length = 25)
+    private String indexNumber;
+
     @Size(max = 25)
     @Column(name = "prenom", length = 25)
     private String prenom;
@@ -67,6 +79,25 @@ public class FicheHemophilie implements Serializable {
     @Size(max = 25)
     @Column(name = "profession", length = 25)
     private String profession;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "etat_civil", nullable = false)
+    private CivilStatus etatCivil;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "service_clinique", nullable = false)
+    private ServiceCliniqueType serviceClinique;
+
+    @Size(max = 255)
+    @Column(name = "autre_service_clinique", length = 255)
+    private String autreServiceClinique;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "couverture_sociale", nullable = false)
+    private CouvertureSociale couvertureSociale;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -94,16 +125,6 @@ public class FicheHemophilie implements Serializable {
     @Size(max = 20)
     @Column(name = "telephone", length = 20)
     private String telephone;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "etat_civil", nullable = false)
-    private CivilStatus etatCivil;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "couverture_sociale", nullable = false)
-    private CouvertureSociale couvertureSociale;
 
     @Size(max = 25)
     @Column(name = "prenom_pere", length = 25)
@@ -151,17 +172,6 @@ public class FicheHemophilie implements Serializable {
 
     @Column(name = "date_enregistrement_registre")
     private LocalDate dateEnregistrementRegistre;
-
-    @Column(name = "dossier_number")
-    private String dossierNumber;
-
-    @Size(max = 25)
-    @Column(name = "ordre_number", length = 25)
-    private String ordreNumber;
-
-    @Size(max = 25)
-    @Column(name = "index_number", length = 25)
-    private String indexNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "parents_consanguins")
@@ -677,6 +687,45 @@ public class FicheHemophilie implements Serializable {
         this.id = id;
     }
 
+    public String getDossierNumber() {
+        return this.dossierNumber;
+    }
+
+    public FicheHemophilie dossierNumber(String dossierNumber) {
+        this.setDossierNumber(dossierNumber);
+        return this;
+    }
+
+    public void setDossierNumber(String dossierNumber) {
+        this.dossierNumber = dossierNumber;
+    }
+
+    public String getOrdreNumber() {
+        return this.ordreNumber;
+    }
+
+    public FicheHemophilie ordreNumber(String ordreNumber) {
+        this.setOrdreNumber(ordreNumber);
+        return this;
+    }
+
+    public void setOrdreNumber(String ordreNumber) {
+        this.ordreNumber = ordreNumber;
+    }
+
+    public String getIndexNumber() {
+        return this.indexNumber;
+    }
+
+    public FicheHemophilie indexNumber(String indexNumber) {
+        this.setIndexNumber(indexNumber);
+        return this;
+    }
+
+    public void setIndexNumber(String indexNumber) {
+        this.indexNumber = indexNumber;
+    }
+
     public String getPrenom() {
         return this.prenom;
     }
@@ -727,6 +776,58 @@ public class FicheHemophilie implements Serializable {
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    public CivilStatus getEtatCivil() {
+        return this.etatCivil;
+    }
+
+    public FicheHemophilie etatCivil(CivilStatus etatCivil) {
+        this.setEtatCivil(etatCivil);
+        return this;
+    }
+
+    public void setEtatCivil(CivilStatus etatCivil) {
+        this.etatCivil = etatCivil;
+    }
+
+    public ServiceCliniqueType getServiceClinique() {
+        return this.serviceClinique;
+    }
+
+    public FicheHemophilie serviceClinique(ServiceCliniqueType serviceClinique) {
+        this.setServiceClinique(serviceClinique);
+        return this;
+    }
+
+    public void setServiceClinique(ServiceCliniqueType serviceClinique) {
+        this.serviceClinique = serviceClinique;
+    }
+
+    public String getAutreServiceClinique() {
+        return this.autreServiceClinique;
+    }
+
+    public FicheHemophilie autreServiceClinique(String autreServiceClinique) {
+        this.setAutreServiceClinique(autreServiceClinique);
+        return this;
+    }
+
+    public void setAutreServiceClinique(String autreServiceClinique) {
+        this.autreServiceClinique = autreServiceClinique;
+    }
+
+    public CouvertureSociale getCouvertureSociale() {
+        return this.couvertureSociale;
+    }
+
+    public FicheHemophilie couvertureSociale(CouvertureSociale couvertureSociale) {
+        this.setCouvertureSociale(couvertureSociale);
+        return this;
+    }
+
+    public void setCouvertureSociale(CouvertureSociale couvertureSociale) {
+        this.couvertureSociale = couvertureSociale;
     }
 
     public Gender getSexe() {
@@ -818,32 +919,6 @@ public class FicheHemophilie implements Serializable {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public CivilStatus getEtatCivil() {
-        return this.etatCivil;
-    }
-
-    public FicheHemophilie etatCivil(CivilStatus etatCivil) {
-        this.setEtatCivil(etatCivil);
-        return this;
-    }
-
-    public void setEtatCivil(CivilStatus etatCivil) {
-        this.etatCivil = etatCivil;
-    }
-
-    public CouvertureSociale getCouvertureSociale() {
-        return this.couvertureSociale;
-    }
-
-    public FicheHemophilie couvertureSociale(CouvertureSociale couvertureSociale) {
-        this.setCouvertureSociale(couvertureSociale);
-        return this;
-    }
-
-    public void setCouvertureSociale(CouvertureSociale couvertureSociale) {
-        this.couvertureSociale = couvertureSociale;
     }
 
     public String getPrenomPere() {
@@ -1000,45 +1075,6 @@ public class FicheHemophilie implements Serializable {
 
     public void setDateEnregistrementRegistre(LocalDate dateEnregistrementRegistre) {
         this.dateEnregistrementRegistre = dateEnregistrementRegistre;
-    }
-
-    public String getDossierNumber() {
-        return this.dossierNumber;
-    }
-
-    public FicheHemophilie dossierNumber(String dossierNumber) {
-        this.setDossierNumber(dossierNumber);
-        return this;
-    }
-
-    public void setDossierNumber(String dossierNumber) {
-        this.dossierNumber = dossierNumber;
-    }
-
-    public String getOrdreNumber() {
-        return this.ordreNumber;
-    }
-
-    public FicheHemophilie ordreNumber(String ordreNumber) {
-        this.setOrdreNumber(ordreNumber);
-        return this;
-    }
-
-    public void setOrdreNumber(String ordreNumber) {
-        this.ordreNumber = ordreNumber;
-    }
-
-    public String getIndexNumber() {
-        return this.indexNumber;
-    }
-
-    public FicheHemophilie indexNumber(String indexNumber) {
-        this.setIndexNumber(indexNumber);
-        return this;
-    }
-
-    public void setIndexNumber(String indexNumber) {
-        this.indexNumber = indexNumber;
     }
 
     public OuiNonNP getParentsConsanguins() {
@@ -2898,10 +2934,17 @@ public class FicheHemophilie implements Serializable {
     public String toString() {
         return "FicheHemophilie{" +
             "id=" + getId() +
+            ", dossierNumber='" + getDossierNumber() + "'" +
+            ", ordreNumber='" + getOrdreNumber() + "'" +
+            ", indexNumber='" + getIndexNumber() + "'" +
             ", prenom='" + getPrenom() + "'" +
             ", nom='" + getNom() + "'" +
             ", nomJeuneFille='" + getNomJeuneFille() + "'" +
             ", profession='" + getProfession() + "'" +
+            ", etatCivil='" + getEtatCivil() + "'" +
+            ", serviceClinique='" + getServiceClinique() + "'" +
+            ", autreServiceClinique='" + getAutreServiceClinique() + "'" +
+            ", couvertureSociale='" + getCouvertureSociale() + "'" +
             ", sexe='" + getSexe() + "'" +
             ", dateNaissance='" + getDateNaissance() + "'" +
             ", ageActuel=" + getAgeActuel() +
@@ -2909,8 +2952,6 @@ public class FicheHemophilie implements Serializable {
             ", autreOrigine='" + getAutreOrigine() + "'" +
             ", adresse='" + getAdresse() + "'" +
             ", telephone='" + getTelephone() + "'" +
-            ", etatCivil='" + getEtatCivil() + "'" +
-            ", couvertureSociale='" + getCouvertureSociale() + "'" +
             ", prenomPere='" + getPrenomPere() + "'" +
             ", professionPere='" + getProfessionPere() + "'" +
             ", nomPrenomMere='" + getNomPrenomMere() + "'" +
@@ -2923,9 +2964,6 @@ public class FicheHemophilie implements Serializable {
             ", anneeDiagnostic=" + getAnneeDiagnostic() +
             ", consentementRegistre='" + getConsentementRegistre() + "'" +
             ", dateEnregistrementRegistre='" + getDateEnregistrementRegistre() + "'" +
-            ", dossierNumber='" + getDossierNumber() + "'" +
-            ", ordreNumber='" + getOrdreNumber() + "'" +
-            ", indexNumber='" + getIndexNumber() + "'" +
             ", parentsConsanguins='" + getParentsConsanguins() + "'" +
             ", degreParenteConsanguins='" + getDegreParenteConsanguins() + "'" +
             ", casSimilaires='" + getCasSimilaires() + "'" +

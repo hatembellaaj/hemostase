@@ -6,6 +6,22 @@
   "dto": "mapstruct",
   "fields": [
     {
+      "fieldName": "dossierNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ordreNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "indexNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "25"
+    },
+    {
       "fieldName": "prenom",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
@@ -28,6 +44,30 @@
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "25"
+    },
+    {
+      "fieldName": "etatCivil",
+      "fieldType": "CivilStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CELIBATAIRE,MARIE,DIVORCE,NP"
+    },
+    {
+      "fieldName": "serviceClinique",
+      "fieldType": "ServiceCliniqueType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "HTO,PRIVE,PEDIATRIE_A,PEDIATRIE_B,PUR,GYNECO,AUTRE"
+    },
+    {
+      "fieldName": "autreServiceClinique",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "couvertureSociale",
+      "fieldType": "CouvertureSociale",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CNAM,INDIGENT,NP"
     },
     {
       "fieldName": "sexe",
@@ -65,18 +105,6 @@
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "20"
-    },
-    {
-      "fieldName": "etatCivil",
-      "fieldType": "CivilStatus",
-      "fieldValidateRules": ["required"],
-      "fieldValues": "CELIBATAIRE,MARIE,DIVORCE,NP"
-    },
-    {
-      "fieldName": "couvertureSociale",
-      "fieldType": "CouvertureSociale",
-      "fieldValidateRules": ["required"],
-      "fieldValues": "CNAM,INDIGENT,NP"
     },
     {
       "fieldName": "prenomPere",
@@ -144,22 +172,6 @@
     {
       "fieldName": "dateEnregistrementRegistre",
       "fieldType": "LocalDate"
-    },
-    {
-      "fieldName": "dossierNumber",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "ordreNumber",
-      "fieldType": "String",
-      "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": "25"
-    },
-    {
-      "fieldName": "indexNumber",
-      "fieldType": "String",
-      "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": "25"
     },
     {
       "fieldName": "parentsConsanguins",

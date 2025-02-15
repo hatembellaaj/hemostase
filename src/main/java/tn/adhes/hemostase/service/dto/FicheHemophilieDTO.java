@@ -23,6 +23,7 @@ import tn.adhes.hemostase.domain.enumeration.RechercheACC;
 import tn.adhes.hemostase.domain.enumeration.Region;
 import tn.adhes.hemostase.domain.enumeration.SchemaTherapeutique;
 import tn.adhes.hemostase.domain.enumeration.Serologie;
+import tn.adhes.hemostase.domain.enumeration.ServiceCliniqueType;
 import tn.adhes.hemostase.domain.enumeration.Severite;
 import tn.adhes.hemostase.domain.enumeration.SuiteOperatoire;
 import tn.adhes.hemostase.domain.enumeration.TauxInhibiteur;
@@ -44,6 +45,14 @@ public class FicheHemophilieDTO implements Serializable {
 
     private Long id;
 
+    private String dossierNumber;
+
+    @Size(max = 25)
+    private String ordreNumber;
+
+    @Size(max = 25)
+    private String indexNumber;
+
     @Size(max = 25)
     private String prenom;
 
@@ -55,6 +64,18 @@ public class FicheHemophilieDTO implements Serializable {
 
     @Size(max = 25)
     private String profession;
+
+    @NotNull
+    private CivilStatus etatCivil;
+
+    @NotNull
+    private ServiceCliniqueType serviceClinique;
+
+    @Size(max = 255)
+    private String autreServiceClinique;
+
+    @NotNull
+    private CouvertureSociale couvertureSociale;
 
     @NotNull
     private Gender sexe;
@@ -73,12 +94,6 @@ public class FicheHemophilieDTO implements Serializable {
 
     @Size(max = 20)
     private String telephone;
-
-    @NotNull
-    private CivilStatus etatCivil;
-
-    @NotNull
-    private CouvertureSociale couvertureSociale;
 
     @Size(max = 25)
     private String prenomPere;
@@ -112,14 +127,6 @@ public class FicheHemophilieDTO implements Serializable {
     private OuiNonNP consentementRegistre;
 
     private LocalDate dateEnregistrementRegistre;
-
-    private String dossierNumber;
-
-    @Size(max = 25)
-    private String ordreNumber;
-
-    @Size(max = 25)
-    private String indexNumber;
 
     private OuiNonNP parentsConsanguins;
 
@@ -430,6 +437,30 @@ public class FicheHemophilieDTO implements Serializable {
         this.id = id;
     }
 
+    public String getDossierNumber() {
+        return dossierNumber;
+    }
+
+    public void setDossierNumber(String dossierNumber) {
+        this.dossierNumber = dossierNumber;
+    }
+
+    public String getOrdreNumber() {
+        return ordreNumber;
+    }
+
+    public void setOrdreNumber(String ordreNumber) {
+        this.ordreNumber = ordreNumber;
+    }
+
+    public String getIndexNumber() {
+        return indexNumber;
+    }
+
+    public void setIndexNumber(String indexNumber) {
+        this.indexNumber = indexNumber;
+    }
+
     public String getPrenom() {
         return prenom;
     }
@@ -460,6 +491,38 @@ public class FicheHemophilieDTO implements Serializable {
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    public CivilStatus getEtatCivil() {
+        return etatCivil;
+    }
+
+    public void setEtatCivil(CivilStatus etatCivil) {
+        this.etatCivil = etatCivil;
+    }
+
+    public ServiceCliniqueType getServiceClinique() {
+        return serviceClinique;
+    }
+
+    public void setServiceClinique(ServiceCliniqueType serviceClinique) {
+        this.serviceClinique = serviceClinique;
+    }
+
+    public String getAutreServiceClinique() {
+        return autreServiceClinique;
+    }
+
+    public void setAutreServiceClinique(String autreServiceClinique) {
+        this.autreServiceClinique = autreServiceClinique;
+    }
+
+    public CouvertureSociale getCouvertureSociale() {
+        return couvertureSociale;
+    }
+
+    public void setCouvertureSociale(CouvertureSociale couvertureSociale) {
+        this.couvertureSociale = couvertureSociale;
     }
 
     public Gender getSexe() {
@@ -516,22 +579,6 @@ public class FicheHemophilieDTO implements Serializable {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public CivilStatus getEtatCivil() {
-        return etatCivil;
-    }
-
-    public void setEtatCivil(CivilStatus etatCivil) {
-        this.etatCivil = etatCivil;
-    }
-
-    public CouvertureSociale getCouvertureSociale() {
-        return couvertureSociale;
-    }
-
-    public void setCouvertureSociale(CouvertureSociale couvertureSociale) {
-        this.couvertureSociale = couvertureSociale;
     }
 
     public String getPrenomPere() {
@@ -628,30 +675,6 @@ public class FicheHemophilieDTO implements Serializable {
 
     public void setDateEnregistrementRegistre(LocalDate dateEnregistrementRegistre) {
         this.dateEnregistrementRegistre = dateEnregistrementRegistre;
-    }
-
-    public String getDossierNumber() {
-        return dossierNumber;
-    }
-
-    public void setDossierNumber(String dossierNumber) {
-        this.dossierNumber = dossierNumber;
-    }
-
-    public String getOrdreNumber() {
-        return ordreNumber;
-    }
-
-    public void setOrdreNumber(String ordreNumber) {
-        this.ordreNumber = ordreNumber;
-    }
-
-    public String getIndexNumber() {
-        return indexNumber;
-    }
-
-    public void setIndexNumber(String indexNumber) {
-        this.indexNumber = indexNumber;
     }
 
     public OuiNonNP getParentsConsanguins() {
@@ -1808,10 +1831,17 @@ public class FicheHemophilieDTO implements Serializable {
     public String toString() {
         return "FicheHemophilieDTO{" +
             "id=" + getId() +
+            ", dossierNumber='" + getDossierNumber() + "'" +
+            ", ordreNumber='" + getOrdreNumber() + "'" +
+            ", indexNumber='" + getIndexNumber() + "'" +
             ", prenom='" + getPrenom() + "'" +
             ", nom='" + getNom() + "'" +
             ", nomJeuneFille='" + getNomJeuneFille() + "'" +
             ", profession='" + getProfession() + "'" +
+            ", etatCivil='" + getEtatCivil() + "'" +
+            ", serviceClinique='" + getServiceClinique() + "'" +
+            ", autreServiceClinique='" + getAutreServiceClinique() + "'" +
+            ", couvertureSociale='" + getCouvertureSociale() + "'" +
             ", sexe='" + getSexe() + "'" +
             ", dateNaissance='" + getDateNaissance() + "'" +
             ", ageActuel=" + getAgeActuel() +
@@ -1819,8 +1849,6 @@ public class FicheHemophilieDTO implements Serializable {
             ", autreOrigine='" + getAutreOrigine() + "'" +
             ", adresse='" + getAdresse() + "'" +
             ", telephone='" + getTelephone() + "'" +
-            ", etatCivil='" + getEtatCivil() + "'" +
-            ", couvertureSociale='" + getCouvertureSociale() + "'" +
             ", prenomPere='" + getPrenomPere() + "'" +
             ", professionPere='" + getProfessionPere() + "'" +
             ", nomPrenomMere='" + getNomPrenomMere() + "'" +
@@ -1833,9 +1861,6 @@ public class FicheHemophilieDTO implements Serializable {
             ", anneeDiagnostic=" + getAnneeDiagnostic() +
             ", consentementRegistre='" + getConsentementRegistre() + "'" +
             ", dateEnregistrementRegistre='" + getDateEnregistrementRegistre() + "'" +
-            ", dossierNumber='" + getDossierNumber() + "'" +
-            ", ordreNumber='" + getOrdreNumber() + "'" +
-            ", indexNumber='" + getIndexNumber() + "'" +
             ", parentsConsanguins='" + getParentsConsanguins() + "'" +
             ", degreParenteConsanguins='" + getDegreParenteConsanguins() + "'" +
             ", casSimilaires='" + getCasSimilaires() + "'" +
