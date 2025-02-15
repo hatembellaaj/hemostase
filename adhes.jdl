@@ -167,14 +167,30 @@ enum AntiFAHStatus {
     NON_NEUTRALISANT, NEGATIF
 }
 
-
+enum ServiceCliniqueType {
+    HTO,
+    PRIVE,
+    PEDIATRIE_A,
+    PEDIATRIE_B,
+    PUR,
+    GYNECO,
+    AUTRE
+}
 // Fusion des entites Patient et FicheHemophilie
 entity FicheHemophilie {
+    // Attributs FicheHemophilie
+    dossierNumber String ,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
     // Attributs Patient
     prenom String  maxlength(25),
     nom String  maxlength(25),
     nomJeuneFille String maxlength(25),
     profession String maxlength(25),
+    etatCivil CivilStatus required,
+    serviceClinique ServiceCliniqueType required
+    autreServiceClinique String maxlength(255)
+    couvertureSociale CouvertureSociale required,
     sexe Gender required,
     dateNaissance LocalDate,
     ageActuel Integer,
@@ -182,8 +198,6 @@ entity FicheHemophilie {
     autreOrigine String maxlength(25), // Si "origine" est "Autre"
     adresse String maxlength(25),
     telephone String maxlength(20),
-    etatCivil CivilStatus required,
-    couvertureSociale CouvertureSociale required,
     prenomPere String maxlength(25),
     professionPere String maxlength(25),
     nomPrenomMere String maxlength(25),
@@ -197,10 +211,7 @@ entity FicheHemophilie {
     consentementRegistre OuiNonNP,
     dateEnregistrementRegistre LocalDate,
     
-    // Attributs FicheHemophilie
-    dossierNumber String ,
-    ordreNumber String maxlength(25),
-    indexNumber String maxlength(25),
+
     // Modification 1 : Parents consanguins
     parentsConsanguins OuiNonNP ,
     degreParenteConsanguins String maxlength(25), // Degre de parente si parents consanguins
