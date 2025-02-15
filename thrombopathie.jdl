@@ -1,0 +1,152 @@
+entity FicheThrombopathie {
+    // Attributs FicheThrombopathie
+    dossierNumber String,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
+    
+    // Attributs Patient
+    prenom String  maxlength(25),
+    nom String  maxlength(25),
+    nomJeuneFille String maxlength(25),
+    profession String maxlength(25),
+    etatCivil CivilStatus required,
+    serviceClinique ServiceCliniqueType required,
+    autreServiceClinique String maxlength(255),
+    couvertureSociale CouvertureSociale required,
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String maxlength(25), // Si "origine" est "Autre"
+    adresse String maxlength(25),
+    telephone String maxlength(20),
+    prenomPere String maxlength(25),
+    professionPere String maxlength(25),
+    nomPrenomMere String maxlength(25),
+    professionMere String maxlength(25),
+    medecinTraitant String maxlength(25),
+    serviceOrigine String maxlength(25),
+    biologisteResponsableDg String maxlength(25),
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(25),
+    anneeDiagnostic Integer,
+    consentementRegistre OuiNonNP,
+    dateEnregistrementRegistre LocalDate,
+    
+    // Attributs Spécifiques Thrombopathie
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins String maxlength(25),
+    casSimilaires OuiNonNP,
+    nombreCas Integer,
+    degreParenteCasSimilaires String maxlength(25),
+    decesSyndromeHemorragique OuiNonNP,
+    nombreDeces Integer,
+    typeHemorragie String maxlength(255),
+    lienParenteDeces String maxlength(255),
+    enqueteFamiliale OuiNonNP,
+    antecedentsMedicaux String maxlength(255),
+    antecedentsChirurgicaux OuiNonNP,
+    typeChirurgie String maxlength(255),
+    complicationHemorragique OuiNonNP,
+    
+    // Circonstances de découverte
+    agePremierSigneHemorragique Integer,
+    typeSyndromeHemorragique String maxlength(255),
+    ageDiagnostic Integer,
+    circonstanceDiagnostic CirconstanceDiagnostic,
+    autreCirconstanceDiagnostic String maxlength(255),
+    
+    // Biologie
+    bilanHemostase String maxlength(255),
+    gb Integer,
+    hb Float,
+    vgm Float,
+    tcmh Float,
+    plaquettes Integer,
+    frottisSanguin String maxlength(255),
+    ts Float,
+    tp Float,
+    tca Float,
+    
+    // Examens spécialisés
+    aggrégométriePlaquettaire OuiNonNP,
+    resultatAgregometrie String maxlength(255),
+    cmf OuiNonNP,
+    resultatCmf String maxlength(255),
+    dosageFvwAg Float,
+    dosageFvwRco Float,
+    etudeGenetique OuiNonNP,
+    resultatEtudeGenetique String maxlength(255),
+    
+    // Diagnostic retenu
+    typeThrombopathie ThrombopathieType required,
+    autreThrombopathie String maxlength(255),
+    
+    // Manifestations cliniques
+    ecchymose OuiNonNP,
+    gingivorragies OuiNonNP,
+    epistaxis OuiNonNP,
+    hematome OuiNonNP,
+    siegelHematome String maxlength(255),
+    menoMetrorragies OuiNonNP,
+    frequenceMenoMetrorragies Integer,
+    severiteMenoMetrorragies String maxlength(255),
+    explorationMenoMetrorragies OuiNonNP,
+    typeLésionSousJacente String maxlength(255),
+    hemorragieVisceres OuiNonNP,
+    typeHemorragieVisceres String maxlength(255),
+    explorationHemorragieVisceres OuiNonNP,
+    lesionSousJacenteVisceres String maxlength(255),
+    
+    // Prise en charge thérapeutique
+    transfusionCps OuiNonNP,
+    facteurVIIRecombinant OuiNonNP,
+    dicynone OuiNonNP,
+    exacyl OuiNonNP,
+    traitementOestroprogestatif OuiNonNP,
+    mechage OuiNonNP,
+    transfusionCgr OuiNonNP,
+    traitementMartial OuiNonNP,
+    thrombose OuiNonNP,
+    alloImmunisationHLA OuiNonNP
+}
+
+// Définition des énumérations
+enum CivilStatus {
+    CELIBATAIRE, MARIE, DIVORCE, NP
+}
+
+enum ServiceCliniqueType {
+    HTO, PRIVE, PEDIATRIE_A, PEDIATRIE_B, PUR, GYNECO, AUTRE
+}
+
+enum CouvertureSociale {
+    CNAM, INDIGENT, NP
+}
+
+enum Gender {
+    MASCULIN, FEMININ
+}
+
+enum Region {
+    SFAX, GABES, GAFSA, KEBILI, TOZEUR, MEDNINE, TATAOUINE, SBZ, KASSERINE, MAHDIA, KAIROUANE, MONASTIR, SOUSSE, AUTRE
+}
+
+enum DiagnosticType {
+    HEMOPHILIE, WILLEBRAND, THROMBOPATHIE, DEFICIT_FACTEUR_VII, DEFICIT_FACTEUR_XI, DEFICIT_FACTEUR_XIII, DEFICIT_AUTRE, DEFICIT_COMBINE
+}
+
+enum OuiNonNP {
+    OUI, NON, NP
+}
+
+enum CirconstanceDiagnostic {
+    DECOUVERTE_FORTUITE, ENQUETE_FAMILIALE, EXPLORATION_SYNDROME_HEMORRAGIQUE
+}
+
+enum ThrombopathieType {
+    THROMBASTHENIE_GLANZMANN, MALADIE_BERNARD_SOULIER, AUTRE
+}
+
+// Configuration
+paginate FicheThrombopathie with pagination
