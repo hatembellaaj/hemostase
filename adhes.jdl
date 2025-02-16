@@ -176,6 +176,15 @@ enum ServiceCliniqueType {
     GYNECO,
     AUTRE
 }
+
+enum CirconstanceDiagnostic {
+    DECOUVERTE_FORTUITE, ENQUETE_FAMILIALE, EXPLORATION_SYNDROME_HEMORRAGIQUE
+}
+
+enum ThrombopathieType {
+    THROMBASTHENIE_GLANZMANN, MALADIE_BERNARD_SOULIER, AUTRE
+}
+
 // Fusion des entites Patient et FicheHemophilie
 entity FicheHemophilie {
     // Attributs FicheHemophilie
@@ -416,7 +425,144 @@ entity FicheHemophilie {
 
 }
 
+entity FicheThrombopathie {
+    // Attributs FicheThrombopathie
+    dossierNumber String,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
+    
+    // Attributs Patient
+    prenom String  maxlength(25),
+    nom String  maxlength(25),
+    nomJeuneFille String maxlength(25),
+    profession String maxlength(25),
+    etatCivil CivilStatus required,
+    serviceClinique ServiceCliniqueType required,
+    autreServiceClinique String maxlength(255),
+    couvertureSociale CouvertureSociale required,
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String maxlength(25), // Si "origine" est "Autre"
+    adresse String maxlength(25),
+    telephone String maxlength(20),
+    prenomPere String maxlength(25),
+    professionPere String maxlength(25),
+    nomPrenomMere String maxlength(25),
+    professionMere String maxlength(25),
+    medecinTraitant String maxlength(25),
+    serviceOrigine String maxlength(25),
+    biologisteResponsableDg String maxlength(25),
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(25),
+    anneeDiagnostic Integer,
+    consentementRegistre OuiNonNP,
+    dateEnregistrementRegistre LocalDate,
+    
+    // Attributs Spécifiques Thrombopathie
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins String maxlength(25),
+    casSimilaires OuiNonNP,
+    nombreCas Integer,
+    degreParenteCasSimilaires String maxlength(25),
+    decesSyndromeHemorragique OuiNonNP,
+    nombreDeces Integer,
+    typeHemorragie String maxlength(255),
+    lienParenteDeces String maxlength(255),
+    enqueteFamiliale FaiteNonFaite,
+    antecedentsMedicaux String maxlength(255),
+    antecedentsChirurgicaux OuiNonNP,
+    typeChirurgie String maxlength(255),
+    complicationHemorragique OuiNonNP,
+    
+    // Circonstances de découverte
+    agePremierSigneHemorragique Integer,
+    typeSyndromeHemorragique String maxlength(255),
+    ageDiagnostic Integer,
+    decouverteFortuite Boolean,
+    enqueteFamilialeBool Boolean,
+    explorationSyndromeHemorragique Boolean,
+    typeCirconstanceDiagnostic String maxlength(255),
+
+    // Manifestations cliniques
+    eczema OuiNonNP,
+    syndromeDysmorphique OuiNonNP,
+    albinisme OuiNonNP,
+    arthrogrypose OuiNonNP,
+
+    // Biologie
+    gb Integer,
+    hb Float,
+    vgm Float,
+    tcmh Float,
+    plaquettes Integer,
+    frottisSanguin String maxlength(255),
+    ts Float,
+    toPfa Float,
+    toPfa100ColEpi Float,
+    toPfa100ColAdp Float,
+    tp Float,
+    tca Float,
+    
+    // Examens spécialisés
+    aggrégométriePlaquettaire OuiNonNP,
+    resultatAgregometrie String maxlength(255),
+    cmf OuiNonNP,
+    resultatCmf String maxlength(255),
+    dosageFvwAg Float,
+    dosageFvwRco Float,
+    etudeGenetique OuiNonNP,
+    resultatEtudeGenetique String maxlength(255),
+    
+    // Diagnostic retenu
+    thrombasthenieGlanzmann Boolean,
+    maladieBernardSoulier Boolean,
+    autreThrombopathie Boolean,
+    autreThrombopathieDetails String maxlength(255)
+    
+    // Manifestations cliniques
+    ecchymose OuiNonNP,
+    typeEcchymose TypeManifestation,
+    gingivorragies OuiNonNP,
+    typeGingivorragies TypeManifestation,
+    epistaxis OuiNonNP,
+    typeEpistaxis TypeManifestation,
+    hematome OuiNonNP,
+    typeHematome TypeManifestation,
+    siegelHematome String maxlength(255),
+    menoMetrorragies OuiNonNP,
+    frequenceMenoMetrorragies Integer,
+    severiteMenoMetrorragies String maxlength(255),
+    explorationMenoMetrorragies OuiNonNP,
+    typeLésionSousJacente String maxlength(255),
+    hemorragieVisceres OuiNonNP,
+    hemorragieDigestiveHaute Boolean,
+    hemorragieDigestiveBasse Boolean,
+    hematurie Boolean,
+    explorationHemorragieVisceres OuiNonNP,
+    lesionSousJacenteVisceres String maxlength(255),
+
+    // Intervention chirurgicale
+    interventionChirurgicale OuiNonNP,
+    typeInterventionChirurgicale String maxlength(255),
+    hematomesCerebrales Boolean,
+    edcHemorragique Boolean,
+    
+    // Prise en charge thérapeutique
+    transfusionCps OuiNonNP,
+    facteurVIIRecombinant OuiNonNP,
+    dicynone OuiNonNP,
+    exacyl OuiNonNP,
+    traitementOestroprogestatif OuiNonNP,
+    mechage OuiNonNP,
+    transfusionCgr OuiNonNP,
+    traitementMartial OuiNonNP,
+    thrombose OuiNonNP,
+    alloImmunisationHLA OuiNonNP
+}
+
 // Options de generation
 dto * with mapstruct
-paginate FicheHemophilie with pagination
+paginate FicheHemophilie, FicheThrombopathie with pagination
 service all with serviceClass
