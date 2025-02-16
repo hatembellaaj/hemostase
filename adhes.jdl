@@ -387,7 +387,7 @@ entity FicheHemophilie {
     observanceITI OuiNonNP , // Observance : Oui/Non/NP
     causeNonObservance String maxlength(25), // Cause de non-observance
 
-    evolutionInhibiteur EvolutionInhibiteur , // Évolution des inhibiteurs : Disparition ou Persistance
+    evolutionInhibiteur EvolutionInhibiteur , // evolution des inhibiteurs : Disparition ou Persistance
     prophylaxieHemlibra Boolean, // Prophylaxie par Hemlibra : Oui/Non
     dateDebutHemlibra LocalDate, // Date de debut de la prophylaxie par Hemlibra
     schemaTherapeutique SchemaTherapeutique , // Schema therapeutique : Hebdomadaire, Mensuel, Bimensuel
@@ -399,7 +399,7 @@ entity FicheHemophilie {
     dateDecouverteVHC LocalDate, // Date de decouverte du VHC
     chargeViraleVHC String maxlength(25), // Charge virale pour le VHC
     traitementVHC OuiNonNP , // Traitement VHC : Oui/Non/NP
-    evolutionVHC EvolutionVHC , // Évolution du VHC : Disparition ou Persistance
+    evolutionVHC EvolutionVHC , // evolution du VHC : Disparition ou Persistance
     serologieHIV Serologie , // Serologie HIV : Positive, Negative, NP
 
     // VIII. EVOLUTION
@@ -460,7 +460,7 @@ entity FicheThrombopathie {
     consentementRegistre OuiNonNP,
     dateEnregistrementRegistre LocalDate,
     
-    // Attributs Spécifiques Thrombopathie
+    // Attributs Specifiques Thrombopathie
     parentsConsanguins OuiNonNP,
     degreParenteConsanguins String maxlength(25),
     casSimilaires OuiNonNP,
@@ -476,7 +476,7 @@ entity FicheThrombopathie {
     typeChirurgie String maxlength(255),
     complicationHemorragique OuiNonNP,
     
-    // Circonstances de découverte
+    // Circonstances de decouverte
     agePremierSigneHemorragique Integer,
     typeSyndromeHemorragique String maxlength(255),
     ageDiagnostic Integer,
@@ -505,8 +505,8 @@ entity FicheThrombopathie {
     tp Float,
     tca Float,
     
-    // Examens spécialisés
-    aggrégométriePlaquettaire OuiNonNP,
+    // Examens specialises
+    aggregometriePlaquettaire OuiNonNP,
     resultatAgregometrie String maxlength(255),
     cmf OuiNonNP,
     resultatCmf String maxlength(255),
@@ -535,7 +535,7 @@ entity FicheThrombopathie {
     frequenceMenoMetrorragies Integer,
     severiteMenoMetrorragies String maxlength(255),
     explorationMenoMetrorragies OuiNonNP,
-    typeLésionSousJacente String maxlength(255),
+    typeLesionSousJacente String maxlength(255),
     hemorragieVisceres OuiNonNP,
     hemorragieDigestiveHaute Boolean,
     hemorragieDigestiveBasse Boolean,
@@ -549,7 +549,7 @@ entity FicheThrombopathie {
     hematomesCerebrales Boolean,
     edcHemorragique Boolean,
     
-    // Prise en charge thérapeutique
+    // Prise en charge therapeutique
     transfusionCps OuiNonNP,
     facteurVIIRecombinant OuiNonNP,
     dicynone OuiNonNP,
