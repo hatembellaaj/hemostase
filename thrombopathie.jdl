@@ -115,6 +115,12 @@ entity FicheThrombopathie {
     hematurie Boolean,
     explorationHemorragieVisceres OuiNonNP,
     lesionSousJacenteVisceres String maxlength(255),
+
+    // Intervention chirurgicale
+    interventionChirurgicale OuiNonNP,
+    typeInterventionChirurgicale String maxlength(255),
+    hematomesCerebrales Boolean,
+    edcHemorragique Boolean,
     
     // Prise en charge thérapeutique
     transfusionCps OuiNonNP,
