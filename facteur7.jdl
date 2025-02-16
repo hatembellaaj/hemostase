@@ -251,5 +251,13 @@ enum LienParente {
     FRERE, COUSIN, LOINTAIN
 }
 
+enum TypeAccidentsThrombotiques {
+    VEINEUX, ARTERIEL
+}
+
+enum TypeHemorragieGrave {
+    DEGLOBULISATION, ETAT_DE_CHOC, PAR_LA_LOCALISATION
+}
+
 // Configuration
 paginate FicheFacteurVII with pagination
