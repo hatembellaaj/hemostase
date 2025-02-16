@@ -1,12 +1,12 @@
 entity FicheFacteurVII {
-    // Identification
+    // Attributs FicheThrombopathie
     dossierNumber String,
     ordreNumber String maxlength(25),
     indexNumber String maxlength(25),
     
-    // Patient
-    prenom String maxlength(25),
-    nom String maxlength(25),
+    // Attributs Patient
+    prenom String  maxlength(25),
+    nom String  maxlength(25),
     nomJeuneFille String maxlength(25),
     profession String maxlength(25),
     etatCivil CivilStatus required,
@@ -17,8 +17,8 @@ entity FicheFacteurVII {
     dateNaissance LocalDate,
     ageActuel Integer,
     origine Region,
-    autreOrigine String maxlength(25),
-    adresse String maxlength(255),
+    autreOrigine String maxlength(25), // Si "origine" est "Autre"
+    adresse String maxlength(25),
     telephone String maxlength(20),
     prenomPere String maxlength(25),
     professionPere String maxlength(25),
