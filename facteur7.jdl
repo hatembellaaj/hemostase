@@ -111,10 +111,13 @@ entity FicheFacteurVII {
     frequenceMenorragie Integer,
 
     // Hémorragies viscérales et profondes
-    hematemese OuiNonNP,
-    rectorragie OuiNonNP,
-    hematurie OuiNonNP,
-    hematomeSousCutane OuiNonNP,
+    hematemese Boolean,
+    frequenceHematemese Integer,
+    rectorragie Boolean,
+    frequenceRectorragie Integer,
+    hematurie Boolean,
+    frequenceHematurie Integer,
+    hematomeSousCutane Boolean,
     typeHematomeSousCutane TypeManifestation,
     hematomeMusculaire OuiNonNP,
     siegeHematomeMusculaire String maxlength(255),
