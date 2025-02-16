@@ -183,7 +183,16 @@ entity FicheFacteurVII {
     patientDecede OuiNonNP,
     dateDeces LocalDate,
     ageDeces Integer,
-    causeDecesFinale CauseDecesType
+    hemorragieSnc Boolean,
+    hemorragieAutreQueSnc Boolean,
+    hiv Boolean,
+    autreInfection Boolean,
+    evenementThromboembolique Boolean,
+    cancer Boolean,
+    covid19 Boolean,
+    inconnue Boolean,
+    autreEvenement Boolean,
+    autreEvenementDetails String maxlength(255)
 }
 
 // Énumérations
