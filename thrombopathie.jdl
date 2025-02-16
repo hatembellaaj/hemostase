@@ -110,7 +110,9 @@ entity FicheThrombopathie {
     explorationMenoMetrorragies OuiNonNP,
     typeLésionSousJacente String maxlength(255),
     hemorragieVisceres OuiNonNP,
-    typeHemorragieVisceres String maxlength(255),
+    hemorragieDigestiveHaute Boolean,
+    hemorragieDigestiveBasse Boolean,
+    hematurie Boolean,
     explorationHemorragieVisceres OuiNonNP,
     lesionSousJacenteVisceres String maxlength(255),
     
