@@ -38,11 +38,38 @@ entity FicheFacteurVII {
     degreParenteConsanguins DegreParente,
     casSimilaires OuiNonNP,
     nombreCas Integer,
-    casSimilairesDetails String maxlength(255),
+
+    // Détails des cas similaires
+    cas1Numero Integer,
+    lienParenteCas1 LienParente,
+    degreParenteCas1 String maxlength(25),
+    typeHemorragieCas1 String maxlength(255),
+
+    cas2Numero Integer,
+    lienParenteCas2 LienParente,
+    degreParenteCas2 String maxlength(25),
+    typeHemorragieCas2 String maxlength(255),
+
+    cas3Numero Integer,
+    lienParenteCas3 LienParente,
+    degreParenteCas3 String maxlength(25),
+    typeHemorragieCas3 String maxlength(255),
+
     decesSyndromeHemorragique OuiNonNP,
     nombreDeces Integer,
-    lienParenteDeces String maxlength(255),
-    causeDeces String maxlength(255),
+
+    deces1Numero Integer,
+    lienParenteDeces1 LienParente,
+    causeDeces1 String maxlength(255),
+
+    deces2Numero Integer,
+    lienParenteDeces2 LienParente,
+    causeDeces2 String maxlength(255),
+
+    deces3Numero Integer,
+    lienParenteDeces3 LienParente,
+    causeDeces3 String maxlength(255),
+
     enqueteFamiliale FaiteNonFaite,
 
     // Circonstances de découverte
@@ -51,7 +78,9 @@ entity FicheFacteurVII {
     explorationSyndromeHemorragique Boolean,
     typeExplorationSyndromeHemorragique ExplorationType,
     datePremierSigneClinique LocalDate,
-    ageDiagnostic Integer,
+    ageDiagnosticJour Integer,
+    ageDiagnosticMois Integer,
+    ageDiagnosticAnnee Integer,
 
     // Biologie
     hb Float,
@@ -70,12 +99,16 @@ entity FicheFacteurVII {
     mutationType MutationType,
 
     // Manifestations cliniques
-    epistaxis OuiNonNP,
-    gingivorragies OuiNonNP,
+    epistaxis Boolean,
+    frequenceEpistaxis Integer,
+    gingivorragies Boolean,
     typeGingivorragies TypeManifestation,
-    ecchymose OuiNonNP,
+    frequenceGingivorragies Integer,
+    ecchymose Boolean,
     typeEcchymose TypeManifestation,
-    menorragie OuiNonNP,
+    frequenceEcchymose Integer,
+    menorragie Boolean,
+    frequenceMenorragie Integer,
 
     // Hémorragies viscérales et profondes
     hematemese OuiNonNP,
@@ -200,6 +233,10 @@ enum VieSocialeType {
 
 enum CauseDecesType {
     HEMORRAGIE_SNC, HEMORRAGIE_AUTRE, HIV, AUTRE_INFECTION, THROMBOEMBOLIQUE, CANCER, COVID_19, INCONNUE, AUTRE
+}
+
+enum LienParente {
+    FRERE, COUSIN, LOINTAIN
 }
 
 // Configuration
