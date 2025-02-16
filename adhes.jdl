@@ -633,13 +633,13 @@ entity FicheFacteurVII {
     consentementRegistre OuiNonNP,
     dateEnregistrementRegistre LocalDate,
 
-    // Antécédents familiaux
+    // Antecedents familiaux
     parentsConsanguins OuiNonNP,
     degreParenteConsanguins DegreParente,
     casSimilaires OuiNonNP,
     nombreCas Integer,
 
-    // Détails des cas similaires
+    // Details des cas similaires
     cas1Numero Integer,
     lienParenteCas1 LienParente,
     degreParenteCas1 String maxlength(25),
@@ -672,7 +672,7 @@ entity FicheFacteurVII {
 
     enqueteFamiliale FaiteNonFaite,
 
-    // Circonstances de découverte
+    // Circonstances de decouverte
     decouverteFortuite Boolean,
     enqueteFamilialeBool Boolean,
     explorationSyndromeHemorragique Boolean,
@@ -710,7 +710,7 @@ entity FicheFacteurVII {
     menorragie Boolean,
     frequenceMenorragie Integer,
 
-    // Hémorragies viscérales et profondes
+    // Hemorragies viscerales et profondes
     hematemese Boolean,
     frequenceHematemese Integer,
     rectorragie Boolean,
@@ -747,9 +747,9 @@ entity FicheFacteurVII {
     suiteOperatoireCirconcision OuiNonNP,
     ageCirconcision Integer,
 
-    // Prise en charge thérapeutique
+    // Prise en charge therapeutique
     facteurVIIRecombinant OuiNonNP,
-    plasmaFraisCongelé OuiNonNP,
+    plasmaFraisCongele OuiNonNP,
     cryoprecipite OuiNonNP,
     culotsPlaquettaires OuiNonNP,
 
@@ -760,7 +760,7 @@ entity FicheFacteurVII {
     traitementOestroprogestatif OuiNonNP,
     transfusionCGR OuiNonNP,
 
-    // Complications liées au traitement
+    // Complications liees au traitement
     inhibiteurs OuiNonNP,
     inhibiteurNeutralisant Boolean,
     titreUB Float,
@@ -770,7 +770,7 @@ entity FicheFacteurVII {
     reactionAllergique OuiNonNP,
     alloImmunisation OuiNonNP,
 
-    // État actuel
+    // etat actuel
     adhesionTherapeutique OuiNonNP,
     causeNonAdhesion String maxlength(255),
     vieSociale VieSocialeType,
