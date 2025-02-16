@@ -1,0 +1,527 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ficheThrombopathie(); as ficheThrombopathieRef) {
+      <div>
+        <h2 data-cy="ficheThrombopathieDetailsHeading"><span>Fiche Thrombopathie</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.id }}</span>
+          </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.indexNumber }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.prenom }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.nom }}</span>
+          </dd>
+          <dt><span>Nom Jeune Fille</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.nomJeuneFille }}</span>
+          </dd>
+          <dt><span>Profession</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.profession }}</span>
+          </dd>
+          <dt><span>Etat Civil</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[
+                ficheThrombopathieRef.etatCivil ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Service Clinique</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HTO: 'HTO',
+                PRIVE: 'PRIVE',
+                PEDIATRIE_A: 'PEDIATRIE_A',
+                PEDIATRIE_B: 'PEDIATRIE_B',
+                PUR: 'PUR',
+                GYNECO: 'GYNECO',
+                AUTRE: 'AUTRE',
+              }[ficheThrombopathieRef.serviceClinique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Service Clinique</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.autreServiceClinique }}</span>
+          </dd>
+          <dt><span>Couverture Sociale</span></dt>
+          <dd>
+            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheThrombopathieRef.couvertureSociale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Sexe</span></dt>
+          <dd>
+            <span>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[ficheThrombopathieRef.sexe ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Naissance</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.dateNaissance | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Actuel</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.ageActuel }}</span>
+          </dd>
+          <dt><span>Origine</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SFAX: 'SFAX',
+                GABES: 'GABES',
+                GAFSA: 'GAFSA',
+                KEBILI: 'KEBILI',
+                TOZEUR: 'TOZEUR',
+                MEDNINE: 'MEDNINE',
+                TATAOUINE: 'TATAOUINE',
+                SBZ: 'SBZ',
+                KASSERINE: 'KASSERINE',
+                MAHDIA: 'MAHDIA',
+                KAIRAOUANE: 'KAIRAOUANE',
+                MONASTIR: 'MONASTIR',
+                SOUSSE: 'SOUSSE',
+                AUTRE: 'AUTRE',
+              }[ficheThrombopathieRef.origine ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Origine</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.autreOrigine }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.adresse }}</span>
+          </dd>
+          <dt><span>Telephone</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.telephone }}</span>
+          </dd>
+          <dt><span>Prenom Pere</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.prenomPere }}</span>
+          </dd>
+          <dt><span>Profession Pere</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.professionPere }}</span>
+          </dd>
+          <dt><span>Nom Prenom Mere</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.nomPrenomMere }}</span>
+          </dd>
+          <dt><span>Profession Mere</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.professionMere }}</span>
+          </dd>
+          <dt><span>Medecin Traitant</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.medecinTraitant }}</span>
+          </dd>
+          <dt><span>Service Origine</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.serviceOrigine }}</span>
+          </dd>
+          <dt><span>Biologiste Responsable Dg</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.biologisteResponsableDg }}</span>
+          </dd>
+          <dt><span>Diagnostic</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMOPHILIE: 'HEMOPHILIE',
+                WILLEBRAND: 'WILLEBRAND',
+                THROMBOPATHIE: 'THROMBOPATHIE',
+                DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+                AUTRE: 'AUTRE',
+              }[ficheThrombopathieRef.diagnostic ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.autreDiagnostic }}</span>
+          </dd>
+          <dt><span>Annee Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.anneeDiagnostic }}</span>
+          </dd>
+          <dt><span>Consentement Registre</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.consentementRegistre ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Enregistrement Registre</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.dateEnregistrementRegistre | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Parents Consanguins</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.parentsConsanguins ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Degre Parente Consanguins</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.degreParenteConsanguins }}</span>
+          </dd>
+          <dt><span>Cas Similaires</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.casSimilaires ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Cas</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.nombreCas }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas Similaires</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.degreParenteCasSimilaires }}</span>
+          </dd>
+          <dt><span>Deces Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.decesSyndromeHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Deces</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.nombreDeces }}</span>
+          </dd>
+          <dt><span>Type Hemorragie</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.typeHemorragie }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.lienParenteDeces }}</span>
+          </dd>
+          <dt><span>Enquete Familiale</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheThrombopathieRef.enqueteFamiliale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Antecedents Medicaux</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.antecedentsMedicaux }}</span>
+          </dd>
+          <dt><span>Antecedents Chirurgicaux</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.antecedentsChirurgicaux ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Chirurgie</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.typeChirurgie }}</span>
+          </dd>
+          <dt><span>Complication Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.complicationHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Age Premier Signe Hemorragique</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.agePremierSigneHemorragique }}</span>
+          </dd>
+          <dt><span>Type Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.typeSyndromeHemorragique }}</span>
+          </dd>
+          <dt><span>Age Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.ageDiagnostic }}</span>
+          </dd>
+          <dt><span>Decouverte Fortuite</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.decouverteFortuite }}</span>
+          </dd>
+          <dt><span>Enquete Familiale Bool</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.enqueteFamilialeBool }}</span>
+          </dd>
+          <dt><span>Exploration Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.explorationSyndromeHemorragique }}</span>
+          </dd>
+          <dt><span>Type Circonstance Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.typeCirconstanceDiagnostic }}</span>
+          </dd>
+          <dt><span>Eczema</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.eczema ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Syndrome Dysmorphique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.syndromeDysmorphique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Albinisme</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.albinisme ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Arthrogrypose</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.arthrogrypose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Gb</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.gb }}</span>
+          </dd>
+          <dt><span>Hb</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.hb }}</span>
+          </dd>
+          <dt><span>Vgm</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.vgm }}</span>
+          </dd>
+          <dt><span>Tcmh</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.tcmh }}</span>
+          </dd>
+          <dt><span>Plaquettes</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.plaquettes }}</span>
+          </dd>
+          <dt><span>Frottis Sanguin</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.frottisSanguin }}</span>
+          </dd>
+          <dt><span>Ts</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.ts }}</span>
+          </dd>
+          <dt><span>To Pfa</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.toPfa }}</span>
+          </dd>
+          <dt><span>To Pfa 100 Col Epi</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.toPfa100ColEpi }}</span>
+          </dd>
+          <dt><span>To Pfa 100 Col Adp</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.toPfa100ColAdp }}</span>
+          </dd>
+          <dt><span>Tp</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.tp }}</span>
+          </dd>
+          <dt><span>Tca</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.tca }}</span>
+          </dd>
+          <dt><span>Aggregometrie Plaquettaire</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.aggregometriePlaquettaire ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Resultat Agregometrie</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.resultatAgregometrie }}</span>
+          </dd>
+          <dt><span>Cmf</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.cmf ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Resultat Cmf</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.resultatCmf }}</span>
+          </dd>
+          <dt><span>Dosage Fvw Ag</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.dosageFvwAg }}</span>
+          </dd>
+          <dt><span>Dosage Fvw Rco</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.dosageFvwRco }}</span>
+          </dd>
+          <dt><span>Etude Genetique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.etudeGenetique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Resultat Etude Genetique</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.resultatEtudeGenetique }}</span>
+          </dd>
+          <dt><span>Thrombasthenie Glanzmann</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.thrombasthenieGlanzmann }}</span>
+          </dd>
+          <dt><span>Maladie Bernard Soulier</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.maladieBernardSoulier }}</span>
+          </dd>
+          <dt><span>Autre Thrombopathie</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.autreThrombopathie }}</span>
+          </dd>
+          <dt><span>Autre Thrombopathie Details</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.autreThrombopathieDetails }}</span>
+          </dd>
+          <dt><span>Ecchymose</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.ecchymose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Ecchymose</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheThrombopathieRef.typeEcchymose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Gingivorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.gingivorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Gingivorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheThrombopathieRef.typeGingivorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Epistaxis</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.epistaxis ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Epistaxis</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheThrombopathieRef.typeEpistaxis ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hematome</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.hematome ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Hematome</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheThrombopathieRef.typeHematome ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Siegel Hematome</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.siegelHematome }}</span>
+          </dd>
+          <dt><span>Meno Metrorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.menoMetrorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Meno Metrorragies</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.frequenceMenoMetrorragies }}</span>
+          </dd>
+          <dt><span>Severite Meno Metrorragies</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.severiteMenoMetrorragies }}</span>
+          </dd>
+          <dt><span>Exploration Meno Metrorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.explorationMenoMetrorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Lesion Sous Jacente</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.typeLesionSousJacente }}</span>
+          </dd>
+          <dt><span>Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.hemorragieVisceres ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemorragie Digestive Haute</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.hemorragieDigestiveHaute }}</span>
+          </dd>
+          <dt><span>Hemorragie Digestive Basse</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.hemorragieDigestiveBasse }}</span>
+          </dd>
+          <dt><span>Hematurie</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.hematurie }}</span>
+          </dd>
+          <dt><span>Exploration Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.explorationHemorragieVisceres ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Lesion Sous Jacente Visceres</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.lesionSousJacenteVisceres }}</span>
+          </dd>
+          <dt><span>Intervention Chirurgicale</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.interventionChirurgicale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Intervention Chirurgicale</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.typeInterventionChirurgicale }}</span>
+          </dd>
+          <dt><span>Hematomes Cerebrales</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.hematomesCerebrales }}</span>
+          </dd>
+          <dt><span>Edc Hemorragique</span></dt>
+          <dd>
+            <span>{{ ficheThrombopathieRef.edcHemorragique }}</span>
+          </dd>
+          <dt><span>Transfusion Cps</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.transfusionCps ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Facteur VII Recombinant</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.facteurVIIRecombinant ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Dicynone</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.dicynone ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Exacyl</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.exacyl ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Oestroprogestatif</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.traitementOestroprogestatif ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Mechage</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.mechage ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Transfusion Cgr</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.transfusionCgr ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Martial</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.traitementMartial ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Thrombose</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.thrombose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Allo Immunisation HLA</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheThrombopathieRef.alloImmunisationHLA ?? 'null'] }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche-thrombopathie', ficheThrombopathieRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

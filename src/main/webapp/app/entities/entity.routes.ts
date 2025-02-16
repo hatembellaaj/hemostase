@@ -11,6 +11,11 @@ const routes: Routes = [
     data: { pageTitle: 'FicheHemophilies' },
     loadChildren: () => import('./fiche-hemophilie/fiche-hemophilie.routes'),
   },
+  {
+    path: 'fiche-thrombopathie',
+    data: { pageTitle: 'FicheThrombopathies' },
+    loadChildren: () => import('./fiche-thrombopathie/fiche-thrombopathie.routes'),
+  },
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 
