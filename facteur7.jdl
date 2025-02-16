@@ -1,0 +1,206 @@
+entity FicheFacteurVII {
+    // Identification
+    dossierNumber String,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
+    
+    // Patient
+    prenom String maxlength(25),
+    nom String maxlength(25),
+    nomJeuneFille String maxlength(25),
+    profession String maxlength(25),
+    etatCivil CivilStatus required,
+    serviceClinique ServiceCliniqueType required,
+    autreServiceClinique String maxlength(255),
+    couvertureSociale CouvertureSociale required,
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String maxlength(25),
+    adresse String maxlength(255),
+    telephone String maxlength(20),
+    prenomPere String maxlength(25),
+    professionPere String maxlength(25),
+    nomPrenomMere String maxlength(25),
+    professionMere String maxlength(25),
+    medecinTraitant String maxlength(25),
+    serviceOrigine String maxlength(25),
+    biologisteResponsableDg String maxlength(25),
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(25),
+    anneeDiagnostic Integer,
+    consentementRegistre OuiNonNP,
+    dateEnregistrementRegistre LocalDate,
+
+    // Antécédents familiaux
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins DegreParente,
+    casSimilaires OuiNonNP,
+    nombreCas Integer,
+    casSimilairesDetails String maxlength(255),
+    decesSyndromeHemorragique OuiNonNP,
+    nombreDeces Integer,
+    lienParenteDeces String maxlength(255),
+    causeDeces String maxlength(255),
+    enqueteFamiliale FaiteNonFaite,
+
+    // Circonstances de découverte
+    decouverteFortuite Boolean,
+    enqueteFamilialeBool Boolean,
+    explorationSyndromeHemorragique Boolean,
+    typeExplorationSyndromeHemorragique ExplorationType,
+    datePremierSigneClinique LocalDate,
+    ageDiagnostic Integer,
+
+    // Biologie
+    hb Float,
+    ht Float,
+    plaquettes Integer,
+    toPfa200ColEpi Float,
+    toPfa200ColAdp Float,
+    tp Float,
+    tpMT Float,
+    fibrinogene Float,
+    tcaMT Float,
+    facteurVII Float,
+    dosageAutresFacteurs String maxlength(255),
+    confirmationMoleculaire FaiteNonFaite,
+    mutationPresence Boolean,
+    mutationType MutationType,
+
+    // Manifestations cliniques
+    epistaxis OuiNonNP,
+    gingivorragies OuiNonNP,
+    typeGingivorragies TypeManifestation,
+    ecchymose OuiNonNP,
+    typeEcchymose TypeManifestation,
+    menorragie OuiNonNP,
+
+    // Hémorragies viscérales et profondes
+    hematemese OuiNonNP,
+    rectorragie OuiNonNP,
+    hematurie OuiNonNP,
+    hematomeSousCutane OuiNonNP,
+    typeHematomeSousCutane TypeManifestation,
+    hematomeMusculaire OuiNonNP,
+    siegeHematomeMusculaire String maxlength(255),
+    typeHematomeMusculaire TypeManifestation,
+    hemarthrose OuiNonNP,
+    typeHemarthrose TypeManifestation,
+    saignementSNC OuiNonNP,
+    typeSaignementSNC TypeManifestation,
+    ruptureKystesHemorragiques OuiNonNP,
+    hemorragiesPostChirurgicales OuiNonNP,
+    hemoperitone OuiNonNP,
+    accidentsThrombotiques AccidentsThrombotiquesType,
+
+    // Chirurgie et Circoncision
+    chirurgiePrepare OuiNonNP,
+    suiteOperatoireHemorragique OuiNonNP,
+    circoncisionPrepare OuiNonNP,
+    suiteOperatoireCirconcision OuiNonNP,
+    ageCirconcision Integer,
+
+    // Prise en charge thérapeutique
+    facteurVIIRecombinant OuiNonNP,
+    plasmaFraisCongelé OuiNonNP,
+    cryoprecipite OuiNonNP,
+    culotsPlaquettaires OuiNonNP,
+
+    // Traitement adjuvant
+    dicynone OuiNonNP,
+    exacyl OuiNonNP,
+    traitementMartial OuiNonNP,
+    traitementOestroprogestatif OuiNonNP,
+    transfusionCGR OuiNonNP,
+
+    // Complications liées au traitement
+    inhibiteurs OuiNonNP,
+    inhibiteurNeutralisant Boolean,
+    titreUB Float,
+    inhibiteurNonNeutralisant Boolean,
+    infectionsVirales OuiNonNP,
+    thrombose OuiNonNP,
+    reactionAllergique OuiNonNP,
+    alloImmunisation OuiNonNP,
+
+    // État actuel
+    adhesionTherapeutique OuiNonNP,
+    causeNonAdhesion String maxlength(255),
+    vieSociale VieSocialeType,
+    mariage OuiNonNP,
+    enfants OuiNonNP,
+    activitePhysique OuiNonNP,
+    typeActivitePhysique String maxlength(255),
+    sequelles OuiNonNP,
+    typeSequelles String maxlength(255),
+    patientDecede OuiNonNP,
+    dateDeces LocalDate,
+    ageDeces Integer,
+    causeDecesFinale CauseDecesType
+}
+
+// Énumérations
+enum CivilStatus {
+    CELIBATAIRE, MARIE, DIVORCE, NP
+}
+
+enum ServiceCliniqueType {
+    HTO, PRIVE, PEDIATRIE_A, PEDIATRIE_B, PUR, GYNECO, AUTRE
+}
+
+enum CouvertureSociale {
+    CNAM, INDIGENT, NP
+}
+
+enum Gender {
+    MASCULIN, FEMININ
+}
+
+enum Region {
+    SFAX, GABES, GAFSA, KEBILI, TOZEUR, MEDNINE, TATAOUINE, SBZ, KASSERINE, MAHDIA, KAIROUANE, MONASTIR, SOUSSE, AUTRE
+}
+
+enum DiagnosticType {
+    HEMOPHILIE, WILLEBRAND, THROMBOPATHIE, DEFICIT_FACTEUR_VII, DEFICIT_FACTEUR_XI, DEFICIT_FACTEUR_XIII, DEFICIT_FACTEURS_I_II_V_X, DEFICIT_COMBINE, AUTRE
+}
+
+enum OuiNonNP {
+    OUI, NON, NP
+}
+
+enum FaiteNonFaite {
+    FAITE, NON_FAITE
+}
+
+enum DegreParente {
+    TROISIEME_DEGRE, QUATRIEME_DEGRE, LOINTAIN
+}
+
+enum ExplorationType {
+    CUTANEO_MUQUEUX, METRORRAGIE, HEMORRAGIE_CEREBRALE_NN, HEMORRAGIE_DIGESTIVE, HEMARTHROSE, HEMORRAGIE_POSTPARTUM
+}
+
+enum MutationType {
+    HETEROZYGOTE, HOMOZYGOTE, AUCUNE
+}
+
+enum TypeManifestation {
+    SPONTANE, PROVOQUE
+}
+
+enum AccidentsThrombotiquesType {
+    VEINEUX, ARTERIEL
+}
+
+enum VieSocialeType {
+    CHOMEUR, TRAVAILLE, SCOLARISE, PRESCOLARISE
+}
+
+enum CauseDecesType {
+    HEMORRAGIE_SNC, HEMORRAGIE_AUTRE, HIV, AUTRE_INFECTION, THROMBOEMBOLIQUE, CANCER, COVID_19, INCONNUE, AUTRE
+}
+
+// Configuration
+paginate FicheFacteurVII with pagination
