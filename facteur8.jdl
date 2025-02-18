@@ -83,17 +83,25 @@ entity FicheFacteurVIII {
     ageDiagnosticAnnee Integer,
 
     // Biologie
+    tp Float,
+    tpMT Float,
+    tca Float,
+    tcaMT Float,
+    fibrinogene Float,
+    ts FaiteNonFaite,
+    tsFait NormalAllonge,
+    toPfa FaiteNonFaite,
+    toPfa NormalAllonge,
+    toPfa200ColEpi Float,
+    toPfa200ColAdp Float,
+    tauxDosageFacteurXIII Float,
     hb Float,
     ht Float,
     plaquettes Integer,
-    toPfa200ColEpi Float,
-    toPfa200ColAdp Float,
-    tp Float,
-    tpMT Float,
-    fibrinogene Float,
-    tcaMT Float,
-    facteurVII Float,
-    dosageAutresFacteurs String maxlength(255),
+    techniqueChromogenique Boolean,
+    tauxTechniqueChromogenique Float,
+    techniqueSolubiliteCaillot Boolean,
+    tauxTechniqueSolubiliteCaillot Float,
     confirmationMoleculaire FaiteNonFaite,
     mutationPresence Boolean,
     mutationType MutationType,
@@ -193,6 +201,10 @@ entity FicheFacteurVIII {
     inconnue Boolean,
     autreEvenement Boolean,
     autreEvenementDetails String maxlength(255)
+}
+
+enum NormalAllonge {
+  NORMAL, ALLONGE
 }
 
 // Énumérations
