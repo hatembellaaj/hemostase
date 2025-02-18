@@ -1,0 +1,272 @@
+entity FicheFacteurVIII {
+    // Attributs FicheThrombopathie
+    dossierNumber String,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
+    
+    // Attributs Patient
+    prenom String  maxlength(25),
+    nom String  maxlength(25),
+    nomJeuneFille String maxlength(25),
+    profession String maxlength(25),
+    etatCivil CivilStatus required,
+    serviceClinique ServiceCliniqueType required,
+    autreServiceClinique String maxlength(255),
+    couvertureSociale CouvertureSociale required,
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String maxlength(25), // Si "origine" est "Autre"
+    adresse String maxlength(25),
+    telephone String maxlength(20),
+    prenomPere String maxlength(25),
+    professionPere String maxlength(25),
+    nomPrenomMere String maxlength(25),
+    professionMere String maxlength(25),
+    medecinTraitant String maxlength(25),
+    serviceOrigine String maxlength(25),
+    biologisteResponsableDg String maxlength(25),
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(25),
+    anneeDiagnostic Integer,
+    consentementRegistre OuiNonNP,
+    dateEnregistrementRegistre LocalDate,
+
+    // Antécédents familiaux
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins DegreParente,
+    casSimilaires OuiNonNP,
+    nombreCas Integer,
+
+    // Détails des cas similaires
+    cas1Numero Integer,
+    lienParenteCas1 LienParente,
+    degreParenteCas1 String maxlength(25),
+    typeHemorragieCas1 String maxlength(255),
+
+    cas2Numero Integer,
+    lienParenteCas2 LienParente,
+    degreParenteCas2 String maxlength(25),
+    typeHemorragieCas2 String maxlength(255),
+
+    cas3Numero Integer,
+    lienParenteCas3 LienParente,
+    degreParenteCas3 String maxlength(25),
+    typeHemorragieCas3 String maxlength(255),
+
+    decesSyndromeHemorragique OuiNonNP,
+    nombreDeces Integer,
+
+    deces1Numero Integer,
+    lienParenteDeces1 LienParente,
+    causeDeces1 String maxlength(255),
+
+    deces2Numero Integer,
+    lienParenteDeces2 LienParente,
+    causeDeces2 String maxlength(255),
+
+    deces3Numero Integer,
+    lienParenteDeces3 LienParente,
+    causeDeces3 String maxlength(255),
+
+    enqueteFamiliale FaiteNonFaite,
+
+    // Circonstances de découverte
+    decouverteFortuite Boolean,
+    enqueteFamilialeBool Boolean,
+    explorationSyndromeHemorragique Boolean,
+    typeExplorationSyndromeHemorragique ExplorationType,
+    datePremierSigneClinique LocalDate,
+    ageDiagnosticJour Integer,
+    ageDiagnosticMois Integer,
+    ageDiagnosticAnnee Integer,
+
+    // Biologie
+    hb Float,
+    ht Float,
+    plaquettes Integer,
+    toPfa200ColEpi Float,
+    toPfa200ColAdp Float,
+    tp Float,
+    tpMT Float,
+    fibrinogene Float,
+    tcaMT Float,
+    facteurVII Float,
+    dosageAutresFacteurs String maxlength(255),
+    confirmationMoleculaire FaiteNonFaite,
+    mutationPresence Boolean,
+    mutationType MutationType,
+
+    // Manifestations cliniques
+    epistaxis Boolean,
+    frequenceEpistaxis Integer,
+    gingivorragies Boolean,
+    typeGingivorragies TypeManifestation,
+    frequenceGingivorragies Integer,
+    ecchymose Boolean,
+    typeEcchymose TypeManifestation,
+    frequenceEcchymose Integer,
+    menorragie Boolean,
+    frequenceMenorragie Integer,
+
+    // Hémorragies viscérales et profondes
+    hematemese Boolean,
+    frequenceHematemese Integer,
+    rectorragie Boolean,
+    frequenceRectorragie Integer,
+    hematurie Boolean,
+    frequenceHematurie Integer,
+    hematomeSousCutane Boolean,
+    typeHematomeSousCutane TypeManifestation,
+    frequenceHematomeSousCutane Integer,
+    hematomeMusculaire Boolean,
+    siegeHematomeMusculaire String maxlength(255),
+    typeHematomeMusculaire TypeManifestation,
+    frequenceHematomeMusculaire Integer,
+    hemarthrose Boolean,
+    typeHemarthrose TypeManifestation,
+    frequenceHemarthrose Integer,
+    saignementSNC Boolean,
+    typeSaignementSNC TypeManifestation,
+    frequenceSaignementSNC Integer,
+
+    ruptureKystesHemorragiques Boolean,
+    hemorragiesPostChirurgicales Boolean,
+    hemoperitone Boolean,
+    accidentsThrombotiques Boolean,
+    typeAccidentsThrombotiques TypeAccidentsThrombotiques,
+    hemorragieGrave Boolean,
+    typeHemorragieGrave TypeHemorragieGrave,
+    
+
+    // Chirurgie et Circoncision
+    chirurgiePrepare OuiNonNP,
+    suiteOperatoireHemorragique OuiNonNP,
+    circoncisionPrepare OuiNonNP,
+    suiteOperatoireCirconcision OuiNonNP,
+    ageCirconcision Integer,
+
+    // Prise en charge thérapeutique
+    facteurVIIRecombinant OuiNonNP,
+    plasmaFraisCongelé OuiNonNP,
+    cryoprecipite OuiNonNP,
+    culotsPlaquettaires OuiNonNP,
+
+    // Traitement adjuvant
+    dicynone OuiNonNP,
+    exacyl OuiNonNP,
+    traitementMartial OuiNonNP,
+    traitementOestroprogestatif OuiNonNP,
+    transfusionCGR OuiNonNP,
+
+    // Complications liées au traitement
+    inhibiteurs OuiNonNP,
+    inhibiteurNeutralisant Boolean,
+    titreUB Float,
+    inhibiteurNonNeutralisant Boolean,
+    infectionsVirales OuiNonNP,
+    thrombose OuiNonNP,
+    reactionAllergique OuiNonNP,
+    alloImmunisation OuiNonNP,
+
+    // État actuel
+    adhesionTherapeutique OuiNonNP,
+    causeNonAdhesion String maxlength(255),
+    vieSociale VieSocialeType,
+    mariage OuiNonNP,
+    enfants OuiNonNP,
+    activitePhysique OuiNonNP,
+    typeActivitePhysique String maxlength(255),
+    sequelles OuiNonNP,
+    typeSequelles String maxlength(255),
+    patientDecede OuiNonNP,
+    dateDeces LocalDate,
+    ageDeces Integer,
+    hemorragieSnc Boolean,
+    hemorragieAutreQueSnc Boolean,
+    hiv Boolean,
+    autreInfection Boolean,
+    evenementThromboembolique Boolean,
+    cancer Boolean,
+    covid19 Boolean,
+    inconnue Boolean,
+    autreEvenement Boolean,
+    autreEvenementDetails String maxlength(255)
+}
+
+// Énumérations
+enum CivilStatus {
+    CELIBATAIRE, MARIE, DIVORCE, NP
+}
+
+enum ServiceCliniqueType {
+    HTO, PRIVE, PEDIATRIE_A, PEDIATRIE_B, PUR, GYNECO, AUTRE
+}
+
+enum CouvertureSociale {
+    CNAM, INDIGENT, NP
+}
+
+enum Gender {
+    MASCULIN, FEMININ
+}
+
+enum Region {
+    SFAX, GABES, GAFSA, KEBILI, TOZEUR, MEDNINE, TATAOUINE, SBZ, KASSERINE, MAHDIA, KAIROUANE, MONASTIR, SOUSSE, AUTRE
+}
+
+enum DiagnosticType {
+    HEMOPHILIE, WILLEBRAND, THROMBOPATHIE, DEFICIT_FACTEUR_VII, DEFICIT_FACTEUR_XI, DEFICIT_FACTEUR_XIII, DEFICIT_FACTEURS_I_II_V_X, DEFICIT_COMBINE, AUTRE
+}
+
+enum OuiNonNP {
+    OUI, NON, NP
+}
+
+enum FaiteNonFaite {
+    FAITE, NON_FAITE
+}
+
+enum DegreParente {
+    TROISIEME_DEGRE, QUATRIEME_DEGRE, LOINTAIN
+}
+
+enum ExplorationType {
+    CUTANEO_MUQUEUX, METRORRAGIE, HEMORRAGIE_CEREBRALE_NN, HEMORRAGIE_DIGESTIVE, HEMARTHROSE, HEMORRAGIE_POSTPARTUM
+}
+
+enum MutationType {
+    HETEROZYGOTE, HOMOZYGOTE, AUCUNE
+}
+
+enum TypeManifestation {
+    SPONTANE, PROVOQUE
+}
+
+enum AccidentsThrombotiquesType {
+    VEINEUX, ARTERIEL
+}
+
+enum VieSocialeType {
+    CHOMEUR, TRAVAILLE, SCOLARISE, PRESCOLARISE
+}
+
+enum CauseDecesType {
+    HEMORRAGIE_SNC, HEMORRAGIE_AUTRE, HIV, AUTRE_INFECTION, THROMBOEMBOLIQUE, CANCER, COVID_19, INCONNUE, AUTRE
+}
+
+enum LienParente {
+    FRERE, COUSIN, LOINTAIN
+}
+
+enum TypeAccidentsThrombotiques {
+    VEINEUX, ARTERIEL
+}
+
+enum TypeHemorragieGrave {
+    DEGLOBULISATION, ETAT_DE_CHOC, PAR_LA_LOCALISATION
+}
+
+// Configuration
+paginate FicheFacteurVII with pagination
