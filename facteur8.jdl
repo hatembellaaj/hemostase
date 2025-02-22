@@ -156,7 +156,7 @@ entity FicheFacteurVIII {
     ageCirconcision Integer,
 
     // Prise en charge thérapeutique
-    facteurVIIRecombinant OuiNonNP,
+    facteurVIIIRecombinant OuiNonNP,
     plasmaFraisCongelé OuiNonNP,
     cryoprecipite OuiNonNP,
     culotsPlaquettaires OuiNonNP,
