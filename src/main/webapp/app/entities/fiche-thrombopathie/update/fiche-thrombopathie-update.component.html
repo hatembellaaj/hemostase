@@ -1057,6 +1057,37 @@
           </select>
         </div>
 
+
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 4: Biologie -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingBiologie">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseBiologie"
+      aria-expanded="false"
+      aria-controls="collapseBiologie"
+    >
+      Biologie 
+    </button>
+  </h2>
+  <div
+    id="collapseBiologie"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingBiologie"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Biologie -->
+
+
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_gb">Gb</label>
           <input type="number" class="form-control" name="gb" id="field_gb" data-cy="gb" formControlName="gb" />
@@ -1334,6 +1365,32 @@
             </div>
           }
         </div>
+
+          </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 5: Manifestations cliniques -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingManifestations">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseManifestations"
+      aria-expanded="false"
+      aria-controls="collapseManifestations"
+    >
+      Manifestations cliniques
+    </button>
+  </h2>
+  <div
+    id="collapseManifestations"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingManifestations"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
 
         <div class="mb-3">
           <label class="form-label" for="field_ecchymose">Ecchymose</label>
@@ -1686,6 +1743,35 @@
           />
         </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 6: Prise en charge thérapeutique -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingPriseEnCharge">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsePriseEnCharge"
+      aria-expanded="false"
+      aria-controls="collapsePriseEnCharge"
+    >
+      Prise en charge thérapeutique
+    </button>
+  </h2>
+  <div
+    id="collapsePriseEnCharge"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingPriseEnCharge"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Prise en charge thérapeutique -->
+      
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_transfusionCps">Transfusion Cps</label>
           <select
@@ -1823,6 +1909,15 @@
         </div>
       </div>
 
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+
+
+    
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
