@@ -1,0 +1,753 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ficheFacteurVII(); as ficheFacteurVIIRef) {
+      <div>
+        <h2 data-cy="ficheFacteurVIIDetailsHeading"><span>Fiche Facteur VII</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.id }}</span>
+          </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.indexNumber }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.prenom }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.nom }}</span>
+          </dd>
+          <dt><span>Nom Jeune Fille</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.nomJeuneFille }}</span>
+          </dd>
+          <dt><span>Profession</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.profession }}</span>
+          </dd>
+          <dt><span>Etat Civil</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[ficheFacteurVIIRef.etatCivil ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Service Clinique</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HTO: 'HTO',
+                PRIVE: 'PRIVE',
+                PEDIATRIE_A: 'PEDIATRIE_A',
+                PEDIATRIE_B: 'PEDIATRIE_B',
+                PUR: 'PUR',
+                GYNECO: 'GYNECO',
+                AUTRE: 'AUTRE',
+              }[ficheFacteurVIIRef.serviceClinique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Service Clinique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.autreServiceClinique }}</span>
+          </dd>
+          <dt><span>Couverture Sociale</span></dt>
+          <dd>
+            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheFacteurVIIRef.couvertureSociale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Sexe</span></dt>
+          <dd>
+            <span>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[ficheFacteurVIIRef.sexe ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Naissance</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.dateNaissance | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Actuel</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ageActuel }}</span>
+          </dd>
+          <dt><span>Origine</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SFAX: 'SFAX',
+                GABES: 'GABES',
+                GAFSA: 'GAFSA',
+                KEBILI: 'KEBILI',
+                TOZEUR: 'TOZEUR',
+                MEDNINE: 'MEDNINE',
+                TATAOUINE: 'TATAOUINE',
+                SBZ: 'SBZ',
+                KASSERINE: 'KASSERINE',
+                MAHDIA: 'MAHDIA',
+                KAIRAOUANE: 'KAIRAOUANE',
+                MONASTIR: 'MONASTIR',
+                SOUSSE: 'SOUSSE',
+                AUTRE: 'AUTRE',
+              }[ficheFacteurVIIRef.origine ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Origine</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.autreOrigine }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.adresse }}</span>
+          </dd>
+          <dt><span>Telephone</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.telephone }}</span>
+          </dd>
+          <dt><span>Prenom Pere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.prenomPere }}</span>
+          </dd>
+          <dt><span>Profession Pere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.professionPere }}</span>
+          </dd>
+          <dt><span>Nom Prenom Mere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.nomPrenomMere }}</span>
+          </dd>
+          <dt><span>Profession Mere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.professionMere }}</span>
+          </dd>
+          <dt><span>Medecin Traitant</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.medecinTraitant }}</span>
+          </dd>
+          <dt><span>Service Origine</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.serviceOrigine }}</span>
+          </dd>
+          <dt><span>Biologiste Responsable Dg</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.biologisteResponsableDg }}</span>
+          </dd>
+          <dt><span>Diagnostic</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMOPHILIE: 'HEMOPHILIE',
+                WILLEBRAND: 'WILLEBRAND',
+                THROMBOPATHIE: 'THROMBOPATHIE',
+                DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+                AUTRE: 'AUTRE',
+              }[ficheFacteurVIIRef.diagnostic ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.autreDiagnostic }}</span>
+          </dd>
+          <dt><span>Annee Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.anneeDiagnostic }}</span>
+          </dd>
+          <dt><span>Consentement Registre</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.consentementRegistre ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Enregistrement Registre</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.dateEnregistrementRegistre | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Parents Consanguins</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.parentsConsanguins ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Degre Parente Consanguins</span></dt>
+          <dd>
+            <span>{{
+              { null: '', TROISIEME_DEGRE: 'TROISIEME_DEGRE', QUATRIEME_DEGRE: 'QUATRIEME_DEGRE', LOINTAIN: 'LOINTAIN' }[
+                ficheFacteurVIIRef.degreParenteConsanguins ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Cas Similaires</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.casSimilaires ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Cas</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.nombreCas }}</span>
+          </dd>
+          <dt><span>Cas 1 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.cas1Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 1</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurVIIRef.lienParenteCas1 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 1</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.degreParenteCas1 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 1</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.typeHemorragieCas1 }}</span>
+          </dd>
+          <dt><span>Cas 2 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.cas2Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 2</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurVIIRef.lienParenteCas2 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 2</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.degreParenteCas2 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 2</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.typeHemorragieCas2 }}</span>
+          </dd>
+          <dt><span>Cas 3 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.cas3Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 3</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurVIIRef.lienParenteCas3 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 3</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.degreParenteCas3 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 3</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.typeHemorragieCas3 }}</span>
+          </dd>
+          <dt><span>Deces Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.decesSyndromeHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Deces</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.nombreDeces }}</span>
+          </dd>
+          <dt><span>Deces 1 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.deces1Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 1</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurVIIRef.lienParenteDeces1 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 1</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.causeDeces1 }}</span>
+          </dd>
+          <dt><span>Deces 2 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.deces2Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 2</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurVIIRef.lienParenteDeces2 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 2</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.causeDeces2 }}</span>
+          </dd>
+          <dt><span>Deces 3 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.deces3Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 3</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurVIIRef.lienParenteDeces3 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 3</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.causeDeces3 }}</span>
+          </dd>
+          <dt><span>Enquete Familiale</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheFacteurVIIRef.enqueteFamiliale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Decouverte Fortuite</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.decouverteFortuite }}</span>
+          </dd>
+          <dt><span>Enquete Familiale Bool</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.enqueteFamilialeBool }}</span>
+          </dd>
+          <dt><span>Exploration Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.explorationSyndromeHemorragique }}</span>
+          </dd>
+          <dt><span>Type Exploration Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                CUTANEO_MUQUEUX: 'CUTANEO_MUQUEUX',
+                METRORRAGIE: 'METRORRAGIE',
+                HEMORRAGIE_CEREBRALE_NN: 'HEMORRAGIE_CEREBRALE_NN',
+                HEMORRAGIE_DIGESTIVE: 'HEMORRAGIE_DIGESTIVE',
+                HEMARTHROSE: 'HEMARTHROSE',
+                HEMORRAGIE_POSTPARTUM: 'HEMORRAGIE_POSTPARTUM',
+              }[ficheFacteurVIIRef.typeExplorationSyndromeHemorragique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Date Premier Signe Clinique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.datePremierSigneClinique | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Jour</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ageDiagnosticJour }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Mois</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ageDiagnosticMois }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Annee</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ageDiagnosticAnnee }}</span>
+          </dd>
+          <dt><span>Hb</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hb }}</span>
+          </dd>
+          <dt><span>Ht</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ht }}</span>
+          </dd>
+          <dt><span>Plaquettes</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.plaquettes }}</span>
+          </dd>
+          <dt><span>To Pfa 200 Col Epi</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.toPfa200ColEpi }}</span>
+          </dd>
+          <dt><span>To Pfa 200 Col Adp</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.toPfa200ColAdp }}</span>
+          </dd>
+          <dt><span>Tp</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.tp }}</span>
+          </dd>
+          <dt><span>Tp MT</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.tpMT }}</span>
+          </dd>
+          <dt><span>Fibrinogene</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.fibrinogene }}</span>
+          </dd>
+          <dt><span>Tca MT</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.tcaMT }}</span>
+          </dd>
+          <dt><span>Facteur VII</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.facteurVII }}</span>
+          </dd>
+          <dt><span>Dosage Autres Facteurs</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.dosageAutresFacteurs }}</span>
+          </dd>
+          <dt><span>Confirmation Moleculaire</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheFacteurVIIRef.confirmationMoleculaire ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Mutation Presence</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.mutationPresence }}</span>
+          </dd>
+          <dt><span>Mutation Type</span></dt>
+          <dd>
+            <span>{{
+              { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE', AUCUNE: 'AUCUNE' }[
+                ficheFacteurVIIRef.mutationType ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Epistaxis</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.epistaxis }}</span>
+          </dd>
+          <dt><span>Frequence Epistaxis</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceEpistaxis }}</span>
+          </dd>
+          <dt><span>Gingivorragies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.gingivorragies }}</span>
+          </dd>
+          <dt><span>Type Gingivorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurVIIRef.typeGingivorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Gingivorragies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceGingivorragies }}</span>
+          </dd>
+          <dt><span>Ecchymose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ecchymose }}</span>
+          </dd>
+          <dt><span>Type Ecchymose</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurVIIRef.typeEcchymose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Ecchymose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceEcchymose }}</span>
+          </dd>
+          <dt><span>Menorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.menorragie }}</span>
+          </dd>
+          <dt><span>Frequence Menorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceMenorragie }}</span>
+          </dd>
+          <dt><span>Hematemese</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hematemese }}</span>
+          </dd>
+          <dt><span>Frequence Hematemese</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceHematemese }}</span>
+          </dd>
+          <dt><span>Rectorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.rectorragie }}</span>
+          </dd>
+          <dt><span>Frequence Rectorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceRectorragie }}</span>
+          </dd>
+          <dt><span>Hematurie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hematurie }}</span>
+          </dd>
+          <dt><span>Frequence Hematurie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceHematurie }}</span>
+          </dd>
+          <dt><span>Hematome Sous Cutane</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hematomeSousCutane }}</span>
+          </dd>
+          <dt><span>Type Hematome Sous Cutane</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurVIIRef.typeHematomeSousCutane ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Hematome Sous Cutane</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceHematomeSousCutane }}</span>
+          </dd>
+          <dt><span>Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hematomeMusculaire }}</span>
+          </dd>
+          <dt><span>Siege Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.siegeHematomeMusculaire }}</span>
+          </dd>
+          <dt><span>Type Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurVIIRef.typeHematomeMusculaire ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceHematomeMusculaire }}</span>
+          </dd>
+          <dt><span>Hemarthrose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hemarthrose }}</span>
+          </dd>
+          <dt><span>Type Hemarthrose</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurVIIRef.typeHemarthrose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Hemarthrose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceHemarthrose }}</span>
+          </dd>
+          <dt><span>Saignement SNC</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.saignementSNC }}</span>
+          </dd>
+          <dt><span>Type Saignement SNC</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurVIIRef.typeSaignementSNC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Saignement SNC</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.frequenceSaignementSNC }}</span>
+          </dd>
+          <dt><span>Rupture Kystes Hemorragiques</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ruptureKystesHemorragiques }}</span>
+          </dd>
+          <dt><span>Hemorragies Post Chirurgicales</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hemorragiesPostChirurgicales }}</span>
+          </dd>
+          <dt><span>Hemoperitone</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hemoperitone }}</span>
+          </dd>
+          <dt><span>Accidents Thrombotiques</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.accidentsThrombotiques }}</span>
+          </dd>
+          <dt><span>Type Accidents Thrombotiques</span></dt>
+          <dd>
+            <span>{{
+              { null: '', VEINEUX: 'VEINEUX', ARTERIEL: 'ARTERIEL' }[ficheFacteurVIIRef.typeAccidentsThrombotiques ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Hemorragie Grave</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hemorragieGrave }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Grave</span></dt>
+          <dd>
+            <span>{{
+              { null: '', DEGLOBULISATION: 'DEGLOBULISATION', ETAT_DE_CHOC: 'ETAT_DE_CHOC', PAR_LA_LOCALISATION: 'PAR_LA_LOCALISATION' }[
+                ficheFacteurVIIRef.typeHemorragieGrave ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Chirurgie Prepare</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.chirurgiePrepare ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Suite Operatoire Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.suiteOperatoireHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circoncision Prepare</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.circoncisionPrepare ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Suite Operatoire Circoncision</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.suiteOperatoireCirconcision ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Age Circoncision</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ageCirconcision }}</span>
+          </dd>
+          <dt><span>Facteur VII Recombinant</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.facteurVIIRecombinant ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Plasma Frais Congele</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.plasmaFraisCongele ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cryoprecipite</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.cryoprecipite ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Culots Plaquettaires</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.culotsPlaquettaires ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Dicynone</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.dicynone ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Exacyl</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.exacyl ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Martial</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.traitementMartial ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Oestroprogestatif</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.traitementOestroprogestatif ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Transfusion CGR</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.transfusionCGR ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Inhibiteurs</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.inhibiteurs ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Inhibiteur Neutralisant</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.inhibiteurNeutralisant }}</span>
+          </dd>
+          <dt><span>Titre UB</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.titreUB }}</span>
+          </dd>
+          <dt><span>Inhibiteur Non Neutralisant</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.inhibiteurNonNeutralisant }}</span>
+          </dd>
+          <dt><span>Infections Virales</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.infectionsVirales ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Thrombose</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.thrombose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Reaction Allergique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.reactionAllergique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Allo Immunisation</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.alloImmunisation ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Adhesion Therapeutique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.adhesionTherapeutique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cause Non Adhesion</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.causeNonAdhesion }}</span>
+          </dd>
+          <dt><span>Vie Sociale</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE', SCOLARISE: 'SCOLARISE', PRESCOLARISE: 'PRESCOLARISE' }[
+                ficheFacteurVIIRef.vieSociale ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Mariage</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.mariage ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Enfants</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.enfants ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Activite Physique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.activitePhysique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Activite Physique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.typeActivitePhysique }}</span>
+          </dd>
+          <dt><span>Sequelles</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.sequelles ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Sequelles</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.typeSequelles }}</span>
+          </dd>
+          <dt><span>Patient Decede</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurVIIRef.patientDecede ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Deces</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.dateDeces | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Deces</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.ageDeces }}</span>
+          </dd>
+          <dt><span>Hemorragie Snc</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hemorragieSnc }}</span>
+          </dd>
+          <dt><span>Hemorragie Autre Que Snc</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hemorragieAutreQueSnc }}</span>
+          </dd>
+          <dt><span>Hiv</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.hiv }}</span>
+          </dd>
+          <dt><span>Autre Infection</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.autreInfection }}</span>
+          </dd>
+          <dt><span>Evenement Thromboembolique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.evenementThromboembolique }}</span>
+          </dd>
+          <dt><span>Cancer</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.cancer }}</span>
+          </dd>
+          <dt><span>Covid 19</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.covid19 }}</span>
+          </dd>
+          <dt><span>Inconnue</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.inconnue }}</span>
+          </dd>
+          <dt><span>Autre Evenement</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.autreEvenement }}</span>
+          </dd>
+          <dt><span>Autre Evenement Details</span></dt>
+          <dd>
+            <span>{{ ficheFacteurVIIRef.autreEvenementDetails }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche-facteur-vii', ficheFacteurVIIRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

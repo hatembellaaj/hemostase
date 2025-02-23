@@ -1,0 +1,7 @@
+export enum MutationType {
+  HETEROZYGOTE = 'HETEROZYGOTE',
+
+  HOMOZYGOTE = 'HOMOZYGOTE',
+
+  AUCUNE = 'AUCUNE',
+}

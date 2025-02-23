@@ -1,0 +1,9 @@
+export enum VieSocialeType {
+  CHOMEUR = 'CHOMEUR',
+
+  TRAVAILLE = 'TRAVAILLE',
+
+  SCOLARISE = 'SCOLARISE',
+
+  PRESCOLARISE = 'PRESCOLARISE',
+}

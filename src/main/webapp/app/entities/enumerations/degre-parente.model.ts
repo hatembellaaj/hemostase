@@ -1,0 +1,7 @@
+export enum DegreParente {
+  TROISIEME_DEGRE = 'TROISIEME_DEGRE',
+
+  QUATRIEME_DEGRE = 'QUATRIEME_DEGRE',
+
+  LOINTAIN = 'LOINTAIN',
+}
