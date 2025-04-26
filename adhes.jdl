@@ -1003,6 +1003,66 @@ entity FicheFacteurVIII {
     autreEvenementDetails String maxlength(255)
 }
 
+entity FicheVonWillebrand {
+    // Identifiants
+    dossierNumber String,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
+
+    // Identité
+    prenom String maxlength(25),
+    nom String maxlength(25),
+    nomJeuneFille String maxlength(25),
+    profession String maxlength(25),
+
+    // Etat civil
+    etatCivil CivilStatus required,
+
+    // Service clinique
+    serviceClinique ServiceCliniqueType required,
+    autreServiceClinique String maxlength(255),
+
+    // Couverture sociale
+    couvertureSociale CouvertureSociale required,
+
+    // Sexe et naissance
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+
+    // Origine
+    origine Region,
+    autreOrigine String maxlength(25),
+
+    // Coordonnées
+    adresse String maxlength(25),
+    telephone String maxlength(20),
+
+    // Famille
+    prenomPere String maxlength(25),
+    professionPere String maxlength(25),
+    nomPrenomMere String maxlength(25),
+    professionMere String maxlength(25),
+
+    // Soins
+    medecinTraitant String maxlength(25),
+    serviceOrigine String maxlength(25),
+    biologisteResponsableDg String maxlength(25),
+
+    // Diagnostic
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(25),
+    anneeDiagnostic Integer,
+
+    // Enregistrement au registre
+    dateEnregistrementRegistre LocalDate,
+    consentementRegistre OuiNonNP
+}
+
+
+
+
+
 // Options de generation
 dto * with mapstruct
 paginate FicheHemophilie, FicheThrombopathie, FicheFacteurVII, FicheFacteurVIII  with pagination
