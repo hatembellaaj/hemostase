@@ -1097,6 +1097,39 @@ entity FicheVonWillebrand {
 
     enqueteFamiliale FaiteNonFaite,
 
+    // Circonstances de découverte
+    circonstancesDecouverte CirconstanceDecouverteMvW,
+    circonstancesDecouvertePrecision String maxlength(100),
+
+    jamaisSaigne OuiNonNP,
+
+    agePremierSigneCliniqueJours Integer,
+    agePremierSigneCliniqueMois Integer,
+    agePremierSigneCliniqueAnnees Integer,
+
+    // Symptômes (un champ OuiNonNP par symptôme)
+    symptomeEcchymose OuiNonNP,
+    symptomeEpistaxis OuiNonNP,
+    symptomeGingivorragies OuiNonNP,
+    symptomeMetrorragies OuiNonNP,
+    symptomeMelena OuiNonNP,
+    symptomeHemoptysie OuiNonNP,
+    symptomeHemorragiePostAmygdalectomie OuiNonNP,
+    symptomeHemorragiePostAvulsionDentaire OuiNonNP,
+    symptomeHemorragieChuteCordon OuiNonNP,
+    symptomeAutre OuiNonNP,
+    symptomeAutreDescription String maxlength(255), // Si "autre" est oui
+
+    // Première consultation
+    datePremiereConsultation LocalDate,
+    agePremiereConsultationJours Integer,
+    agePremiereConsultationMois Integer,
+    agePremiereConsultationAnnees Integer,
+
+    // Age au moment du diagnostic
+    ageDiagnosticJours Integer,
+    ageDiagnosticMois Integer,
+    ageDiagnosticAnnees Integer
 
 }
 
