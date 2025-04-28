@@ -224,6 +224,26 @@ enum TypeHemorragieGrave {
 enum NormalAllonge {
   NORMAL, ALLONGE
 }
+
+enum CirconstanceDecouverteMvW {
+    SYNDROME_HEMORRAGIQUE,
+    ENQUETE_FAMILIALE,
+    DECOUVERTE_FORTUITE
+}
+
+enum SymptomeTypeMvW {
+    ECCHYMOSE,
+    EPISTAXIS,
+    GINGIVORRAGIES,
+    METRORRAGIES,
+    MELENA,
+    HEMOPTYSIE,
+    HEMORRAGIE_POST_AMYGDALECTOMIE,
+    HEMORRAGIE_POST_AVULSION_DENTAIRE,
+    HEMORRAGIE_CHUTE_CORDON,
+    AUTRE
+}
+
 // Fusion des entites Patient et FicheHemophilie
 entity FicheHemophilie {
     // Attributs FicheHemophilie
