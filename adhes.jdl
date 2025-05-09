@@ -1564,6 +1564,62 @@ entity FicheFacteurXI {
   serologieVHB OuiNonNP,
   serologieVHC OuiNonNP,
   serologieVIH OuiNonNP
+
+// Manifestations cliniques
+epistaxis Boolean,
+frequenceEpistaxis Integer,
+
+gingivorragies Boolean,
+typeGingivorragies TypeManifestation,
+frequenceGingivorragies Integer,
+
+ecchymose Boolean,
+typeEcchymose TypeManifestation,
+frequenceEcchymose Integer,
+
+menorragie Boolean,
+frequenceMenorragie Integer,
+
+// Hémorragies viscérales et profondes
+hematemese Boolean,
+frequenceHematemese Integer,
+
+rectorragie Boolean,
+frequenceRectorragie Integer,
+
+hematurie Boolean,
+frequenceHematurie Integer,
+
+hemorragiePostTraumatique Boolean,
+frequenceHemorragiePostTraumatique Integer,
+
+hematomeSousCutane Boolean,
+typeHematomeSousCutane TypeManifestation,
+frequenceHematomeSousCutane Integer,
+
+hematomeMusculaire Boolean,
+typeHematomeMusculaire TypeManifestation,
+frequenceHematomeMusculaire Integer,
+
+hematomeTissusMousProfonds Boolean,
+typeHematomeTissusMousProfonds TypeManifestation,
+frequenceHematomeTissusMousProfonds Integer,
+
+hemarthrose Boolean,
+typeHemarthrose TypeManifestation,
+frequenceHemarthrose Integer,
+
+saignementSNC Boolean,
+typeSaignementSNC TypeManifestation,
+frequenceSaignementSNC Integer,
+
+saignementChuteCordon Boolean,
+frequenceSaignementChuteCordon Integer,
+
+retardCicatrisationPlaies Boolean,
+frequenceRetardCicatrisationPlaies Integer,
+
+
 }
 
 
