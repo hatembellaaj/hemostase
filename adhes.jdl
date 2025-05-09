@@ -1291,6 +1291,30 @@ ecchymoses OuiNonNP,
 
   immunosuppresseur OuiNonNP,
   nomImmunosuppresseur String
+
+// Complications hématologiques
+  anemie OuiNonNP,
+  anemieSevere Boolean,
+  tauxHb Double,
+  anticorpsAntiFVW ResultatSerologie,
+  anticorpsAntiFVIII ResultatSerologie,
+
+  // Complications virales
+  hepatiteB ResultatSerologie,
+  hepatiteC ResultatSerologie,
+  hiv ResultatSerologie,
+
+  // Autres complications
+  thrombose Boolean,
+  reactionAllergique Boolean,
+  autreComplication Boolean,
+  autreComplicationDescription String
+}
+
+enum ResultatSerologie {
+  POSITIF,
+  NEGATIF,
+  NON_FAIT
 }
 
 enum OuiNonNP {
