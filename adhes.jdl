@@ -1850,6 +1850,82 @@ saignementSNC Boolean,
 typeSaignementSNC TypeManifestation,
 frequenceSaignementSNC Integer,
 
+// Autres manifestations
+ruptureKystesHemorragiques Boolean,
+hemorragiesPostChirurgicales Boolean,
+hemoperitone Boolean,
+
+accidentsThrombotiques Boolean,
+typeAccidentsThrombotiques AccidentsThrombotiquesType,
+
+hemorragieGrave OuiNonNP,
+graveDeglobulisation Boolean,
+graveEtatDeChoc Boolean,
+graveParLocalisation Boolean,
+siegeGraviteLocalisation String maxlength(255),
+
+// Chirurgies et circoncision
+chirurgiePatientPrepare OuiNonNP,
+chirurgieSuiteHemorragique OuiNonNP,
+circoncisionPatientPrepare OuiNonNP,
+circoncisionSuiteHemorragique OuiNonNP,
+ageCirconcision Integer,
+
+// Prise en charge thérapeutique - traitement substitutif
+concentreFacteurXIII OuiNonNP,
+plasmaFraisCongele OuiNonNP,
+cryoprecipite OuiNonNP,
+culotsPlaquettaires OuiNonNP,
+
+// Prise en charge thérapeutique - traitement adjuvant
+dicynone OuiNonNP,
+exacyl OuiNonNP,
+traitementMartial OuiNonNP,
+traitementOestroprogestatif OuiNonNP,
+transfusionCGR OuiNonNP,
+
+// Complications liées au traitement
+inhibiteurs OuiNonNP,
+inhibiteurNeutralisant Boolean,
+titreInhibiteurNeutralisant Double,
+inhibiteurNonNeutralisant Boolean,
+
+infectionsVirales OuiNonNP,
+hepatiteB OuiNonNP,
+hepatiteC OuiNonNP,
+vih OuiNonNP,
+
+thrombose Boolean,
+reactionAllergique Boolean,
+alloimmunisation Boolean,
+autresComplications String maxlength(255),
+
+// État actuel
+adherenceTherapeutique OuiNonNP,
+causeNonAdherence String maxlength(255),
+
+situationSociale SituationSociale, // enum déjà défini ou à définir
+marie OuiNonNP,
+enfants OuiNonNP,
+activitePhysique OuiNonNP,
+typeActivitePhysique String maxlength(255),
+
+sequelles OuiNonNP,
+typeSequelles String maxlength(255),
+
+patientDecede OuiNonNP,
+dateDeces LocalDate,
+ageDeces Integer,
+causeDecesSNC Boolean,
+causeDecesAutreHemorragie Boolean,
+causeDecesVIH Boolean,
+causeDecesAutreInfection Boolean,
+causeDecesThromboembolique Boolean,
+causeDecesCancer Boolean,
+causeDecesCovid19 Boolean,
+causeDecesInconnue Boolean,
+autreCauseDeces String maxlength(255),
+
 
 }
 
