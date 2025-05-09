@@ -1904,7 +1904,7 @@ autresComplications String maxlength(255),
 adherenceTherapeutique OuiNonNP,
 causeNonAdherence String maxlength(255),
 
-situationSociale SituationSociale, // enum déjà défini ou à définir
+VieSociale VieSociale, // enum déjà défini ou à définir
 marie OuiNonNP,
 enfants OuiNonNP,
 activitePhysique OuiNonNP,
