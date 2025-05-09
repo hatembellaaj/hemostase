@@ -1929,7 +1929,7 @@ autreCauseDeces String maxlength(255),
 
 }
 
-entity FicheFacteurX_V_II_I {
+entity FicheFacteurXVIII {
     // Attributs FicheThrombopathie
     dossierNumber String,
     ordreNumber String maxlength(25),
