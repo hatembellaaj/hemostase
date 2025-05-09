@@ -1313,7 +1313,7 @@ ecchymoses OuiNonNP,
 adherenceTherapeutique OuiNonNP,
   causeNonAdherence String,
 
-  situationSociale StatutSocial,
+  StatutSocial StatutSocial,
   marie OuiNonNP,
   enfants OuiNonNP,
 
@@ -1619,6 +1619,76 @@ frequenceSaignementChuteCordon Integer,
 retardCicatrisationPlaies Boolean,
 frequenceRetardCicatrisationPlaies Integer,
 
+// Autres manifestations
+autresManifestations Boolean,
+faussesCouchesSpontaneesRecurrence Boolean,
+frequenceFaussesCouches Integer,
+
+accidentsThrombotiques Boolean,
+thromboseVeineuse Boolean,
+thromboseArterielle Boolean,
+frequenceAccidentsThrombotiques Integer,
+
+hemoperitoine Boolean,
+frequenceHemoperitoine Integer,
+
+ruptureKystesHemorragiques Boolean,
+frequenceRuptureKystes Integer,
+
+hemorragieGrave Boolean,
+frequenceHemorragieGrave Integer,
+graviteDeglobulisation Boolean,
+graviteEtatDeChoc Boolean,
+graviteParLocalisation Boolean,
+siegeGraviteLocalisation String maxlength(255)
+
+// Chirurgies et circoncision
+chirurgiePrepare OuiNonNP,
+chirurgieSuiteHemorragique OuiNonNP,
+circoncisionPrepare OuiNonNP,
+circoncisionSuiteHemorragique OuiNonNP,
+ageCirconcision Integer,
+
+// Prise en charge thérapeutique - traitement substitutif
+traitementPFC OuiNonNP,
+traitementCryoprecipite OuiNonNP
+// Traitement substitutif (suite)
+traitementConcentreFacteurXI OuiNonNP,
+traitementCulotsPlaquettaires OuiNonNP,
+
+// Traitement adjuvant
+traitementDicynone OuiNonNP,
+traitementExacyl OuiNonNP,
+traitementMartial OuiNonNP,
+traitementOestroprogestatif OuiNonNP,
+transfusionCGR OuiNonNP
+
+// Complications liées au traitement
+alloImmunisation OuiNonNP,
+inhibiteurNeutralisant OuiNonNP,
+titreInhibiteurUB Double,
+inhibiteurNonNeutralisant OuiNonNP,
+infectionVIH OuiNonNP,
+infectionVHC OuiNonNP,
+infectionVHB OuiNonNP,
+thrombose Boolean,
+reactionAllergique Boolean,
+autresComplications String maxlength(255),
+
+// État actuel
+adherenceTherapeutique OuiNonNP,
+causeNonAdherence String maxlength(255),
+StatutSocial StatutSocial,
+marie OuiNonNP,
+enfants OuiNonNP,
+activitePhysique OuiNonNP,
+typeActivitePhysique String maxlength(255),
+sequelles OuiNonNP,
+typeSequelles String maxlength(255),
+patientDecede OuiNonNP,
+dateDeces LocalDate,
+ageDeces Integer,
+causeDeces CauseDeces
 
 }
 
