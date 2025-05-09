@@ -1765,6 +1765,22 @@ entity FicheFacteurXIII {
     causeDeces3 String maxlength(255),
 
     enqueteFamiliale FaiteNonFaite,
+// Circonstances de découverte
+decouverteFortuite Boolean,
+explorationSyndromeHemorragique Boolean,
+hemorragieChuteCordon Boolean,
+metroragieMenarche Boolean,
+hemorragieCerebraleNN Boolean,
+hemorragiePostPartum Boolean,
+autresCirconstances String maxlength(255),
+enqueteFamiliale Boolean,
+datePremierSigneCliniqueEvocateurJour Integer,
+datePremierSigneCliniqueEvocateurMois Integer,
+datePremierSigneCliniqueEvocateurAnnee Integer,
+ageDiagnosticJour Integer,
+ageDiagnosticMois Integer,
+ageDiagnosticAnnee Integer
+
 }
 
 
