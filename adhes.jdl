@@ -1190,6 +1190,91 @@ typeMvW TypeMvW required,
   mutationPresente Boolean,
   mutationNom String,
   mutationZygote TypeZygote
+
+ecchymoses OuiNonNP,
+  ecchymosesSpontanees Boolean,
+  ecchymosesProvoquees Boolean,
+  ecchymosesSiege String,
+  ecchymosesFrequence Integer,
+
+  hemorragieMuqueuses OuiNonNP,
+  epistaxis OuiNonNP,
+  epistaxisFrequence Integer,
+  hemorragiesIntrabuccales OuiNonNP,
+  hemorragiesIntrabuccalesFrequence Integer,
+  menoragie OuiNonNP,
+  menoragieFrequence Integer,
+  scoreHighamFait Boolean,
+  scoreHighamValeur Integer,
+
+  hematome OuiNonNP,
+  hematomeSpontane Boolean,
+  hematomeProvoque Boolean,
+  hematomeSousCutane Boolean,
+  hematomeMusculaire Boolean,
+  hematomeTissusMous Boolean,
+  hematomeFrequence Integer,
+
+  hemarthrose OuiNonNP,
+  hemarthroseSpontane Boolean,
+  hemarthroseProvoque Boolean,
+  hemarthroseSiege String,
+  hemarthroseFrequence Integer,
+
+  hemorragieAmygdalienne OuiNonNP,
+  hemorragieAmygdalienneFrequence Integer,
+
+  avulsionDentaire OuiNonNP,
+  avulsionPrepare Boolean,
+  avulsionBienDeroule OuiNonNP,
+
+  traumatisme OuiNonNP,
+  traumatismeType String,
+
+  chirurgie OuiNonNP,
+  chirurgieType String,
+  chirurgiePrepare OuiNonNP,
+  chirurgieBienDeroule OuiNonNP,
+
+  accouchement OuiNonNP,
+  hemorragiePostpartum OuiNonNP,
+
+  circoncision OuiNonNP,
+  ageCirconcision Integer,
+  circoncisionPrepare OuiNonNP,
+  circoncisionBienDeroule OuiNonNP,
+
+  hemorragieVisceres OuiNonNP,
+  hemorragieVisceresSpontane Boolean,
+  hemorragieVisceresProvoque Boolean,
+  hemorragieVisceresType TypeHemorragieVisceres,
+  autreHemorragieVisceres String,
+  explorationVisceres Boolean,
+  lesionSousJacente String,
+
+  hemorragieGrave OuiNonNP,
+  graveDeglobulisation Boolean,
+  graveEtatDeChoc Boolean,
+  graveParLocalisation Boolean,
+  siegeGraviteLocalisation String,
+
+  nombreHospitalisations Integer,
+  nombreTransfusions Integer,
+  scoreISTHBAT Integer
+}
+
+enum OuiNonNP {
+  OUI,
+  NON,
+  NP
+}
+
+enum TypeHemorragieVisceres {
+  HDH,
+  HDB,
+  HEMATURIE,
+  SNC,
+  AUTRE
 }
 
 enum TypeMvW {
