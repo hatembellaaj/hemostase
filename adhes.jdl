@@ -1151,6 +1151,101 @@ entity FicheVonWillebrand {
     ageDiagnosticMois Integer,
     ageDiagnosticAnnees Integer
 
+typeMvW TypeMvW required,
+  sousTypeMvW SousTypeMvW,
+  pathologiesAssociees String,
+  dateTestConfirmation LocalDate,
+
+  // Biologie
+  gs GroupeSanguin,
+  hb Double,
+  hte Double,
+  plaquettes Integer,
+  tp Double,
+  tcaMT Double,
+  tcaMPlusT Double,
+  tcaMPlusT2H Double,
+  fibrinogene Double,
+  tsResultat TypeTS,
+  tsValeur Double,
+  occlusionPlaquettaire TypeOcclusion,
+  collageneEpinephrine Double,
+  collageneADP Double,
+  fvwag Double,
+  fvwact Double,
+  f8c Double,
+  ratioFvwactFvwag Double,
+  ratioF8cFvwag Double,
+  autresTestsSpecifiques FaiteNonFaite,
+  vwfCB FaiteNonFaite,
+  vwfCBResultat Double,
+  ripa FaiteNonFaite,
+  ripaResultat TypeRipaResultat,
+  multimereHPM TypeMultimere,
+  liaisonFvwF8 FaiteNonFaite,
+  liaisonFvwF8Resultat TypeResultatPatho,
+  fvwpp FaiteNonFaite,
+  fvwppResultat TypeFvWppRatio,
+  mutationGenetique FaiteNonFaite,
+  mutationPresente Boolean,
+  mutationNom String,
+  mutationZygote TypeZygote
+}
+
+enum TypeMvW {
+  TYPE1,
+  TYPE2,
+  TYPE3
+}
+
+enum SousTypeMvW {
+  TYPE2A,
+  TYPE2B,
+  TYPE2M,
+  TYPE2N,
+  NP
+}
+
+enum GroupeSanguin {
+  O,
+  NON_O
+}
+
+enum TypeTS {
+  NORMAL,
+  ALLONGE,
+  NON_FAIT
+}
+
+enum TypeOcclusion {
+  NORMAL,
+  ALLONGE,
+  NON_FAIT
+}
+
+enum TypeRipaResultat {
+  DIMINUE,
+  PARADOXALE
+}
+
+enum TypeMultimere {
+  PRESENTS,
+  ABSENTS
+}
+
+enum TypeResultatPatho {
+  PATHOLOGIQUE,
+  NORMAL
+}
+
+enum TypeFvWppRatio {
+  PATHOLOGIQUE,
+  NORMAL
+}
+
+enum TypeZygote {
+  HETEROZYGOTE,
+  HOMOZYGOTE
 }
 
 
