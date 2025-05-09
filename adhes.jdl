@@ -1554,7 +1554,7 @@ entity FicheFacteurXI {
   autresFacteursTaux3 Double,
 
   // Confirmation moléculaire
-  confirmationMoleculaire FaitOuNonFait,
+  confirmationMoleculaire FaiteNonFaite,
   mutationPresente Boolean,
   mutationNom String,
   mutationZygote TypeZygote,
