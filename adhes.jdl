@@ -1779,10 +1779,44 @@ datePremierSigneCliniqueEvocateurMois Integer,
 datePremierSigneCliniqueEvocateurAnnee Integer,
 ageDiagnosticJour Integer,
 ageDiagnosticMois Integer,
-ageDiagnosticAnnee Integer
+ageDiagnosticAnnee Integer,
+
+// Biologie au moment du diagnostic
+hb Double,
+ht Double,
+plaquettes Integer,
+
+tp Double,
+tpMT Double,
+tca Double,
+tcaMT Double,
+fibrinogene Double,
+
+ts TypeFaitOuNonFaitEtResultat,
+toPfa200 TypeFaitOuNonFaitEtResultat,
+colEpi Double,
+colAdp Double,
+
+facteurXIII Double,
+techniqueChromogenique Boolean,
+tauxChromogenique Double,
+techniqueSolubiliteCaillot Boolean,
+tauxSolubiliteCaillot Double,
+
+confirmationMoleculaire Boolean,
+mutationPresente Boolean,
+mutationNom String maxlength(255),
+mutationType MutationType,
+mutation2Nom String maxlength(255)
+
 
 }
 
+enum TypeFaitOuNonFaitEtResultat {
+  NON_FAIT,
+  FAIT_NORMAL,
+  FAIT_ALLONGE
+}
 
 // Options de generation
 dto * with mapstruct
