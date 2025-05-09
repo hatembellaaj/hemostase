@@ -1530,6 +1530,40 @@ entity FicheFacteurXI {
   ageDiagnosticJours Integer,
   ageDiagnosticMois Integer,
   ageDiagnosticAnnees Integer
+
+// Hémogramme
+  hb Double,
+  hte Double,
+  plaquettes Integer,
+
+  // Bilan d’hémostase
+  pfaColEpi Double,
+  pfaColADP Double,
+  tp Double,
+  tpMPlusT Double,
+  fibrinogene Double,
+  tcaMT Double,
+  tcaMPlusT Double,
+  tcaTemoin Double,
+
+  // Dosages
+  facteurXI Double,
+  autresFacteursDosageDescription String,
+  autresFacteursTaux1 Double,
+  autresFacteursTaux2 Double,
+  autresFacteursTaux3 Double,
+
+  // Confirmation moléculaire
+  confirmationMoleculaire FaitOuNonFait,
+  mutationPresente Boolean,
+  mutationNom String,
+  mutationZygote TypeZygote,
+  mutation2Nom String,
+
+  // Sérologies
+  serologieVHB OuiNonNP,
+  serologieVHC OuiNonNP,
+  serologieVIH OuiNonNP
 }
 
 
