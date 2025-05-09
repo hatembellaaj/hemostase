@@ -1309,6 +1309,43 @@ ecchymoses OuiNonNP,
   reactionAllergique Boolean,
   autreComplication Boolean,
   autreComplicationDescription String
+
+adherenceTherapeutique OuiNonNP,
+  causeNonAdherence String,
+
+  situationSociale StatutSocial,
+  marie OuiNonNP,
+  enfants OuiNonNP,
+
+  activitePhysique OuiNonNP,
+  typeActivitePhysique String,
+
+  sequelles OuiNonNP,
+  typeSequelles String,
+
+  patientDecede OuiNonNP,
+  dateDeces LocalDate,
+  ageDeces Integer,
+  causeDeces CauseDeces
+}
+
+enum StatutSocial {
+  CHOMEUR,
+  TRAVAILLE,
+  SCOLARISE,
+  PRESCOLARISE
+}
+
+enum CauseDeces {
+  HEMORRAGIE_SNC,
+  HEMORRAGIE_AUTRE,
+  HIV,
+  INFECTION_AUTRE,
+  THROMBOEMBOLIQUE,
+  CANCER,
+  COVID19,
+  INCONNUE,
+  AUTRE
 }
 
 enum ResultatSerologie {
