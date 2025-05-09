@@ -1498,6 +1498,38 @@ entity FicheFacteurXI {
 
     enqueteFamiliale FaiteNonFaite,
 
+  //circonstances de découverte
+  syndromeHemorragique OuiNonNP,
+  precisionSyndromeHemorragique String,
+  enqueteFamiliale OuiNonNP,
+  decouverteFortuite OuiNonNP,
+  precisionDecouverteFortuite String,
+  jamaisSaigne OuiNonNP,
+
+  agePremierSigneCliniqueJours Integer,
+  agePremierSigneCliniqueMois Integer,
+  agePremierSigneCliniqueAnnees Integer,
+
+  symptomeEcchymose Boolean,
+  symptomeEpistaxis Boolean,
+  symptomeGingivorragies Boolean,
+  symptomeMetrorragies Boolean,
+  symptomeMelena Boolean,
+  symptomeHemoptysie Boolean,
+  symptomeHemorragiePostAmygdalectomie Boolean,
+  symptomeHemorragiePostAvulsionDentaire Boolean,
+  symptomeHemorragieChuteCordon Boolean,
+  symptomeAutre Boolean,
+  symptomeAutreDescription String,
+
+  datePremiereConsultation LocalDate,
+  agePremiereConsultationJours Integer,
+  agePremiereConsultationMois Integer,
+  agePremiereConsultationAnnees Integer,
+
+  ageDiagnosticJours Integer,
+  ageDiagnosticMois Integer,
+  ageDiagnosticAnnees Integer
 }
 
 
