@@ -1261,6 +1261,36 @@ ecchymoses OuiNonNP,
   nombreHospitalisations Integer,
   nombreTransfusions Integer,
   scoreISTHBAT Integer
+
+  desmopressine OuiNonNP,
+
+  traitementSubstitutifPrevention OuiNonNP,
+  traitementPreparation String,
+  traitementSubstitutifCuratif OuiNonNP,
+
+  cryoprecipite OuiNonNP,
+  pfc OuiNonNP,
+  concentreFVIIIFVW OuiNonNP,
+  concentreFVW OuiNonNP,
+  concentreFVIII OuiNonNP,
+  agentBypassant OuiNonNP,
+
+  antifibrinolytiques OuiNonNP,
+  voieOrale Boolean,
+  voieIV Boolean,
+  voieLocale Boolean,
+
+  oestroprogestatifs OuiNonNP,
+  traitementAntalgique OuiNonNP,
+  corticotherapie OuiNonNP,
+  kinesitherapie OuiNonNP,
+  traitementMartial OuiNonNP,
+
+  culotsGlobulaires OuiNonNP,
+  nombreCulotsGlobulaires Integer,
+
+  immunosuppresseur OuiNonNP,
+  nomImmunosuppresseur String
 }
 
 enum OuiNonNP {
