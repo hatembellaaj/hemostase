@@ -1807,7 +1807,48 @@ confirmationMoleculaire Boolean,
 mutationPresente Boolean,
 mutationNom String maxlength(255),
 mutationType MutationType,
-mutation2Nom String maxlength(255)
+mutation2Nom String maxlength(255),
+// Manifestations cliniques
+saignementChuteCordon OuiNonNP,
+cicatricesKeloides OuiNonNP,
+retardCicatrisation OuiNonNP,
+
+// Manifestations hémorragiques - cutanéo-muqueuses
+epistaxis Boolean,
+frequenceEpistaxis Integer,
+gingivorragies Boolean,
+typeGingivorragies TypeManifestation,
+frequenceGingivorragies Integer,
+ecchymose Boolean,
+typeEcchymose TypeManifestation,
+frequenceEcchymose Integer,
+menorragie Boolean,
+frequenceMenorragie Integer,
+
+// Hémorragies viscérales et profondes
+hematemese Boolean,
+frequenceHematemese Integer,
+rectorragie Boolean,
+frequenceRectorragie Integer,
+hematurie Boolean,
+frequenceHematurie Integer,
+
+hematomeSousCutane Boolean,
+typeHematomeSousCutane TypeManifestation,
+frequenceHematomeSousCutane Integer,
+
+hematomeMusculaire Boolean,
+siegeHematomeMusculaire String maxlength(255),
+typeHematomeMusculaire TypeManifestation,
+frequenceHematomeMusculaire Integer,
+
+hemarthrose Boolean,
+typeHemarthrose TypeManifestation,
+frequenceHemarthrose Integer,
+
+saignementSNC Boolean,
+typeSaignementSNC TypeManifestation,
+frequenceSaignementSNC Integer,
 
 
 }
