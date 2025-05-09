@@ -2034,10 +2034,163 @@ agePremiereConsultationAnnees Integer,
 
 ageDiagnosticJours Integer,
 ageDiagnosticMois Integer,
-ageDiagnosticAnnees Integer
+ageDiagnosticAnnees Integer,
+
+// Biologie au moment du diagnostic
+
+hb Double,
+ht Double,
+plaquettes Integer,
+
+colEpi Double,
+colAdp Double,
+tp Double,
+tpMPlusT Double,
+fibrinogene Double,
+tcaMT Double,
+tcaMPlusT Double,
+tcaTemoin Double,
+
+facteurDeficitaireAutre String,
+tauxFacteurDeficitaireAutre Double,
+
+facteurSupplementaire1 String,
+tauxSupplementaire1 Double,
+
+facteurSupplementaire2 String,
+tauxSupplementaire2 Double,
+
+facteurSupplementaire3 String,
+tauxSupplementaire3 Double,
+
+confirmationMoleculaire OuiNonNP,
+mutationPresente Boolean,
+mutationNom String,
+mutationType MutationType,
+mutation2Nom String,
+
+  serologieVHB SerologieStatut,
+  serologieVHC SerologieStatut,
+  serologieVIH SerologieStatut
+
+// Manifestations cliniques
+    epistaxis Boolean,
+    frequenceEpistaxis Integer,
+    gingivorragies Boolean,
+    typeGingivorragies TypeManifestation,
+    frequenceGingivorragies Integer,
+    ecchymose Boolean,
+    typeEcchymose TypeManifestation,
+    frequenceEcchymose Integer,
+    menorragie Boolean,
+    frequenceMenorragie Integer,
+
+    // Hemorragies viscerales et profondes
+    hematemese Boolean,
+    frequenceHematemese Integer,
+    rectorragie Boolean,
+    frequenceRectorragie Integer,
+    hematurie Boolean,
+    frequenceHematurie Integer,
+    hematomeSousCutane Boolean,
+    typeHematomeSousCutane TypeManifestation,
+    frequenceHematomeSousCutane Integer,
+    hematomeMusculaire Boolean,
+    siegeHematomeMusculaire String maxlength(255),
+    typeHematomeMusculaire TypeManifestation,
+    frequenceHematomeMusculaire Integer,
+    hemarthrose Boolean,
+    typeHemarthrose TypeManifestation,
+    frequenceHemarthrose Integer,
+    saignementSNC Boolean,
+    typeSaignementSNC TypeManifestation,
+    frequenceSaignementSNC Integer,
+
+saignementChuteCordon Boolean,
+frequenceSaignementChuteCordon Integer,
+
+retardCicatrisationPlaies Boolean,
+frequenceRetardCicatrisationPlaies Integer,
+
+// Autres manifestations
+autresManifestations Boolean,
+faussesCouchesSpontaneesRecurrence Boolean,
+frequenceFaussesCouches Integer,
+
+accidentsThrombotiques Boolean,
+thromboseVeineuse Boolean,
+thromboseArterielle Boolean,
+frequenceAccidentsThrombotiques Integer,
+
+hemoperitoine Boolean,
+frequenceHemoperitoine Integer,
+
+ruptureKystesHemorragiques Boolean,
+frequenceRuptureKystes Integer,
+
+hemorragieGrave Boolean,
+frequenceHemorragieGrave Integer,
+graviteDeglobulisation Boolean,
+graviteEtatDeChoc Boolean,
+graviteParLocalisation Boolean,
+siegeGraviteLocalisation String maxlength(255),
+
+// Chirurgies et circoncision
+chirurgiePrepare OuiNonNP,
+chirurgieSuiteHemorragique OuiNonNP,
+circoncisionPrepare OuiNonNP,
+circoncisionSuiteHemorragique OuiNonNP,
+ageCirconcision Integer,
+
+// Prise en charge thérapeutique - traitement substitutif
+traitementPFC OuiNonNP,
+traitementCryoprecipite OuiNonNP
+// Traitement substitutif (suite)
+traitementConcentreFacteurXI OuiNonNP,
+traitementCulotsPlaquettaires OuiNonNP,
+
+// Traitement adjuvant
+traitementDicynone OuiNonNP,
+traitementExacyl OuiNonNP,
+traitementMartial OuiNonNP,
+traitementOestroprogestatif OuiNonNP,
+transfusionCGR OuiNonNP
+
+// Complications liées au traitement
+alloImmunisation OuiNonNP,
+inhibiteurNeutralisant OuiNonNP,
+titreInhibiteurUB Double,
+inhibiteurNonNeutralisant OuiNonNP,
+infectionVIH OuiNonNP,
+infectionVHC OuiNonNP,
+infectionVHB OuiNonNP,
+thrombose Boolean,
+reactionAllergique Boolean,
+autresComplications String maxlength(255),
+
+// État actuel
+adherenceTherapeutique OuiNonNP,
+causeNonAdherence String maxlength(255),
+StatutSocial StatutSocial,
+marie OuiNonNP,
+enfants OuiNonNP,
+activitePhysique OuiNonNP,
+typeActivitePhysique String maxlength(255),
+sequelles OuiNonNP,
+typeSequelles String maxlength(255),
+patientDecede OuiNonNP,
+dateDeces LocalDate,
+ageDeces Integer,
+causeDeces CauseDeces
 
 }
 
+enum SerologieStatut {
+  POSITIVE,
+  NEGATIVE,
+  NON_FAITE,
+  NP
+}
 
 enum TypeFaitOuNonFaitEtResultat {
   NON_FAIT,
