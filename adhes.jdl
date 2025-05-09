@@ -1424,8 +1424,81 @@ enum TypeZygote {
   HOMOZYGOTE
 }
 
+entity FicheFacteurXI {
+    // Attributs FicheThrombopathie
+    dossierNumber String,
+    ordreNumber String maxlength(25),
+    indexNumber String maxlength(25),
+    
+    // Attributs Patient
+    prenom String  maxlength(25),
+    nom String  maxlength(25),
+    nomJeuneFille String maxlength(25),
+    profession String maxlength(25),
+    etatCivil CivilStatus required,
+    serviceClinique ServiceCliniqueType required,
+    autreServiceClinique String maxlength(255),
+    couvertureSociale CouvertureSociale required,
+    sexe Gender required,
+    dateNaissance LocalDate,
+    ageActuel Integer,
+    origine Region,
+    autreOrigine String maxlength(25), // Si "origine" est "Autre"
+    adresse String maxlength(25),
+    telephone String maxlength(20),
+    prenomPere String maxlength(25),
+    professionPere String maxlength(25),
+    nomPrenomMere String maxlength(25),
+    professionMere String maxlength(25),
+    medecinTraitant String maxlength(25),
+    serviceOrigine String maxlength(25),
+    biologisteResponsableDg String maxlength(25),
+    diagnostic DiagnosticType required,
+    autreDiagnostic String maxlength(25),
+    anneeDiagnostic Integer,
+    consentementRegistre OuiNonNP,
+    dateEnregistrementRegistre LocalDate,
 
+    // Antecedents familiaux
+    parentsConsanguins OuiNonNP,
+    degreParenteConsanguins DegreParente,
+    casSimilaires OuiNonNP,
+    nombreCas Integer,
 
+    // Details des cas similaires
+    cas1Numero Integer,
+    lienParenteCas1 LienParente,
+    degreParenteCas1 String maxlength(25),
+    typeHemorragieCas1 String maxlength(255),
+
+    cas2Numero Integer,
+    lienParenteCas2 LienParente,
+    degreParenteCas2 String maxlength(25),
+    typeHemorragieCas2 String maxlength(255),
+
+    cas3Numero Integer,
+    lienParenteCas3 LienParente,
+    degreParenteCas3 String maxlength(25),
+    typeHemorragieCas3 String maxlength(255),
+
+    decesSyndromeHemorragique OuiNonNP,
+    nombreDeces Integer,
+
+    deces1Numero Integer,
+    lienParenteDeces1 LienParente,
+    causeDeces1 String maxlength(255),
+
+    deces2Numero Integer,
+    lienParenteDeces2 LienParente,
+    causeDeces2 String maxlength(255),
+
+    deces3Numero Integer,
+    lienParenteDeces3 LienParente,
+    causeDeces3 String maxlength(255),
+
+    enqueteFamiliale FaiteNonFaite,
+
+}
 
 
 // Options de generation
