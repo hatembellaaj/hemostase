@@ -1,0 +1,2817 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-fiche-facteur-xi-heading" data-cy="FicheFacteurXICreateUpdateHeading">Créer ou éditer un Fiche Facteur XI</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dossierNumber">Dossier Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dossierNumber"
+            id="field_dossierNumber"
+            data-cy="dossierNumber"
+            formControlName="dossierNumber"
+          />
+        </div>
+
+        @let ordreNumberRef = editForm.get('ordreNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_ordreNumber">Ordre Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ordreNumber"
+            id="field_ordreNumber"
+            data-cy="ordreNumber"
+            formControlName="ordreNumber"
+          />
+          @if (ordreNumberRef.invalid && (ordreNumberRef.dirty || ordreNumberRef.touched)) {
+            <div>
+              @if (editForm.get('ordreNumber')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let indexNumberRef = editForm.get('indexNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_indexNumber">Index Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="indexNumber"
+            id="field_indexNumber"
+            data-cy="indexNumber"
+            formControlName="indexNumber"
+          />
+          @if (indexNumberRef.invalid && (indexNumberRef.dirty || indexNumberRef.touched)) {
+            <div>
+              @if (editForm.get('indexNumber')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let prenomRef = editForm.get('prenom')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+          @if (prenomRef.invalid && (prenomRef.dirty || prenomRef.touched)) {
+            <div>
+              @if (editForm.get('prenom')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let nomRef = editForm.get('nom')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          @if (nomRef.invalid && (nomRef.dirty || nomRef.touched)) {
+            <div>
+              @if (editForm.get('nom')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let nomJeuneFilleRef = editForm.get('nomJeuneFille')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nomJeuneFille">Nom Jeune Fille</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomJeuneFille"
+            id="field_nomJeuneFille"
+            data-cy="nomJeuneFille"
+            formControlName="nomJeuneFille"
+          />
+          @if (nomJeuneFilleRef.invalid && (nomJeuneFilleRef.dirty || nomJeuneFilleRef.touched)) {
+            <div>
+              @if (editForm.get('nomJeuneFille')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let professionRef = editForm.get('profession')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_profession">Profession</label>
+          <input
+            type="text"
+            class="form-control"
+            name="profession"
+            id="field_profession"
+            data-cy="profession"
+            formControlName="profession"
+          />
+          @if (professionRef.invalid && (professionRef.dirty || professionRef.touched)) {
+            <div>
+              @if (editForm.get('profession')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let etatCivilRef = editForm.get('etatCivil')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_etatCivil">Etat Civil</label>
+          <select class="form-control" name="etatCivil" formControlName="etatCivil" id="field_etatCivil" data-cy="etatCivil">
+            <option [ngValue]="null"></option>
+            @for (civilStatus of civilStatusValues; track $index) {
+              <option [value]="civilStatus">
+                {{ { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[civilStatus] }}
+              </option>
+            }
+          </select>
+          @if (etatCivilRef.invalid && (etatCivilRef.dirty || etatCivilRef.touched)) {
+            <div>
+              @if (editForm.get('etatCivil')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let serviceCliniqueRef = editForm.get('serviceClinique')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceClinique">Service Clinique</label>
+          <select
+            class="form-control"
+            name="serviceClinique"
+            formControlName="serviceClinique"
+            id="field_serviceClinique"
+            data-cy="serviceClinique"
+          >
+            <option [ngValue]="null"></option>
+            @for (serviceCliniqueType of serviceCliniqueTypeValues; track $index) {
+              <option [value]="serviceCliniqueType">
+                {{
+                  {
+                    null: '',
+                    HTO: 'HTO',
+                    PRIVE: 'PRIVE',
+                    PEDIATRIE_A: 'PEDIATRIE_A',
+                    PEDIATRIE_B: 'PEDIATRIE_B',
+                    PUR: 'PUR',
+                    GYNECO: 'GYNECO',
+                    AUTRE: 'AUTRE',
+                  }[serviceCliniqueType]
+                }}
+              </option>
+            }
+          </select>
+          @if (serviceCliniqueRef.invalid && (serviceCliniqueRef.dirty || serviceCliniqueRef.touched)) {
+            <div>
+              @if (editForm.get('serviceClinique')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let autreServiceCliniqueRef = editForm.get('autreServiceClinique')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_autreServiceClinique">Autre Service Clinique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreServiceClinique"
+            id="field_autreServiceClinique"
+            data-cy="autreServiceClinique"
+            formControlName="autreServiceClinique"
+          />
+          @if (autreServiceCliniqueRef.invalid && (autreServiceCliniqueRef.dirty || autreServiceCliniqueRef.touched)) {
+            <div>
+              @if (editForm.get('autreServiceClinique')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let couvertureSocialeRef = editForm.get('couvertureSociale')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_couvertureSociale">Couverture Sociale</label>
+          <select
+            class="form-control"
+            name="couvertureSociale"
+            formControlName="couvertureSociale"
+            id="field_couvertureSociale"
+            data-cy="couvertureSociale"
+          >
+            <option [ngValue]="null"></option>
+            @for (couvertureSociale of couvertureSocialeValues; track $index) {
+              <option [value]="couvertureSociale">
+                {{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[couvertureSociale] }}
+              </option>
+            }
+          </select>
+          @if (couvertureSocialeRef.invalid && (couvertureSocialeRef.dirty || couvertureSocialeRef.touched)) {
+            <div>
+              @if (editForm.get('couvertureSociale')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let sexeRef = editForm.get('sexe')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_sexe">Sexe</label>
+          <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
+            <option [ngValue]="null"></option>
+            @for (gender of genderValues; track $index) {
+              <option [value]="gender">{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[gender] }}</option>
+            }
+          </select>
+          @if (sexeRef.invalid && (sexeRef.dirty || sexeRef.touched)) {
+            <div>
+              @if (editForm.get('sexe')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateNaissance">Date Naissance</label>
+          <div class="input-group">
+            <input
+              id="field_dateNaissance"
+              data-cy="dateNaissance"
+              type="text"
+              class="form-control"
+              name="dateNaissance"
+              ngbDatepicker
+              #dateNaissanceDp="ngbDatepicker"
+              formControlName="dateNaissance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageActuel">Age Actuel</label>
+          <input type="number" class="form-control" name="ageActuel" id="field_ageActuel" data-cy="ageActuel" formControlName="ageActuel" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_origine">Origine</label>
+          <select class="form-control" name="origine" formControlName="origine" id="field_origine" data-cy="origine">
+            <option [ngValue]="null"></option>
+            @for (region of regionValues; track $index) {
+              <option [value]="region">
+                {{
+                  {
+                    null: '',
+                    SFAX: 'SFAX',
+                    GABES: 'GABES',
+                    GAFSA: 'GAFSA',
+                    KEBILI: 'KEBILI',
+                    TOZEUR: 'TOZEUR',
+                    MEDNINE: 'MEDNINE',
+                    TATAOUINE: 'TATAOUINE',
+                    SBZ: 'SBZ',
+                    KASSERINE: 'KASSERINE',
+                    MAHDIA: 'MAHDIA',
+                    KAIRAOUANE: 'KAIRAOUANE',
+                    MONASTIR: 'MONASTIR',
+                    SOUSSE: 'SOUSSE',
+                    AUTRE: 'AUTRE',
+                  }[region]
+                }}
+              </option>
+            }
+          </select>
+        </div>
+
+        @let autreOrigineRef = editForm.get('autreOrigine')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_autreOrigine">Autre Origine</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreOrigine"
+            id="field_autreOrigine"
+            data-cy="autreOrigine"
+            formControlName="autreOrigine"
+          />
+          @if (autreOrigineRef.invalid && (autreOrigineRef.dirty || autreOrigineRef.touched)) {
+            <div>
+              @if (editForm.get('autreOrigine')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let adresseRef = editForm.get('adresse')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_adresse">Adresse</label>
+          <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+          @if (adresseRef.invalid && (adresseRef.dirty || adresseRef.touched)) {
+            <div>
+              @if (editForm.get('adresse')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let telephoneRef = editForm.get('telephone')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+          @if (telephoneRef.invalid && (telephoneRef.dirty || telephoneRef.touched)) {
+            <div>
+              @if (editForm.get('telephone')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 20 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let prenomPereRef = editForm.get('prenomPere')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_prenomPere">Prenom Pere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="prenomPere"
+            id="field_prenomPere"
+            data-cy="prenomPere"
+            formControlName="prenomPere"
+          />
+          @if (prenomPereRef.invalid && (prenomPereRef.dirty || prenomPereRef.touched)) {
+            <div>
+              @if (editForm.get('prenomPere')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let professionPereRef = editForm.get('professionPere')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_professionPere">Profession Pere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="professionPere"
+            id="field_professionPere"
+            data-cy="professionPere"
+            formControlName="professionPere"
+          />
+          @if (professionPereRef.invalid && (professionPereRef.dirty || professionPereRef.touched)) {
+            <div>
+              @if (editForm.get('professionPere')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let nomPrenomMereRef = editForm.get('nomPrenomMere')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nomPrenomMere">Nom Prenom Mere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomPrenomMere"
+            id="field_nomPrenomMere"
+            data-cy="nomPrenomMere"
+            formControlName="nomPrenomMere"
+          />
+          @if (nomPrenomMereRef.invalid && (nomPrenomMereRef.dirty || nomPrenomMereRef.touched)) {
+            <div>
+              @if (editForm.get('nomPrenomMere')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let professionMereRef = editForm.get('professionMere')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_professionMere">Profession Mere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="professionMere"
+            id="field_professionMere"
+            data-cy="professionMere"
+            formControlName="professionMere"
+          />
+          @if (professionMereRef.invalid && (professionMereRef.dirty || professionMereRef.touched)) {
+            <div>
+              @if (editForm.get('professionMere')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let medecinTraitantRef = editForm.get('medecinTraitant')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_medecinTraitant">Medecin Traitant</label>
+          <input
+            type="text"
+            class="form-control"
+            name="medecinTraitant"
+            id="field_medecinTraitant"
+            data-cy="medecinTraitant"
+            formControlName="medecinTraitant"
+          />
+          @if (medecinTraitantRef.invalid && (medecinTraitantRef.dirty || medecinTraitantRef.touched)) {
+            <div>
+              @if (editForm.get('medecinTraitant')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let serviceOrigineRef = editForm.get('serviceOrigine')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceOrigine">Service Origine</label>
+          <input
+            type="text"
+            class="form-control"
+            name="serviceOrigine"
+            id="field_serviceOrigine"
+            data-cy="serviceOrigine"
+            formControlName="serviceOrigine"
+          />
+          @if (serviceOrigineRef.invalid && (serviceOrigineRef.dirty || serviceOrigineRef.touched)) {
+            <div>
+              @if (editForm.get('serviceOrigine')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let biologisteResponsableDgRef = editForm.get('biologisteResponsableDg')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_biologisteResponsableDg">Biologiste Responsable Dg</label>
+          <input
+            type="text"
+            class="form-control"
+            name="biologisteResponsableDg"
+            id="field_biologisteResponsableDg"
+            data-cy="biologisteResponsableDg"
+            formControlName="biologisteResponsableDg"
+          />
+          @if (biologisteResponsableDgRef.invalid && (biologisteResponsableDgRef.dirty || biologisteResponsableDgRef.touched)) {
+            <div>
+              @if (editForm.get('biologisteResponsableDg')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let diagnosticRef = editForm.get('diagnostic')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_diagnostic">Diagnostic</label>
+          <select class="form-control" name="diagnostic" formControlName="diagnostic" id="field_diagnostic" data-cy="diagnostic">
+            <option [ngValue]="null"></option>
+            @for (diagnosticType of diagnosticTypeValues; track $index) {
+              <option [value]="diagnosticType">
+                {{
+                  {
+                    null: '',
+                    HEMOPHILIE: 'HEMOPHILIE',
+                    WILLEBRAND: 'WILLEBRAND',
+                    THROMBOPATHIE: 'THROMBOPATHIE',
+                    DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                    DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                    DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                    DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+                    AUTRE: 'AUTRE',
+                  }[diagnosticType]
+                }}
+              </option>
+            }
+          </select>
+          @if (diagnosticRef.invalid && (diagnosticRef.dirty || diagnosticRef.touched)) {
+            <div>
+              @if (editForm.get('diagnostic')?.errors?.required) {
+                <small class="form-text text-danger">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let autreDiagnosticRef = editForm.get('autreDiagnostic')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_autreDiagnostic">Autre Diagnostic</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreDiagnostic"
+            id="field_autreDiagnostic"
+            data-cy="autreDiagnostic"
+            formControlName="autreDiagnostic"
+          />
+          @if (autreDiagnosticRef.invalid && (autreDiagnosticRef.dirty || autreDiagnosticRef.touched)) {
+            <div>
+              @if (editForm.get('autreDiagnostic')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anneeDiagnostic">Annee Diagnostic</label>
+          <input
+            type="number"
+            class="form-control"
+            name="anneeDiagnostic"
+            id="field_anneeDiagnostic"
+            data-cy="anneeDiagnostic"
+            formControlName="anneeDiagnostic"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_consentementRegistre">Consentement Registre</label>
+          <select
+            class="form-control"
+            name="consentementRegistre"
+            formControlName="consentementRegistre"
+            id="field_consentementRegistre"
+            data-cy="consentementRegistre"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateEnregistrementRegistre">Date Enregistrement Registre</label>
+          <div class="input-group">
+            <input
+              id="field_dateEnregistrementRegistre"
+              data-cy="dateEnregistrementRegistre"
+              type="text"
+              class="form-control"
+              name="dateEnregistrementRegistre"
+              ngbDatepicker
+              #dateEnregistrementRegistreDp="ngbDatepicker"
+              formControlName="dateEnregistrementRegistre"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateEnregistrementRegistreDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+          <select
+            class="form-control"
+            name="parentsConsanguins"
+            formControlName="parentsConsanguins"
+            id="field_parentsConsanguins"
+            data-cy="parentsConsanguins"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
+          <select
+            class="form-control"
+            name="degreParenteConsanguins"
+            formControlName="degreParenteConsanguins"
+            id="field_degreParenteConsanguins"
+            data-cy="degreParenteConsanguins"
+          >
+            <option [ngValue]="null"></option>
+            @for (degreParente of degreParenteValues; track $index) {
+              <option [value]="degreParente">
+                {{
+                  { null: '', TROISIEME_DEGRE: 'TROISIEME_DEGRE', QUATRIEME_DEGRE: 'QUATRIEME_DEGRE', LOINTAIN: 'LOINTAIN' }[degreParente]
+                }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
+          <select
+            class="form-control"
+            name="casSimilaires"
+            formControlName="casSimilaires"
+            id="field_casSimilaires"
+            data-cy="casSimilaires"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreCas">Nombre Cas</label>
+          <input type="number" class="form-control" name="nombreCas" id="field_nombreCas" data-cy="nombreCas" formControlName="nombreCas" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cas1Numero">Cas 1 Numero</label>
+          <input
+            type="number"
+            class="form-control"
+            name="cas1Numero"
+            id="field_cas1Numero"
+            data-cy="cas1Numero"
+            formControlName="cas1Numero"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lienParenteCas1">Lien Parente Cas 1</label>
+          <select
+            class="form-control"
+            name="lienParenteCas1"
+            formControlName="lienParenteCas1"
+            id="field_lienParenteCas1"
+            data-cy="lienParenteCas1"
+          >
+            <option [ngValue]="null"></option>
+            @for (lienParente of lienParenteValues; track $index) {
+              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+            }
+          </select>
+        </div>
+
+        @let degreParenteCas1Ref = editForm.get('degreParenteCas1')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_degreParenteCas1">Degre Parente Cas 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="degreParenteCas1"
+            id="field_degreParenteCas1"
+            data-cy="degreParenteCas1"
+            formControlName="degreParenteCas1"
+          />
+          @if (degreParenteCas1Ref.invalid && (degreParenteCas1Ref.dirty || degreParenteCas1Ref.touched)) {
+            <div>
+              @if (editForm.get('degreParenteCas1')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let typeHemorragieCas1Ref = editForm.get('typeHemorragieCas1')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHemorragieCas1">Type Hemorragie Cas 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeHemorragieCas1"
+            id="field_typeHemorragieCas1"
+            data-cy="typeHemorragieCas1"
+            formControlName="typeHemorragieCas1"
+          />
+          @if (typeHemorragieCas1Ref.invalid && (typeHemorragieCas1Ref.dirty || typeHemorragieCas1Ref.touched)) {
+            <div>
+              @if (editForm.get('typeHemorragieCas1')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cas2Numero">Cas 2 Numero</label>
+          <input
+            type="number"
+            class="form-control"
+            name="cas2Numero"
+            id="field_cas2Numero"
+            data-cy="cas2Numero"
+            formControlName="cas2Numero"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lienParenteCas2">Lien Parente Cas 2</label>
+          <select
+            class="form-control"
+            name="lienParenteCas2"
+            formControlName="lienParenteCas2"
+            id="field_lienParenteCas2"
+            data-cy="lienParenteCas2"
+          >
+            <option [ngValue]="null"></option>
+            @for (lienParente of lienParenteValues; track $index) {
+              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+            }
+          </select>
+        </div>
+
+        @let degreParenteCas2Ref = editForm.get('degreParenteCas2')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_degreParenteCas2">Degre Parente Cas 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="degreParenteCas2"
+            id="field_degreParenteCas2"
+            data-cy="degreParenteCas2"
+            formControlName="degreParenteCas2"
+          />
+          @if (degreParenteCas2Ref.invalid && (degreParenteCas2Ref.dirty || degreParenteCas2Ref.touched)) {
+            <div>
+              @if (editForm.get('degreParenteCas2')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let typeHemorragieCas2Ref = editForm.get('typeHemorragieCas2')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHemorragieCas2">Type Hemorragie Cas 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeHemorragieCas2"
+            id="field_typeHemorragieCas2"
+            data-cy="typeHemorragieCas2"
+            formControlName="typeHemorragieCas2"
+          />
+          @if (typeHemorragieCas2Ref.invalid && (typeHemorragieCas2Ref.dirty || typeHemorragieCas2Ref.touched)) {
+            <div>
+              @if (editForm.get('typeHemorragieCas2')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cas3Numero">Cas 3 Numero</label>
+          <input
+            type="number"
+            class="form-control"
+            name="cas3Numero"
+            id="field_cas3Numero"
+            data-cy="cas3Numero"
+            formControlName="cas3Numero"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lienParenteCas3">Lien Parente Cas 3</label>
+          <select
+            class="form-control"
+            name="lienParenteCas3"
+            formControlName="lienParenteCas3"
+            id="field_lienParenteCas3"
+            data-cy="lienParenteCas3"
+          >
+            <option [ngValue]="null"></option>
+            @for (lienParente of lienParenteValues; track $index) {
+              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+            }
+          </select>
+        </div>
+
+        @let degreParenteCas3Ref = editForm.get('degreParenteCas3')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_degreParenteCas3">Degre Parente Cas 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="degreParenteCas3"
+            id="field_degreParenteCas3"
+            data-cy="degreParenteCas3"
+            formControlName="degreParenteCas3"
+          />
+          @if (degreParenteCas3Ref.invalid && (degreParenteCas3Ref.dirty || degreParenteCas3Ref.touched)) {
+            <div>
+              @if (editForm.get('degreParenteCas3')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let typeHemorragieCas3Ref = editForm.get('typeHemorragieCas3')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHemorragieCas3">Type Hemorragie Cas 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeHemorragieCas3"
+            id="field_typeHemorragieCas3"
+            data-cy="typeHemorragieCas3"
+            formControlName="typeHemorragieCas3"
+          />
+          @if (typeHemorragieCas3Ref.invalid && (typeHemorragieCas3Ref.dirty || typeHemorragieCas3Ref.touched)) {
+            <div>
+              @if (editForm.get('typeHemorragieCas3')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_decesSyndromeHemorragique">Deces Syndrome Hemorragique</label>
+          <select
+            class="form-control"
+            name="decesSyndromeHemorragique"
+            formControlName="decesSyndromeHemorragique"
+            id="field_decesSyndromeHemorragique"
+            data-cy="decesSyndromeHemorragique"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreDeces">Nombre Deces</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreDeces"
+            id="field_nombreDeces"
+            data-cy="nombreDeces"
+            formControlName="nombreDeces"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_deces1Numero">Deces 1 Numero</label>
+          <input
+            type="number"
+            class="form-control"
+            name="deces1Numero"
+            id="field_deces1Numero"
+            data-cy="deces1Numero"
+            formControlName="deces1Numero"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lienParenteDeces1">Lien Parente Deces 1</label>
+          <select
+            class="form-control"
+            name="lienParenteDeces1"
+            formControlName="lienParenteDeces1"
+            id="field_lienParenteDeces1"
+            data-cy="lienParenteDeces1"
+          >
+            <option [ngValue]="null"></option>
+            @for (lienParente of lienParenteValues; track $index) {
+              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+            }
+          </select>
+        </div>
+
+        @let causeDeces1Ref = editForm.get('causeDeces1')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDeces1">Cause Deces 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="causeDeces1"
+            id="field_causeDeces1"
+            data-cy="causeDeces1"
+            formControlName="causeDeces1"
+          />
+          @if (causeDeces1Ref.invalid && (causeDeces1Ref.dirty || causeDeces1Ref.touched)) {
+            <div>
+              @if (editForm.get('causeDeces1')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_deces2Numero">Deces 2 Numero</label>
+          <input
+            type="number"
+            class="form-control"
+            name="deces2Numero"
+            id="field_deces2Numero"
+            data-cy="deces2Numero"
+            formControlName="deces2Numero"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lienParenteDeces2">Lien Parente Deces 2</label>
+          <select
+            class="form-control"
+            name="lienParenteDeces2"
+            formControlName="lienParenteDeces2"
+            id="field_lienParenteDeces2"
+            data-cy="lienParenteDeces2"
+          >
+            <option [ngValue]="null"></option>
+            @for (lienParente of lienParenteValues; track $index) {
+              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+            }
+          </select>
+        </div>
+
+        @let causeDeces2Ref = editForm.get('causeDeces2')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDeces2">Cause Deces 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="causeDeces2"
+            id="field_causeDeces2"
+            data-cy="causeDeces2"
+            formControlName="causeDeces2"
+          />
+          @if (causeDeces2Ref.invalid && (causeDeces2Ref.dirty || causeDeces2Ref.touched)) {
+            <div>
+              @if (editForm.get('causeDeces2')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_deces3Numero">Deces 3 Numero</label>
+          <input
+            type="number"
+            class="form-control"
+            name="deces3Numero"
+            id="field_deces3Numero"
+            data-cy="deces3Numero"
+            formControlName="deces3Numero"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lienParenteDeces3">Lien Parente Deces 3</label>
+          <select
+            class="form-control"
+            name="lienParenteDeces3"
+            formControlName="lienParenteDeces3"
+            id="field_lienParenteDeces3"
+            data-cy="lienParenteDeces3"
+          >
+            <option [ngValue]="null"></option>
+            @for (lienParente of lienParenteValues; track $index) {
+              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+            }
+          </select>
+        </div>
+
+        @let causeDeces3Ref = editForm.get('causeDeces3')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDeces3">Cause Deces 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="causeDeces3"
+            id="field_causeDeces3"
+            data-cy="causeDeces3"
+            formControlName="causeDeces3"
+          />
+          @if (causeDeces3Ref.invalid && (causeDeces3Ref.dirty || causeDeces3Ref.touched)) {
+            <div>
+              @if (editForm.get('causeDeces3')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_enqueteFamiliale">Enquete Familiale</label>
+          <select
+            class="form-control"
+            name="enqueteFamiliale"
+            formControlName="enqueteFamiliale"
+            id="field_enqueteFamiliale"
+            data-cy="enqueteFamiliale"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_syndromeHemorragique">Syndrome Hemorragique</label>
+          <select
+            class="form-control"
+            name="syndromeHemorragique"
+            formControlName="syndromeHemorragique"
+            id="field_syndromeHemorragique"
+            data-cy="syndromeHemorragique"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_precisionSyndromeHemorragique">Precision Syndrome Hemorragique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="precisionSyndromeHemorragique"
+            id="field_precisionSyndromeHemorragique"
+            data-cy="precisionSyndromeHemorragique"
+            formControlName="precisionSyndromeHemorragique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_decouverteFortuite">Decouverte Fortuite</label>
+          <select
+            class="form-control"
+            name="decouverteFortuite"
+            formControlName="decouverteFortuite"
+            id="field_decouverteFortuite"
+            data-cy="decouverteFortuite"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_precisionDecouverteFortuite">Precision Decouverte Fortuite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="precisionDecouverteFortuite"
+            id="field_precisionDecouverteFortuite"
+            data-cy="precisionDecouverteFortuite"
+            formControlName="precisionDecouverteFortuite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_jamaisSaigne">Jamais Saigne</label>
+          <select class="form-control" name="jamaisSaigne" formControlName="jamaisSaigne" id="field_jamaisSaigne" data-cy="jamaisSaigne">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agePremierSigneCliniqueJours">Age Premier Signe Clinique Jours</label>
+          <input
+            type="number"
+            class="form-control"
+            name="agePremierSigneCliniqueJours"
+            id="field_agePremierSigneCliniqueJours"
+            data-cy="agePremierSigneCliniqueJours"
+            formControlName="agePremierSigneCliniqueJours"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agePremierSigneCliniqueMois">Age Premier Signe Clinique Mois</label>
+          <input
+            type="number"
+            class="form-control"
+            name="agePremierSigneCliniqueMois"
+            id="field_agePremierSigneCliniqueMois"
+            data-cy="agePremierSigneCliniqueMois"
+            formControlName="agePremierSigneCliniqueMois"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agePremierSigneCliniqueAnnees">Age Premier Signe Clinique Annees</label>
+          <input
+            type="number"
+            class="form-control"
+            name="agePremierSigneCliniqueAnnees"
+            id="field_agePremierSigneCliniqueAnnees"
+            data-cy="agePremierSigneCliniqueAnnees"
+            formControlName="agePremierSigneCliniqueAnnees"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeEcchymose">Symptome Ecchymose</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeEcchymose"
+            id="field_symptomeEcchymose"
+            data-cy="symptomeEcchymose"
+            formControlName="symptomeEcchymose"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeEpistaxis">Symptome Epistaxis</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeEpistaxis"
+            id="field_symptomeEpistaxis"
+            data-cy="symptomeEpistaxis"
+            formControlName="symptomeEpistaxis"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeGingivorragies">Symptome Gingivorragies</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeGingivorragies"
+            id="field_symptomeGingivorragies"
+            data-cy="symptomeGingivorragies"
+            formControlName="symptomeGingivorragies"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeMetrorragies">Symptome Metrorragies</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeMetrorragies"
+            id="field_symptomeMetrorragies"
+            data-cy="symptomeMetrorragies"
+            formControlName="symptomeMetrorragies"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeMelena">Symptome Melena</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeMelena"
+            id="field_symptomeMelena"
+            data-cy="symptomeMelena"
+            formControlName="symptomeMelena"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeHemoptysie">Symptome Hemoptysie</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeHemoptysie"
+            id="field_symptomeHemoptysie"
+            data-cy="symptomeHemoptysie"
+            formControlName="symptomeHemoptysie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeHemorragiePostAmygdalectomie">Symptome Hemorragie Post Amygdalectomie</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeHemorragiePostAmygdalectomie"
+            id="field_symptomeHemorragiePostAmygdalectomie"
+            data-cy="symptomeHemorragiePostAmygdalectomie"
+            formControlName="symptomeHemorragiePostAmygdalectomie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeHemorragiePostAvulsionDentaire">Symptome Hemorragie Post Avulsion Dentaire</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeHemorragiePostAvulsionDentaire"
+            id="field_symptomeHemorragiePostAvulsionDentaire"
+            data-cy="symptomeHemorragiePostAvulsionDentaire"
+            formControlName="symptomeHemorragiePostAvulsionDentaire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeHemorragieChuteCordon">Symptome Hemorragie Chute Cordon</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeHemorragieChuteCordon"
+            id="field_symptomeHemorragieChuteCordon"
+            data-cy="symptomeHemorragieChuteCordon"
+            formControlName="symptomeHemorragieChuteCordon"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeAutre">Symptome Autre</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="symptomeAutre"
+            id="field_symptomeAutre"
+            data-cy="symptomeAutre"
+            formControlName="symptomeAutre"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_symptomeAutreDescription">Symptome Autre Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="symptomeAutreDescription"
+            id="field_symptomeAutreDescription"
+            data-cy="symptomeAutreDescription"
+            formControlName="symptomeAutreDescription"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_datePremiereConsultation">Date Premiere Consultation</label>
+          <div class="input-group">
+            <input
+              id="field_datePremiereConsultation"
+              data-cy="datePremiereConsultation"
+              type="text"
+              class="form-control"
+              name="datePremiereConsultation"
+              ngbDatepicker
+              #datePremiereConsultationDp="ngbDatepicker"
+              formControlName="datePremiereConsultation"
+            />
+            <button type="button" class="btn btn-secondary" (click)="datePremiereConsultationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agePremiereConsultationJours">Age Premiere Consultation Jours</label>
+          <input
+            type="number"
+            class="form-control"
+            name="agePremiereConsultationJours"
+            id="field_agePremiereConsultationJours"
+            data-cy="agePremiereConsultationJours"
+            formControlName="agePremiereConsultationJours"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agePremiereConsultationMois">Age Premiere Consultation Mois</label>
+          <input
+            type="number"
+            class="form-control"
+            name="agePremiereConsultationMois"
+            id="field_agePremiereConsultationMois"
+            data-cy="agePremiereConsultationMois"
+            formControlName="agePremiereConsultationMois"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agePremiereConsultationAnnees">Age Premiere Consultation Annees</label>
+          <input
+            type="number"
+            class="form-control"
+            name="agePremiereConsultationAnnees"
+            id="field_agePremiereConsultationAnnees"
+            data-cy="agePremiereConsultationAnnees"
+            formControlName="agePremiereConsultationAnnees"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDiagnosticJours">Age Diagnostic Jours</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ageDiagnosticJours"
+            id="field_ageDiagnosticJours"
+            data-cy="ageDiagnosticJours"
+            formControlName="ageDiagnosticJours"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDiagnosticMois">Age Diagnostic Mois</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ageDiagnosticMois"
+            id="field_ageDiagnosticMois"
+            data-cy="ageDiagnosticMois"
+            formControlName="ageDiagnosticMois"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDiagnosticAnnees">Age Diagnostic Annees</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ageDiagnosticAnnees"
+            id="field_ageDiagnosticAnnees"
+            data-cy="ageDiagnosticAnnees"
+            formControlName="ageDiagnosticAnnees"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hb">Hb</label>
+          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hte">Hte</label>
+          <input type="number" class="form-control" name="hte" id="field_hte" data-cy="hte" formControlName="hte" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_plaquettes">Plaquettes</label>
+          <input
+            type="number"
+            class="form-control"
+            name="plaquettes"
+            id="field_plaquettes"
+            data-cy="plaquettes"
+            formControlName="plaquettes"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pfaColEpi">Pfa Col Epi</label>
+          <input type="number" class="form-control" name="pfaColEpi" id="field_pfaColEpi" data-cy="pfaColEpi" formControlName="pfaColEpi" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pfaColADP">Pfa Col ADP</label>
+          <input type="number" class="form-control" name="pfaColADP" id="field_pfaColADP" data-cy="pfaColADP" formControlName="pfaColADP" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tp">Tp</label>
+          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tpMPlusT">Tp M Plus T</label>
+          <input type="number" class="form-control" name="tpMPlusT" id="field_tpMPlusT" data-cy="tpMPlusT" formControlName="tpMPlusT" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fibrinogene">Fibrinogene</label>
+          <input
+            type="number"
+            class="form-control"
+            name="fibrinogene"
+            id="field_fibrinogene"
+            data-cy="fibrinogene"
+            formControlName="fibrinogene"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tcaMT">Tca MT</label>
+          <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tcaMPlusT">Tca M Plus T</label>
+          <input type="number" class="form-control" name="tcaMPlusT" id="field_tcaMPlusT" data-cy="tcaMPlusT" formControlName="tcaMPlusT" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tcaTemoin">Tca Temoin</label>
+          <input type="number" class="form-control" name="tcaTemoin" id="field_tcaTemoin" data-cy="tcaTemoin" formControlName="tcaTemoin" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_facteurXI">Facteur XI</label>
+          <input type="number" class="form-control" name="facteurXI" id="field_facteurXI" data-cy="facteurXI" formControlName="facteurXI" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autresFacteursDosageDescription">Autres Facteurs Dosage Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autresFacteursDosageDescription"
+            id="field_autresFacteursDosageDescription"
+            data-cy="autresFacteursDosageDescription"
+            formControlName="autresFacteursDosageDescription"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autresFacteursTaux1">Autres Facteurs Taux 1</label>
+          <input
+            type="number"
+            class="form-control"
+            name="autresFacteursTaux1"
+            id="field_autresFacteursTaux1"
+            data-cy="autresFacteursTaux1"
+            formControlName="autresFacteursTaux1"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autresFacteursTaux2">Autres Facteurs Taux 2</label>
+          <input
+            type="number"
+            class="form-control"
+            name="autresFacteursTaux2"
+            id="field_autresFacteursTaux2"
+            data-cy="autresFacteursTaux2"
+            formControlName="autresFacteursTaux2"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autresFacteursTaux3">Autres Facteurs Taux 3</label>
+          <input
+            type="number"
+            class="form-control"
+            name="autresFacteursTaux3"
+            id="field_autresFacteursTaux3"
+            data-cy="autresFacteursTaux3"
+            formControlName="autresFacteursTaux3"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_confirmationMoleculaire">Confirmation Moleculaire</label>
+          <select
+            class="form-control"
+            name="confirmationMoleculaire"
+            formControlName="confirmationMoleculaire"
+            id="field_confirmationMoleculaire"
+            data-cy="confirmationMoleculaire"
+          >
+            <option [ngValue]="null"></option>
+            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mutationPresente">Mutation Presente</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="mutationPresente"
+            id="field_mutationPresente"
+            data-cy="mutationPresente"
+            formControlName="mutationPresente"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mutationNom">Mutation Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="mutationNom"
+            id="field_mutationNom"
+            data-cy="mutationNom"
+            formControlName="mutationNom"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mutationZygote">Mutation Zygote</label>
+          <select
+            class="form-control"
+            name="mutationZygote"
+            formControlName="mutationZygote"
+            id="field_mutationZygote"
+            data-cy="mutationZygote"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeZygote of typeZygoteValues; track $index) {
+              <option [value]="typeZygote">{{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[typeZygote] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mutation2Nom">Mutation 2 Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="mutation2Nom"
+            id="field_mutation2Nom"
+            data-cy="mutation2Nom"
+            formControlName="mutation2Nom"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serologieVHB">Serologie VHB</label>
+          <select class="form-control" name="serologieVHB" formControlName="serologieVHB" id="field_serologieVHB" data-cy="serologieVHB">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serologieVHC">Serologie VHC</label>
+          <select class="form-control" name="serologieVHC" formControlName="serologieVHC" id="field_serologieVHC" data-cy="serologieVHC">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serologieVIH">Serologie VIH</label>
+          <select class="form-control" name="serologieVIH" formControlName="serologieVIH" id="field_serologieVIH" data-cy="serologieVIH">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_epistaxis">Epistaxis</label>
+          <input type="checkbox" class="form-check" name="epistaxis" id="field_epistaxis" data-cy="epistaxis" formControlName="epistaxis" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceEpistaxis">Frequence Epistaxis</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceEpistaxis"
+            id="field_frequenceEpistaxis"
+            data-cy="frequenceEpistaxis"
+            formControlName="frequenceEpistaxis"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_gingivorragies">Gingivorragies</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="gingivorragies"
+            id="field_gingivorragies"
+            data-cy="gingivorragies"
+            formControlName="gingivorragies"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeGingivorragies">Type Gingivorragies</label>
+          <select
+            class="form-control"
+            name="typeGingivorragies"
+            formControlName="typeGingivorragies"
+            id="field_typeGingivorragies"
+            data-cy="typeGingivorragies"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceGingivorragies">Frequence Gingivorragies</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceGingivorragies"
+            id="field_frequenceGingivorragies"
+            data-cy="frequenceGingivorragies"
+            formControlName="frequenceGingivorragies"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ecchymose">Ecchymose</label>
+          <input type="checkbox" class="form-check" name="ecchymose" id="field_ecchymose" data-cy="ecchymose" formControlName="ecchymose" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeEcchymose">Type Ecchymose</label>
+          <select
+            class="form-control"
+            name="typeEcchymose"
+            formControlName="typeEcchymose"
+            id="field_typeEcchymose"
+            data-cy="typeEcchymose"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceEcchymose">Frequence Ecchymose</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceEcchymose"
+            id="field_frequenceEcchymose"
+            data-cy="frequenceEcchymose"
+            formControlName="frequenceEcchymose"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_menorragie">Menorragie</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="menorragie"
+            id="field_menorragie"
+            data-cy="menorragie"
+            formControlName="menorragie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceMenorragie">Frequence Menorragie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceMenorragie"
+            id="field_frequenceMenorragie"
+            data-cy="frequenceMenorragie"
+            formControlName="frequenceMenorragie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hematemese">Hematemese</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hematemese"
+            id="field_hematemese"
+            data-cy="hematemese"
+            formControlName="hematemese"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHematemese">Frequence Hematemese</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHematemese"
+            id="field_frequenceHematemese"
+            data-cy="frequenceHematemese"
+            formControlName="frequenceHematemese"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rectorragie">Rectorragie</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="rectorragie"
+            id="field_rectorragie"
+            data-cy="rectorragie"
+            formControlName="rectorragie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceRectorragie">Frequence Rectorragie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceRectorragie"
+            id="field_frequenceRectorragie"
+            data-cy="frequenceRectorragie"
+            formControlName="frequenceRectorragie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hematurie">Hematurie</label>
+          <input type="checkbox" class="form-check" name="hematurie" id="field_hematurie" data-cy="hematurie" formControlName="hematurie" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHematurie">Frequence Hematurie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHematurie"
+            id="field_frequenceHematurie"
+            data-cy="frequenceHematurie"
+            formControlName="frequenceHematurie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hemorragiePostTraumatique">Hemorragie Post Traumatique</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hemorragiePostTraumatique"
+            id="field_hemorragiePostTraumatique"
+            data-cy="hemorragiePostTraumatique"
+            formControlName="hemorragiePostTraumatique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHemorragiePostTraumatique">Frequence Hemorragie Post Traumatique</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHemorragiePostTraumatique"
+            id="field_frequenceHemorragiePostTraumatique"
+            data-cy="frequenceHemorragiePostTraumatique"
+            formControlName="frequenceHemorragiePostTraumatique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hematomeSousCutane">Hematome Sous Cutane</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hematomeSousCutane"
+            id="field_hematomeSousCutane"
+            data-cy="hematomeSousCutane"
+            formControlName="hematomeSousCutane"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHematomeSousCutane">Type Hematome Sous Cutane</label>
+          <select
+            class="form-control"
+            name="typeHematomeSousCutane"
+            formControlName="typeHematomeSousCutane"
+            id="field_typeHematomeSousCutane"
+            data-cy="typeHematomeSousCutane"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHematomeSousCutane">Frequence Hematome Sous Cutane</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHematomeSousCutane"
+            id="field_frequenceHematomeSousCutane"
+            data-cy="frequenceHematomeSousCutane"
+            formControlName="frequenceHematomeSousCutane"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hematomeMusculaire">Hematome Musculaire</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hematomeMusculaire"
+            id="field_hematomeMusculaire"
+            data-cy="hematomeMusculaire"
+            formControlName="hematomeMusculaire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHematomeMusculaire">Type Hematome Musculaire</label>
+          <select
+            class="form-control"
+            name="typeHematomeMusculaire"
+            formControlName="typeHematomeMusculaire"
+            id="field_typeHematomeMusculaire"
+            data-cy="typeHematomeMusculaire"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHematomeMusculaire">Frequence Hematome Musculaire</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHematomeMusculaire"
+            id="field_frequenceHematomeMusculaire"
+            data-cy="frequenceHematomeMusculaire"
+            formControlName="frequenceHematomeMusculaire"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hematomeTissusMousProfonds">Hematome Tissus Mous Profonds</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hematomeTissusMousProfonds"
+            id="field_hematomeTissusMousProfonds"
+            data-cy="hematomeTissusMousProfonds"
+            formControlName="hematomeTissusMousProfonds"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHematomeTissusMousProfonds">Type Hematome Tissus Mous Profonds</label>
+          <select
+            class="form-control"
+            name="typeHematomeTissusMousProfonds"
+            formControlName="typeHematomeTissusMousProfonds"
+            id="field_typeHematomeTissusMousProfonds"
+            data-cy="typeHematomeTissusMousProfonds"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHematomeTissusMousProfonds">Frequence Hematome Tissus Mous Profonds</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHematomeTissusMousProfonds"
+            id="field_frequenceHematomeTissusMousProfonds"
+            data-cy="frequenceHematomeTissusMousProfonds"
+            formControlName="frequenceHematomeTissusMousProfonds"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hemarthrose">Hemarthrose</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hemarthrose"
+            id="field_hemarthrose"
+            data-cy="hemarthrose"
+            formControlName="hemarthrose"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeHemarthrose">Type Hemarthrose</label>
+          <select
+            class="form-control"
+            name="typeHemarthrose"
+            formControlName="typeHemarthrose"
+            id="field_typeHemarthrose"
+            data-cy="typeHemarthrose"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHemarthrose">Frequence Hemarthrose</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHemarthrose"
+            id="field_frequenceHemarthrose"
+            data-cy="frequenceHemarthrose"
+            formControlName="frequenceHemarthrose"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_saignementSNC">Saignement SNC</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="saignementSNC"
+            id="field_saignementSNC"
+            data-cy="saignementSNC"
+            formControlName="saignementSNC"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeSaignementSNC">Type Saignement SNC</label>
+          <select
+            class="form-control"
+            name="typeSaignementSNC"
+            formControlName="typeSaignementSNC"
+            id="field_typeSaignementSNC"
+            data-cy="typeSaignementSNC"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeManifestation of typeManifestationValues; track $index) {
+              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceSaignementSNC">Frequence Saignement SNC</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceSaignementSNC"
+            id="field_frequenceSaignementSNC"
+            data-cy="frequenceSaignementSNC"
+            formControlName="frequenceSaignementSNC"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_saignementChuteCordon">Saignement Chute Cordon</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="saignementChuteCordon"
+            id="field_saignementChuteCordon"
+            data-cy="saignementChuteCordon"
+            formControlName="saignementChuteCordon"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceSaignementChuteCordon">Frequence Saignement Chute Cordon</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceSaignementChuteCordon"
+            id="field_frequenceSaignementChuteCordon"
+            data-cy="frequenceSaignementChuteCordon"
+            formControlName="frequenceSaignementChuteCordon"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_retardCicatrisationPlaies">Retard Cicatrisation Plaies</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="retardCicatrisationPlaies"
+            id="field_retardCicatrisationPlaies"
+            data-cy="retardCicatrisationPlaies"
+            formControlName="retardCicatrisationPlaies"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceRetardCicatrisationPlaies">Frequence Retard Cicatrisation Plaies</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceRetardCicatrisationPlaies"
+            id="field_frequenceRetardCicatrisationPlaies"
+            data-cy="frequenceRetardCicatrisationPlaies"
+            formControlName="frequenceRetardCicatrisationPlaies"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autresManifestations">Autres Manifestations</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="autresManifestations"
+            id="field_autresManifestations"
+            data-cy="autresManifestations"
+            formControlName="autresManifestations"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_faussesCouchesSpontaneesRecurrence">Fausses Couches Spontanees Recurrence</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="faussesCouchesSpontaneesRecurrence"
+            id="field_faussesCouchesSpontaneesRecurrence"
+            data-cy="faussesCouchesSpontaneesRecurrence"
+            formControlName="faussesCouchesSpontaneesRecurrence"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceFaussesCouches">Frequence Fausses Couches</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceFaussesCouches"
+            id="field_frequenceFaussesCouches"
+            data-cy="frequenceFaussesCouches"
+            formControlName="frequenceFaussesCouches"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_accidentsThrombotiques">Accidents Thrombotiques</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="accidentsThrombotiques"
+            id="field_accidentsThrombotiques"
+            data-cy="accidentsThrombotiques"
+            formControlName="accidentsThrombotiques"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_thromboseVeineuse">Thrombose Veineuse</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="thromboseVeineuse"
+            id="field_thromboseVeineuse"
+            data-cy="thromboseVeineuse"
+            formControlName="thromboseVeineuse"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_thromboseArterielle">Thrombose Arterielle</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="thromboseArterielle"
+            id="field_thromboseArterielle"
+            data-cy="thromboseArterielle"
+            formControlName="thromboseArterielle"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceAccidentsThrombotiques">Frequence Accidents Thrombotiques</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceAccidentsThrombotiques"
+            id="field_frequenceAccidentsThrombotiques"
+            data-cy="frequenceAccidentsThrombotiques"
+            formControlName="frequenceAccidentsThrombotiques"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hemoperitoine">Hemoperitoine</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hemoperitoine"
+            id="field_hemoperitoine"
+            data-cy="hemoperitoine"
+            formControlName="hemoperitoine"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHemoperitoine">Frequence Hemoperitoine</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHemoperitoine"
+            id="field_frequenceHemoperitoine"
+            data-cy="frequenceHemoperitoine"
+            formControlName="frequenceHemoperitoine"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ruptureKystesHemorragiques">Rupture Kystes Hemorragiques</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="ruptureKystesHemorragiques"
+            id="field_ruptureKystesHemorragiques"
+            data-cy="ruptureKystesHemorragiques"
+            formControlName="ruptureKystesHemorragiques"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceRuptureKystes">Frequence Rupture Kystes</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceRuptureKystes"
+            id="field_frequenceRuptureKystes"
+            data-cy="frequenceRuptureKystes"
+            formControlName="frequenceRuptureKystes"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hemorragieGrave">Hemorragie Grave</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hemorragieGrave"
+            id="field_hemorragieGrave"
+            data-cy="hemorragieGrave"
+            formControlName="hemorragieGrave"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_frequenceHemorragieGrave">Frequence Hemorragie Grave</label>
+          <input
+            type="number"
+            class="form-control"
+            name="frequenceHemorragieGrave"
+            id="field_frequenceHemorragieGrave"
+            data-cy="frequenceHemorragieGrave"
+            formControlName="frequenceHemorragieGrave"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_graviteDeglobulisation">Gravite Deglobulisation</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="graviteDeglobulisation"
+            id="field_graviteDeglobulisation"
+            data-cy="graviteDeglobulisation"
+            formControlName="graviteDeglobulisation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_graviteEtatDeChoc">Gravite Etat De Choc</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="graviteEtatDeChoc"
+            id="field_graviteEtatDeChoc"
+            data-cy="graviteEtatDeChoc"
+            formControlName="graviteEtatDeChoc"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_graviteParLocalisation">Gravite Par Localisation</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="graviteParLocalisation"
+            id="field_graviteParLocalisation"
+            data-cy="graviteParLocalisation"
+            formControlName="graviteParLocalisation"
+          />
+        </div>
+
+        @let siegeGraviteLocalisationRef = editForm.get('siegeGraviteLocalisation')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_siegeGraviteLocalisation">Siege Gravite Localisation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="siegeGraviteLocalisation"
+            id="field_siegeGraviteLocalisation"
+            data-cy="siegeGraviteLocalisation"
+            formControlName="siegeGraviteLocalisation"
+          />
+          @if (siegeGraviteLocalisationRef.invalid && (siegeGraviteLocalisationRef.dirty || siegeGraviteLocalisationRef.touched)) {
+            <div>
+              @if (editForm.get('siegeGraviteLocalisation')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_chirurgiePrepare">Chirurgie Prepare</label>
+          <select
+            class="form-control"
+            name="chirurgiePrepare"
+            formControlName="chirurgiePrepare"
+            id="field_chirurgiePrepare"
+            data-cy="chirurgiePrepare"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_chirurgieSuiteHemorragique">Chirurgie Suite Hemorragique</label>
+          <select
+            class="form-control"
+            name="chirurgieSuiteHemorragique"
+            formControlName="chirurgieSuiteHemorragique"
+            id="field_chirurgieSuiteHemorragique"
+            data-cy="chirurgieSuiteHemorragique"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_circoncisionPrepare">Circoncision Prepare</label>
+          <select
+            class="form-control"
+            name="circoncisionPrepare"
+            formControlName="circoncisionPrepare"
+            id="field_circoncisionPrepare"
+            data-cy="circoncisionPrepare"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_circoncisionSuiteHemorragique">Circoncision Suite Hemorragique</label>
+          <select
+            class="form-control"
+            name="circoncisionSuiteHemorragique"
+            formControlName="circoncisionSuiteHemorragique"
+            id="field_circoncisionSuiteHemorragique"
+            data-cy="circoncisionSuiteHemorragique"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageCirconcision">Age Circoncision</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ageCirconcision"
+            id="field_ageCirconcision"
+            data-cy="ageCirconcision"
+            formControlName="ageCirconcision"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementPFC">Traitement PFC</label>
+          <select
+            class="form-control"
+            name="traitementPFC"
+            formControlName="traitementPFC"
+            id="field_traitementPFC"
+            data-cy="traitementPFC"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementCryoprecipite">Traitement Cryoprecipite</label>
+          <select
+            class="form-control"
+            name="traitementCryoprecipite"
+            formControlName="traitementCryoprecipite"
+            id="field_traitementCryoprecipite"
+            data-cy="traitementCryoprecipite"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementConcentreFacteurXI">Traitement Concentre Facteur XI</label>
+          <select
+            class="form-control"
+            name="traitementConcentreFacteurXI"
+            formControlName="traitementConcentreFacteurXI"
+            id="field_traitementConcentreFacteurXI"
+            data-cy="traitementConcentreFacteurXI"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementCulotsPlaquettaires">Traitement Culots Plaquettaires</label>
+          <select
+            class="form-control"
+            name="traitementCulotsPlaquettaires"
+            formControlName="traitementCulotsPlaquettaires"
+            id="field_traitementCulotsPlaquettaires"
+            data-cy="traitementCulotsPlaquettaires"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementDicynone">Traitement Dicynone</label>
+          <select
+            class="form-control"
+            name="traitementDicynone"
+            formControlName="traitementDicynone"
+            id="field_traitementDicynone"
+            data-cy="traitementDicynone"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementExacyl">Traitement Exacyl</label>
+          <select
+            class="form-control"
+            name="traitementExacyl"
+            formControlName="traitementExacyl"
+            id="field_traitementExacyl"
+            data-cy="traitementExacyl"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementMartial">Traitement Martial</label>
+          <select
+            class="form-control"
+            name="traitementMartial"
+            formControlName="traitementMartial"
+            id="field_traitementMartial"
+            data-cy="traitementMartial"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_traitementOestroprogestatif">Traitement Oestroprogestatif</label>
+          <select
+            class="form-control"
+            name="traitementOestroprogestatif"
+            formControlName="traitementOestroprogestatif"
+            id="field_traitementOestroprogestatif"
+            data-cy="traitementOestroprogestatif"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_transfusionCGR">Transfusion CGR</label>
+          <select
+            class="form-control"
+            name="transfusionCGR"
+            formControlName="transfusionCGR"
+            id="field_transfusionCGR"
+            data-cy="transfusionCGR"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_alloImmunisation">Allo Immunisation</label>
+          <select
+            class="form-control"
+            name="alloImmunisation"
+            formControlName="alloImmunisation"
+            id="field_alloImmunisation"
+            data-cy="alloImmunisation"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_inhibiteurNeutralisant">Inhibiteur Neutralisant</label>
+          <select
+            class="form-control"
+            name="inhibiteurNeutralisant"
+            formControlName="inhibiteurNeutralisant"
+            id="field_inhibiteurNeutralisant"
+            data-cy="inhibiteurNeutralisant"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_titreInhibiteurUB">Titre Inhibiteur UB</label>
+          <input
+            type="number"
+            class="form-control"
+            name="titreInhibiteurUB"
+            id="field_titreInhibiteurUB"
+            data-cy="titreInhibiteurUB"
+            formControlName="titreInhibiteurUB"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_inhibiteurNonNeutralisant">Inhibiteur Non Neutralisant</label>
+          <select
+            class="form-control"
+            name="inhibiteurNonNeutralisant"
+            formControlName="inhibiteurNonNeutralisant"
+            id="field_inhibiteurNonNeutralisant"
+            data-cy="inhibiteurNonNeutralisant"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_infectionVIH">Infection VIH</label>
+          <select class="form-control" name="infectionVIH" formControlName="infectionVIH" id="field_infectionVIH" data-cy="infectionVIH">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_infectionVHC">Infection VHC</label>
+          <select class="form-control" name="infectionVHC" formControlName="infectionVHC" id="field_infectionVHC" data-cy="infectionVHC">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_infectionVHB">Infection VHB</label>
+          <select class="form-control" name="infectionVHB" formControlName="infectionVHB" id="field_infectionVHB" data-cy="infectionVHB">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_thrombose">Thrombose</label>
+          <input type="checkbox" class="form-check" name="thrombose" id="field_thrombose" data-cy="thrombose" formControlName="thrombose" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reactionAllergique">Reaction Allergique</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="reactionAllergique"
+            id="field_reactionAllergique"
+            data-cy="reactionAllergique"
+            formControlName="reactionAllergique"
+          />
+        </div>
+
+        @let autresComplicationsRef = editForm.get('autresComplications')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_autresComplications">Autres Complications</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autresComplications"
+            id="field_autresComplications"
+            data-cy="autresComplications"
+            formControlName="autresComplications"
+          />
+          @if (autresComplicationsRef.invalid && (autresComplicationsRef.dirty || autresComplicationsRef.touched)) {
+            <div>
+              @if (editForm.get('autresComplications')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adherenceTherapeutique">Adherence Therapeutique</label>
+          <select
+            class="form-control"
+            name="adherenceTherapeutique"
+            formControlName="adherenceTherapeutique"
+            id="field_adherenceTherapeutique"
+            data-cy="adherenceTherapeutique"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        @let causeNonAdherenceRef = editForm.get('causeNonAdherence')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_causeNonAdherence">Cause Non Adherence</label>
+          <input
+            type="text"
+            class="form-control"
+            name="causeNonAdherence"
+            id="field_causeNonAdherence"
+            data-cy="causeNonAdherence"
+            formControlName="causeNonAdherence"
+          />
+          @if (causeNonAdherenceRef.invalid && (causeNonAdherenceRef.dirty || causeNonAdherenceRef.touched)) {
+            <div>
+              @if (editForm.get('causeNonAdherence')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_statutSocial">Statut Social</label>
+          <select class="form-control" name="statutSocial" formControlName="statutSocial" id="field_statutSocial" data-cy="statutSocial">
+            <option [ngValue]="null"></option>
+            @for (statutSocial of statutSocialValues; track $index) {
+              <option [value]="statutSocial">
+                {{
+                  { null: '', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE', SCOLARISE: 'SCOLARISE', PRESCOLARISE: 'PRESCOLARISE' }[
+                    statutSocial
+                  ]
+                }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_marie">Marie</label>
+          <select class="form-control" name="marie" formControlName="marie" id="field_marie" data-cy="marie">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_enfants">Enfants</label>
+          <select class="form-control" name="enfants" formControlName="enfants" id="field_enfants" data-cy="enfants">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_activitePhysique">Activite Physique</label>
+          <select
+            class="form-control"
+            name="activitePhysique"
+            formControlName="activitePhysique"
+            id="field_activitePhysique"
+            data-cy="activitePhysique"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        @let typeActivitePhysiqueRef = editForm.get('typeActivitePhysique')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_typeActivitePhysique">Type Activite Physique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeActivitePhysique"
+            id="field_typeActivitePhysique"
+            data-cy="typeActivitePhysique"
+            formControlName="typeActivitePhysique"
+          />
+          @if (typeActivitePhysiqueRef.invalid && (typeActivitePhysiqueRef.dirty || typeActivitePhysiqueRef.touched)) {
+            <div>
+              @if (editForm.get('typeActivitePhysique')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sequelles">Sequelles</label>
+          <select class="form-control" name="sequelles" formControlName="sequelles" id="field_sequelles" data-cy="sequelles">
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        @let typeSequellesRef = editForm.get('typeSequelles')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_typeSequelles">Type Sequelles</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeSequelles"
+            id="field_typeSequelles"
+            data-cy="typeSequelles"
+            formControlName="typeSequelles"
+          />
+          @if (typeSequellesRef.invalid && (typeSequellesRef.dirty || typeSequellesRef.touched)) {
+            <div>
+              @if (editForm.get('typeSequelles')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_patientDecede">Patient Decede</label>
+          <select
+            class="form-control"
+            name="patientDecede"
+            formControlName="patientDecede"
+            id="field_patientDecede"
+            data-cy="patientDecede"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateDeces">Date Deces</label>
+          <div class="input-group">
+            <input
+              id="field_dateDeces"
+              data-cy="dateDeces"
+              type="text"
+              class="form-control"
+              name="dateDeces"
+              ngbDatepicker
+              #dateDecesDp="ngbDatepicker"
+              formControlName="dateDeces"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDecesDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ageDeces">Age Deces</label>
+          <input type="number" class="form-control" name="ageDeces" id="field_ageDeces" data-cy="ageDeces" formControlName="ageDeces" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDeces">Cause Deces</label>
+          <select class="form-control" name="causeDeces" formControlName="causeDeces" id="field_causeDeces" data-cy="causeDeces">
+            <option [ngValue]="null"></option>
+            @for (causeDeces of causeDecesValues; track $index) {
+              <option [value]="causeDeces">
+                {{
+                  {
+                    null: '',
+                    HEMORRAGIE_SNC: 'HEMORRAGIE_SNC',
+                    HEMORRAGIE_AUTRE: 'HEMORRAGIE_AUTRE',
+                    HIV: 'HIV',
+                    INFECTION_AUTRE: 'INFECTION_AUTRE',
+                    THROMBOEMBOLIQUE: 'THROMBOEMBOLIQUE',
+                    CANCER: 'CANCER',
+                    COVID19: 'COVID19',
+                    INCONNUE: 'INCONNUE',
+                    AUTRE: 'AUTRE',
+                  }[causeDeces]
+                }}
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -26,6 +26,26 @@ const routes: Routes = [
     data: { pageTitle: 'FicheFacteurVIIIS' },
     loadChildren: () => import('./fiche-facteur-viii/fiche-facteur-viii.routes'),
   },
+  {
+    path: 'fiche-von-willebrand',
+    data: { pageTitle: 'FicheVonWillebrands' },
+    loadChildren: () => import('./fiche-von-willebrand/fiche-von-willebrand.routes'),
+  },
+  {
+    path: 'fiche-facteur-xi',
+    data: { pageTitle: 'FicheFacteurXIS' },
+    loadChildren: () => import('./fiche-facteur-xi/fiche-facteur-xi.routes'),
+  },
+  {
+    path: 'fiche-facteur-xiii',
+    data: { pageTitle: 'FicheFacteurXIIIS' },
+    loadChildren: () => import('./fiche-facteur-xiii/fiche-facteur-xiii.routes'),
+  },
+  {
+    path: 'fiche-facteur-xviii',
+    data: { pageTitle: 'FicheFacteurXVIIIS' },
+    loadChildren: () => import('./fiche-facteur-xviii/fiche-facteur-xviii.routes'),
+  },
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 

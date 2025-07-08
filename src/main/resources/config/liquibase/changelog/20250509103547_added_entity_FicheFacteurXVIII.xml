@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity FicheFacteurXVIII.
+    -->
+    <changeSet id="20250509103547-1" author="jhipster">
+        <createTable tableName="fiche_facteur_xviii">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dossier_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ordre_number" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="index_number" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="prenom" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nom" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nom_jeune_fille" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="profession" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="etat_civil" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="service_clinique" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="autre_service_clinique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="couverture_sociale" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="sexe" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_naissance" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_actuel" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="origine" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="autre_origine" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="adresse" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="telephone" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+            <column name="prenom_pere" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="profession_pere" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nom_prenom_mere" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="profession_mere" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="medecin_traitant" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="service_origine" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="biologiste_responsable_dg" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="diagnostic" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="autre_diagnostic" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="annee_diagnostic" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="consentement_registre" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_enregistrement_registre" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="parents_consanguins" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="degre_parente_consanguins" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cas_similaires" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nombre_cas" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="cas_1_numero" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="lien_parente_cas_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="degre_parente_cas_1" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_hemorragie_cas_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cas_2_numero" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="lien_parente_cas_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="degre_parente_cas_2" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_hemorragie_cas_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cas_3_numero" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="lien_parente_cas_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="degre_parente_cas_3" type="varchar(25)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_hemorragie_cas_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="deces_syndrome_hemorragique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nombre_deces" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="deces_1_numero" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="lien_parente_deces_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cause_deces_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="deces_2_numero" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="lien_parente_deces_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cause_deces_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="deces_3_numero" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="lien_parente_deces_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cause_deces_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="enquete_familiale" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="circ_hemorragique" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="precisions_circ_hemorragique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="decouverte_fortuite_preop" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="precisions_decouverte_fortuite" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jamais_saignement" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_premier_signe_jours" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_premier_signe_mois" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_premier_signe_annees" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_ecchymose" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_epistaxis" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_gingivorragies" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_metrorragies" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_melena" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_hemoptysie" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_post_amygdalectomie" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_post_avulsion_dentaire" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_chute_cordon" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_autre" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="symptome_autre_description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_premiere_consultation" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_premiere_consultation_jours" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_premiere_consultation_mois" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_premiere_consultation_annees" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_diagnostic_jours" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_diagnostic_mois" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_diagnostic_annees" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hb" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="ht" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="plaquettes" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="col_epi" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="col_adp" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="tp" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="tp_m_plus_t" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="fibrinogene" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="tca_mt" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="tca_m_plus_t" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="tca_temoin" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="facteur_deficitaire_autre" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="taux_facteur_deficitaire_autre" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="facteur_supplementaire_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="taux_supplementaire_1" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="facteur_supplementaire_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="taux_supplementaire_2" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="facteur_supplementaire_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="taux_supplementaire_3" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="confirmation_moleculaire" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="mutation_presente" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="mutation_nom" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="mutation_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="mutation_2_nom" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="serologie_vhb" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="serologie_vhc" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="serologie_vih" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="epistaxis" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_epistaxis" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="gingivorragies" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_gingivorragies" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_gingivorragies" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ecchymose" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_ecchymose" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_ecchymose" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="menorragie" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_menorragie" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hematemese" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_hematemese" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="rectorragie" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_rectorragie" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hematurie" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_hematurie" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hematome_sous_cutane" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_hematome_sous_cutane" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_hematome_sous_cutane" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hematome_musculaire" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="siege_hematome_musculaire" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_hematome_musculaire" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_hematome_musculaire" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hemarthrose" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_hemarthrose" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_hemarthrose" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="saignement_snc" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_saignement_snc" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_saignement_snc" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="saignement_chute_cordon" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_saignement_chute_cordon" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="retard_cicatrisation_plaies" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_retard_cicatrisation_plaies" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="autres_manifestations" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="fausses_couches_spontanees_recurrence" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_fausses_couches" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="accidents_thrombotiques" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="thrombose_veineuse" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="thrombose_arterielle" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_accidents_thrombotiques" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hemoperitoine" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_hemoperitoine" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="rupture_kystes_hemorragiques" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_rupture_kystes" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="hemorragie_grave" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frequence_hemorragie_grave" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="gravite_deglobulisation" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="gravite_etat_de_choc" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="gravite_par_localisation" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="siege_gravite_localisation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="chirurgie_prepare" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="chirurgie_suite_hemorragique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="circoncision_prepare" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="circoncision_suite_hemorragique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_circoncision" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_pfc" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_cryoprecipite" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_concentre_facteur_xi" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_culots_plaquettaires" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_dicynone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_exacyl" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_martial" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="traitement_oestroprogestatif" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="transfusion_cgr" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="allo_immunisation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="inhibiteur_neutralisant" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="titre_inhibiteur_ub" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="inhibiteur_non_neutralisant" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="infection_vih" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="infection_vhc" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="infection_vhb" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="thrombose" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="reaction_allergique" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="autres_complications" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="adherence_therapeutique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cause_non_adherence" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="statut_social" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="marie" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="enfants" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="activite_physique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_activite_physique" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sequelles" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_sequelles" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="patient_decede" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_deces" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="age_deces" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="cause_deces" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20250509103547-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/fiche_facteur_xviii.csv"
+                  separator=";"
+                  tableName="fiche_facteur_xviii"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="dossier_number" type="string"/>
+            <column name="ordre_number" type="string"/>
+            <column name="index_number" type="string"/>
+            <column name="prenom" type="string"/>
+            <column name="nom" type="string"/>
+            <column name="nom_jeune_fille" type="string"/>
+            <column name="profession" type="string"/>
+            <column name="etat_civil" type="string"/>
+            <column name="service_clinique" type="string"/>
+            <column name="autre_service_clinique" type="string"/>
+            <column name="couverture_sociale" type="string"/>
+            <column name="sexe" type="string"/>
+            <column name="date_naissance" type="date"/>
+            <column name="age_actuel" type="numeric"/>
+            <column name="origine" type="string"/>
+            <column name="autre_origine" type="string"/>
+            <column name="adresse" type="string"/>
+            <column name="telephone" type="string"/>
+            <column name="prenom_pere" type="string"/>
+            <column name="profession_pere" type="string"/>
+            <column name="nom_prenom_mere" type="string"/>
+            <column name="profession_mere" type="string"/>
+            <column name="medecin_traitant" type="string"/>
+            <column name="service_origine" type="string"/>
+            <column name="biologiste_responsable_dg" type="string"/>
+            <column name="diagnostic" type="string"/>
+            <column name="autre_diagnostic" type="string"/>
+            <column name="annee_diagnostic" type="numeric"/>
+            <column name="consentement_registre" type="string"/>
+            <column name="date_enregistrement_registre" type="date"/>
+            <column name="parents_consanguins" type="string"/>
+            <column name="degre_parente_consanguins" type="string"/>
+            <column name="cas_similaires" type="string"/>
+            <column name="nombre_cas" type="numeric"/>
+            <column name="cas_1_numero" type="numeric"/>
+            <column name="lien_parente_cas_1" type="string"/>
+            <column name="degre_parente_cas_1" type="string"/>
+            <column name="type_hemorragie_cas_1" type="string"/>
+            <column name="cas_2_numero" type="numeric"/>
+            <column name="lien_parente_cas_2" type="string"/>
+            <column name="degre_parente_cas_2" type="string"/>
+            <column name="type_hemorragie_cas_2" type="string"/>
+            <column name="cas_3_numero" type="numeric"/>
+            <column name="lien_parente_cas_3" type="string"/>
+            <column name="degre_parente_cas_3" type="string"/>
+            <column name="type_hemorragie_cas_3" type="string"/>
+            <column name="deces_syndrome_hemorragique" type="string"/>
+            <column name="nombre_deces" type="numeric"/>
+            <column name="deces_1_numero" type="numeric"/>
+            <column name="lien_parente_deces_1" type="string"/>
+            <column name="cause_deces_1" type="string"/>
+            <column name="deces_2_numero" type="numeric"/>
+            <column name="lien_parente_deces_2" type="string"/>
+            <column name="cause_deces_2" type="string"/>
+            <column name="deces_3_numero" type="numeric"/>
+            <column name="lien_parente_deces_3" type="string"/>
+            <column name="cause_deces_3" type="string"/>
+            <column name="enquete_familiale" type="boolean"/>
+            <column name="circ_hemorragique" type="boolean"/>
+            <column name="precisions_circ_hemorragique" type="string"/>
+            <column name="decouverte_fortuite_preop" type="boolean"/>
+            <column name="precisions_decouverte_fortuite" type="string"/>
+            <column name="jamais_saignement" type="string"/>
+            <column name="age_premier_signe_jours" type="numeric"/>
+            <column name="age_premier_signe_mois" type="numeric"/>
+            <column name="age_premier_signe_annees" type="numeric"/>
+            <column name="symptome_ecchymose" type="boolean"/>
+            <column name="symptome_epistaxis" type="boolean"/>
+            <column name="symptome_gingivorragies" type="boolean"/>
+            <column name="symptome_metrorragies" type="boolean"/>
+            <column name="symptome_melena" type="boolean"/>
+            <column name="symptome_hemoptysie" type="boolean"/>
+            <column name="symptome_post_amygdalectomie" type="boolean"/>
+            <column name="symptome_post_avulsion_dentaire" type="boolean"/>
+            <column name="symptome_chute_cordon" type="boolean"/>
+            <column name="symptome_autre" type="boolean"/>
+            <column name="symptome_autre_description" type="string"/>
+            <column name="date_premiere_consultation" type="date"/>
+            <column name="age_premiere_consultation_jours" type="numeric"/>
+            <column name="age_premiere_consultation_mois" type="numeric"/>
+            <column name="age_premiere_consultation_annees" type="numeric"/>
+            <column name="age_diagnostic_jours" type="numeric"/>
+            <column name="age_diagnostic_mois" type="numeric"/>
+            <column name="age_diagnostic_annees" type="numeric"/>
+            <column name="hb" type="numeric"/>
+            <column name="ht" type="numeric"/>
+            <column name="plaquettes" type="numeric"/>
+            <column name="col_epi" type="numeric"/>
+            <column name="col_adp" type="numeric"/>
+            <column name="tp" type="numeric"/>
+            <column name="tp_m_plus_t" type="numeric"/>
+            <column name="fibrinogene" type="numeric"/>
+            <column name="tca_mt" type="numeric"/>
+            <column name="tca_m_plus_t" type="numeric"/>
+            <column name="tca_temoin" type="numeric"/>
+            <column name="facteur_deficitaire_autre" type="string"/>
+            <column name="taux_facteur_deficitaire_autre" type="numeric"/>
+            <column name="facteur_supplementaire_1" type="string"/>
+            <column name="taux_supplementaire_1" type="numeric"/>
+            <column name="facteur_supplementaire_2" type="string"/>
+            <column name="taux_supplementaire_2" type="numeric"/>
+            <column name="facteur_supplementaire_3" type="string"/>
+            <column name="taux_supplementaire_3" type="numeric"/>
+            <column name="confirmation_moleculaire" type="string"/>
+            <column name="mutation_presente" type="boolean"/>
+            <column name="mutation_nom" type="string"/>
+            <column name="mutation_type" type="string"/>
+            <column name="mutation_2_nom" type="string"/>
+            <column name="serologie_vhb" type="string"/>
+            <column name="serologie_vhc" type="string"/>
+            <column name="serologie_vih" type="string"/>
+            <column name="epistaxis" type="boolean"/>
+            <column name="frequence_epistaxis" type="numeric"/>
+            <column name="gingivorragies" type="boolean"/>
+            <column name="type_gingivorragies" type="string"/>
+            <column name="frequence_gingivorragies" type="numeric"/>
+            <column name="ecchymose" type="boolean"/>
+            <column name="type_ecchymose" type="string"/>
+            <column name="frequence_ecchymose" type="numeric"/>
+            <column name="menorragie" type="boolean"/>
+            <column name="frequence_menorragie" type="numeric"/>
+            <column name="hematemese" type="boolean"/>
+            <column name="frequence_hematemese" type="numeric"/>
+            <column name="rectorragie" type="boolean"/>
+            <column name="frequence_rectorragie" type="numeric"/>
+            <column name="hematurie" type="boolean"/>
+            <column name="frequence_hematurie" type="numeric"/>
+            <column name="hematome_sous_cutane" type="boolean"/>
+            <column name="type_hematome_sous_cutane" type="string"/>
+            <column name="frequence_hematome_sous_cutane" type="numeric"/>
+            <column name="hematome_musculaire" type="boolean"/>
+            <column name="siege_hematome_musculaire" type="string"/>
+            <column name="type_hematome_musculaire" type="string"/>
+            <column name="frequence_hematome_musculaire" type="numeric"/>
+            <column name="hemarthrose" type="boolean"/>
+            <column name="type_hemarthrose" type="string"/>
+            <column name="frequence_hemarthrose" type="numeric"/>
+            <column name="saignement_snc" type="boolean"/>
+            <column name="type_saignement_snc" type="string"/>
+            <column name="frequence_saignement_snc" type="numeric"/>
+            <column name="saignement_chute_cordon" type="boolean"/>
+            <column name="frequence_saignement_chute_cordon" type="numeric"/>
+            <column name="retard_cicatrisation_plaies" type="boolean"/>
+            <column name="frequence_retard_cicatrisation_plaies" type="numeric"/>
+            <column name="autres_manifestations" type="boolean"/>
+            <column name="fausses_couches_spontanees_recurrence" type="boolean"/>
+            <column name="frequence_fausses_couches" type="numeric"/>
+            <column name="accidents_thrombotiques" type="boolean"/>
+            <column name="thrombose_veineuse" type="boolean"/>
+            <column name="thrombose_arterielle" type="boolean"/>
+            <column name="frequence_accidents_thrombotiques" type="numeric"/>
+            <column name="hemoperitoine" type="boolean"/>
+            <column name="frequence_hemoperitoine" type="numeric"/>
+            <column name="rupture_kystes_hemorragiques" type="boolean"/>
+            <column name="frequence_rupture_kystes" type="numeric"/>
+            <column name="hemorragie_grave" type="boolean"/>
+            <column name="frequence_hemorragie_grave" type="numeric"/>
+            <column name="gravite_deglobulisation" type="boolean"/>
+            <column name="gravite_etat_de_choc" type="boolean"/>
+            <column name="gravite_par_localisation" type="boolean"/>
+            <column name="siege_gravite_localisation" type="string"/>
+            <column name="chirurgie_prepare" type="string"/>
+            <column name="chirurgie_suite_hemorragique" type="string"/>
+            <column name="circoncision_prepare" type="string"/>
+            <column name="circoncision_suite_hemorragique" type="string"/>
+            <column name="age_circoncision" type="numeric"/>
+            <column name="traitement_pfc" type="string"/>
+            <column name="traitement_cryoprecipite" type="string"/>
+            <column name="traitement_concentre_facteur_xi" type="string"/>
+            <column name="traitement_culots_plaquettaires" type="string"/>
+            <column name="traitement_dicynone" type="string"/>
+            <column name="traitement_exacyl" type="string"/>
+            <column name="traitement_martial" type="string"/>
+            <column name="traitement_oestroprogestatif" type="string"/>
+            <column name="transfusion_cgr" type="string"/>
+            <column name="allo_immunisation" type="string"/>
+            <column name="inhibiteur_neutralisant" type="string"/>
+            <column name="titre_inhibiteur_ub" type="numeric"/>
+            <column name="inhibiteur_non_neutralisant" type="string"/>
+            <column name="infection_vih" type="string"/>
+            <column name="infection_vhc" type="string"/>
+            <column name="infection_vhb" type="string"/>
+            <column name="thrombose" type="boolean"/>
+            <column name="reaction_allergique" type="boolean"/>
+            <column name="autres_complications" type="string"/>
+            <column name="adherence_therapeutique" type="string"/>
+            <column name="cause_non_adherence" type="string"/>
+            <column name="statut_social" type="string"/>
+            <column name="marie" type="string"/>
+            <column name="enfants" type="string"/>
+            <column name="activite_physique" type="string"/>
+            <column name="type_activite_physique" type="string"/>
+            <column name="sequelles" type="string"/>
+            <column name="type_sequelles" type="string"/>
+            <column name="patient_decede" type="string"/>
+            <column name="date_deces" type="date"/>
+            <column name="age_deces" type="numeric"/>
+            <column name="cause_deces" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

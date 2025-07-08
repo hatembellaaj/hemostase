@@ -1,0 +1,1049 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ficheVonWillebrand(); as ficheVonWillebrandRef) {
+      <div>
+        <h2 data-cy="ficheVonWillebrandDetailsHeading"><span>Fiche Von Willebrand</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.id }}</span>
+          </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.indexNumber }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.prenom }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nom }}</span>
+          </dd>
+          <dt><span>Nom Jeune Fille</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nomJeuneFille }}</span>
+          </dd>
+          <dt><span>Profession</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.profession }}</span>
+          </dd>
+          <dt><span>Etat Civil</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[
+                ficheVonWillebrandRef.etatCivil ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Service Clinique</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HTO: 'HTO',
+                PRIVE: 'PRIVE',
+                PEDIATRIE_A: 'PEDIATRIE_A',
+                PEDIATRIE_B: 'PEDIATRIE_B',
+                PUR: 'PUR',
+                GYNECO: 'GYNECO',
+                AUTRE: 'AUTRE',
+              }[ficheVonWillebrandRef.serviceClinique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Service Clinique</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.autreServiceClinique }}</span>
+          </dd>
+          <dt><span>Couverture Sociale</span></dt>
+          <dd>
+            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheVonWillebrandRef.couvertureSociale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Sexe</span></dt>
+          <dd>
+            <span>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[ficheVonWillebrandRef.sexe ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Naissance</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.dateNaissance | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Actuel</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ageActuel }}</span>
+          </dd>
+          <dt><span>Origine</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SFAX: 'SFAX',
+                GABES: 'GABES',
+                GAFSA: 'GAFSA',
+                KEBILI: 'KEBILI',
+                TOZEUR: 'TOZEUR',
+                MEDNINE: 'MEDNINE',
+                TATAOUINE: 'TATAOUINE',
+                SBZ: 'SBZ',
+                KASSERINE: 'KASSERINE',
+                MAHDIA: 'MAHDIA',
+                KAIRAOUANE: 'KAIRAOUANE',
+                MONASTIR: 'MONASTIR',
+                SOUSSE: 'SOUSSE',
+                AUTRE: 'AUTRE',
+              }[ficheVonWillebrandRef.origine ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Origine</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.autreOrigine }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.adresse }}</span>
+          </dd>
+          <dt><span>Telephone</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.telephone }}</span>
+          </dd>
+          <dt><span>Prenom Pere</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.prenomPere }}</span>
+          </dd>
+          <dt><span>Profession Pere</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.professionPere }}</span>
+          </dd>
+          <dt><span>Nom Prenom Mere</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nomPrenomMere }}</span>
+          </dd>
+          <dt><span>Profession Mere</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.professionMere }}</span>
+          </dd>
+          <dt><span>Medecin Traitant</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.medecinTraitant }}</span>
+          </dd>
+          <dt><span>Service Origine</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.serviceOrigine }}</span>
+          </dd>
+          <dt><span>Biologiste Responsable Dg</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.biologisteResponsableDg }}</span>
+          </dd>
+          <dt><span>Diagnostic</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMOPHILIE: 'HEMOPHILIE',
+                WILLEBRAND: 'WILLEBRAND',
+                THROMBOPATHIE: 'THROMBOPATHIE',
+                DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+                AUTRE: 'AUTRE',
+              }[ficheVonWillebrandRef.diagnostic ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.autreDiagnostic }}</span>
+          </dd>
+          <dt><span>Annee Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.anneeDiagnostic }}</span>
+          </dd>
+          <dt><span>Date Enregistrement Registre</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.dateEnregistrementRegistre | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Consentement Registre</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.consentementRegistre ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Parents Consanguins</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.parentsConsanguins ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Degre Parente Consanguins</span></dt>
+          <dd>
+            <span>{{
+              { null: '', TROISIEME_DEGRE: 'TROISIEME_DEGRE', QUATRIEME_DEGRE: 'QUATRIEME_DEGRE', LOINTAIN: 'LOINTAIN' }[
+                ficheVonWillebrandRef.degreParenteConsanguins ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Cas Similaires</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.casSimilaires ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Cas</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nombreCas }}</span>
+          </dd>
+          <dt><span>Cas 1 Numero</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.cas1Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 1</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheVonWillebrandRef.lienParenteCas1 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 1</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.degreParenteCas1 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 1</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.typeHemorragieCas1 }}</span>
+          </dd>
+          <dt><span>Cas 2 Numero</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.cas2Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 2</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheVonWillebrandRef.lienParenteCas2 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 2</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.degreParenteCas2 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 2</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.typeHemorragieCas2 }}</span>
+          </dd>
+          <dt><span>Cas 3 Numero</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.cas3Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 3</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheVonWillebrandRef.lienParenteCas3 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 3</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.degreParenteCas3 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 3</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.typeHemorragieCas3 }}</span>
+          </dd>
+          <dt><span>Deces Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.decesSyndromeHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Deces</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nombreDeces }}</span>
+          </dd>
+          <dt><span>Deces 1 Numero</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.deces1Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 1</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheVonWillebrandRef.lienParenteDeces1 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 1</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.causeDeces1 }}</span>
+          </dd>
+          <dt><span>Deces 2 Numero</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.deces2Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 2</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheVonWillebrandRef.lienParenteDeces2 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 2</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.causeDeces2 }}</span>
+          </dd>
+          <dt><span>Deces 3 Numero</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.deces3Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 3</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheVonWillebrandRef.lienParenteDeces3 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 3</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.causeDeces3 }}</span>
+          </dd>
+          <dt><span>Enquete Familiale</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheVonWillebrandRef.enqueteFamiliale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circonstances Decouverte</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SYNDROME_HEMORRAGIQUE: 'SYNDROME_HEMORRAGIQUE',
+                ENQUETE_FAMILIALE: 'ENQUETE_FAMILIALE',
+                DECOUVERTE_FORTUITE: 'DECOUVERTE_FORTUITE',
+              }[ficheVonWillebrandRef.circonstancesDecouverte ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Circonstances Decouverte Precision</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.circonstancesDecouvertePrecision }}</span>
+          </dd>
+          <dt><span>Jamais Saigne</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.jamaisSaigne ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Age Premier Signe Clinique Jours</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.agePremierSigneCliniqueJours }}</span>
+          </dd>
+          <dt><span>Age Premier Signe Clinique Mois</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.agePremierSigneCliniqueMois }}</span>
+          </dd>
+          <dt><span>Age Premier Signe Clinique Annees</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.agePremierSigneCliniqueAnnees }}</span>
+          </dd>
+          <dt><span>Symptome Ecchymose</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeEcchymose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Epistaxis</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeEpistaxis ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Gingivorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeGingivorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Metrorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeMetrorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Melena</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeMelena ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Hemoptysie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeHemoptysie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Hemorragie Post Amygdalectomie</span></dt>
+          <dd>
+            <span>{{
+              { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeHemorragiePostAmygdalectomie ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Symptome Hemorragie Post Avulsion Dentaire</span></dt>
+          <dd>
+            <span>{{
+              { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeHemorragiePostAvulsionDentaire ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Symptome Hemorragie Chute Cordon</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeHemorragieChuteCordon ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Autre</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.symptomeAutre ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Symptome Autre Description</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.symptomeAutreDescription }}</span>
+          </dd>
+          <dt><span>Date Premiere Consultation</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.datePremiereConsultation | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Premiere Consultation Jours</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.agePremiereConsultationJours }}</span>
+          </dd>
+          <dt><span>Age Premiere Consultation Mois</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.agePremiereConsultationMois }}</span>
+          </dd>
+          <dt><span>Age Premiere Consultation Annees</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.agePremiereConsultationAnnees }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Jours</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ageDiagnosticJours }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Mois</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ageDiagnosticMois }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Annees</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ageDiagnosticAnnees }}</span>
+          </dd>
+          <dt><span>Type Mv W</span></dt>
+          <dd>
+            <span>{{ { null: '', TYPE1: 'TYPE1', TYPE2: 'TYPE2', TYPE3: 'TYPE3' }[ficheVonWillebrandRef.typeMvW ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Sous Type Mv W</span></dt>
+          <dd>
+            <span>{{
+              { null: '', TYPE2A: 'TYPE2A', TYPE2B: 'TYPE2B', TYPE2M: 'TYPE2M', TYPE2N: 'TYPE2N', NP: 'NP' }[
+                ficheVonWillebrandRef.sousTypeMvW ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Pathologies Associees</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.pathologiesAssociees }}</span>
+          </dd>
+          <dt><span>Date Test Confirmation</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.dateTestConfirmation | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Gs</span></dt>
+          <dd>
+            <span>{{ { null: '', O: 'O', NON_O: 'NON_O' }[ficheVonWillebrandRef.gs ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hb</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hb }}</span>
+          </dd>
+          <dt><span>Hte</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hte }}</span>
+          </dd>
+          <dt><span>Plaquettes</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.plaquettes }}</span>
+          </dd>
+          <dt><span>Tp</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.tp }}</span>
+          </dd>
+          <dt><span>Tca MT</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.tcaMT }}</span>
+          </dd>
+          <dt><span>Tca M Plus T</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.tcaMPlusT }}</span>
+          </dd>
+          <dt><span>Tca M Plus T 2 H</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.tcaMPlusT2H }}</span>
+          </dd>
+          <dt><span>Fibrinogene</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.fibrinogene }}</span>
+          </dd>
+          <dt><span>Ts Resultat</span></dt>
+          <dd>
+            <span>{{
+              { null: '', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE', NON_FAIT: 'NON_FAIT' }[ficheVonWillebrandRef.tsResultat ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Ts Valeur</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.tsValeur }}</span>
+          </dd>
+          <dt><span>Occlusion Plaquettaire</span></dt>
+          <dd>
+            <span>{{
+              { null: '', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE', NON_FAIT: 'NON_FAIT' }[
+                ficheVonWillebrandRef.occlusionPlaquettaire ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Collagene Epinephrine</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.collageneEpinephrine }}</span>
+          </dd>
+          <dt><span>Collagene ADP</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.collageneADP }}</span>
+          </dd>
+          <dt><span>Fvwag</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.fvwag }}</span>
+          </dd>
+          <dt><span>Fvwact</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.fvwact }}</span>
+          </dd>
+          <dt><span>F 8 C</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.f8c }}</span>
+          </dd>
+          <dt><span>Ratio Fvwact Fvwag</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ratioFvwactFvwag }}</span>
+          </dd>
+          <dt><span>Ratio F 8 C Fvwag</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ratioF8cFvwag }}</span>
+          </dd>
+          <dt><span>Autres Tests Specifiques</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheVonWillebrandRef.autresTestsSpecifiques ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Vwf CB</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheVonWillebrandRef.vwfCB ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Vwf CB Resultat</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.vwfCBResultat }}</span>
+          </dd>
+          <dt><span>Ripa</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheVonWillebrandRef.ripa ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Ripa Resultat</span></dt>
+          <dd>
+            <span>{{ { null: '', DIMINUE: 'DIMINUE', PARADOXALE: 'PARADOXALE' }[ficheVonWillebrandRef.ripaResultat ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Multimere HPM</span></dt>
+          <dd>
+            <span>{{ { null: '', PRESENTS: 'PRESENTS', ABSENTS: 'ABSENTS' }[ficheVonWillebrandRef.multimereHPM ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Liaison Fvw F 8</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheVonWillebrandRef.liaisonFvwF8 ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Liaison Fvw F 8 Resultat</span></dt>
+          <dd>
+            <span>{{
+              { null: '', PATHOLOGIQUE: 'PATHOLOGIQUE', NORMAL: 'NORMAL' }[ficheVonWillebrandRef.liaisonFvwF8Resultat ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Fvwpp</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheVonWillebrandRef.fvwpp ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Fvwpp Resultat</span></dt>
+          <dd>
+            <span>{{ { null: '', PATHOLOGIQUE: 'PATHOLOGIQUE', NORMAL: 'NORMAL' }[ficheVonWillebrandRef.fvwppResultat ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Mutation Genetique</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheVonWillebrandRef.mutationGenetique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Mutation Presente</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.mutationPresente }}</span>
+          </dd>
+          <dt><span>Mutation Nom</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.mutationNom }}</span>
+          </dd>
+          <dt><span>Mutation Zygote</span></dt>
+          <dd>
+            <span>{{
+              { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[ficheVonWillebrandRef.mutationZygote ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Ecchymoses</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.ecchymoses ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Ecchymoses Spontanees</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ecchymosesSpontanees }}</span>
+          </dd>
+          <dt><span>Ecchymoses Provoquees</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ecchymosesProvoquees }}</span>
+          </dd>
+          <dt><span>Ecchymoses Siege</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ecchymosesSiege }}</span>
+          </dd>
+          <dt><span>Ecchymoses Frequence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ecchymosesFrequence }}</span>
+          </dd>
+          <dt><span>Hemorragie Muqueuses</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hemorragieMuqueuses ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Epistaxis</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.epistaxis ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Epistaxis Frequence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.epistaxisFrequence }}</span>
+          </dd>
+          <dt><span>Hemorragies Intrabuccales</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hemorragiesIntrabuccales ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemorragies Intrabuccales Frequence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemorragiesIntrabuccalesFrequence }}</span>
+          </dd>
+          <dt><span>Menoragie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.menoragie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Menoragie Frequence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.menoragieFrequence }}</span>
+          </dd>
+          <dt><span>Score Higham Fait</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.scoreHighamFait }}</span>
+          </dd>
+          <dt><span>Score Higham Valeur</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.scoreHighamValeur }}</span>
+          </dd>
+          <dt><span>Hematome</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hematome ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hematome Spontane</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hematomeSpontane }}</span>
+          </dd>
+          <dt><span>Hematome Provoque</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hematomeProvoque }}</span>
+          </dd>
+          <dt><span>Hematome Sous Cutane</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hematomeSousCutane }}</span>
+          </dd>
+          <dt><span>Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hematomeMusculaire }}</span>
+          </dd>
+          <dt><span>Hematome Tissus Mous</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hematomeTissusMous }}</span>
+          </dd>
+          <dt><span>Hematome Frequence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hematomeFrequence }}</span>
+          </dd>
+          <dt><span>Hemarthrose</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hemarthrose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemarthrose Spontane</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemarthroseSpontane }}</span>
+          </dd>
+          <dt><span>Hemarthrose Provoque</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemarthroseProvoque }}</span>
+          </dd>
+          <dt><span>Hemarthrose Siege</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemarthroseSiege }}</span>
+          </dd>
+          <dt><span>Hemarthrose Frequence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemarthroseFrequence }}</span>
+          </dd>
+          <dt><span>Hemorragie Amygdalienne</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hemorragieAmygdalienne ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemorragie Amygdalienne Frequence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemorragieAmygdalienneFrequence }}</span>
+          </dd>
+          <dt><span>Avulsion Dentaire</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.avulsionDentaire ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Avulsion Prepare</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.avulsionPrepare }}</span>
+          </dd>
+          <dt><span>Avulsion Bien Deroule</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.avulsionBienDeroule ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traumatisme</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.traumatisme ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traumatisme Type</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.traumatismeType }}</span>
+          </dd>
+          <dt><span>Chirurgie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.chirurgie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Chirurgie Type</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.chirurgieType }}</span>
+          </dd>
+          <dt><span>Chirurgie Prepare</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.chirurgiePrepare ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Chirurgie Bien Deroule</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.chirurgieBienDeroule ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Accouchement</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.accouchement ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemorragie Postpartum</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hemorragiePostpartum ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circoncision</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.circoncision ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Age Circoncision</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ageCirconcision }}</span>
+          </dd>
+          <dt><span>Circoncision Prepare</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.circoncisionPrepare ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circoncision Bien Deroule</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.circoncisionBienDeroule ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hemorragieVisceres ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Hemorragie Visceres Spontane</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemorragieVisceresSpontane }}</span>
+          </dd>
+          <dt><span>Hemorragie Visceres Provoque</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.hemorragieVisceresProvoque }}</span>
+          </dd>
+          <dt><span>Hemorragie Visceres Type</span></dt>
+          <dd>
+            <span>{{
+              { null: '', HDH: 'HDH', HDB: 'HDB', HEMATURIE: 'HEMATURIE', SNC: 'SNC', AUTRE: 'AUTRE' }[
+                ficheVonWillebrandRef.hemorragieVisceresType ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Autre Hemorragie Visceres</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.autreHemorragieVisceres }}</span>
+          </dd>
+          <dt><span>Exploration Visceres</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.explorationVisceres }}</span>
+          </dd>
+          <dt><span>Lesion Sous Jacente</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.lesionSousJacente }}</span>
+          </dd>
+          <dt><span>Hemorragie Grave</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.hemorragieGrave ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Grave Deglobulisation</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.graveDeglobulisation }}</span>
+          </dd>
+          <dt><span>Grave Etat De Choc</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.graveEtatDeChoc }}</span>
+          </dd>
+          <dt><span>Grave Par Localisation</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.graveParLocalisation }}</span>
+          </dd>
+          <dt><span>Siege Gravite Localisation</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.siegeGraviteLocalisation }}</span>
+          </dd>
+          <dt><span>Nombre Hospitalisations</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nombreHospitalisations }}</span>
+          </dd>
+          <dt><span>Nombre Transfusions</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nombreTransfusions }}</span>
+          </dd>
+          <dt><span>Score ISTHBAT</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.scoreISTHBAT }}</span>
+          </dd>
+          <dt><span>Desmopressine</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.desmopressine ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Substitutif Prevention</span></dt>
+          <dd>
+            <span>{{
+              { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.traitementSubstitutifPrevention ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Traitement Preparation</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.traitementPreparation }}</span>
+          </dd>
+          <dt><span>Traitement Substitutif Curatif</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.traitementSubstitutifCuratif ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cryoprecipite</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.cryoprecipite ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Pfc</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.pfc ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Concentre FVIIIFVW</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.concentreFVIIIFVW ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Concentre FVW</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.concentreFVW ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Concentre FVIII</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.concentreFVIII ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Agent Bypassant</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.agentBypassant ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Antifibrinolytiques</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.antifibrinolytiques ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Voie Orale</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.voieOrale }}</span>
+          </dd>
+          <dt><span>Voie IV</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.voieIV }}</span>
+          </dd>
+          <dt><span>Voie Locale</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.voieLocale }}</span>
+          </dd>
+          <dt><span>Oestroprogestatifs</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.oestroprogestatifs ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Antalgique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.traitementAntalgique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Corticotherapie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.corticotherapie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Kinesitherapie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.kinesitherapie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Martial</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.traitementMartial ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Culots Globulaires</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.culotsGlobulaires ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Culots Globulaires</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nombreCulotsGlobulaires }}</span>
+          </dd>
+          <dt><span>Immunosuppresseur</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.immunosuppresseur ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nom Immunosuppresseur</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.nomImmunosuppresseur }}</span>
+          </dd>
+          <dt><span>Anemie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.anemie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Anemie Severe</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.anemieSevere }}</span>
+          </dd>
+          <dt><span>Taux Hb</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.tauxHb }}</span>
+          </dd>
+          <dt><span>Anticorps Anti FVW</span></dt>
+          <dd>
+            <span>{{
+              { null: '', POSITIF: 'POSITIF', NEGATIF: 'NEGATIF', NON_FAIT: 'NON_FAIT' }[ficheVonWillebrandRef.anticorpsAntiFVW ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Anticorps Anti FVIII</span></dt>
+          <dd>
+            <span>{{
+              { null: '', POSITIF: 'POSITIF', NEGATIF: 'NEGATIF', NON_FAIT: 'NON_FAIT' }[ficheVonWillebrandRef.anticorpsAntiFVIII ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Hepatite B</span></dt>
+          <dd>
+            <span>{{
+              { null: '', POSITIF: 'POSITIF', NEGATIF: 'NEGATIF', NON_FAIT: 'NON_FAIT' }[ficheVonWillebrandRef.hepatiteB ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Hepatite C</span></dt>
+          <dd>
+            <span>{{
+              { null: '', POSITIF: 'POSITIF', NEGATIF: 'NEGATIF', NON_FAIT: 'NON_FAIT' }[ficheVonWillebrandRef.hepatiteC ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Hiv</span></dt>
+          <dd>
+            <span>{{
+              { null: '', POSITIF: 'POSITIF', NEGATIF: 'NEGATIF', NON_FAIT: 'NON_FAIT' }[ficheVonWillebrandRef.hiv ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Thrombose</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.thrombose }}</span>
+          </dd>
+          <dt><span>Reaction Allergique</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.reactionAllergique }}</span>
+          </dd>
+          <dt><span>Autre Complication</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.autreComplication }}</span>
+          </dd>
+          <dt><span>Autre Complication Description</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.autreComplicationDescription }}</span>
+          </dd>
+          <dt><span>Adherence Therapeutique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.adherenceTherapeutique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cause Non Adherence</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.causeNonAdherence }}</span>
+          </dd>
+          <dt><span>Statut Social</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE', SCOLARISE: 'SCOLARISE', PRESCOLARISE: 'PRESCOLARISE' }[
+                ficheVonWillebrandRef.statutSocial ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Marie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.marie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Enfants</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.enfants ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Activite Physique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.activitePhysique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Activite Physique</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.typeActivitePhysique }}</span>
+          </dd>
+          <dt><span>Sequelles</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.sequelles ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Sequelles</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.typeSequelles }}</span>
+          </dd>
+          <dt><span>Patient Decede</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheVonWillebrandRef.patientDecede ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Deces</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.dateDeces | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Deces</span></dt>
+          <dd>
+            <span>{{ ficheVonWillebrandRef.ageDeces }}</span>
+          </dd>
+          <dt><span>Cause Deces</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMORRAGIE_SNC: 'HEMORRAGIE_SNC',
+                HEMORRAGIE_AUTRE: 'HEMORRAGIE_AUTRE',
+                HIV: 'HIV',
+                INFECTION_AUTRE: 'INFECTION_AUTRE',
+                THROMBOEMBOLIQUE: 'THROMBOEMBOLIQUE',
+                CANCER: 'CANCER',
+                COVID19: 'COVID19',
+                INCONNUE: 'INCONNUE',
+                AUTRE: 'AUTRE',
+              }[ficheVonWillebrandRef.causeDeces ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche-von-willebrand', ficheVonWillebrandRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,5 @@
+export enum TypeZygote {
+  HETEROZYGOTE = 'HETEROZYGOTE',
+
+  HOMOZYGOTE = 'HOMOZYGOTE',
+}

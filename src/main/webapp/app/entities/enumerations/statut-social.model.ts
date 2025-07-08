@@ -1,0 +1,9 @@
+export enum StatutSocial {
+  CHOMEUR = 'CHOMEUR',
+
+  TRAVAILLE = 'TRAVAILLE',
+
+  SCOLARISE = 'SCOLARISE',
+
+  PRESCOLARISE = 'PRESCOLARISE',
+}

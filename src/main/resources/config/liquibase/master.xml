@@ -15,6 +15,10 @@
     <include file="config/liquibase/changelog/20250216125812_added_entity_FicheThrombopathie.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250216152544_added_entity_FicheFacteurVII.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250223122708_added_entity_FicheFacteurVIII.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250509073030_added_entity_FicheVonWillebrand.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250509084543_added_entity_FicheFacteurXI.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250509090024_added_entity_FicheFacteurXIII.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250509103547_added_entity_FicheFacteurXVIII.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->

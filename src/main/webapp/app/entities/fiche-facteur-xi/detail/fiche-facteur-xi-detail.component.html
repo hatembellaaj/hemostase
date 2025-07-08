@@ -1,0 +1,906 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ficheFacteurXI(); as ficheFacteurXIRef) {
+      <div>
+        <h2 data-cy="ficheFacteurXIDetailsHeading"><span>Fiche Facteur XI</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.id }}</span>
+          </dd>
+          <dt><span>Dossier Number</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.dossierNumber }}</span>
+          </dd>
+          <dt><span>Ordre Number</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ordreNumber }}</span>
+          </dd>
+          <dt><span>Index Number</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.indexNumber }}</span>
+          </dd>
+          <dt><span>Prenom</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.prenom }}</span>
+          </dd>
+          <dt><span>Nom</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.nom }}</span>
+          </dd>
+          <dt><span>Nom Jeune Fille</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.nomJeuneFille }}</span>
+          </dd>
+          <dt><span>Profession</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.profession }}</span>
+          </dd>
+          <dt><span>Etat Civil</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CELIBATAIRE: 'CELIBATAIRE', MARIE: 'MARIE', DIVORCE: 'DIVORCE', NP: 'NP' }[ficheFacteurXIRef.etatCivil ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Service Clinique</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HTO: 'HTO',
+                PRIVE: 'PRIVE',
+                PEDIATRIE_A: 'PEDIATRIE_A',
+                PEDIATRIE_B: 'PEDIATRIE_B',
+                PUR: 'PUR',
+                GYNECO: 'GYNECO',
+                AUTRE: 'AUTRE',
+              }[ficheFacteurXIRef.serviceClinique ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Service Clinique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autreServiceClinique }}</span>
+          </dd>
+          <dt><span>Couverture Sociale</span></dt>
+          <dd>
+            <span>{{ { null: '', CNAM: 'CNAM', INDIGENT: 'INDIGENT', NP: 'NP' }[ficheFacteurXIRef.couvertureSociale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Sexe</span></dt>
+          <dd>
+            <span>{{ { null: '', MASCULIN: 'MASCULIN', FEMININ: 'FEMININ' }[ficheFacteurXIRef.sexe ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Naissance</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.dateNaissance | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Actuel</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ageActuel }}</span>
+          </dd>
+          <dt><span>Origine</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                SFAX: 'SFAX',
+                GABES: 'GABES',
+                GAFSA: 'GAFSA',
+                KEBILI: 'KEBILI',
+                TOZEUR: 'TOZEUR',
+                MEDNINE: 'MEDNINE',
+                TATAOUINE: 'TATAOUINE',
+                SBZ: 'SBZ',
+                KASSERINE: 'KASSERINE',
+                MAHDIA: 'MAHDIA',
+                KAIRAOUANE: 'KAIRAOUANE',
+                MONASTIR: 'MONASTIR',
+                SOUSSE: 'SOUSSE',
+                AUTRE: 'AUTRE',
+              }[ficheFacteurXIRef.origine ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Origine</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autreOrigine }}</span>
+          </dd>
+          <dt><span>Adresse</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.adresse }}</span>
+          </dd>
+          <dt><span>Telephone</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.telephone }}</span>
+          </dd>
+          <dt><span>Prenom Pere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.prenomPere }}</span>
+          </dd>
+          <dt><span>Profession Pere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.professionPere }}</span>
+          </dd>
+          <dt><span>Nom Prenom Mere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.nomPrenomMere }}</span>
+          </dd>
+          <dt><span>Profession Mere</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.professionMere }}</span>
+          </dd>
+          <dt><span>Medecin Traitant</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.medecinTraitant }}</span>
+          </dd>
+          <dt><span>Service Origine</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.serviceOrigine }}</span>
+          </dd>
+          <dt><span>Biologiste Responsable Dg</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.biologisteResponsableDg }}</span>
+          </dd>
+          <dt><span>Diagnostic</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMOPHILIE: 'HEMOPHILIE',
+                WILLEBRAND: 'WILLEBRAND',
+                THROMBOPATHIE: 'THROMBOPATHIE',
+                DEFICIT_FACTEUR_VII: 'DEFICIT_FACTEUR_VII',
+                DEFICIT_FACTEUR_XI: 'DEFICIT_FACTEUR_XI',
+                DEFICIT_FACTEUR_XIII: 'DEFICIT_FACTEUR_XIII',
+                DEFICIT_COMBINE: 'DEFICIT_COMBINE',
+                AUTRE: 'AUTRE',
+              }[ficheFacteurXIRef.diagnostic ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Autre Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autreDiagnostic }}</span>
+          </dd>
+          <dt><span>Annee Diagnostic</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.anneeDiagnostic }}</span>
+          </dd>
+          <dt><span>Consentement Registre</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.consentementRegistre ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Enregistrement Registre</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.dateEnregistrementRegistre | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Parents Consanguins</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.parentsConsanguins ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Degre Parente Consanguins</span></dt>
+          <dd>
+            <span>{{
+              { null: '', TROISIEME_DEGRE: 'TROISIEME_DEGRE', QUATRIEME_DEGRE: 'QUATRIEME_DEGRE', LOINTAIN: 'LOINTAIN' }[
+                ficheFacteurXIRef.degreParenteConsanguins ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Cas Similaires</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.casSimilaires ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Cas</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.nombreCas }}</span>
+          </dd>
+          <dt><span>Cas 1 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.cas1Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 1</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurXIRef.lienParenteCas1 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 1</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.degreParenteCas1 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 1</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.typeHemorragieCas1 }}</span>
+          </dd>
+          <dt><span>Cas 2 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.cas2Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 2</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurXIRef.lienParenteCas2 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 2</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.degreParenteCas2 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 2</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.typeHemorragieCas2 }}</span>
+          </dd>
+          <dt><span>Cas 3 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.cas3Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Cas 3</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurXIRef.lienParenteCas3 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Degre Parente Cas 3</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.degreParenteCas3 }}</span>
+          </dd>
+          <dt><span>Type Hemorragie Cas 3</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.typeHemorragieCas3 }}</span>
+          </dd>
+          <dt><span>Deces Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.decesSyndromeHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Nombre Deces</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.nombreDeces }}</span>
+          </dd>
+          <dt><span>Deces 1 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.deces1Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 1</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurXIRef.lienParenteDeces1 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 1</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.causeDeces1 }}</span>
+          </dd>
+          <dt><span>Deces 2 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.deces2Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 2</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurXIRef.lienParenteDeces2 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 2</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.causeDeces2 }}</span>
+          </dd>
+          <dt><span>Deces 3 Numero</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.deces3Numero }}</span>
+          </dd>
+          <dt><span>Lien Parente Deces 3</span></dt>
+          <dd>
+            <span>{{
+              { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[ficheFacteurXIRef.lienParenteDeces3 ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Cause Deces 3</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.causeDeces3 }}</span>
+          </dd>
+          <dt><span>Enquete Familiale</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.enqueteFamiliale ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.syndromeHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Precision Syndrome Hemorragique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.precisionSyndromeHemorragique }}</span>
+          </dd>
+          <dt><span>Decouverte Fortuite</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.decouverteFortuite ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Precision Decouverte Fortuite</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.precisionDecouverteFortuite }}</span>
+          </dd>
+          <dt><span>Jamais Saigne</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.jamaisSaigne ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Age Premier Signe Clinique Jours</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.agePremierSigneCliniqueJours }}</span>
+          </dd>
+          <dt><span>Age Premier Signe Clinique Mois</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.agePremierSigneCliniqueMois }}</span>
+          </dd>
+          <dt><span>Age Premier Signe Clinique Annees</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.agePremierSigneCliniqueAnnees }}</span>
+          </dd>
+          <dt><span>Symptome Ecchymose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeEcchymose }}</span>
+          </dd>
+          <dt><span>Symptome Epistaxis</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeEpistaxis }}</span>
+          </dd>
+          <dt><span>Symptome Gingivorragies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeGingivorragies }}</span>
+          </dd>
+          <dt><span>Symptome Metrorragies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeMetrorragies }}</span>
+          </dd>
+          <dt><span>Symptome Melena</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeMelena }}</span>
+          </dd>
+          <dt><span>Symptome Hemoptysie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeHemoptysie }}</span>
+          </dd>
+          <dt><span>Symptome Hemorragie Post Amygdalectomie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeHemorragiePostAmygdalectomie }}</span>
+          </dd>
+          <dt><span>Symptome Hemorragie Post Avulsion Dentaire</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeHemorragiePostAvulsionDentaire }}</span>
+          </dd>
+          <dt><span>Symptome Hemorragie Chute Cordon</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeHemorragieChuteCordon }}</span>
+          </dd>
+          <dt><span>Symptome Autre</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeAutre }}</span>
+          </dd>
+          <dt><span>Symptome Autre Description</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.symptomeAutreDescription }}</span>
+          </dd>
+          <dt><span>Date Premiere Consultation</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.datePremiereConsultation | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Premiere Consultation Jours</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.agePremiereConsultationJours }}</span>
+          </dd>
+          <dt><span>Age Premiere Consultation Mois</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.agePremiereConsultationMois }}</span>
+          </dd>
+          <dt><span>Age Premiere Consultation Annees</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.agePremiereConsultationAnnees }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Jours</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ageDiagnosticJours }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Mois</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ageDiagnosticMois }}</span>
+          </dd>
+          <dt><span>Age Diagnostic Annees</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ageDiagnosticAnnees }}</span>
+          </dd>
+          <dt><span>Hb</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hb }}</span>
+          </dd>
+          <dt><span>Hte</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hte }}</span>
+          </dd>
+          <dt><span>Plaquettes</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.plaquettes }}</span>
+          </dd>
+          <dt><span>Pfa Col Epi</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.pfaColEpi }}</span>
+          </dd>
+          <dt><span>Pfa Col ADP</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.pfaColADP }}</span>
+          </dd>
+          <dt><span>Tp</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.tp }}</span>
+          </dd>
+          <dt><span>Tp M Plus T</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.tpMPlusT }}</span>
+          </dd>
+          <dt><span>Fibrinogene</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.fibrinogene }}</span>
+          </dd>
+          <dt><span>Tca MT</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.tcaMT }}</span>
+          </dd>
+          <dt><span>Tca M Plus T</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.tcaMPlusT }}</span>
+          </dd>
+          <dt><span>Tca Temoin</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.tcaTemoin }}</span>
+          </dd>
+          <dt><span>Facteur XI</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.facteurXI }}</span>
+          </dd>
+          <dt><span>Autres Facteurs Dosage Description</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autresFacteursDosageDescription }}</span>
+          </dd>
+          <dt><span>Autres Facteurs Taux 1</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autresFacteursTaux1 }}</span>
+          </dd>
+          <dt><span>Autres Facteurs Taux 2</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autresFacteursTaux2 }}</span>
+          </dd>
+          <dt><span>Autres Facteurs Taux 3</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autresFacteursTaux3 }}</span>
+          </dd>
+          <dt><span>Confirmation Moleculaire</span></dt>
+          <dd>
+            <span>{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[ficheFacteurXIRef.confirmationMoleculaire ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Mutation Presente</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.mutationPresente }}</span>
+          </dd>
+          <dt><span>Mutation Nom</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.mutationNom }}</span>
+          </dd>
+          <dt><span>Mutation Zygote</span></dt>
+          <dd>
+            <span>{{
+              { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[ficheFacteurXIRef.mutationZygote ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Mutation 2 Nom</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.mutation2Nom }}</span>
+          </dd>
+          <dt><span>Serologie VHB</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.serologieVHB ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Serologie VHC</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.serologieVHC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Serologie VIH</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.serologieVIH ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Epistaxis</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.epistaxis }}</span>
+          </dd>
+          <dt><span>Frequence Epistaxis</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceEpistaxis }}</span>
+          </dd>
+          <dt><span>Gingivorragies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.gingivorragies }}</span>
+          </dd>
+          <dt><span>Type Gingivorragies</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurXIRef.typeGingivorragies ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Gingivorragies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceGingivorragies }}</span>
+          </dd>
+          <dt><span>Ecchymose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ecchymose }}</span>
+          </dd>
+          <dt><span>Type Ecchymose</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurXIRef.typeEcchymose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Ecchymose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceEcchymose }}</span>
+          </dd>
+          <dt><span>Menorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.menorragie }}</span>
+          </dd>
+          <dt><span>Frequence Menorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceMenorragie }}</span>
+          </dd>
+          <dt><span>Hematemese</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hematemese }}</span>
+          </dd>
+          <dt><span>Frequence Hematemese</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHematemese }}</span>
+          </dd>
+          <dt><span>Rectorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.rectorragie }}</span>
+          </dd>
+          <dt><span>Frequence Rectorragie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceRectorragie }}</span>
+          </dd>
+          <dt><span>Hematurie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hematurie }}</span>
+          </dd>
+          <dt><span>Frequence Hematurie</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHematurie }}</span>
+          </dd>
+          <dt><span>Hemorragie Post Traumatique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hemorragiePostTraumatique }}</span>
+          </dd>
+          <dt><span>Frequence Hemorragie Post Traumatique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHemorragiePostTraumatique }}</span>
+          </dd>
+          <dt><span>Hematome Sous Cutane</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hematomeSousCutane }}</span>
+          </dd>
+          <dt><span>Type Hematome Sous Cutane</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurXIRef.typeHematomeSousCutane ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Hematome Sous Cutane</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHematomeSousCutane }}</span>
+          </dd>
+          <dt><span>Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hematomeMusculaire }}</span>
+          </dd>
+          <dt><span>Type Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurXIRef.typeHematomeMusculaire ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Hematome Musculaire</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHematomeMusculaire }}</span>
+          </dd>
+          <dt><span>Hematome Tissus Mous Profonds</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hematomeTissusMousProfonds }}</span>
+          </dd>
+          <dt><span>Type Hematome Tissus Mous Profonds</span></dt>
+          <dd>
+            <span>{{
+              { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurXIRef.typeHematomeTissusMousProfonds ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>Frequence Hematome Tissus Mous Profonds</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHematomeTissusMousProfonds }}</span>
+          </dd>
+          <dt><span>Hemarthrose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hemarthrose }}</span>
+          </dd>
+          <dt><span>Type Hemarthrose</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurXIRef.typeHemarthrose ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Hemarthrose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHemarthrose }}</span>
+          </dd>
+          <dt><span>Saignement SNC</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.saignementSNC }}</span>
+          </dd>
+          <dt><span>Type Saignement SNC</span></dt>
+          <dd>
+            <span>{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[ficheFacteurXIRef.typeSaignementSNC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Frequence Saignement SNC</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceSaignementSNC }}</span>
+          </dd>
+          <dt><span>Saignement Chute Cordon</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.saignementChuteCordon }}</span>
+          </dd>
+          <dt><span>Frequence Saignement Chute Cordon</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceSaignementChuteCordon }}</span>
+          </dd>
+          <dt><span>Retard Cicatrisation Plaies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.retardCicatrisationPlaies }}</span>
+          </dd>
+          <dt><span>Frequence Retard Cicatrisation Plaies</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceRetardCicatrisationPlaies }}</span>
+          </dd>
+          <dt><span>Autres Manifestations</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autresManifestations }}</span>
+          </dd>
+          <dt><span>Fausses Couches Spontanees Recurrence</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.faussesCouchesSpontaneesRecurrence }}</span>
+          </dd>
+          <dt><span>Frequence Fausses Couches</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceFaussesCouches }}</span>
+          </dd>
+          <dt><span>Accidents Thrombotiques</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.accidentsThrombotiques }}</span>
+          </dd>
+          <dt><span>Thrombose Veineuse</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.thromboseVeineuse }}</span>
+          </dd>
+          <dt><span>Thrombose Arterielle</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.thromboseArterielle }}</span>
+          </dd>
+          <dt><span>Frequence Accidents Thrombotiques</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceAccidentsThrombotiques }}</span>
+          </dd>
+          <dt><span>Hemoperitoine</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hemoperitoine }}</span>
+          </dd>
+          <dt><span>Frequence Hemoperitoine</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHemoperitoine }}</span>
+          </dd>
+          <dt><span>Rupture Kystes Hemorragiques</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ruptureKystesHemorragiques }}</span>
+          </dd>
+          <dt><span>Frequence Rupture Kystes</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceRuptureKystes }}</span>
+          </dd>
+          <dt><span>Hemorragie Grave</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.hemorragieGrave }}</span>
+          </dd>
+          <dt><span>Frequence Hemorragie Grave</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.frequenceHemorragieGrave }}</span>
+          </dd>
+          <dt><span>Gravite Deglobulisation</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.graviteDeglobulisation }}</span>
+          </dd>
+          <dt><span>Gravite Etat De Choc</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.graviteEtatDeChoc }}</span>
+          </dd>
+          <dt><span>Gravite Par Localisation</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.graviteParLocalisation }}</span>
+          </dd>
+          <dt><span>Siege Gravite Localisation</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.siegeGraviteLocalisation }}</span>
+          </dd>
+          <dt><span>Chirurgie Prepare</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.chirurgiePrepare ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Chirurgie Suite Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.chirurgieSuiteHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circoncision Prepare</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.circoncisionPrepare ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Circoncision Suite Hemorragique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.circoncisionSuiteHemorragique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Age Circoncision</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ageCirconcision }}</span>
+          </dd>
+          <dt><span>Traitement PFC</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementPFC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Cryoprecipite</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementCryoprecipite ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Concentre Facteur XI</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementConcentreFacteurXI ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Culots Plaquettaires</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementCulotsPlaquettaires ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Dicynone</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementDicynone ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Exacyl</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementExacyl ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Martial</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementMartial ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Traitement Oestroprogestatif</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.traitementOestroprogestatif ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Transfusion CGR</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.transfusionCGR ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Allo Immunisation</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.alloImmunisation ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Inhibiteur Neutralisant</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.inhibiteurNeutralisant ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Titre Inhibiteur UB</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.titreInhibiteurUB }}</span>
+          </dd>
+          <dt><span>Inhibiteur Non Neutralisant</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.inhibiteurNonNeutralisant ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Infection VIH</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.infectionVIH ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Infection VHC</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.infectionVHC ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Infection VHB</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.infectionVHB ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Thrombose</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.thrombose }}</span>
+          </dd>
+          <dt><span>Reaction Allergique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.reactionAllergique }}</span>
+          </dd>
+          <dt><span>Autres Complications</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.autresComplications }}</span>
+          </dd>
+          <dt><span>Adherence Therapeutique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.adherenceTherapeutique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Cause Non Adherence</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.causeNonAdherence }}</span>
+          </dd>
+          <dt><span>Statut Social</span></dt>
+          <dd>
+            <span>{{
+              { null: '', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE', SCOLARISE: 'SCOLARISE', PRESCOLARISE: 'PRESCOLARISE' }[
+                ficheFacteurXIRef.statutSocial ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Marie</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.marie ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Enfants</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.enfants ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Activite Physique</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.activitePhysique ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Activite Physique</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.typeActivitePhysique }}</span>
+          </dd>
+          <dt><span>Sequelles</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.sequelles ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Type Sequelles</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.typeSequelles }}</span>
+          </dd>
+          <dt><span>Patient Decede</span></dt>
+          <dd>
+            <span>{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ficheFacteurXIRef.patientDecede ?? 'null'] }}</span>
+          </dd>
+          <dt><span>Date Deces</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.dateDeces | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Age Deces</span></dt>
+          <dd>
+            <span>{{ ficheFacteurXIRef.ageDeces }}</span>
+          </dd>
+          <dt><span>Cause Deces</span></dt>
+          <dd>
+            <span>{{
+              {
+                null: '',
+                HEMORRAGIE_SNC: 'HEMORRAGIE_SNC',
+                HEMORRAGIE_AUTRE: 'HEMORRAGIE_AUTRE',
+                HIV: 'HIV',
+                INFECTION_AUTRE: 'INFECTION_AUTRE',
+                THROMBOEMBOLIQUE: 'THROMBOEMBOLIQUE',
+                CANCER: 'CANCER',
+                COVID19: 'COVID19',
+                INCONNUE: 'INCONNUE',
+                AUTRE: 'AUTRE',
+              }[ficheFacteurXIRef.causeDeces ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fiche-facteur-xi', ficheFacteurXIRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -45,6 +45,10 @@ public class CacheConfiguration {
             createCache(cm, tn.adhes.hemostase.domain.FicheThrombopathie.class.getName());
             createCache(cm, tn.adhes.hemostase.domain.FicheFacteurVII.class.getName());
             createCache(cm, tn.adhes.hemostase.domain.FicheFacteurVIII.class.getName());
+            createCache(cm, tn.adhes.hemostase.domain.FicheVonWillebrand.class.getName());
+            createCache(cm, tn.adhes.hemostase.domain.FicheFacteurXI.class.getName());
+            createCache(cm, tn.adhes.hemostase.domain.FicheFacteurXIII.class.getName());
+            createCache(cm, tn.adhes.hemostase.domain.FicheFacteurXVIII.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
