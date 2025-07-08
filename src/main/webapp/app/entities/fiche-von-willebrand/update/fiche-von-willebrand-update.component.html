@@ -712,8 +712,10 @@
 />
 </div>
 
+@let nombreCasValue = editForm.get('nombreCas')?.value;
 @for (i of [1, 2, 3]; track i) {
-  @if (editForm.get('nombreCas')?.value >= i) {
+  @if (nombreCasValue != null && nombreCasValue >= i) {
+
     <div class="mb-3">
       <label class="form-label" for="field_cas{{i}}Numero">Cas {{i}} Numero</label>
       <input
@@ -721,7 +723,7 @@
         class="form-control"
         name="cas{{i}}Numero"
         id="field_cas{{i}}Numero"
-        data-cy="cas{{i}}Numero"
+        [attr.data-cy]="'cas' + i + 'Numero'"
         formControlName="cas{{i}}Numero"
       />
     </div>
@@ -733,7 +735,7 @@
         name="lienParenteCas{{i}}"
         formControlName="lienParenteCas{{i}}"
         id="field_lienParenteCas{{i}}"
-        data-cy="lienParenteCas{{i}}"
+        [attr.data-cy]="'lienParenteCas' + i"
       >
         <option [ngValue]="null"></option>
         @for (lienParente of lienParenteValues; track $index) {
@@ -744,7 +746,7 @@
       </select>
     </div>
 
-    @let degreRef = editForm.get('degreParenteCas' + i)!;
+    @let degreParenteRef = editForm.get('degreParenteCas' + i)!;
     <div class="mb-3">
       <label class="form-label" for="field_degreParenteCas{{i}}">Degre Parente Cas {{i}}</label>
       <input
@@ -752,19 +754,19 @@
         class="form-control"
         name="degreParenteCas{{i}}"
         id="field_degreParenteCas{{i}}"
-        data-cy="degreParenteCas{{i}}"
+        [attr.data-cy]="'degreParenteCas' + i"
         formControlName="degreParenteCas{{i}}"
       />
-      @if (degreRef.invalid && (degreRef.dirty || degreRef.touched)) {
+      @if (degreParenteRef.invalid && (degreParenteRef.dirty || degreParenteRef.touched)) {
         <div>
-          @if (degreRef.errors?.maxlength) {
+          @if (degreParenteRef.errors?.maxlength) {
             <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
           }
         </div>
       }
     </div>
 
-    @let typeRef = editForm.get('typeHemorragieCas' + i)!;
+    @let typeHemorragieRef = editForm.get('typeHemorragieCas' + i)!;
     <div class="mb-3">
       <label class="form-label" for="field_typeHemorragieCas{{i}}">Type Hemorragie Cas {{i}}</label>
       <input
@@ -772,19 +774,21 @@
         class="form-control"
         name="typeHemorragieCas{{i}}"
         id="field_typeHemorragieCas{{i}}"
-        data-cy="typeHemorragieCas{{i}}"
+        [attr.data-cy]="'typeHemorragieCas' + i"
         formControlName="typeHemorragieCas{{i}}"
       />
-      @if (typeRef.invalid && (typeRef.dirty || typeRef.touched)) {
+      @if (typeHemorragieRef.invalid && (typeHemorragieRef.dirty || typeHemorragieRef.touched)) {
         <div>
-          @if (typeRef.errors?.maxlength) {
+          @if (typeHemorragieRef.errors?.maxlength) {
             <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
           }
         </div>
       }
     </div>
+
   }
 }
+
 
 
         <div class="mb-3">
