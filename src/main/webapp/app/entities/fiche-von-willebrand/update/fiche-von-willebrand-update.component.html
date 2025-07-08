@@ -698,214 +698,94 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nombreCas">Nombre Cas</label>
-          <input type="number" class="form-control" name="nombreCas" id="field_nombreCas" data-cy="nombreCas" formControlName="nombreCas" />
-        </div>
+<div class="mb-3">
+  <label class="form-label" for="field_nombreCas">Nombre Cas</label>
+  <input
+    type="number"
+    min="1"
+    max="3"
+    class="form-control"
+    name="nombreCas"
+    id="field_nombreCas"
+    data-cy="nombreCas"
+    formControlName="nombreCas"
+/>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_cas1Numero">Cas 1 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="cas1Numero"
-            id="field_cas1Numero"
-            data-cy="cas1Numero"
-            formControlName="cas1Numero"
-          />
-        </div>
+@for (i of [1, 2, 3]; track i) {
+  @if (editForm.get('nombreCas')?.value >= i) {
+    <div class="mb-3">
+      <label class="form-label" for="field_cas{{i}}Numero">Cas {{i}} Numero</label>
+      <input
+        type="number"
+        class="form-control"
+        name="cas{{i}}Numero"
+        id="field_cas{{i}}Numero"
+        data-cy="cas{{i}}Numero"
+        formControlName="cas{{i}}Numero"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteCas1">Lien Parente Cas 1</label>
-          <select
-            class="form-control"
-            name="lienParenteCas1"
-            formControlName="lienParenteCas1"
-            id="field_lienParenteCas1"
-            data-cy="lienParenteCas1"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
-            }
-          </select>
-        </div>
+    <div class="mb-3">
+      <label class="form-label" for="field_lienParenteCas{{i}}">Lien Parente Cas {{i}}</label>
+      <select
+        class="form-control"
+        name="lienParenteCas{{i}}"
+        formControlName="lienParenteCas{{i}}"
+        id="field_lienParenteCas{{i}}"
+        data-cy="lienParenteCas{{i}}"
+      >
+        <option [ngValue]="null"></option>
+        @for (lienParente of lienParenteValues; track $index) {
+          <option [value]="lienParente">
+            {{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}
+          </option>
+        }
+      </select>
+    </div>
 
-        @let degreParenteCas1Ref = editForm.get('degreParenteCas1')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCas1">Degre Parente Cas 1</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCas1"
-            id="field_degreParenteCas1"
-            data-cy="degreParenteCas1"
-            formControlName="degreParenteCas1"
-          />
-          @if (degreParenteCas1Ref.invalid && (degreParenteCas1Ref.dirty || degreParenteCas1Ref.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCas1')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
+    @let degreRef = editForm.get('degreParenteCas' + i)!;
+    <div class="mb-3">
+      <label class="form-label" for="field_degreParenteCas{{i}}">Degre Parente Cas {{i}}</label>
+      <input
+        type="text"
+        class="form-control"
+        name="degreParenteCas{{i}}"
+        id="field_degreParenteCas{{i}}"
+        data-cy="degreParenteCas{{i}}"
+        formControlName="degreParenteCas{{i}}"
+      />
+      @if (degreRef.invalid && (degreRef.dirty || degreRef.touched)) {
+        <div>
+          @if (degreRef.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
           }
         </div>
+      }
+    </div>
 
-        @let typeHemorragieCas1Ref = editForm.get('typeHemorragieCas1')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragieCas1">Type Hemorragie Cas 1</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHemorragieCas1"
-            id="field_typeHemorragieCas1"
-            data-cy="typeHemorragieCas1"
-            formControlName="typeHemorragieCas1"
-          />
-          @if (typeHemorragieCas1Ref.invalid && (typeHemorragieCas1Ref.dirty || typeHemorragieCas1Ref.touched)) {
-            <div>
-              @if (editForm.get('typeHemorragieCas1')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
+    @let typeRef = editForm.get('typeHemorragieCas' + i)!;
+    <div class="mb-3">
+      <label class="form-label" for="field_typeHemorragieCas{{i}}">Type Hemorragie Cas {{i}}</label>
+      <input
+        type="text"
+        class="form-control"
+        name="typeHemorragieCas{{i}}"
+        id="field_typeHemorragieCas{{i}}"
+        data-cy="typeHemorragieCas{{i}}"
+        formControlName="typeHemorragieCas{{i}}"
+      />
+      @if (typeRef.invalid && (typeRef.dirty || typeRef.touched)) {
+        <div>
+          @if (typeRef.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
           }
         </div>
+      }
+    </div>
+  }
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_cas2Numero">Cas 2 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="cas2Numero"
-            id="field_cas2Numero"
-            data-cy="cas2Numero"
-            formControlName="cas2Numero"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteCas2">Lien Parente Cas 2</label>
-          <select
-            class="form-control"
-            name="lienParenteCas2"
-            formControlName="lienParenteCas2"
-            id="field_lienParenteCas2"
-            data-cy="lienParenteCas2"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
-            }
-          </select>
-        </div>
-
-        @let degreParenteCas2Ref = editForm.get('degreParenteCas2')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCas2">Degre Parente Cas 2</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCas2"
-            id="field_degreParenteCas2"
-            data-cy="degreParenteCas2"
-            formControlName="degreParenteCas2"
-          />
-          @if (degreParenteCas2Ref.invalid && (degreParenteCas2Ref.dirty || degreParenteCas2Ref.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCas2')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let typeHemorragieCas2Ref = editForm.get('typeHemorragieCas2')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragieCas2">Type Hemorragie Cas 2</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHemorragieCas2"
-            id="field_typeHemorragieCas2"
-            data-cy="typeHemorragieCas2"
-            formControlName="typeHemorragieCas2"
-          />
-          @if (typeHemorragieCas2Ref.invalid && (typeHemorragieCas2Ref.dirty || typeHemorragieCas2Ref.touched)) {
-            <div>
-              @if (editForm.get('typeHemorragieCas2')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_cas3Numero">Cas 3 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="cas3Numero"
-            id="field_cas3Numero"
-            data-cy="cas3Numero"
-            formControlName="cas3Numero"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteCas3">Lien Parente Cas 3</label>
-          <select
-            class="form-control"
-            name="lienParenteCas3"
-            formControlName="lienParenteCas3"
-            id="field_lienParenteCas3"
-            data-cy="lienParenteCas3"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
-            }
-          </select>
-        </div>
-
-        @let degreParenteCas3Ref = editForm.get('degreParenteCas3')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCas3">Degre Parente Cas 3</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCas3"
-            id="field_degreParenteCas3"
-            data-cy="degreParenteCas3"
-            formControlName="degreParenteCas3"
-          />
-          @if (degreParenteCas3Ref.invalid && (degreParenteCas3Ref.dirty || degreParenteCas3Ref.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCas3')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let typeHemorragieCas3Ref = editForm.get('typeHemorragieCas3')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragieCas3">Type Hemorragie Cas 3</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHemorragieCas3"
-            id="field_typeHemorragieCas3"
-            data-cy="typeHemorragieCas3"
-            formControlName="typeHemorragieCas3"
-          />
-          @if (typeHemorragieCas3Ref.invalid && (typeHemorragieCas3Ref.dirty || typeHemorragieCas3Ref.touched)) {
-            <div>
-              @if (editForm.get('typeHemorragieCas3')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_decesSyndromeHemorragique">Deces Syndrome Hemorragique</label>
