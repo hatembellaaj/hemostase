@@ -2272,150 +2272,172 @@
       </div>
     </div>
 
-    <!-- Siège + Fréquence -->
-    <div class="row mb-3 align-items-end">
-      <div class="col-md-6">
-        <label class="form-label d-block mb-2">Siège :</label>
-        <div class="d-flex flex-wrap gap-3">
-          <div class="form-check d-flex align-items-center">
-            <input
-              type="checkbox"
-              class="form-check-input me-2"
-              name="hematomeSousCutane"
-              id="field_hematomeSousCutane"
-              data-cy="hematomeSousCutane"
-              formControlName="hematomeSousCutane"
-            />
-            <label class="form-check-label mb-0" for="field_hematomeSousCutane">Sous-cutané</label>
-          </div>
+    <!-- Siège -->
+    <div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+      <label class="form-label mb-0 me-3">Siège :</label>
 
-          <div class="form-check d-flex align-items-center">
-            <input
-              type="checkbox"
-              class="form-check-input me-2"
-              name="hematomeMusculaire"
-              id="field_hematomeMusculaire"
-              data-cy="hematomeMusculaire"
-              formControlName="hematomeMusculaire"
-            />
-            <label class="form-check-label mb-0" for="field_hematomeMusculaire">Musculaire</label>
-          </div>
-
-          <div class="form-check d-flex align-items-center">
-            <input
-              type="checkbox"
-              class="form-check-input me-2"
-              name="hematomeTissusMous"
-              id="field_hematomeTissusMous"
-              data-cy="hematomeTissusMous"
-              formControlName="hematomeTissusMous"
-            />
-            <label class="form-check-label mb-0" for="field_hematomeTissusMous">Tissus mous</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label" for="field_hematomeFrequence">Fréquence (/an)</label>
+      <div class="form-check d-flex align-items-center">
         <input
-          type="number"
-          class="form-control"
-          name="hematomeFrequence"
-          id="field_hematomeFrequence"
-          data-cy="hematomeFrequence"
-          formControlName="hematomeFrequence"
+          type="checkbox"
+          class="form-check-input me-2"
+          name="hematomeSousCutane"
+          id="field_hematomeSousCutane"
+          data-cy="hematomeSousCutane"
+          formControlName="hematomeSousCutane"
         />
+        <label class="form-check-label mb-0" for="field_hematomeSousCutane">Sous-cutané</label>
       </div>
+
+      <div class="form-check d-flex align-items-center">
+        <input
+          type="checkbox"
+          class="form-check-input me-2"
+          name="hematomeMusculaire"
+          id="field_hematomeMusculaire"
+          data-cy="hematomeMusculaire"
+          formControlName="hematomeMusculaire"
+        />
+        <label class="form-check-label mb-0" for="field_hematomeMusculaire">Musculaire</label>
+      </div>
+
+      <div class="form-check d-flex align-items-center">
+        <input
+          type="checkbox"
+          class="form-check-input me-2"
+          name="hematomeTissusMous"
+          id="field_hematomeTissusMous"
+          data-cy="hematomeTissusMous"
+          formControlName="hematomeTissusMous"
+        />
+        <label class="form-check-label mb-0" for="field_hematomeTissusMous">Tissus mous</label>
+      </div>
+    </div>
+
+    <!-- Fréquence -->
+    <div class="mb-3">
+      <label class="form-label" for="field_hematomeFrequence">Fréquence (/an)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hematomeFrequence"
+        id="field_hematomeFrequence"
+        data-cy="hematomeFrequence"
+        formControlName="hematomeFrequence"
+      />
     </div>
   </div>
 }
 
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_hemarthrose">4- Hemarthrose</label>
-          <select class="form-control" name="hemarthrose" formControlName="hemarthrose" id="field_hemarthrose" data-cy="hemarthrose">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseSpontane">Hemarthrose Spontane</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemarthroseSpontane"
-            id="field_hemarthroseSpontane"
-            data-cy="hemarthroseSpontane"
-            formControlName="hemarthroseSpontane"
-          />
-        </div>
+<!-- Hémarthrose principale -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_hemarthrose">4- Hémarthrose</label>
+  <select
+    class="form-control"
+    name="hemarthrose"
+    formControlName="hemarthrose"
+    id="field_hemarthrose"
+    data-cy="hemarthrose"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseProvoque">Hemarthrose Provoque</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemarthroseProvoque"
-            id="field_hemarthroseProvoque"
-            data-cy="hemarthroseProvoque"
-            formControlName="hemarthroseProvoque"
-          />
-        </div>
+@let hemarthroseValue = editForm.get('hemarthrose')?.value;
+@if (hemarthroseValue === 'OUI') {
+  <div>
+    <!-- Spontané / Provoqué -->
+    <div class="mb-3 d-flex align-items-center gap-4">
+      <div class="form-check d-flex align-items-center">
+        <input
+          type="checkbox"
+          class="form-check-input me-2"
+          name="hemarthroseSpontane"
+          id="field_hemarthroseSpontane"
+          data-cy="hemarthroseSpontane"
+          formControlName="hemarthroseSpontane"
+        />
+        <label class="form-check-label mb-0" for="field_hemarthroseSpontane">Spontané</label>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseSiege">Hemarthrose Siege</label>
-          <input
-            type="text"
-            class="form-control"
-            name="hemarthroseSiege"
-            id="field_hemarthroseSiege"
-            data-cy="hemarthroseSiege"
-            formControlName="hemarthroseSiege"
-          />
-        </div>
+      <div class="form-check d-flex align-items-center">
+        <input
+          type="checkbox"
+          class="form-check-input me-2"
+          name="hemarthroseProvoque"
+          id="field_hemarthroseProvoque"
+          data-cy="hemarthroseProvoque"
+          formControlName="hemarthroseProvoque"
+        />
+        <label class="form-check-label mb-0" for="field_hemarthroseProvoque">Provoqué</label>
+      </div>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseFrequence">Hemarthrose Frequence</label>
-          <input
-            type="number"
-            class="form-control"
-            name="hemarthroseFrequence"
-            id="field_hemarthroseFrequence"
-            data-cy="hemarthroseFrequence"
-            formControlName="hemarthroseFrequence"
-          />
-        </div>
+    <!-- Siège -->
+    <div class="mb-3">
+      <label class="form-label" for="field_hemarthroseSiege">Siège</label>
+      <input
+        type="text"
+        class="form-control"
+        name="hemarthroseSiege"
+        id="field_hemarthroseSiege"
+        data-cy="hemarthroseSiege"
+        formControlName="hemarthroseSiege"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_hemorragieAmygdalienne">5- Hemorragie Amygdalienne</label>
-          <select
-            class="form-control"
-            name="hemorragieAmygdalienne"
-            formControlName="hemorragieAmygdalienne"
-            id="field_hemorragieAmygdalienne"
-            data-cy="hemorragieAmygdalienne"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+    <!-- Fréquence -->
+    <div class="mb-3">
+      <label class="form-label" for="field_hemarthroseFrequence">Fréquence (/an)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hemarthroseFrequence"
+        id="field_hemarthroseFrequence"
+        data-cy="hemarthroseFrequence"
+        formControlName="hemarthroseFrequence"
+      />
+    </div>
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieAmygdalienneFrequence">Hemorragie Amygdalienne Frequence</label>
-          <input
-            type="number"
-            class="form-control"
-            name="hemorragieAmygdalienneFrequence"
-            id="field_hemorragieAmygdalienneFrequence"
-            data-cy="hemorragieAmygdalienneFrequence"
-            formControlName="hemorragieAmygdalienneFrequence"
-          />
-        </div>
+
+<!-- Hémorragie Amygdalienne -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_hemorragieAmygdalienne">5- Hémorragie Amygdalienne</label>
+  <select
+    class="form-control"
+    name="hemorragieAmygdalienne"
+    formControlName="hemorragieAmygdalienne"
+    id="field_hemorragieAmygdalienne"
+    data-cy="hemorragieAmygdalienne"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+@let hemorragieAmygdalienneValue = editForm.get('hemorragieAmygdalienne')?.value;
+@if (hemorragieAmygdalienneValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_hemorragieAmygdalienneFrequence">Fréquence (/an)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="hemorragieAmygdalienneFrequence"
+      id="field_hemorragieAmygdalienneFrequence"
+      data-cy="hemorragieAmygdalienneFrequence"
+      formControlName="hemorragieAmygdalienneFrequence"
+    />
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label fw-bold" for="field_avulsionDentaire">6- Avulsion Dentaire</label>
