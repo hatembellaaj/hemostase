@@ -1549,7 +1549,7 @@
         </div>
 
 <!-- Titre NFS -->
-<div class="fw-bold mb-2">NFS</div>
+<div class="form-label">NFS</div>
 
 <!-- Champs alignés en ligne -->
 <div class="row mb-3">
@@ -1658,20 +1658,37 @@
 
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tsResultat">TS Resultat</label>
-          <select class="form-control" name="tsResultat" formControlName="tsResultat" id="field_tsResultat" data-cy="tsResultat">
-            <option [ngValue]="null"></option>
-            @for (typeTS of typeTSValues; track $index) {
-              <option [value]="typeTS">{{ { null: '', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE', NON_FAIT: 'NON_FAIT' }[typeTS] }}</option>
-            }
-          </select>
-        </div>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <label class="form-label" for="field_tsResultat">TS Résultat</label>
+    <select
+      class="form-control"
+      name="tsResultat"
+      formControlName="tsResultat"
+      id="field_tsResultat"
+      data-cy="tsResultat"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeTS of typeTSValues; track $index) {
+        <option [value]="typeTS">
+          {{ { null: '', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE', NON_FAIT: 'NON_FAIT' }[typeTS] }}
+        </option>
+      }
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tsValeur">TS Valeur</label>
-          <input type="number" class="form-control" name="tsValeur" id="field_tsValeur" data-cy="tsValeur" formControlName="tsValeur" />
-        </div>
+  <div class="col-md-6">
+    <label class="form-label" for="field_tsValeur">TS Valeur</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tsValeur"
+      id="field_tsValeur"
+      data-cy="tsValeur"
+      formControlName="tsValeur"
+    />
+  </div>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_occlusionPlaquettaire">Temps d'occlusion plaquettaire</label>
