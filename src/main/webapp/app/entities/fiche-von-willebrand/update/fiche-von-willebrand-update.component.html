@@ -2087,151 +2087,140 @@
 
 @let hemorragieMuqueusesValue = editForm.get('hemorragieMuqueuses')?.value;
 @if (hemorragieMuqueusesValue === 'OUI') {
-      <div>
-  <!-- Epistaxis -->
-@let epistaxisValue = editForm.get('epistaxis')?.value;
-
-<div class="row mb-3 align-items-end">
-  <!-- Épistaxis -->
-  <div class="col-md-6">
-    <label class="form-label" for="field_epistaxis">Epistaxis</label>
-    <select
-      class="form-control"
-      name="epistaxis"
-      formControlName="epistaxis"
-      id="field_epistaxis"
-      data-cy="epistaxis"
-    >
-      <option [ngValue]="null"></option>
-      @for (ouiNonNP of ouiNonNPValues; track $index) {
-        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+  <div>
+    <!-- Epistaxis -->
+    @let epistaxisValue = editForm.get('epistaxis')?.value;
+    <div class="row mb-3 align-items-end">
+      <div class="col-md-6">
+        <label class="form-label" for="field_epistaxis">Epistaxis</label>
+        <select
+          class="form-control"
+          name="epistaxis"
+          formControlName="epistaxis"
+          id="field_epistaxis"
+          data-cy="epistaxis"
+        >
+          <option [ngValue]="null"></option>
+          @for (ouiNonNP of ouiNonNPValues; track $index) {
+            <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+          }
+        </select>
+      </div>
+      @if (epistaxisValue === 'OUI') {
+        <div class="col-md-6">
+          <label class="form-label" for="field_epistaxisFrequence">Fréquence</label>
+          <input
+            type="number"
+            class="form-control"
+            name="epistaxisFrequence"
+            id="field_epistaxisFrequence"
+            data-cy="epistaxisFrequence"
+            formControlName="epistaxisFrequence"
+          />
+        </div>
       }
-    </select>
-  </div>
-
-  <!-- Fréquence (affiché uniquement si Épistaxis === OUI) -->
-  @if (epistaxisValue === 'OUI') {
-    <div class="col-md-6">
-      <label class="form-label" for="field_epistaxisFrequence">Fréquence</label>
-      <input
-        type="number"
-        class="form-control"
-        name="epistaxisFrequence"
-        id="field_epistaxisFrequence"
-        data-cy="epistaxisFrequence"
-        formControlName="epistaxisFrequence"
-      />
     </div>
-  }
-</div>
 
-
-  <!-- Hémorragies intrabuccales -->
-@let hemorragiesIntrabuccalesValue = editForm.get('hemorragiesIntrabuccales')?.value;
-
-<div class="row mb-3 align-items-end">
-  <!-- Hémorragies Intrabuccales -->
-  <div class="col-md-6">
-    <label class="form-label" for="field_hemorragiesIntrabuccales">Hémorragies Intrabuccales</label>
-    <select
-      class="form-control"
-      name="hemorragiesIntrabuccales"
-      formControlName="hemorragiesIntrabuccales"
-      id="field_hemorragiesIntrabuccales"
-      data-cy="hemorragiesIntrabuccales"
-    >
-      <option [ngValue]="null"></option>
-      @for (ouiNonNP of ouiNonNPValues; track $index) {
-        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    <!-- Hémorragies intrabuccales -->
+    @let hemorragiesIntrabuccalesValue = editForm.get('hemorragiesIntrabuccales')?.value;
+    <div class="row mb-3 align-items-end">
+      <div class="col-md-6">
+        <label class="form-label" for="field_hemorragiesIntrabuccales">Hémorragies Intrabuccales</label>
+        <select
+          class="form-control"
+          name="hemorragiesIntrabuccales"
+          formControlName="hemorragiesIntrabuccales"
+          id="field_hemorragiesIntrabuccales"
+          data-cy="hemorragiesIntrabuccales"
+        >
+          <option [ngValue]="null"></option>
+          @for (ouiNonNP of ouiNonNPValues; track $index) {
+            <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+          }
+        </select>
+      </div>
+      @if (hemorragiesIntrabuccalesValue === 'OUI') {
+        <div class="col-md-6">
+          <label class="form-label" for="field_hemorragiesIntrabuccalesFrequence">Fréquence (/an)</label>
+          <input
+            type="number"
+            class="form-control"
+            name="hemorragiesIntrabuccalesFrequence"
+            id="field_hemorragiesIntrabuccalesFrequence"
+            data-cy="hemorragiesIntrabuccalesFrequence"
+            formControlName="hemorragiesIntrabuccalesFrequence"
+          />
+        </div>
       }
-    </select>
-  </div>
-
-  <!-- Fréquence (affiché seulement si OUI) -->
-  @if (hemorragiesIntrabuccalesValue === 'OUI') {
-    <div class="col-md-6">
-      <label class="form-label" for="field_hemorragiesIntrabuccalesFrequence">Fréquence (/an)</label>
-      <input
-        type="number"
-        class="form-control"
-        name="hemorragiesIntrabuccalesFrequence"
-        id="field_hemorragiesIntrabuccalesFrequence"
-        data-cy="hemorragiesIntrabuccalesFrequence"
-        formControlName="hemorragiesIntrabuccalesFrequence"
-      />
     </div>
-  }
-</div>
 
-
-  <!-- Ménorragie -->
-@let menoragieValue = editForm.get('menoragie')?.value;
-
-<div class="row mb-3 align-items-end">
-  <!-- Ménorragie -->
-  <div class="col-md-6">
-    <label class="form-label" for="field_menoragie">Ménorragie</label>
-    <select
-      class="form-control"
-      name="menoragie"
-      formControlName="menoragie"
-      id="field_menoragie"
-      data-cy="menoragie"
-    >
-      <option [ngValue]="null"></option>
-      @for (ouiNonNP of ouiNonNPValues; track $index) {
-        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    <!-- Ménorragie -->
+    @let menoragieValue = editForm.get('menoragie')?.value;
+    <div class="row mb-3 align-items-end">
+      <div class="col-md-6">
+        <label class="form-label" for="field_menoragie">Ménorragie</label>
+        <select
+          class="form-control"
+          name="menoragie"
+          formControlName="menoragie"
+          id="field_menoragie"
+          data-cy="menoragie"
+        >
+          <option [ngValue]="null"></option>
+          @for (ouiNonNP of ouiNonNPValues; track $index) {
+            <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+          }
+        </select>
+      </div>
+      @if (menoragieValue === 'OUI') {
+        <div class="col-md-6">
+          <label class="form-label" for="field_menoragieFrequence">Fréquence (/an)</label>
+          <input
+            type="number"
+            class="form-control"
+            name="menoragieFrequence"
+            id="field_menoragieFrequence"
+            data-cy="menoragieFrequence"
+            formControlName="menoragieFrequence"
+          />
+        </div>
       }
-    </select>
+    </div>
+
+    <!-- Score Higham -->
+    @if (menoragieValue === 'OUI') {
+      <div class="mb-3">
+        <div class="form-check d-flex align-items-center">
+          <input
+            type="checkbox"
+            class="form-check-input me-2"
+            name="scoreHighamFait"
+            id="field_scoreHighamFait"
+            data-cy="scoreHighamFait"
+            formControlName="scoreHighamFait"
+          />
+          <label class="form-check-label mb-0" for="field_scoreHighamFait">Score Higham</label>
+        </div>
+      </div>
+
+      @let highamChecked = editForm.get('scoreHighamFait')?.value;
+      @if (highamChecked) {
+        <div class="mb-3">
+          <label class="form-label" for="field_scoreHighamValeur">Valeur</label>
+          <input
+            type="number"
+            class="form-control"
+            name="scoreHighamValeur"
+            id="field_scoreHighamValeur"
+            data-cy="scoreHighamValeur"
+            formControlName="scoreHighamValeur"
+          />
+        </div>
+      }
+    }
   </div>
-
-  <!-- Fréquence (affichée uniquement si OUI) -->
-  @if (menoragieValue === 'OUI') {
-    <div class="col-md-6">
-      <label class="form-label" for="field_menoragieFrequence">Fréquence (/an)</label>
-      <input
-        type="number"
-        class="form-control"
-        name="menoragieFrequence"
-        id="field_menoragieFrequence"
-        data-cy="menoragieFrequence"
-        formControlName="menoragieFrequence"
-      />
-    </div>
-  }
-</div>
-
-<!-- Score Higham (affiché uniquement si Ménorragie === 'OUI') -->
-@if (menoragieValue === 'OUI') {
-  <div class="mb-3">
-    <div class="form-check d-flex align-items-center">
-      <input
-        type="checkbox"
-        class="form-check-input me-2"
-        name="scoreHighamFait"
-        id="field_scoreHighamFait"
-        data-cy="scoreHighamFait"
-        formControlName="scoreHighamFait"
-      />
-      <label class="form-check-label mb-0" for="field_scoreHighamFait">Score Higham</label>
-    </div>
-  </div>
-
-  @let highamChecked = editForm.get('scoreHighamFait')?.value;
-  @if (highamChecked) {
-    <div class="mb-3">
-      <label class="form-label" for="field_scoreHighamValeur">Valeur</label>
-      <input
-        type="number"
-        class="form-control"
-        name="scoreHighamValeur"
-        id="field_scoreHighamValeur"
-        data-cy="scoreHighamValeur"
-        formControlName="scoreHighamValeur"
-      />
-    </div>
-  }
 }
+
 
 
 
