@@ -1822,18 +1822,25 @@
       <!-- Contenu pour la section MANIFESTATIONS CLINIQUES -->
 
       
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_ecchymoses">1- Ecchymoses</label>
-
-          <select class="form-control" name="ecchymoses" formControlName="ecchymoses" id="field_ecchymoses" data-cy="ecchymoses">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
+<!-- Champ principal -->
 <div class="mb-3">
+  <label class="form-label fw-bold" for="field_ecchymoses">1- Ecchymoses</label>
+  <select
+    class="form-control"
+    name="ecchymoses"
+    formControlName="ecchymoses"
+    id="field_ecchymoses"
+    data-cy="ecchymoses"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+<!-- Toujours visibles : Spontanées et Provoquées -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-4">
   <div class="form-check d-flex align-items-center">
     <input
       type="checkbox"
@@ -1843,11 +1850,9 @@
       data-cy="ecchymosesSpontanees"
       formControlName="ecchymosesSpontanees"
     />
-    <label class="form-check-label mb-0" for="field_ecchymosesSpontanees">Ecchymoses Spontanées</label>
+    <label class="form-check-label mb-0" for="field_ecchymosesSpontanees">Spontanées</label>
   </div>
-</div>
 
-<div class="mb-3">
   <div class="form-check d-flex align-items-center">
     <input
       type="checkbox"
@@ -1857,35 +1862,38 @@
       data-cy="ecchymosesProvoquees"
       formControlName="ecchymosesProvoquees"
     />
-    <label class="form-check-label mb-0" for="field_ecchymosesProvoquees">Ecchymoses Provoquées</label>
+    <label class="form-check-label mb-0" for="field_ecchymosesProvoquees">Provoquées</label>
   </div>
 </div>
 
+<!-- Conditionnel : Siège et Fréquence -->
+@let ecchymosesValue = editForm.get('ecchymoses')?.value;
+@if (ecchymosesValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_ecchymosesSiege">Siège</label>
+    <input
+      type="text"
+      class="form-control"
+      name="ecchymosesSiege"
+      id="field_ecchymosesSiege"
+      data-cy="ecchymosesSiege"
+      formControlName="ecchymosesSiege"
+    />
+  </div>
 
+  <div class="mb-3">
+    <label class="form-label" for="field_ecchymosesFrequence">Fréquence</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ecchymosesFrequence"
+      id="field_ecchymosesFrequence"
+      data-cy="ecchymosesFrequence"
+      formControlName="ecchymosesFrequence"
+    />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ecchymosesSiege">Ecchymoses Siege</label>
-          <input
-            type="text"
-            class="form-control"
-            name="ecchymosesSiege"
-            id="field_ecchymosesSiege"
-            data-cy="ecchymosesSiege"
-            formControlName="ecchymosesSiege"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ecchymosesFrequence">Ecchymoses Frequence</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ecchymosesFrequence"
-            id="field_ecchymosesFrequence"
-            data-cy="ecchymosesFrequence"
-            formControlName="ecchymosesFrequence"
-          />
-        </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_hemorragieMuqueuses">Hemorragie Muqueuses</label>
