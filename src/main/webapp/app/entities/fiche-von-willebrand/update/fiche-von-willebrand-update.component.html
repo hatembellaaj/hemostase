@@ -1822,10 +1822,9 @@
       <!-- Contenu pour la section MANIFESTATIONS CLINIQUES -->
 
       
-je souhaite que les checkbox apparaissent uniquement si on a sélectionné OUI 
-
         <div class="mb-3">
-          <label class="form-label" for="field_ecchymoses">Ecchymoses</label>
+          <label class="form-label fw-bold" for="field_ecchymoses">1- Ecchymoses</label>
+
           <select class="form-control" name="ecchymoses" formControlName="ecchymoses" id="field_ecchymoses" data-cy="ecchymoses">
             <option [ngValue]="null"></option>
             @for (ouiNonNP of ouiNonNPValues; track $index) {
@@ -1844,7 +1843,7 @@ je souhaite que les checkbox apparaissent uniquement si on a sélectionné OUI
       data-cy="ecchymosesSpontanees"
       formControlName="ecchymosesSpontanees"
     />
-    <label class="form-check-label mb-0" for="field_ecchymosesSpontanees">Spontanées</label>
+    <label class="form-check-label mb-0" for="field_ecchymosesSpontanees">Ecchymoses Spontanées</label>
   </div>
 </div>
 
@@ -1858,9 +1857,10 @@ je souhaite que les checkbox apparaissent uniquement si on a sélectionné OUI
       data-cy="ecchymosesProvoquees"
       formControlName="ecchymosesProvoquees"
     />
-    <label class="form-check-label mb-0" for="field_ecchymosesProvoquees">Provoquées</label>
+    <label class="form-check-label mb-0" for="field_ecchymosesProvoquees">Ecchymoses Provoquées</label>
   </div>
 </div>
+
 
 
         <div class="mb-3">
