@@ -78,14 +78,35 @@ export class FicheVonWillebrandUpdateComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   editForm: FicheVonWillebrandFormGroup = this.ficheVonWillebrandFormService.createFicheVonWillebrandFormGroup();
 
-  ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ ficheVonWillebrand }) => {
-      this.ficheVonWillebrand = ficheVonWillebrand;
-      if (ficheVonWillebrand) {
-        this.updateForm(ficheVonWillebrand);
+ngOnInit(): void {
+  this.activatedRoute.data.subscribe(({ ficheVonWillebrand }) => {
+    this.ficheVonWillebrand = ficheVonWillebrand;
+
+    if (ficheVonWillebrand) {
+      this.updateForm(ficheVonWillebrand);
+    }
+
+    // Abonnement aux changements de valeurs du formulaire
+    this.editForm.valueChanges.subscribe(values => {
+      const fvwag = values.fvwag;
+      const fvwact = values.fvwact;
+      const f8c = values.f8c;
+
+      // Ratio FvWAct / FvWAg
+      if (fvwag && fvwact && fvwag !== 0) {
+        const ratioFvwactFvwag = parseFloat((fvwact / fvwag).toFixed(2));
+        this.editForm.get('ratioFvwactFvwag')?.setValue(ratioFvwactFvwag, { emitEvent: false });
+      }
+
+      // Ratio FVIIIc / FvWAg
+      if (fvwag && f8c && fvwag !== 0) {
+        const ratioF8cFvwag = parseFloat((f8c / fvwag).toFixed(2));
+        this.editForm.get('ratioF8cFvwag')?.setValue(ratioF8cFvwag, { emitEvent: false });
       }
     });
-  }
+  });
+}
+
 
   previousState(): void {
     window.history.back();
