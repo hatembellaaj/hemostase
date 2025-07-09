@@ -2439,49 +2439,58 @@
 }
 
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_avulsionDentaire">6- Avulsion Dentaire</label>
-          <select
-            class="form-control"
-            name="avulsionDentaire"
-            formControlName="avulsionDentaire"
-            id="field_avulsionDentaire"
-            data-cy="avulsionDentaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Avulsion Dentaire -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_avulsionDentaire">6- Avulsion Dentaire</label>
+  <select
+    class="form-control"
+    name="avulsionDentaire"
+    formControlName="avulsionDentaire"
+    id="field_avulsionDentaire"
+    data-cy="avulsionDentaire"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_avulsionPrepare">Avulsion Prepare</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="avulsionPrepare"
-            id="field_avulsionPrepare"
-            data-cy="avulsionPrepare"
-            formControlName="avulsionPrepare"
-          />
-        </div>
+@let avulsionDentaireValue = editForm.get('avulsionDentaire')?.value;
+@if (avulsionDentaireValue === 'OUI') {
+  <div class="row mb-3 align-items-center">
+    <!-- Avulsion préparée -->
+    <div class="col-md-6">
+      <div class="form-check d-flex align-items-center">
+        <input
+          type="checkbox"
+          class="form-check-input me-2"
+          id="field_avulsionPrepare"
+          data-cy="avulsionPrepare"
+          [checked]="editForm.get('avulsionPrepare')?.value === 'OUI'"
+          (change)="editForm.get('avulsionPrepare')?.setValue($event.target.checked ? 'OUI' : 'NON')"
+        />
+        <label class="form-check-label mb-0" for="field_avulsionPrepare">Avulsion préparée</label>
+      </div>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_avulsionBienDeroule">Avulsion Bien Deroule</label>
-          <select
-            class="form-control"
-            name="avulsionBienDeroule"
-            formControlName="avulsionBienDeroule"
-            id="field_avulsionBienDeroule"
-            data-cy="avulsionBienDeroule"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+    <!-- Avulsion bien déroulée -->
+    <div class="col-md-6">
+      <div class="form-check d-flex align-items-center">
+        <input
+          type="checkbox"
+          class="form-check-input me-2"
+          id="field_avulsionBienDeroule"
+          data-cy="avulsionBienDeroule"
+          [checked]="editForm.get('avulsionBienDeroule')?.value === 'OUI'"
+          (change)="editForm.get('avulsionBienDeroule')?.setValue($event.target.checked ? 'OUI' : 'NON')"
+        />
+        <label class="form-check-label mb-0" for="field_avulsionBienDeroule">Avulsion bien déroulée</label>
+      </div>
+    </div>
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label fw-bold" for="field_traumatisme">7- Traumatisme</label>
