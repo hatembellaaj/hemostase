@@ -2164,7 +2164,11 @@
 
 
   <!-- Ménorragie -->
-  <div class="mb-3">
+@let menoragieValue = editForm.get('menoragie')?.value;
+
+<div class="row mb-3 align-items-end">
+  <!-- Ménorragie -->
+  <div class="col-md-6">
     <label class="form-label" for="field_menoragie">Ménorragie</label>
     <select
       class="form-control"
@@ -2180,19 +2184,24 @@
     </select>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label" for="field_menoragieFrequence">Ménorragie Fréquence</label>
-    <input
-      type="number"
-      class="form-control"
-      name="menoragieFrequence"
-      id="field_menoragieFrequence"
-      data-cy="menoragieFrequence"
-      formControlName="menoragieFrequence"
-    />
-  </div>
+  <!-- Fréquence (affichée uniquement si OUI) -->
+  @if (menoragieValue === 'OUI') {
+    <div class="col-md-6">
+      <label class="form-label" for="field_menoragieFrequence">Fréquence (/an)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="menoragieFrequence"
+        id="field_menoragieFrequence"
+        data-cy="menoragieFrequence"
+        formControlName="menoragieFrequence"
+      />
+    </div>
+  }
+</div>
 
-  <!-- Checkbox Score Higham -->
+<!-- Score Higham (affiché uniquement si Ménorragie === 'OUI') -->
+@if (menoragieValue === 'OUI') {
   <div class="mb-3">
     <div class="form-check d-flex align-items-center">
       <input
@@ -2207,7 +2216,6 @@
     </div>
   </div>
 
-  <!-- Valeur Score Higham si coché -->
   @let highamChecked = editForm.get('scoreHighamFait')?.value;
   @if (highamChecked) {
     <div class="mb-3">
@@ -2223,6 +2231,7 @@
     </div>
   }
 }
+
 
 
 
