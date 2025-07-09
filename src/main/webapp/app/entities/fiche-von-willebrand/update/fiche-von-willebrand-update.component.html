@@ -1011,7 +1011,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_jamaisSaigne">Jamais Saigne</label>
+          <label class="form-label" for="field_jamaisSaigne">Jamais Saigné</label>
           <select class="form-control" name="jamaisSaigne" formControlName="jamaisSaigne" id="field_jamaisSaigne" data-cy="jamaisSaigne">
             <option [ngValue]="null"></option>
             @for (ouiNonNP of ouiNonNPValues; track $index) {
@@ -1020,6 +1020,10 @@
           </select>
         </div>
 
+      <!-- Titre introductif -->
+<div class="mb-1">
+  <label class="form-label fw-bold">Âge au 1er signe clinique évocateur</label>
+</div>
 <div class="row mb-3 align-items-end">
   <div class="col-md-4">
     <label class="form-label" for="field_agePremierSigneCliniqueJours">Jours</label>
@@ -1288,77 +1292,95 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremiereConsultationJours">Age Premiere Consultation Jours</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremiereConsultationJours"
-            id="field_agePremiereConsultationJours"
-            data-cy="agePremiereConsultationJours"
-            formControlName="agePremiereConsultationJours"
-          />
-        </div>
+<!-- Titre de section -->
+<div class="mb-1">
+  <label class="form-label fw-bold">Âge à la première consultation</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremiereConsultationMois">Age Premiere Consultation Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremiereConsultationMois"
-            id="field_agePremiereConsultationMois"
-            data-cy="agePremiereConsultationMois"
-            formControlName="agePremiereConsultationMois"
-          />
-        </div>
+<!-- Ligne des champs Jours / Mois / Années -->
+<div class="row mb-3 align-items-end">
+  <div class="col-md-4">
+    <label class="form-label" for="field_agePremiereConsultationJours">Jours</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremiereConsultationJours"
+      id="field_agePremiereConsultationJours"
+      data-cy="agePremiereConsultationJours"
+      formControlName="agePremiereConsultationJours"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremiereConsultationAnnees">Age Premiere Consultation Annees</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremiereConsultationAnnees"
-            id="field_agePremiereConsultationAnnees"
-            data-cy="agePremiereConsultationAnnees"
-            formControlName="agePremiereConsultationAnnees"
-          />
-        </div>
+  <div class="col-md-4">
+    <label class="form-label" for="field_agePremiereConsultationMois">Mois</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremiereConsultationMois"
+      id="field_agePremiereConsultationMois"
+      data-cy="agePremiereConsultationMois"
+      formControlName="agePremiereConsultationMois"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticJours">Age Diagnostic Jours</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticJours"
-            id="field_ageDiagnosticJours"
-            data-cy="ageDiagnosticJours"
-            formControlName="ageDiagnosticJours"
-          />
-        </div>
+  <div class="col-md-4">
+    <label class="form-label" for="field_agePremiereConsultationAnnees">Années</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremiereConsultationAnnees"
+      id="field_agePremiereConsultationAnnees"
+      data-cy="agePremiereConsultationAnnees"
+      formControlName="agePremiereConsultationAnnees"
+    />
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticMois">Age Diagnostic Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticMois"
-            id="field_ageDiagnosticMois"
-            data-cy="ageDiagnosticMois"
-            formControlName="ageDiagnosticMois"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticAnnees">Age Diagnostic Annees</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticAnnees"
-            id="field_ageDiagnosticAnnees"
-            data-cy="ageDiagnosticAnnees"
-            formControlName="ageDiagnosticAnnees"
-          />
-        </div>
+<!-- Titre de section -->
+<div class="mb-1">
+  <label class="form-label fw-bold">Âge au diagnostic</label>
+</div>
+
+<!-- Ligne des champs Jours / Mois / Années -->
+<div class="row mb-3 align-items-end">
+  <div class="col-md-4">
+    <label class="form-label" for="field_ageDiagnosticJours">Jours</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageDiagnosticJours"
+      id="field_ageDiagnosticJours"
+      data-cy="ageDiagnosticJours"
+      formControlName="ageDiagnosticJours"
+    />
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="field_ageDiagnosticMois">Mois</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageDiagnosticMois"
+      id="field_ageDiagnosticMois"
+      data-cy="ageDiagnosticMois"
+      formControlName="ageDiagnosticMois"
+    />
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="field_ageDiagnosticAnnees">Années</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageDiagnosticAnnees"
+      id="field_ageDiagnosticAnnees"
+      data-cy="ageDiagnosticAnnees"
+      formControlName="ageDiagnosticAnnees"
+    />
+  </div>
+</div>
+
 
 
     </div>
