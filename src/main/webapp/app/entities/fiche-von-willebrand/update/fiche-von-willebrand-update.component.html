@@ -1896,7 +1896,8 @@
 
 
         <div class="mb-3">
-          <label class="form-label" for="field_hemorragieMuqueuses">Hemorragie Muqueuses</label>
+          <label class="form-label fw-bold" for="field_hemorragieMuqueuses">2- Hemorragie Muqueuses</label>
+
           <select
             class="form-control"
             name="hemorragieMuqueuses"
@@ -1983,32 +1984,41 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_scoreHighamFait">Score Higham Fait</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="scoreHighamFait"
-            id="field_scoreHighamFait"
-            data-cy="scoreHighamFait"
-            formControlName="scoreHighamFait"
-          />
-        </div>
+<!-- Checkbox Score Higham -->
+<div class="mb-3">
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="scoreHighamFait"
+      id="field_scoreHighamFait"
+      data-cy="scoreHighamFait"
+      formControlName="scoreHighamFait"
+    />
+    <label class="form-check-label mb-0" for="field_scoreHighamFait">Score Higham</label>
+  </div>
+</div>
+
+<!-- Affichage conditionnel de la valeur -->
+@let highamChecked = editForm.get('scoreHighamFait')?.value;
+@if (highamChecked) {
+  <div class="mb-3">
+    <label class="form-label" for="field_scoreHighamValeur">Valeur</label>
+    <input
+      type="number"
+      class="form-control"
+      name="scoreHighamValeur"
+      id="field_scoreHighamValeur"
+      data-cy="scoreHighamValeur"
+      formControlName="scoreHighamValeur"
+    />
+  </div>
+}
+
 
         <div class="mb-3">
-          <label class="form-label" for="field_scoreHighamValeur">Score Higham Valeur</label>
-          <input
-            type="number"
-            class="form-control"
-            name="scoreHighamValeur"
-            id="field_scoreHighamValeur"
-            data-cy="scoreHighamValeur"
-            formControlName="scoreHighamValeur"
-          />
-        </div>
+          <label class="form-label fw-bold" for="field_hematome">3- Hématome</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematome">Hematome</label>
           <select class="form-control" name="hematome" formControlName="hematome" id="field_hematome" data-cy="hematome">
             <option [ngValue]="null"></option>
             @for (ouiNonNP of ouiNonNPValues; track $index) {
