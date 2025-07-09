@@ -600,6 +600,23 @@
           </div>
         </div>
 
+        <div class="mb-3">
+          <label class="form-label" for="field_consentementRegistre">Consentement Registre</label>
+          <select
+            class="form-control"
+            name="consentementRegistre"
+            formControlName="consentementRegistre"
+            id="field_consentementRegistre"
+            data-cy="consentementRegistre"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
+
+                
               </div>
             </div>
           </div>
@@ -630,21 +647,7 @@
 
 
                 
-        <div class="mb-3">
-          <label class="form-label" for="field_consentementRegistre">Consentement Registre</label>
-          <select
-            class="form-control"
-            name="consentementRegistre"
-            formControlName="consentementRegistre"
-            id="field_consentementRegistre"
-            data-cy="consentementRegistre"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
