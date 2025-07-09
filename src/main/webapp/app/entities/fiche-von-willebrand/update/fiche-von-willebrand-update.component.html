@@ -2009,36 +2009,37 @@
   </select>
 </div>
 
-<!-- Toujours visibles : Spontanées et Provoquées -->
-<div class="mb-3 d-flex align-items-center flex-wrap gap-4">
-  <div class="form-check d-flex align-items-center">
-    <input
-      type="checkbox"
-      class="form-check-input me-2"
-      name="ecchymosesSpontanees"
-      id="field_ecchymosesSpontanees"
-      data-cy="ecchymosesSpontanees"
-      formControlName="ecchymosesSpontanees"
-    />
-    <label class="form-check-label mb-0" for="field_ecchymosesSpontanees">Spontanées</label>
-  </div>
-
-  <div class="form-check d-flex align-items-center">
-    <input
-      type="checkbox"
-      class="form-check-input me-2"
-      name="ecchymosesProvoquees"
-      id="field_ecchymosesProvoquees"
-      data-cy="ecchymosesProvoquees"
-      formControlName="ecchymosesProvoquees"
-    />
-    <label class="form-check-label mb-0" for="field_ecchymosesProvoquees">Provoquées</label>
-  </div>
-</div>
-
-<!-- Conditionnel : Siège et Fréquence -->
+<!-- Bloc conditionnel si OUI -->
 @let ecchymosesValue = editForm.get('ecchymoses')?.value;
 @if (ecchymosesValue === 'OUI') {
+  <!-- Spontanées et Provoquées -->
+  <div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="ecchymosesSpontanees"
+        id="field_ecchymosesSpontanees"
+        data-cy="ecchymosesSpontanees"
+        formControlName="ecchymosesSpontanees"
+      />
+      <label class="form-check-label mb-0" for="field_ecchymosesSpontanees">Spontanées</label>
+    </div>
+
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="ecchymosesProvoquees"
+        id="field_ecchymosesProvoquees"
+        data-cy="ecchymosesProvoquees"
+        formControlName="ecchymosesProvoquees"
+      />
+      <label class="form-check-label mb-0" for="field_ecchymosesProvoquees">Provoquées</label>
+    </div>
+  </div>
+
+  <!-- Siège -->
   <div class="mb-3">
     <label class="form-label" for="field_ecchymosesSiege">Siège</label>
     <input
@@ -2051,6 +2052,7 @@
     />
   </div>
 
+  <!-- Fréquence -->
   <div class="mb-3">
     <label class="form-label" for="field_ecchymosesFrequence">Fréquence</label>
     <input
@@ -2063,6 +2065,7 @@
     />
   </div>
 }
+
 
 
         <div class="mb-3">
