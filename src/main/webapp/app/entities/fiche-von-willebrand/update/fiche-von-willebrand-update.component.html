@@ -1725,7 +1725,7 @@
 <!-- Contenu conditionnel -->
 <div *ngIf="editForm.get('autresTestsSpecifiques')?.value === 'FAITE'">
   <div class="mb-3">
-    <label class="form-label" for="field_vwfCB">Vwf CB</label>
+    <label class="form-label" for="field_vwfCB">FVW CB</label>
     <select class="form-control" name="vwfCB" formControlName="vwfCB" id="field_vwfCB" data-cy="vwfCB">
       <option [ngValue]="null"></option>
       @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
@@ -1735,12 +1735,12 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_vwfCBResultat">Vwf CB Résultat</label>
+    <label class="form-label" for="field_vwfCBResultat">FVW CB Résultat</label>
     <input type="number" class="form-control" name="vwfCBResultat" id="field_vwfCBResultat" data-cy="vwfCBResultat" formControlName="vwfCBResultat" />
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_ripa">Ripa</label>
+    <label class="form-label" for="field_ripa">RIPA</label>
     <select class="form-control" name="ripa" formControlName="ripa" id="field_ripa" data-cy="ripa">
       <option [ngValue]="null"></option>
       @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
@@ -1750,7 +1750,7 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_ripaResultat">Ripa Résultat</label>
+    <label class="form-label" for="field_ripaResultat">RIPA Résultat</label>
     <select class="form-control" name="ripaResultat" formControlName="ripaResultat" id="field_ripaResultat" data-cy="ripaResultat">
       <option [ngValue]="null"></option>
       @for (typeRipaResultat of typeRipaResultatValues; track $index) {
@@ -1760,7 +1760,7 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_multimereHPM">Multimere HPM</label>
+    <label class="form-label" for="field_multimereHPM">Multimère HPM</label>
     <select class="form-control" name="multimereHPM" formControlName="multimereHPM" id="field_multimereHPM" data-cy="multimereHPM">
       <option [ngValue]="null"></option>
       @for (typeMultimere of typeMultimereValues; track $index) {
@@ -1770,7 +1770,7 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_liaisonFvwF8">Liaison Fvw F8</label>
+    <label class="form-label" for="field_liaisonFvwF8">Liaison FVW FVIII</label>
     <select class="form-control" name="liaisonFvwF8" formControlName="liaisonFvwF8" id="field_liaisonFvwF8" data-cy="liaisonFvwF8">
       <option [ngValue]="null"></option>
       @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
@@ -1780,7 +1780,7 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_liaisonFvwF8Resultat">Liaison Fvw F8 Résultat</label>
+    <label class="form-label" for="field_liaisonFvwF8Resultat">Liaison FVW FVIII Résultat</label>
     <select class="form-control" name="liaisonFvwF8Resultat" formControlName="liaisonFvwF8Resultat" id="field_liaisonFvwF8Resultat" data-cy="liaisonFvwF8Resultat">
       <option [ngValue]="null"></option>
       @for (typeResultatPatho of typeResultatPathoValues; track $index) {
@@ -1790,7 +1790,7 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_fvwpp">Fvwpp</label>
+    <label class="form-label" for="field_fvwpp">FVWpp</label>
     <select class="form-control" name="fvwpp" formControlName="fvwpp" id="field_fvwpp" data-cy="fvwpp">
       <option [ngValue]="null"></option>
       @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
@@ -1800,7 +1800,7 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="field_fvwppResultat">Fvwpp Résultat</label>
+    <label class="form-label" for="field_fvwppResultat">FVWpp Résultat</label>
     <select class="form-control" name="fvwppResultat" formControlName="fvwppResultat" id="field_fvwppResultat" data-cy="fvwppResultat">
       <option [ngValue]="null"></option>
       @for (typeFvWppRatio of typeFvWppRatioValues; track $index) {
@@ -1809,16 +1809,24 @@
     </select>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label" for="field_mutationGenetique">Mutation Génétique</label>
-    <select class="form-control" name="mutationGenetique" formControlName="mutationGenetique" id="field_mutationGenetique" data-cy="mutationGenetique">
-      <option [ngValue]="null"></option>
-      @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-        <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-      }
-    </select>
-  </div>
+<div class="mb-3">
+  <label class="form-label" for="field_mutationGenetique">Mutation Génétique</label>
+  <select
+    class="form-control"
+    name="mutationGenetique"
+    formControlName="mutationGenetique"
+    id="field_mutationGenetique"
+    data-cy="mutationGenetique"
+  >
+    <option [ngValue]="null"></option>
+    @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+      <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+    }
+  </select>
+</div>
 
+<!-- Contenu conditionnel -->
+<div *ngIf="editForm.get('mutationGenetique')?.value === 'FAITE'">
   <div class="mb-3">
     <div class="form-check d-flex align-items-center">
       <input
@@ -1847,7 +1855,13 @@
 
   <div class="mb-3">
     <label class="form-label" for="field_mutationZygote">Mutation Zygote</label>
-    <select class="form-control" name="mutationZygote" formControlName="mutationZygote" id="field_mutationZygote" data-cy="mutationZygote">
+    <select
+      class="form-control"
+      name="mutationZygote"
+      formControlName="mutationZygote"
+      id="field_mutationZygote"
+      data-cy="mutationZygote"
+    >
       <option [ngValue]="null"></option>
       @for (typeZygote of typeZygoteValues; track $index) {
         <option [value]="typeZygote">{{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[typeZygote] }}</option>
@@ -1855,6 +1869,7 @@
     </select>
   </div>
 </div>
+
 
 
 
