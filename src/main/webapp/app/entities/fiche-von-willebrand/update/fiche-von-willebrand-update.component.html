@@ -570,7 +570,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_anneeDiagnostic">Annee Diagnostic</label>
+          <label class="form-label" for="field_anneeDiagnostic">Année Diagnostic</label>
           <input
             type="number"
             class="form-control"
@@ -649,41 +649,54 @@
                 
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
-          <select
-            class="form-control"
-            name="parentsConsanguins"
-            formControlName="parentsConsanguins"
-            id="field_parentsConsanguins"
-            data-cy="parentsConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Parents Consanguins -->
+<div class="mb-3">
+  <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+  <select
+    class="form-control"
+    name="parentsConsanguins"
+    formControlName="parentsConsanguins"
+    id="field_parentsConsanguins"
+    data-cy="parentsConsanguins"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
-          <select
-            class="form-control"
-            name="degreParenteConsanguins"
-            formControlName="degreParenteConsanguins"
-            id="field_degreParenteConsanguins"
-            data-cy="degreParenteConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (degreParente of degreParenteValues; track $index) {
-              <option [value]="degreParente">
-                {{
-                  { null: '', TROISIEME_DEGRE: 'TROISIEME_DEGRE', QUATRIEME_DEGRE: 'QUATRIEME_DEGRE', LOINTAIN: 'LOINTAIN' }[degreParente]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+<!-- Condition : Degré Parenté affiché uniquement si "OUI" -->
+@let consanguinsValue = editForm.get('parentsConsanguins')?.value;
+@if (consanguinsValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_degreParenteConsanguins">Degré Parenté</label>
+    <select
+      class="form-control"
+      name="degreParenteConsanguins"
+      formControlName="degreParenteConsanguins"
+      id="field_degreParenteConsanguins"
+      data-cy="degreParenteConsanguins"
+    >
+      <option [ngValue]="null"></option>
+      @for (degreParente of degreParenteValues; track $index) {
+        <option [value]="degreParente">
+          {{
+            {
+              null: '',
+              TROISIEME_DEGRE: 'TROISIEME_DEGRE',
+              QUATRIEME_DEGRE: 'QUATRIEME_DEGRE',
+              LOINTAIN: 'LOINTAIN'
+            }[degreParente]
+          }}
+        </option>
+      }
+    </select>
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
@@ -795,7 +808,7 @@
 
 
         <div class="mb-3">
-          <label class="form-label" for="field_decesSyndromeHemorragique">Deces Syndrome Hemorragique</label>
+          <label class="form-label" for="field_decesSyndromeHemorragique">Décés Syndrome Hemorragique</label>
           <select
             class="form-control"
             name="decesSyndromeHemorragique"
@@ -811,7 +824,7 @@
         </div>
 
 <div class="mb-3">
-  <label class="form-label" for="field_nombreDeces">Nombre Deces</label>
+  <label class="form-label" for="field_nombreDeces">Nombre Décés</label>
   <input
     type="number"
     min="1"
