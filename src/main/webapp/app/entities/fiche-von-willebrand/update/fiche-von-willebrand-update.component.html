@@ -2536,59 +2536,117 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_chirurgie">8- Chirurgie</label>
-          <select class="form-control" name="chirurgie" formControlName="chirurgie" id="field_chirurgie" data-cy="chirurgie">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_chirurgie">8- Chirurgie</label>
+  <select
+    class="form-control"
+    name="chirurgie"
+    formControlName="chirurgie"
+    id="field_chirurgie"
+    data-cy="chirurgie"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_chirurgieType">Chirurgie Type</label>
-          <input
-            type="text"
-            class="form-control"
-            name="chirurgieType"
-            id="field_chirurgieType"
-            data-cy="chirurgieType"
-            formControlName="chirurgieType"
-          />
-        </div>
+@let chirurgieValue = editForm.get('chirurgie')?.value;
+@if (chirurgieValue === 'OUI') {
+  <!-- Type de chirurgie -->
+  <div class="mb-3">
+    <label class="form-label" for="field_chirurgieType">Chirurgie type</label>
+    <input
+      type="text"
+      class="form-control"
+      name="chirurgieType"
+      id="field_chirurgieType"
+      data-cy="chirurgieType"
+      formControlName="chirurgieType"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_chirurgiePrepare">Chirurgie Prepare</label>
-          <select
-            class="form-control"
-            name="chirurgiePrepare"
-            formControlName="chirurgiePrepare"
-            id="field_chirurgiePrepare"
-            data-cy="chirurgiePrepare"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Préparée -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-auto">
+      <label class="form-label mb-0 me-3">Chirurgie préparée</label>
+    </div>
+    <div class="col-md-auto d-flex gap-3">
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="chirurgiePrepareOui"
+          value="OUI"
+          formControlName="chirurgiePrepare"
+        />
+        <label class="form-check-label" for="chirurgiePrepareOui">Oui</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="chirurgiePrepareNon"
+          value="NON"
+          formControlName="chirurgiePrepare"
+        />
+        <label class="form-check-label" for="chirurgiePrepareNon">Non</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="chirurgiePrepareNp"
+          value="NP"
+          formControlName="chirurgiePrepare"
+        />
+        <label class="form-check-label" for="chirurgiePrepareNp">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_chirurgieBienDeroule">Chirurgie Bien Deroule</label>
-          <select
-            class="form-control"
-            name="chirurgieBienDeroule"
-            formControlName="chirurgieBienDeroule"
-            id="field_chirurgieBienDeroule"
-            data-cy="chirurgieBienDeroule"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Bien déroulée -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-auto">
+      <label class="form-label mb-0 me-3">Chirurgie bien déroulée</label>
+    </div>
+    <div class="col-md-auto d-flex gap-3">
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="chirurgieBienDerouleOui"
+          value="OUI"
+          formControlName="chirurgieBienDeroule"
+        />
+        <label class="form-check-label" for="chirurgieBienDerouleOui">Oui</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="chirurgieBienDerouleNon"
+          value="NON"
+          formControlName="chirurgieBienDeroule"
+        />
+        <label class="form-check-label" for="chirurgieBienDerouleNon">Non</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="chirurgieBienDerouleNp"
+          value="NP"
+          formControlName="chirurgieBienDeroule"
+        />
+        <label class="form-check-label" for="chirurgieBienDerouleNp">NP</label>
+      </div>
+    </div>
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label fw-bold" for="field_accouchement">9- Accouchement</label>
