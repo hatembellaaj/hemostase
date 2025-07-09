@@ -1751,17 +1751,19 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_mutationPresente">Mutation Presente</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="mutationPresente"
-            id="field_mutationPresente"
-            data-cy="mutationPresente"
-            formControlName="mutationPresente"
-          />
-        </div>
+<div class="mb-3">
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="mutationPresente"
+      id="field_mutationPresente"
+      data-cy="mutationPresente"
+      formControlName="mutationPresente"
+    />
+    <label class="form-check-label mb-0" for="field_mutationPresente">Mutation Presente</label>
+  </div>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_mutationNom">Mutation Nom</label>
