@@ -2459,9 +2459,9 @@
 <!-- Affichage conditionnel si avulsionDentaire === 'OUI' -->
 @let avulsionDentaireValue = editForm.get('avulsionDentaire')?.value;
 @if (avulsionDentaireValue === 'OUI') {
-  <!-- Checkbox : Avulsion préparée -->
-  <div class="mb-3">
-    <div class="form-check d-flex align-items-center">
+  <div class="row mb-3 align-items-center">
+    <!-- Avulsion préparée (checkbox) -->
+    <div class="col-md-auto d-flex align-items-center">
       <input
         type="checkbox"
         class="form-check-input me-2"
@@ -2471,33 +2471,47 @@
       />
       <label class="form-check-label mb-0" for="field_avulsionPrepare">Avulsion préparée</label>
     </div>
-  </div>
 
-  <!-- Radios : Avulsion bien déroulée -->
-  <div class="mb-3">
-    <label class="form-label d-block">Avulsion bien déroulée</label>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="radio"
-        id="avulsionBienDerouleOui"
-        value="OUI"
-        formControlName="avulsionBienDeroule"
-      />
-      <label class="form-check-label" for="avulsionBienDerouleOui">Oui</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="radio"
-        id="avulsionBienDerouleNon"
-        value="NON"
-        formControlName="avulsionBienDeroule"
-      />
-      <label class="form-check-label" for="avulsionBienDerouleNon">Non</label>
+    <!-- Avulsion bien déroulée (Oui / Non / NP) -->
+    <div class="col-md-auto d-flex align-items-center ms-4">
+      <label class="form-label mb-0 me-2">Avulsion bien déroulée</label>
+
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="avulsionBienDerouleOui"
+          value="OUI"
+          formControlName="avulsionBienDeroule"
+        />
+        <label class="form-check-label me-3" for="avulsionBienDerouleOui">Oui</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="avulsionBienDerouleNon"
+          value="NON"
+          formControlName="avulsionBienDeroule"
+        />
+        <label class="form-check-label me-3" for="avulsionBienDerouleNon">Non</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="avulsionBienDerouleNp"
+          value="NP"
+          formControlName="avulsionBienDeroule"
+        />
+        <label class="form-check-label" for="avulsionBienDerouleNp">NP</label>
+      </div>
     </div>
   </div>
 }
+
 
 
         <div class="mb-3">
