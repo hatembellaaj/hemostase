@@ -2126,7 +2126,11 @@
 
 
   <!-- Hémorragies intrabuccales -->
-  <div class="mb-3">
+@let hemorragiesIntrabuccalesValue = editForm.get('hemorragiesIntrabuccales')?.value;
+
+<div class="row mb-3 align-items-end">
+  <!-- Hémorragies Intrabuccales -->
+  <div class="col-md-6">
     <label class="form-label" for="field_hemorragiesIntrabuccales">Hémorragies Intrabuccales</label>
     <select
       class="form-control"
@@ -2142,17 +2146,22 @@
     </select>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label" for="field_hemorragiesIntrabuccalesFrequence">Hémorragies Intrabuccales Fréquence</label>
-    <input
-      type="number"
-      class="form-control"
-      name="hemorragiesIntrabuccalesFrequence"
-      id="field_hemorragiesIntrabuccalesFrequence"
-      data-cy="hemorragiesIntrabuccalesFrequence"
-      formControlName="hemorragiesIntrabuccalesFrequence"
-    />
-  </div>
+  <!-- Fréquence (affiché seulement si OUI) -->
+  @if (hemorragiesIntrabuccalesValue === 'OUI') {
+    <div class="col-md-6">
+      <label class="form-label" for="field_hemorragiesIntrabuccalesFrequence">Fréquence (/an)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hemorragiesIntrabuccalesFrequence"
+        id="field_hemorragiesIntrabuccalesFrequence"
+        data-cy="hemorragiesIntrabuccalesFrequence"
+        formControlName="hemorragiesIntrabuccalesFrequence"
+      />
+    </div>
+  }
+</div>
+
 
   <!-- Ménorragie -->
   <div class="mb-3">
