@@ -2088,7 +2088,11 @@
 @let hemorragieMuqueusesValue = editForm.get('hemorragieMuqueuses')?.value;
 @if (hemorragieMuqueusesValue === 'OUI') {
   <!-- Epistaxis -->
-  <div class="mb-3">
+@let epistaxisValue = editForm.get('epistaxis')?.value;
+
+<div class="row mb-3 align-items-end">
+  <!-- Épistaxis -->
+  <div class="col-md-6">
     <label class="form-label" for="field_epistaxis">Epistaxis</label>
     <select
       class="form-control"
@@ -2104,17 +2108,22 @@
     </select>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label" for="field_epistaxisFrequence">Epistaxis Fréquence</label>
-    <input
-      type="number"
-      class="form-control"
-      name="epistaxisFrequence"
-      id="field_epistaxisFrequence"
-      data-cy="epistaxisFrequence"
-      formControlName="epistaxisFrequence"
-    />
-  </div>
+  <!-- Fréquence (affiché uniquement si Épistaxis === OUI) -->
+  @if (epistaxisValue === 'OUI') {
+    <div class="col-md-6">
+      <label class="form-label" for="field_epistaxisFrequence">Fréquence</label>
+      <input
+        type="number"
+        class="form-control"
+        name="epistaxisFrequence"
+        id="field_epistaxisFrequence"
+        data-cy="epistaxisFrequence"
+        formControlName="epistaxisFrequence"
+      />
+    </div>
+  }
+</div>
+
 
   <!-- Hémorragies intrabuccales -->
   <div class="mb-3">
