@@ -1571,22 +1571,22 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp (%)</label>
+          <label class="form-label" for="field_tp">TP (%)</label>
           <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tcaMT">Tca (M/T) (sec) </label>
+          <label class="form-label" for="field_tcaMT">TCA (M/T) (sec) </label>
           <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tcaMPlusT">Tca (M + T)(sec)</label>
+          <label class="form-label" for="field_tcaMPlusT">TCA (M + T)(sec)</label>
           <input type="number" class="form-control" name="tcaMPlusT" id="field_tcaMPlusT" data-cy="tcaMPlusT" formControlName="tcaMPlusT" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tcaMPlusT2H">Tca (M + T) 2H (sec)</label>
+          <label class="form-label" for="field_tcaMPlusT2H">TCA (M + T) 2H (sec)</label>
           <input
             type="number"
             class="form-control"
@@ -1610,7 +1610,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tsResultat">Ts Resultat</label>
+          <label class="form-label" for="field_tsResultat">TS Resultat</label>
           <select class="form-control" name="tsResultat" formControlName="tsResultat" id="field_tsResultat" data-cy="tsResultat">
             <option [ngValue]="null"></option>
             @for (typeTS of typeTSValues; track $index) {
@@ -1620,12 +1620,12 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tsValeur">Ts Valeur</label>
+          <label class="form-label" for="field_tsValeur">TS Valeur</label>
           <input type="number" class="form-control" name="tsValeur" id="field_tsValeur" data-cy="tsValeur" formControlName="tsValeur" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_occlusionPlaquettaire">Occlusion Plaquettaire</label>
+          <label class="form-label" for="field_occlusionPlaquettaire">Temps d'occlusion plaquettaire</label>
           <select
             class="form-control"
             name="occlusionPlaquettaire"
@@ -1667,22 +1667,22 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_fvwag">Fvwag</label>
+          <label class="form-label" for="field_fvwag">FvWAg</label>
           <input type="number" class="form-control" name="fvwag" id="field_fvwag" data-cy="fvwag" formControlName="fvwag" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_fvwact">Fvwact</label>
+          <label class="form-label" for="field_fvwact">FvWAct</label>
           <input type="number" class="form-control" name="fvwact" id="field_fvwact" data-cy="fvwact" formControlName="fvwact" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_f8c">F 8 C</label>
+          <label class="form-label" for="field_f8c">FVIIIc</label>
           <input type="number" class="form-control" name="f8c" id="field_f8c" data-cy="f8c" formControlName="f8c" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_ratioFvwactFvwag">Ratio Fvwact Fvwag</label>
+          <label class="form-label" for="field_ratioFvwactFvwag">Ratio FvWAct FvWAg</label>
           <input
             type="number"
             class="form-control"
@@ -1694,7 +1694,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_ratioF8cFvwag">Ratio F 8 C Fvwag</label>
+          <label class="form-label" for="field_ratioF8cFvwag">Ratio FVIIIc FvWAg</label>
           <input
             type="number"
             class="form-control"
@@ -1705,185 +1705,157 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autresTestsSpecifiques">Autres Tests Specifiques</label>
-          <select
-            class="form-control"
-            name="autresTestsSpecifiques"
-            formControlName="autresTestsSpecifiques"
-            id="field_autresTestsSpecifiques"
-            data-cy="autresTestsSpecifiques"
-          >
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_vwfCB">Vwf CB</label>
-          <select class="form-control" name="vwfCB" formControlName="vwfCB" id="field_vwfCB" data-cy="vwfCB">
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_vwfCBResultat">Vwf CB Resultat</label>
-          <input
-            type="number"
-            class="form-control"
-            name="vwfCBResultat"
-            id="field_vwfCBResultat"
-            data-cy="vwfCBResultat"
-            formControlName="vwfCBResultat"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ripa">Ripa</label>
-          <select class="form-control" name="ripa" formControlName="ripa" id="field_ripa" data-cy="ripa">
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ripaResultat">Ripa Resultat</label>
-          <select class="form-control" name="ripaResultat" formControlName="ripaResultat" id="field_ripaResultat" data-cy="ripaResultat">
-            <option [ngValue]="null"></option>
-            @for (typeRipaResultat of typeRipaResultatValues; track $index) {
-              <option [value]="typeRipaResultat">{{ { null: '', DIMINUE: 'DIMINUE', PARADOXALE: 'PARADOXALE' }[typeRipaResultat] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_multimereHPM">Multimere HPM</label>
-          <select class="form-control" name="multimereHPM" formControlName="multimereHPM" id="field_multimereHPM" data-cy="multimereHPM">
-            <option [ngValue]="null"></option>
-            @for (typeMultimere of typeMultimereValues; track $index) {
-              <option [value]="typeMultimere">{{ { null: '', PRESENTS: 'PRESENTS', ABSENTS: 'ABSENTS' }[typeMultimere] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_liaisonFvwF8">Liaison Fvw F 8</label>
-          <select class="form-control" name="liaisonFvwF8" formControlName="liaisonFvwF8" id="field_liaisonFvwF8" data-cy="liaisonFvwF8">
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_liaisonFvwF8Resultat">Liaison Fvw F 8 Resultat</label>
-          <select
-            class="form-control"
-            name="liaisonFvwF8Resultat"
-            formControlName="liaisonFvwF8Resultat"
-            id="field_liaisonFvwF8Resultat"
-            data-cy="liaisonFvwF8Resultat"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeResultatPatho of typeResultatPathoValues; track $index) {
-              <option [value]="typeResultatPatho">
-                {{ { null: '', PATHOLOGIQUE: 'PATHOLOGIQUE', NORMAL: 'NORMAL' }[typeResultatPatho] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_fvwpp">Fvwpp</label>
-          <select class="form-control" name="fvwpp" formControlName="fvwpp" id="field_fvwpp" data-cy="fvwpp">
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_fvwppResultat">Fvwpp Resultat</label>
-          <select
-            class="form-control"
-            name="fvwppResultat"
-            formControlName="fvwppResultat"
-            id="field_fvwppResultat"
-            data-cy="fvwppResultat"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeFvWppRatio of typeFvWppRatioValues; track $index) {
-              <option [value]="typeFvWppRatio">{{ { null: '', PATHOLOGIQUE: 'PATHOLOGIQUE', NORMAL: 'NORMAL' }[typeFvWppRatio] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_mutationGenetique">Mutation Genetique</label>
-          <select
-            class="form-control"
-            name="mutationGenetique"
-            formControlName="mutationGenetique"
-            id="field_mutationGenetique"
-            data-cy="mutationGenetique"
-          >
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
-        </div>
-
+<!-- Champ principal déclencheur -->
 <div class="mb-3">
-  <div class="form-check d-flex align-items-center">
+  <label class="form-label" for="field_autresTestsSpecifiques">Autres Tests Spécifiques</label>
+  <select
+    class="form-control"
+    name="autresTestsSpecifiques"
+    formControlName="autresTestsSpecifiques"
+    id="field_autresTestsSpecifiques"
+    data-cy="autresTestsSpecifiques"
+  >
+    <option [ngValue]="null"></option>
+    @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+      <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+    }
+  </select>
+</div>
+
+<!-- Contenu conditionnel -->
+<div *ngIf="editForm.get('autresTestsSpecifiques')?.value === 'FAITE'">
+  <div class="mb-3">
+    <label class="form-label" for="field_vwfCB">Vwf CB</label>
+    <select class="form-control" name="vwfCB" formControlName="vwfCB" id="field_vwfCB" data-cy="vwfCB">
+      <option [ngValue]="null"></option>
+      @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+        <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_vwfCBResultat">Vwf CB Résultat</label>
+    <input type="number" class="form-control" name="vwfCBResultat" id="field_vwfCBResultat" data-cy="vwfCBResultat" formControlName="vwfCBResultat" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_ripa">Ripa</label>
+    <select class="form-control" name="ripa" formControlName="ripa" id="field_ripa" data-cy="ripa">
+      <option [ngValue]="null"></option>
+      @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+        <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_ripaResultat">Ripa Résultat</label>
+    <select class="form-control" name="ripaResultat" formControlName="ripaResultat" id="field_ripaResultat" data-cy="ripaResultat">
+      <option [ngValue]="null"></option>
+      @for (typeRipaResultat of typeRipaResultatValues; track $index) {
+        <option [value]="typeRipaResultat">{{ { null: '', DIMINUE: 'DIMINUE', PARADOXALE: 'PARADOXALE' }[typeRipaResultat] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_multimereHPM">Multimere HPM</label>
+    <select class="form-control" name="multimereHPM" formControlName="multimereHPM" id="field_multimereHPM" data-cy="multimereHPM">
+      <option [ngValue]="null"></option>
+      @for (typeMultimere of typeMultimereValues; track $index) {
+        <option [value]="typeMultimere">{{ { null: '', PRESENTS: 'PRESENTS', ABSENTS: 'ABSENTS' }[typeMultimere] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_liaisonFvwF8">Liaison Fvw F8</label>
+    <select class="form-control" name="liaisonFvwF8" formControlName="liaisonFvwF8" id="field_liaisonFvwF8" data-cy="liaisonFvwF8">
+      <option [ngValue]="null"></option>
+      @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+        <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_liaisonFvwF8Resultat">Liaison Fvw F8 Résultat</label>
+    <select class="form-control" name="liaisonFvwF8Resultat" formControlName="liaisonFvwF8Resultat" id="field_liaisonFvwF8Resultat" data-cy="liaisonFvwF8Resultat">
+      <option [ngValue]="null"></option>
+      @for (typeResultatPatho of typeResultatPathoValues; track $index) {
+        <option [value]="typeResultatPatho">{{ { null: '', PATHOLOGIQUE: 'PATHOLOGIQUE', NORMAL: 'NORMAL' }[typeResultatPatho] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_fvwpp">Fvwpp</label>
+    <select class="form-control" name="fvwpp" formControlName="fvwpp" id="field_fvwpp" data-cy="fvwpp">
+      <option [ngValue]="null"></option>
+      @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+        <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_fvwppResultat">Fvwpp Résultat</label>
+    <select class="form-control" name="fvwppResultat" formControlName="fvwppResultat" id="field_fvwppResultat" data-cy="fvwppResultat">
+      <option [ngValue]="null"></option>
+      @for (typeFvWppRatio of typeFvWppRatioValues; track $index) {
+        <option [value]="typeFvWppRatio">{{ { null: '', PATHOLOGIQUE: 'PATHOLOGIQUE', NORMAL: 'NORMAL' }[typeFvWppRatio] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_mutationGenetique">Mutation Génétique</label>
+    <select class="form-control" name="mutationGenetique" formControlName="mutationGenetique" id="field_mutationGenetique" data-cy="mutationGenetique">
+      <option [ngValue]="null"></option>
+      @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+        <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="mutationPresente"
+        id="field_mutationPresente"
+        data-cy="mutationPresente"
+        formControlName="mutationPresente"
+      />
+      <label class="form-check-label mb-0" for="field_mutationPresente">Mutation Présente</label>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_mutationNom">Mutation Nom</label>
     <input
-      type="checkbox"
-      class="form-check-input me-2"
-      name="mutationPresente"
-      id="field_mutationPresente"
-      data-cy="mutationPresente"
-      formControlName="mutationPresente"
+      type="text"
+      class="form-control"
+      name="mutationNom"
+      id="field_mutationNom"
+      data-cy="mutationNom"
+      formControlName="mutationNom"
     />
-    <label class="form-check-label mb-0" for="field_mutationPresente">Mutation Presente</label>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="field_mutationZygote">Mutation Zygote</label>
+    <select class="form-control" name="mutationZygote" formControlName="mutationZygote" id="field_mutationZygote" data-cy="mutationZygote">
+      <option [ngValue]="null"></option>
+      @for (typeZygote of typeZygoteValues; track $index) {
+        <option [value]="typeZygote">{{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[typeZygote] }}</option>
+      }
+    </select>
   </div>
 </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_mutationNom">Mutation Nom</label>
-          <input
-            type="text"
-            class="form-control"
-            name="mutationNom"
-            id="field_mutationNom"
-            data-cy="mutationNom"
-            formControlName="mutationNom"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_mutationZygote">Mutation Zygote</label>
-          <select
-            class="form-control"
-            name="mutationZygote"
-            formControlName="mutationZygote"
-            id="field_mutationZygote"
-            data-cy="mutationZygote"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeZygote of typeZygoteValues; track $index) {
-              <option [value]="typeZygote">{{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[typeZygote] }}</option>
-            }
-          </select>
-        </div>
 
 
     </div>
