@@ -2674,59 +2674,119 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_circoncision">10- Circoncision</label>
-          <select class="form-control" name="circoncision" formControlName="circoncision" id="field_circoncision" data-cy="circoncision">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Circoncision principale -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_circoncision">10- Circoncision</label>
+  <select
+    class="form-control"
+    name="circoncision"
+    formControlName="circoncision"
+    id="field_circoncision"
+    data-cy="circoncision"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageCirconcision">Age Circoncision</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageCirconcision"
-            id="field_ageCirconcision"
-            data-cy="ageCirconcision"
-            formControlName="ageCirconcision"
-          />
-        </div>
+@let circoncisionValue = editForm.get('circoncision')?.value;
+@if (circoncisionValue === 'OUI') {
 
-        <div class="mb-3">
-          <label class="form-label" for="field_circoncisionPrepare">Circoncision Prepare</label>
-          <select
-            class="form-control"
-            name="circoncisionPrepare"
-            formControlName="circoncisionPrepare"
-            id="field_circoncisionPrepare"
-            data-cy="circoncisionPrepare"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Âge -->
+  <div class="mb-3">
+    <label class="form-label" for="field_ageCirconcision">Âge Circoncision</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageCirconcision"
+      id="field_ageCirconcision"
+      data-cy="ageCirconcision"
+      formControlName="ageCirconcision"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_circoncisionBienDeroule">Circoncision Bien Deroule</label>
-          <select
-            class="form-control"
-            name="circoncisionBienDeroule"
-            formControlName="circoncisionBienDeroule"
-            id="field_circoncisionBienDeroule"
-            data-cy="circoncisionBienDeroule"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Préparée -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-auto">
+      <label class="form-label mb-0 me-3">Circoncision préparée</label>
+    </div>
+    <div class="col-md-auto d-flex gap-3">
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="circoncisionPrepareOui"
+          value="OUI"
+          formControlName="circoncisionPrepare"
+        />
+        <label class="form-check-label" for="circoncisionPrepareOui">Oui</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="circoncisionPrepareNon"
+          value="NON"
+          formControlName="circoncisionPrepare"
+        />
+        <label class="form-check-label" for="circoncisionPrepareNon">Non</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="circoncisionPrepareNp"
+          value="NP"
+          formControlName="circoncisionPrepare"
+        />
+        <label class="form-check-label" for="circoncisionPrepareNp">NP</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bien déroulée -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-md-auto">
+      <label class="form-label mb-0 me-3">Circoncision bien déroulée</label>
+    </div>
+    <div class="col-md-auto d-flex gap-3">
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="circoncisionBienDerouleOui"
+          value="OUI"
+          formControlName="circoncisionBienDeroule"
+        />
+        <label class="form-check-label" for="circoncisionBienDerouleOui">Oui</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="circoncisionBienDerouleNon"
+          value="NON"
+          formControlName="circoncisionBienDeroule"
+        />
+        <label class="form-check-label" for="circoncisionBienDerouleNon">Non</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="circoncisionBienDerouleNp"
+          value="NP"
+          formControlName="circoncisionBienDeroule"
+        />
+        <label class="form-check-label" for="circoncisionBienDerouleNp">NP</label>
+      </div>
+    </div>
+  </div>
+
+}
+
 
         <div class="mb-3">
           <label class="form-label fw-bold" for="field_hemorragieVisceres">11- Hemorragie Visceres</label>
