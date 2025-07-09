@@ -1548,66 +1548,115 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hb">Hb (g/dl)</label>
-          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
-        </div>
+<!-- Titre NFS -->
+<div class="fw-bold mb-2">NFS</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hte">Hte (%)</label>
-          <input type="number" class="form-control" name="hte" id="field_hte" data-cy="hte" formControlName="hte" />
-        </div>
+<!-- Champs alignés en ligne -->
+<div class="row mb-3">
+  <div class="col-md-4">
+    <label class="form-label" for="field_hb">Hb (g/dl)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="hb"
+      id="field_hb"
+      data-cy="hb"
+      formControlName="hb"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_plaquettes">Plaquettes (/mm3)</label>
-          <input
-            type="number"
-            class="form-control"
-            name="plaquettes"
-            id="field_plaquettes"
-            data-cy="plaquettes"
-            formControlName="plaquettes"
-          />
-        </div>
+  <div class="col-md-4">
+    <label class="form-label" for="field_hte">Hte (%)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="hte"
+      id="field_hte"
+      data-cy="hte"
+      formControlName="hte"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tp">TP (%)</label>
-          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
-        </div>
+  <div class="col-md-4">
+    <label class="form-label" for="field_plaquettes">Plaquettes (/mm³)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="plaquettes"
+      id="field_plaquettes"
+      data-cy="plaquettes"
+      formControlName="plaquettes"
+    />
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT">TCA (M/T) (sec) </label>
-          <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMPlusT">TCA (M + T)(sec)</label>
-          <input type="number" class="form-control" name="tcaMPlusT" id="field_tcaMPlusT" data-cy="tcaMPlusT" formControlName="tcaMPlusT" />
-        </div>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <label class="form-label" for="field_tp">TP (%)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tp"
+      id="field_tp"
+      data-cy="tp"
+      formControlName="tp"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMPlusT2H">TCA (M + T) 2H (sec)</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tcaMPlusT2H"
-            id="field_tcaMPlusT2H"
-            data-cy="tcaMPlusT2H"
-            formControlName="tcaMPlusT2H"
-          />
-        </div>
+  <div class="col-md-6">
+    <label class="form-label" for="field_fibrinogene">Fibrinogène (g/l)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="fibrinogene"
+      id="field_fibrinogene"
+      data-cy="fibrinogene"
+      formControlName="fibrinogene"
+    />
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_fibrinogene">Fibrinogene (g/l)</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fibrinogene"
-            id="field_fibrinogene"
-            data-cy="fibrinogene"
-            formControlName="fibrinogene"
-          />
-        </div>
+
+<div class="row mb-3">
+  <div class="col-md-4">
+    <label class="form-label" for="field_tcaMT">TCA (M/T) (sec)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tcaMT"
+      id="field_tcaMT"
+      data-cy="tcaMT"
+      formControlName="tcaMT"
+    />
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="field_tcaMPlusT">TCA (M + T) (sec)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tcaMPlusT"
+      id="field_tcaMPlusT"
+      data-cy="tcaMPlusT"
+      formControlName="tcaMPlusT"
+    />
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="field_tcaMPlusT2H">TCA (M + T) 2H (sec)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tcaMPlusT2H"
+      id="field_tcaMPlusT2H"
+      data-cy="tcaMPlusT2H"
+      formControlName="tcaMPlusT2H"
+    />
+  </div>
+</div>
+
+
 
         <div class="mb-3">
           <label class="form-label" for="field_tsResultat">TS Resultat</label>
@@ -1666,23 +1715,47 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_fvwag">FvWAg</label>
-          <input type="number" class="form-control" name="fvwag" id="field_fvwag" data-cy="fvwag" formControlName="fvwag" />
-        </div>
+<div class="row mb-3">
+  <div class="col-md-4">
+    <label class="form-label" for="field_fvwag">FvWAg</label>
+    <input
+      type="number"
+      class="form-control"
+      name="fvwag"
+      id="field_fvwag"
+      data-cy="fvwag"
+      formControlName="fvwag"
+    />
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="field_fvwact">FvWAct</label>
+    <input
+      type="number"
+      class="form-control"
+      name="fvwact"
+      id="field_fvwact"
+      data-cy="fvwact"
+      formControlName="fvwact"
+    />
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="field_f8c">FVIIIc</label>
+    <input
+      type="number"
+      class="form-control"
+      name="f8c"
+      id="field_f8c"
+      data-cy="f8c"
+      formControlName="f8c"
+    />
+  </div>
+</div>
+
 
         <div class="mb-3">
-          <label class="form-label" for="field_fvwact">FvWAct</label>
-          <input type="number" class="form-control" name="fvwact" id="field_fvwact" data-cy="fvwact" formControlName="fvwact" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_f8c">FVIIIc</label>
-          <input type="number" class="form-control" name="f8c" id="field_f8c" data-cy="f8c" formControlName="f8c" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ratioFvwactFvwag">Ratio FvWAct FvWAg</label>
+          <label class="form-label" for="field_ratioFvwactFvwag">Ratio FvWAct / FvWAg</label>
           <input
             type="number"
             class="form-control"
@@ -1694,7 +1767,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_ratioF8cFvwag">Ratio FVIIIc FvWAg</label>
+          <label class="form-label" for="field_ratioF8cFvwag">Ratio FVIIIc / FvWAg</label>
           <input
             type="number"
             class="form-control"
