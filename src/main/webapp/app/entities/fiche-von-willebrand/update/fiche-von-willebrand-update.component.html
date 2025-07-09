@@ -1059,149 +1059,179 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeEcchymose">Symptome Ecchymose</label>
-          <select
-            class="form-control"
-            name="symptomeEcchymose"
-            formControlName="symptomeEcchymose"
-            id="field_symptomeEcchymose"
-            data-cy="symptomeEcchymose"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="row">
+  <!-- Symptome Ecchymose -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Ecchymose</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="ecchymoseOui" name="symptomeEcchymose" formControlName="symptomeEcchymose" [value]="'OUI'" />
+        <label class="form-check-label" for="ecchymoseOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="ecchymoseNon" name="symptomeEcchymose" formControlName="symptomeEcchymose" [value]="'NON'" />
+        <label class="form-check-label" for="ecchymoseNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="ecchymoseNP" name="symptomeEcchymose" formControlName="symptomeEcchymose" [value]="'NP'" />
+        <label class="form-check-label" for="ecchymoseNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeEpistaxis">Symptome Epistaxis</label>
-          <select
-            class="form-control"
-            name="symptomeEpistaxis"
-            formControlName="symptomeEpistaxis"
-            id="field_symptomeEpistaxis"
-            data-cy="symptomeEpistaxis"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Symptome Epistaxis -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Epistaxis</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="epistaxisOui" name="symptomeEpistaxis" formControlName="symptomeEpistaxis" [value]="'OUI'" />
+        <label class="form-check-label" for="epistaxisOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="epistaxisNon" name="symptomeEpistaxis" formControlName="symptomeEpistaxis" [value]="'NON'" />
+        <label class="form-check-label" for="epistaxisNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="epistaxisNP" name="symptomeEpistaxis" formControlName="symptomeEpistaxis" [value]="'NP'" />
+        <label class="form-check-label" for="epistaxisNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeGingivorragies">Symptome Gingivorragies</label>
-          <select
-            class="form-control"
-            name="symptomeGingivorragies"
-            formControlName="symptomeGingivorragies"
-            id="field_symptomeGingivorragies"
-            data-cy="symptomeGingivorragies"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Symptome Gingivorragies -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Gingivorragies</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="gingivoOui" name="symptomeGingivorragies" formControlName="symptomeGingivorragies" [value]="'OUI'" />
+        <label class="form-check-label" for="gingivoOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="gingivoNon" name="symptomeGingivorragies" formControlName="symptomeGingivorragies" [value]="'NON'" />
+        <label class="form-check-label" for="gingivoNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="gingivoNP" name="symptomeGingivorragies" formControlName="symptomeGingivorragies" [value]="'NP'" />
+        <label class="form-check-label" for="gingivoNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeMetrorragies">Symptome Metrorragies</label>
-          <select
-            class="form-control"
-            name="symptomeMetrorragies"
-            formControlName="symptomeMetrorragies"
-            id="field_symptomeMetrorragies"
-            data-cy="symptomeMetrorragies"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Symptome Metrorragies -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Métrorragies</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="metroOui" name="symptomeMetrorragies" formControlName="symptomeMetrorragies" [value]="'OUI'" />
+        <label class="form-check-label" for="metroOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="metroNon" name="symptomeMetrorragies" formControlName="symptomeMetrorragies" [value]="'NON'" />
+        <label class="form-check-label" for="metroNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="metroNP" name="symptomeMetrorragies" formControlName="symptomeMetrorragies" [value]="'NP'" />
+        <label class="form-check-label" for="metroNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeMelena">Symptome Melena</label>
-          <select
-            class="form-control"
-            name="symptomeMelena"
-            formControlName="symptomeMelena"
-            id="field_symptomeMelena"
-            data-cy="symptomeMelena"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Symptome Melena -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Méléna</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="melenaOui" name="symptomeMelena" formControlName="symptomeMelena" [value]="'OUI'" />
+        <label class="form-check-label" for="melenaOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="melenaNon" name="symptomeMelena" formControlName="symptomeMelena" [value]="'NON'" />
+        <label class="form-check-label" for="melenaNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="melenaNP" name="symptomeMelena" formControlName="symptomeMelena" [value]="'NP'" />
+        <label class="form-check-label" for="melenaNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeHemoptysie">Symptome Hemoptysie</label>
-          <select
-            class="form-control"
-            name="symptomeHemoptysie"
-            formControlName="symptomeHemoptysie"
-            id="field_symptomeHemoptysie"
-            data-cy="symptomeHemoptysie"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Symptome Hemoptysie -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Hémoptysie</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="hemoOui" name="symptomeHemoptysie" formControlName="symptomeHemoptysie" [value]="'OUI'" />
+        <label class="form-check-label" for="hemoOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="hemoNon" name="symptomeHemoptysie" formControlName="symptomeHemoptysie" [value]="'NON'" />
+        <label class="form-check-label" for="hemoNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="hemoNP" name="symptomeHemoptysie" formControlName="symptomeHemoptysie" [value]="'NP'" />
+        <label class="form-check-label" for="hemoNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeHemorragiePostAmygdalectomie">Symptome Hemorragie Post Amygdalectomie</label>
-          <select
-            class="form-control"
-            name="symptomeHemorragiePostAmygdalectomie"
-            formControlName="symptomeHemorragiePostAmygdalectomie"
-            id="field_symptomeHemorragiePostAmygdalectomie"
-            data-cy="symptomeHemorragiePostAmygdalectomie"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Amygdalectomie -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Post-Amygdalectomie</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="amyOui" name="symptomeHemorragiePostAmygdalectomie" formControlName="symptomeHemorragiePostAmygdalectomie" [value]="'OUI'" />
+        <label class="form-check-label" for="amyOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="amyNon" name="symptomeHemorragiePostAmygdalectomie" formControlName="symptomeHemorragiePostAmygdalectomie" [value]="'NON'" />
+        <label class="form-check-label" for="amyNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="amyNP" name="symptomeHemorragiePostAmygdalectomie" formControlName="symptomeHemorragiePostAmygdalectomie" [value]="'NP'" />
+        <label class="form-check-label" for="amyNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeHemorragiePostAvulsionDentaire">Symptome Hemorragie Post Avulsion Dentaire</label>
-          <select
-            class="form-control"
-            name="symptomeHemorragiePostAvulsionDentaire"
-            formControlName="symptomeHemorragiePostAvulsionDentaire"
-            id="field_symptomeHemorragiePostAvulsionDentaire"
-            data-cy="symptomeHemorragiePostAvulsionDentaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Avulsion Dentaire -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Post-Avulsion Dentaire</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="avulOui" name="symptomeHemorragiePostAvulsionDentaire" formControlName="symptomeHemorragiePostAvulsionDentaire" [value]="'OUI'" />
+        <label class="form-check-label" for="avulOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="avulNon" name="symptomeHemorragiePostAvulsionDentaire" formControlName="symptomeHemorragiePostAvulsionDentaire" [value]="'NON'" />
+        <label class="form-check-label" for="avulNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="avulNP" name="symptomeHemorragiePostAvulsionDentaire" formControlName="symptomeHemorragiePostAvulsionDentaire" [value]="'NP'" />
+        <label class="form-check-label" for="avulNP">NP</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeHemorragieChuteCordon">Symptome Hemorragie Chute Cordon</label>
-          <select
-            class="form-control"
-            name="symptomeHemorragieChuteCordon"
-            formControlName="symptomeHemorragieChuteCordon"
-            id="field_symptomeHemorragieChuteCordon"
-            data-cy="symptomeHemorragieChuteCordon"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Chute Cordon -->
+  <div class="col-md-4 mb-3">
+    <label class="form-label d-block mb-1">Chute du Cordon</label>
+    <div class="d-flex gap-2">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="cordonOui" name="symptomeHemorragieChuteCordon" formControlName="symptomeHemorragieChuteCordon" [value]="'OUI'" />
+        <label class="form-check-label" for="cordonOui">OUI</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="cordonNon" name="symptomeHemorragieChuteCordon" formControlName="symptomeHemorragieChuteCordon" [value]="'NON'" />
+        <label class="form-check-label" for="cordonNon">NON</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="cordonNP" name="symptomeHemorragieChuteCordon" formControlName="symptomeHemorragieChuteCordon" [value]="'NP'" />
+        <label class="form-check-label" for="cordonNP">NP</label>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_symptomeAutre">Symptome Autre</label>
