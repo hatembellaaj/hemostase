@@ -2019,65 +2019,73 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSpontane">Hematome Spontane</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeSpontane"
-            id="field_hematomeSpontane"
-            data-cy="hematomeSpontane"
-            formControlName="hematomeSpontane"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center gap-4">
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="hematomeSpontane"
+      id="field_hematomeSpontane"
+      data-cy="hematomeSpontane"
+      formControlName="hematomeSpontane"
+    />
+    <label class="form-check-label mb-0" for="field_hematomeSpontane">Hématome Spontané</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeProvoque">Hematome Provoque</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeProvoque"
-            id="field_hematomeProvoque"
-            data-cy="hematomeProvoque"
-            formControlName="hematomeProvoque"
-          />
-        </div>
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="hematomeProvoque"
+      id="field_hematomeProvoque"
+      data-cy="hematomeProvoque"
+      formControlName="hematomeProvoque"
+    />
+    <label class="form-check-label mb-0" for="field_hematomeProvoque">Hématome Provoqué</label>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSousCutane">Hematome Sous Cutane</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeSousCutane"
-            id="field_hematomeSousCutane"
-            data-cy="hematomeSousCutane"
-            formControlName="hematomeSousCutane"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeMusculaire">Hematome Musculaire</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeMusculaire"
-            id="field_hematomeMusculaire"
-            data-cy="hematomeMusculaire"
-            formControlName="hematomeMusculaire"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+  <label class="form-label mb-0 me-3">Siège :</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeTissusMous">Hematome Tissus Mous</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeTissusMous"
-            id="field_hematomeTissusMous"
-            data-cy="hematomeTissusMous"
-            formControlName="hematomeTissusMous"
-          />
-        </div>
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="hematomeSousCutane"
+      id="field_hematomeSousCutane"
+      data-cy="hematomeSousCutane"
+      formControlName="hematomeSousCutane"
+    />
+    <label class="form-check-label mb-0" for="field_hematomeSousCutane">Sous-cutané</label>
+  </div>
+
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="hematomeMusculaire"
+      id="field_hematomeMusculaire"
+      data-cy="hematomeMusculaire"
+      formControlName="hematomeMusculaire"
+    />
+    <label class="form-check-label mb-0" for="field_hematomeMusculaire">Musculaire</label>
+  </div>
+
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="hematomeTissusMous"
+      id="field_hematomeTissusMous"
+      data-cy="hematomeTissusMous"
+      formControlName="hematomeTissusMous"
+    />
+    <label class="form-check-label mb-0" for="field_hematomeTissusMous">Tissus mous</label>
+  </div>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_hematomeFrequence">Hematome Frequence</label>
