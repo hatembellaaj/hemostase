@@ -2925,7 +2925,23 @@
   </div>
 }
 
-
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_hemorragieGrave">12- Hémorragie Grave</label>
+  <select
+    class="form-control"
+    name="hemorragieGrave"
+    formControlName="hemorragieGrave"
+    id="field_hemorragieGrave"
+    data-cy="hemorragieGrave"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+      
 @let hemorragieGraveValue = editForm.get('hemorragieGrave')?.value;
 @if (hemorragieGraveValue === 'OUI') {
   <!-- Déglo­bulisation & État de choc sur la même ligne -->
