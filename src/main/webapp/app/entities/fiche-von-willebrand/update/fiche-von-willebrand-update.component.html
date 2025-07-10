@@ -2514,27 +2514,38 @@
 
 
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_traumatisme">7- Traumatisme</label>
-          <select class="form-control" name="traumatisme" formControlName="traumatisme" id="field_traumatisme" data-cy="traumatisme">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_traumatisme">7- Traumatisme</label>
+  <select
+    class="form-control"
+    name="traumatisme"
+    formControlName="traumatisme"
+    id="field_traumatisme"
+    data-cy="traumatisme"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traumatismeType">Traumatisme Type</label>
-          <input
-            type="text"
-            class="form-control"
-            name="traumatismeType"
-            id="field_traumatismeType"
-            data-cy="traumatismeType"
-            formControlName="traumatismeType"
-          />
-        </div>
+<!-- Affichage conditionnel du champ "Type" -->
+@let traumatismeValue = editForm.get('traumatisme')?.value;
+@if (traumatismeValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_traumatismeType">Traumatisme - Type</label>
+    <input
+      type="text"
+      class="form-control"
+      name="traumatismeType"
+      id="field_traumatismeType"
+      data-cy="traumatismeType"
+      formControlName="traumatismeType"
+    />
+  </div>
+}
 
 <!-- Champ principal -->
 <div class="mb-3">
@@ -2648,31 +2659,42 @@
 }
 
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_accouchement">9- Accouchement</label>
-          <select class="form-control" name="accouchement" formControlName="accouchement" id="field_accouchement" data-cy="accouchement">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_accouchement">9- Accouchement</label>
+  <select
+    class="form-control"
+    name="accouchement"
+    formControlName="accouchement"
+    id="field_accouchement"
+    data-cy="accouchement"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragiePostpartum">Hemorragie Postpartum</label>
-          <select
-            class="form-control"
-            name="hemorragiePostpartum"
-            formControlName="hemorragiePostpartum"
-            id="field_hemorragiePostpartum"
-            data-cy="hemorragiePostpartum"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Affichage conditionnel : Hemorragie Postpartum -->
+@let accouchementValue = editForm.get('accouchement')?.value;
+@if (accouchementValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_hemorragiePostpartum">Hémorragie Postpartum</label>
+    <select
+      class="form-control"
+      name="hemorragiePostpartum"
+      formControlName="hemorragiePostpartum"
+      id="field_hemorragiePostpartum"
+      data-cy="hemorragiePostpartum"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+      }
+    </select>
+  </div>
+}
 
 <!-- Circoncision principale -->
 <div class="mb-3">
