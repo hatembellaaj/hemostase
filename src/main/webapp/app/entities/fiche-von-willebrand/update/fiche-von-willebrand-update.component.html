@@ -3219,43 +3219,67 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_antifibrinolytiques">Antifibrinolytiques</label>
-          <select
-            class="form-control"
-            name="antifibrinolytiques"
-            formControlName="antifibrinolytiques"
-            id="field_antifibrinolytiques"
-            data-cy="antifibrinolytiques"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label" for="field_antifibrinolytiques">Antifibrinolytiques</label>
+  <select
+    class="form-control"
+    name="antifibrinolytiques"
+    formControlName="antifibrinolytiques"
+    id="field_antifibrinolytiques"
+    data-cy="antifibrinolytiques"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_voieOrale">Voie Orale</label>
-          <input type="checkbox" class="form-check" name="voieOrale" id="field_voieOrale" data-cy="voieOrale" formControlName="voieOrale" />
-        </div>
+<!-- Affichage conditionnel des voies si OUI -->
+@let antifibrinoValue = editForm.get('antifibrinolytiques')?.value;
+@if (antifibrinoValue === 'OUI') {
+  <div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="voieOrale"
+        id="field_voieOrale"
+        data-cy="voieOrale"
+        formControlName="voieOrale"
+      />
+      <label class="form-check-label mb-0" for="field_voieOrale">Voie orale</label>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_voieIV">Voie IV</label>
-          <input type="checkbox" class="form-check" name="voieIV" id="field_voieIV" data-cy="voieIV" formControlName="voieIV" />
-        </div>
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="voieIV"
+        id="field_voieIV"
+        data-cy="voieIV"
+        formControlName="voieIV"
+      />
+      <label class="form-check-label mb-0" for="field_voieIV">Voie IV</label>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_voieLocale">Voie Locale</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="voieLocale"
-            id="field_voieLocale"
-            data-cy="voieLocale"
-            formControlName="voieLocale"
-          />
-        </div>
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="voieLocale"
+        id="field_voieLocale"
+        data-cy="voieLocale"
+        formControlName="voieLocale"
+      />
+      <label class="form-check-label mb-0" for="field_voieLocale">Voie locale</label>
+    </div>
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_oestroprogestatifs">Oestroprogestatifs</label>
