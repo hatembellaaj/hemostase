@@ -2941,10 +2941,10 @@
     }
   </select>
 </div>
-
+      
 @let hemorragieGraveValue = editForm.get('hemorragieGrave')?.value;
 @if (hemorragieGraveValue === 'OUI') {
-  <!-- Déglo­bulisation & État de choc -->
+  <!-- Déglo­bulisation & État de choc sur la même ligne -->
   <div class="mb-3 d-flex align-items-center gap-4 flex-wrap">
     <div class="form-check d-flex align-items-center">
       <input
@@ -2971,7 +2971,7 @@
     </div>
   </div>
 
-  <!-- Par localisation -->
+  <!-- Par localisation avec case à gauche -->
   <div class="mb-3 d-flex align-items-center">
     <input
       type="checkbox"
@@ -2984,9 +2984,9 @@
     <label class="form-check-label mb-0" for="field_graveParLocalisation">Par localisation</label>
   </div>
 
-  <!-- Siège -->
+  <!-- Siège de la gravité -->
   <div class="mb-3">
-    <label class="form-label" for="field_siegeGraviteLocalisation">Siège</label>
+    <label class="form-label" for="field_siegeGraviteLocalisation">Siège de la gravité</label>
     <input
       type="text"
       class="form-control"
@@ -2996,35 +2996,54 @@
       formControlName="siegeGraviteLocalisation"
     />
   </div>
-
-  <!-- Nombre d'hospitalisations -->
-  <div class="mb-3">
-    <label class="form-label" for="field_nombreHospitalisations">Nombre d'hospitalisations</label>
-    <input
-      type="number"
-      class="form-control"
-      name="nombreHospitalisations"
-      id="field_nombreHospitalisations"
-      data-cy="nombreHospitalisations"
-      formControlName="nombreHospitalisations"
-    />
-  </div>
-
-  <!-- Nombre de transfusions -->
-  <div class="mb-3">
-    <label class="form-label" for="field_nombreTransfusions">Nombre de transfusions</label>
-    <input
-      type="number"
-      class="form-control"
-      name="nombreTransfusions"
-      id="field_nombreTransfusions"
-      data-cy="nombreTransfusions"
-      formControlName="nombreTransfusions"
-    />
-  </div>
 }
 
+    </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold" for="field_gravite">13- Gravité</label>
 
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreHospitalisations">Nombre Hospitalisations</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreHospitalisations"
+            id="field_nombreHospitalisations"
+            data-cy="nombreHospitalisations"
+            formControlName="nombreHospitalisations"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreTransfusions">Nombre Transfusions</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreTransfusions"
+            id="field_nombreTransfusions"
+            data-cy="nombreTransfusions"
+            formControlName="nombreTransfusions"
+          />
+        </div>
+          </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold" for="field_gravite">14- Score ISTHBAT</label>
+
+        <div class="mb-3">
+          
+          <input
+            type="number"
+            class="form-control"
+            name="scoreISTHBAT"
+            id="field_scoreISTHBAT"
+            data-cy="scoreISTHBAT"
+            formControlName="scoreISTHBAT"
+          />
+        </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- Accordéon Section 9: TRAITEMENT -->
 <div class="accordion-item">
