@@ -3412,7 +3412,7 @@
 @let immunosuppresseurValue = editForm.get('immunosuppresseur')?.value;
 @if (immunosuppresseurValue === 'OUI') {
   <div class="mb-3">
-    <label class="form-label" for="field_nomImmunosuppresseur">Nom Immunosuppresseur</label>
+    <label class="form-label" for="field_nomImmunosuppresseur">Nom de l'Immunosuppresseur</label>
     <input
       type="text"
       class="form-control"
@@ -3457,32 +3457,52 @@
 
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_anemie">Anemie</label>
-          <select class="form-control" name="anemie" formControlName="anemie" id="field_anemie" data-cy="anemie">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Titre section -->
+<div class="mb-3">
+  <label class="form-label fw-bold">Complications hématologiques :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_anemieSevere">Anemie Severe</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="anemieSevere"
-            id="field_anemieSevere"
-            data-cy="anemieSevere"
-            formControlName="anemieSevere"
-          />
-        </div>
+<!-- Anémie -->
+<div class="mb-3">
+  <label class="form-label" for="field_anemie">Anémie</label>
+  <select class="form-control" name="anemie" formControlName="anemie" id="field_anemie" data-cy="anemie">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxHb">Taux Hb</label>
-          <input type="number" class="form-control" name="tauxHb" id="field_tauxHb" data-cy="tauxHb" formControlName="tauxHb" />
-        </div>
+<!-- Champs conditionnels : affichés uniquement si Anémie = OUI -->
+@let anemieValue = editForm.get('anemie')?.value;
+@if (anemieValue === 'OUI') {
+  <!-- Anémie sévère (sur une ligne avec la checkbox) -->
+  <div class="mb-3 d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="anemieSevere"
+      id="field_anemieSevere"
+      data-cy="anemieSevere"
+      formControlName="anemieSevere"
+    />
+    <label class="form-check-label mb-0" for="field_anemieSevere">Anémie sévère (Hb < 6g/dl) </label>
+  </div>
+
+  <!-- Taux Hb -->
+  <div class="mb-3">
+    <label class="form-label" for="field_tauxHb">Taux Hb</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tauxHb"
+      id="field_tauxHb"
+      data-cy="tauxHb"
+      formControlName="tauxHb"
+    />
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_anticorpsAntiFVW">Anticorps Anti FVW</label>
