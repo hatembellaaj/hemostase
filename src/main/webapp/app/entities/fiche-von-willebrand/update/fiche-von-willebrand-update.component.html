@@ -3685,68 +3685,93 @@
 }
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_patientDecede">Patient Decede</label>
-          <select
-            class="form-control"
-            name="patientDecede"
-            formControlName="patientDecede"
-            id="field_patientDecede"
-            data-cy="patientDecede"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Patient Décédé -->
+<div class="mb-3">
+  <label class="form-label" for="field_patientDecede">Patient Décédé</label>
+  <select
+    class="form-control"
+    name="patientDecede"
+    formControlName="patientDecede"
+    id="field_patientDecede"
+    data-cy="patientDecede"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDeces">Date Deces</label>
-          <div class="input-group">
-            <input
-              id="field_dateDeces"
-              data-cy="dateDeces"
-              type="text"
-              class="form-control"
-              name="dateDeces"
-              ngbDatepicker
-              #dateDecesDp="ngbDatepicker"
-              formControlName="dateDeces"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDecesDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-          </div>
-        </div>
+@let patientDecedeValue = editForm.get('patientDecede')?.value;
+@if (patientDecedeValue === 'OUI') {
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDeces">Age Deces</label>
-          <input type="number" class="form-control" name="ageDeces" id="field_ageDeces" data-cy="ageDeces" formControlName="ageDeces" />
-        </div>
+  <!-- Date Décès -->
+  <div class="mb-3">
+    <label class="form-label" for="field_dateDeces">Date Décès</label>
+    <div class="input-group">
+      <input
+        id="field_dateDeces"
+        data-cy="dateDeces"
+        type="text"
+        class="form-control"
+        name="dateDeces"
+        ngbDatepicker
+        #dateDecesDp="ngbDatepicker"
+        formControlName="dateDeces"
+      />
+      <button type="button" class="btn btn-secondary" (click)="dateDecesDp.toggle()">
+        <fa-icon icon="calendar-alt"></fa-icon>
+      </button>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_causeDeces">Cause Deces</label>
-          <select class="form-control" name="causeDeces" formControlName="causeDeces" id="field_causeDeces" data-cy="causeDeces">
-            <option [ngValue]="null"></option>
-            @for (causeDeces of causeDecesValues; track $index) {
-              <option [value]="causeDeces">
-                {{
-                  {
-                    null: '',
-                    HEMORRAGIE_SNC: 'HEMORRAGIE_SNC',
-                    HEMORRAGIE_AUTRE: 'HEMORRAGIE_AUTRE',
-                    HIV: 'HIV',
-                    INFECTION_AUTRE: 'INFECTION_AUTRE',
-                    THROMBOEMBOLIQUE: 'THROMBOEMBOLIQUE',
-                    CANCER: 'CANCER',
-                    COVID19: 'COVID19',
-                    INCONNUE: 'INCONNUE',
-                    AUTRE: 'AUTRE',
-                  }[causeDeces]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+  <!-- Âge Décès -->
+  <div class="mb-3">
+    <label class="form-label" for="field_ageDeces">Âge au Décès</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageDeces"
+      id="field_ageDeces"
+      data-cy="ageDeces"
+      formControlName="ageDeces"
+    />
+  </div>
+
+  <!-- Cause Décès -->
+  <div class="mb-3">
+    <label class="form-label" for="field_causeDeces">Cause du Décès</label>
+    <select
+      class="form-control"
+      name="causeDeces"
+      formControlName="causeDeces"
+      id="field_causeDeces"
+      data-cy="causeDeces"
+    >
+      <option [ngValue]="null"></option>
+      @for (causeDeces of causeDecesValues; track $index) {
+        <option [value]="causeDeces">
+          {{
+            {
+              null: '',
+              HEMORRAGIE_SNC: 'HEMORRAGIE_SNC',
+              HEMORRAGIE_AUTRE: 'HEMORRAGIE_AUTRE',
+              HIV: 'HIV',
+              INFECTION_AUTRE: 'INFECTION_AUTRE',
+              THROMBOEMBOLIQUE: 'THROMBOEMBOLIQUE',
+              CANCER: 'CANCER',
+              COVID19: 'COVID19',
+              INCONNUE: 'INCONNUE',
+              AUTRE: 'AUTRE',
+            }[causeDeces]
+          }}
+        </option>
+      }
+    </select>
+  </div>
+
+}
+
       </div>
 
     </div>
