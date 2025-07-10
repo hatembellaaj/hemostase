@@ -2810,99 +2810,121 @@
 }
 
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_hemorragieVisceres">11- Hemorragie Visceres</label>
-          <select
-            class="form-control"
-            name="hemorragieVisceres"
-            formControlName="hemorragieVisceres"
-            id="field_hemorragieVisceres"
-            data-cy="hemorragieVisceres"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_hemorragieVisceres">11- Hémorragie Viscères</label>
+  <select
+    class="form-control"
+    name="hemorragieVisceres"
+    formControlName="hemorragieVisceres"
+    id="field_hemorragieVisceres"
+    data-cy="hemorragieVisceres"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieVisceresSpontane">Hemorragie Visceres Spontane</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieVisceresSpontane"
-            id="field_hemorragieVisceresSpontane"
-            data-cy="hemorragieVisceresSpontane"
-            formControlName="hemorragieVisceresSpontane"
-          />
-        </div>
+<!-- Champs conditionnels -->
+@let hemorragieVisceresValue = editForm.get('hemorragieVisceres')?.value;
+@if (hemorragieVisceresValue === 'OUI') {
+  <!-- Spontanée / Provoquée -->
+  <div class="mb-3 d-flex align-items-center gap-4 flex-wrap">
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="hemorragieVisceresSpontane"
+        id="field_hemorragieVisceresSpontane"
+        data-cy="hemorragieVisceresSpontane"
+        formControlName="hemorragieVisceresSpontane"
+      />
+      <label class="form-check-label mb-0" for="field_hemorragieVisceresSpontane">Spontanée</label>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieVisceresProvoque">Hemorragie Visceres Provoque</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieVisceresProvoque"
-            id="field_hemorragieVisceresProvoque"
-            data-cy="hemorragieVisceresProvoque"
-            formControlName="hemorragieVisceresProvoque"
-          />
-        </div>
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="hemorragieVisceresProvoque"
+        id="field_hemorragieVisceresProvoque"
+        data-cy="hemorragieVisceresProvoque"
+        formControlName="hemorragieVisceresProvoque"
+      />
+      <label class="form-check-label mb-0" for="field_hemorragieVisceresProvoque">Provoquée</label>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieVisceresType">Hemorragie Visceres Type</label>
-          <select
-            class="form-control"
-            name="hemorragieVisceresType"
-            formControlName="hemorragieVisceresType"
-            id="field_hemorragieVisceresType"
-            data-cy="hemorragieVisceresType"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeHemorragieVisceres of typeHemorragieVisceresValues; track $index) {
-              <option [value]="typeHemorragieVisceres">
-                {{ { null: '', HDH: 'HDH', HDB: 'HDB', HEMATURIE: 'HEMATURIE', SNC: 'SNC', AUTRE: 'AUTRE' }[typeHemorragieVisceres] }}
-              </option>
-            }
-          </select>
-        </div>
+  <!-- Type -->
+  <div class="mb-3">
+    <label class="form-label" for="field_hemorragieVisceresType">Type</label>
+    <select
+      class="form-control"
+      name="hemorragieVisceresType"
+      formControlName="hemorragieVisceresType"
+      id="field_hemorragieVisceresType"
+      data-cy="hemorragieVisceresType"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeHemorragieVisceres of typeHemorragieVisceresValues; track $index) {
+        <option [value]="typeHemorragieVisceres">
+          {{
+            {
+              null: '',
+              HDH: 'HDH',
+              HDB: 'HDB',
+              HEMATURIE: 'HEMATURIE',
+              SNC: 'SNC',
+              AUTRE: 'AUTRE'
+            }[typeHemorragieVisceres]
+          }}
+        </option>
+      }
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autreHemorragieVisceres">Autre Hemorragie Visceres</label>
-          <input
-            type="text"
-            class="form-control"
-            name="autreHemorragieVisceres"
-            id="field_autreHemorragieVisceres"
-            data-cy="autreHemorragieVisceres"
-            formControlName="autreHemorragieVisceres"
-          />
-        </div>
+  <!-- Autre -->
+  <div class="mb-3">
+    <label class="form-label" for="field_autreHemorragieVisceres">Autre Hémorragie</label>
+    <input
+      type="text"
+      class="form-control"
+      name="autreHemorragieVisceres"
+      id="field_autreHemorragieVisceres"
+      data-cy="autreHemorragieVisceres"
+      formControlName="autreHemorragieVisceres"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_explorationVisceres">Exploration Visceres</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="explorationVisceres"
-            id="field_explorationVisceres"
-            data-cy="explorationVisceres"
-            formControlName="explorationVisceres"
-          />
-        </div>
+  <!-- Exploration Visceres -->
+  <div class="mb-3 form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="explorationVisceres"
+      id="field_explorationVisceres"
+      data-cy="explorationVisceres"
+      formControlName="explorationVisceres"
+    />
+    <label class="form-check-label mb-0" for="field_explorationVisceres">Exploration viscères</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_lesionSousJacente">Lesion Sous Jacente</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lesionSousJacente"
-            id="field_lesionSousJacente"
-            data-cy="lesionSousJacente"
-            formControlName="lesionSousJacente"
-          />
-        </div>
+  <!-- Lésion sous-jacente -->
+  <div class="mb-3">
+    <label class="form-label" for="field_lesionSousJacente">Lésion sous-jacente</label>
+    <input
+      type="text"
+      class="form-control"
+      name="lesionSousJacente"
+      id="field_lesionSousJacente"
+      data-cy="lesionSousJacente"
+      formControlName="lesionSousJacente"
+    />
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label fw-bold" for="field_hemorragieGrave">12- Hemorragie Grave</label>
