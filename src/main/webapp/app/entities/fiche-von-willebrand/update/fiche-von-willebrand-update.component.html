@@ -3389,33 +3389,41 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_immunosuppresseur">Immunosuppresseur</label>
-          <select
-            class="form-control"
-            name="immunosuppresseur"
-            formControlName="immunosuppresseur"
-            id="field_immunosuppresseur"
-            data-cy="immunosuppresseur"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ Immunosuppresseur -->
+<div class="mb-3">
+  <label class="form-label" for="field_immunosuppresseur">Immunosuppresseur</label>
+  <select
+    class="form-control"
+    name="immunosuppresseur"
+    formControlName="immunosuppresseur"
+    id="field_immunosuppresseur"
+    data-cy="immunosuppresseur"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nomImmunosuppresseur">Nom Immunosuppresseur</label>
-          <input
-            type="text"
-            class="form-control"
-            name="nomImmunosuppresseur"
-            id="field_nomImmunosuppresseur"
-            data-cy="nomImmunosuppresseur"
-            formControlName="nomImmunosuppresseur"
-          />
-        </div>
+<!-- Nom Immunosuppresseur : conditionnel -->
+@let immunosuppresseurValue = editForm.get('immunosuppresseur')?.value;
+@if (immunosuppresseurValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_nomImmunosuppresseur">Nom Immunosuppresseur</label>
+    <input
+      type="text"
+      class="form-control"
+      name="nomImmunosuppresseur"
+      id="field_nomImmunosuppresseur"
+      data-cy="nomImmunosuppresseur"
+      formControlName="nomImmunosuppresseur"
+    />
+  </div>
+}
+
 
 
 </div>
