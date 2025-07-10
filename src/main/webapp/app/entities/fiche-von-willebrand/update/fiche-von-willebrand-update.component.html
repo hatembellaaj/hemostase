@@ -2926,69 +2926,62 @@
 }
 
 
-        <div class="mb-3">
-          <label class="form-label fw-bold" for="field_hemorragieGrave">12- Hemorragie Grave</label>
-          <select
-            class="form-control"
-            name="hemorragieGrave"
-            formControlName="hemorragieGrave"
-            id="field_hemorragieGrave"
-            data-cy="hemorragieGrave"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@let hemorragieGraveValue = editForm.get('hemorragieGrave')?.value;
+@if (hemorragieGraveValue === 'OUI') {
+  <!-- Déglo­bulisation & État de choc sur la même ligne -->
+  <div class="mb-3 d-flex align-items-center gap-4 flex-wrap">
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="graveDeglobulisation"
+        id="field_graveDeglobulisation"
+        data-cy="graveDeglobulisation"
+        formControlName="graveDeglobulisation"
+      />
+      <label class="form-check-label mb-0" for="field_graveDeglobulisation">Déglo­bulisation</label>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_graveDeglobulisation">Grave Deglobulisation</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graveDeglobulisation"
-            id="field_graveDeglobulisation"
-            data-cy="graveDeglobulisation"
-            formControlName="graveDeglobulisation"
-          />
-        </div>
+    <div class="form-check d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check-input me-2"
+        name="graveEtatDeChoc"
+        id="field_graveEtatDeChoc"
+        data-cy="graveEtatDeChoc"
+        formControlName="graveEtatDeChoc"
+      />
+      <label class="form-check-label mb-0" for="field_graveEtatDeChoc">État de choc</label>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_graveEtatDeChoc">Grave Etat De Choc</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graveEtatDeChoc"
-            id="field_graveEtatDeChoc"
-            data-cy="graveEtatDeChoc"
-            formControlName="graveEtatDeChoc"
-          />
-        </div>
+  <!-- Par localisation avec case à gauche -->
+  <div class="mb-3 d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="graveParLocalisation"
+      id="field_graveParLocalisation"
+      data-cy="graveParLocalisation"
+      formControlName="graveParLocalisation"
+    />
+    <label class="form-check-label mb-0" for="field_graveParLocalisation">Par localisation</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_graveParLocalisation">Grave Par Localisation</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graveParLocalisation"
-            id="field_graveParLocalisation"
-            data-cy="graveParLocalisation"
-            formControlName="graveParLocalisation"
-          />
-        </div>
+  <!-- Siège de la gravité -->
+  <div class="mb-3">
+    <label class="form-label" for="field_siegeGraviteLocalisation">Siège de la gravité</label>
+    <input
+      type="text"
+      class="form-control"
+      name="siegeGraviteLocalisation"
+      id="field_siegeGraviteLocalisation"
+      data-cy="siegeGraviteLocalisation"
+      formControlName="siegeGraviteLocalisation"
+    />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_siegeGraviteLocalisation">Siege Gravite Localisation</label>
-          <input
-            type="text"
-            class="form-control"
-            name="siegeGraviteLocalisation"
-            id="field_siegeGraviteLocalisation"
-            data-cy="siegeGraviteLocalisation"
-            formControlName="siegeGraviteLocalisation"
-          />
-        </div>
     </div>
     <div class="mb-3">
         <label class="form-label fw-bold" for="field_gravite">13- Gravité</label>
