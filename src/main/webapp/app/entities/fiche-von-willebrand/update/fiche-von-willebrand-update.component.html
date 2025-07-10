@@ -3503,6 +3503,11 @@
   </div>
 }
 
+      <!-- Titre section -->
+<div class="mb-3">
+  <label class="form-label fw-bold">Complications virales </label>
+</div>
+      
 
         <div class="mb-3">
           <label class="form-label" for="field_anticorpsAntiFVW">Anticorps Anti FVW</label>
@@ -3565,7 +3570,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_hiv">Hiv</label>
+          <label class="form-label" for="field_hiv">HIV</label>
           <select class="form-control" name="hiv" formControlName="hiv" id="field_hiv" data-cy="hiv">
             <option [ngValue]="null"></option>
             @for (resultatSerologie of resultatSerologieValues; track $index) {
@@ -3576,46 +3581,68 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_thrombose">Thrombose</label>
-          <input type="checkbox" class="form-check" name="thrombose" id="field_thrombose" data-cy="thrombose" formControlName="thrombose" />
-        </div>
+      <!-- Titre section -->
+<div class="mb-3">
+  <label class="form-label fw-bold">Autres complications </label>
+</div>
+      
+<div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+  <!-- Thrombose -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="thrombose"
+      id="field_thrombose"
+      data-cy="thrombose"
+      formControlName="thrombose"
+    />
+    <label class="form-check-label mb-0" for="field_thrombose">Thrombose</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_reactionAllergique">Reaction Allergique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="reactionAllergique"
-            id="field_reactionAllergique"
-            data-cy="reactionAllergique"
-            formControlName="reactionAllergique"
-          />
-        </div>
+  <!-- Réaction Allergique -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="reactionAllergique"
+      id="field_reactionAllergique"
+      data-cy="reactionAllergique"
+      formControlName="reactionAllergique"
+    />
+    <label class="form-check-label mb-0" for="field_reactionAllergique">Réaction allergique</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autreComplication">Autre Complication</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="autreComplication"
-            id="field_autreComplication"
-            data-cy="autreComplication"
-            formControlName="autreComplication"
-          />
-        </div>
+  <!-- Autre Complication -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="autreComplication"
+      id="field_autreComplication"
+      data-cy="autreComplication"
+      formControlName="autreComplication"
+    />
+    <label class="form-check-label mb-0" for="field_autreComplication">Autre complication</label>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autreComplicationDescription">Autre Complication Description</label>
-          <input
-            type="text"
-            class="form-control"
-            name="autreComplicationDescription"
-            id="field_autreComplicationDescription"
-            data-cy="autreComplicationDescription"
-            formControlName="autreComplicationDescription"
-          />
-        </div>
+
+@let autreComplicationChecked = editForm.get('autreComplication')?.value;
+@if (autreComplicationChecked) {
+  <div class="mb-3">
+    <label class="form-label" for="field_autreComplicationDescription">Autre Complication Description</label>
+    <input
+      type="text"
+      class="form-control"
+      name="autreComplicationDescription"
+      id="field_autreComplicationDescription"
+      data-cy="autreComplicationDescription"
+      formControlName="autreComplicationDescription"
+    />
+  </div>
+}
+
 </div>
   </div>
 </div>
