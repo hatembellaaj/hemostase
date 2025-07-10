@@ -86,26 +86,41 @@ ngOnInit(): void {
       this.updateForm(ficheVonWillebrand);
     }
 
-    // Abonnement aux changements de valeurs du formulaire
+    // Calcul automatique des ratios
     this.editForm.valueChanges.subscribe(values => {
       const fvwag = values.fvwag;
       const fvwact = values.fvwact;
       const f8c = values.f8c;
 
-      // Ratio FvWAct / FvWAg
       if (fvwag && fvwact && fvwag !== 0) {
         const ratioFvwactFvwag = parseFloat((fvwact / fvwag).toFixed(2));
         this.editForm.get('ratioFvwactFvwag')?.setValue(ratioFvwactFvwag, { emitEvent: false });
       }
 
-      // Ratio FVIIIc / FvWAg
       if (fvwag && f8c && fvwag !== 0) {
         const ratioF8cFvwag = parseFloat((f8c / fvwag).toFixed(2));
         this.editForm.get('ratioF8cFvwag')?.setValue(ratioF8cFvwag, { emitEvent: false });
       }
     });
+
+    // Calcul automatique de l'âge actuel à partir de la date de naissance
+    this.editForm.get('dateNaissance')?.valueChanges.subscribe((dateNaissance: any) => {
+      if (dateNaissance && dateNaissance.year && dateNaissance.month && dateNaissance.day) {
+        const today = new Date();
+        const birthDate = new Date(dateNaissance.year, dateNaissance.month - 1, dateNaissance.day);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        this.editForm.get('ageActuel')?.setValue(age, { emitEvent: false });
+      } else {
+        this.editForm.get('ageActuel')?.setValue(null, { emitEvent: false });
+      }
+    });
   });
 }
+
 
 
   previousState(): void {
