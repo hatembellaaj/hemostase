@@ -644,438 +644,275 @@
     <div class="accordion-body">
       <!-- Contenu pour la section Antécédents -->
 
-        <div class="mb-3">
-          <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
-          <select
-            class="form-control"
-            name="parentsConsanguins"
-            formControlName="parentsConsanguins"
-            id="field_parentsConsanguins"
-            data-cy="parentsConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
-          <select
-            class="form-control"
-            name="degreParenteConsanguins"
-            formControlName="degreParenteConsanguins"
-            id="field_degreParenteConsanguins"
-            data-cy="degreParenteConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (degreParente of degreParenteValues; track $index) {
-              <option [value]="degreParente">
-                {{
-                  { null: '', TROISIEME_DEGRE: 'TROISIEME_DEGRE', QUATRIEME_DEGRE: 'QUATRIEME_DEGRE', LOINTAIN: 'LOINTAIN' }[degreParente]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+                
 
-        <div class="mb-3">
-          <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
-          <select
-            class="form-control"
-            name="casSimilaires"
-            formControlName="casSimilaires"
-            id="field_casSimilaires"
-            data-cy="casSimilaires"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nombreCas">Nombre Cas</label>
-          <input type="number" class="form-control" name="nombreCas" id="field_nombreCas" data-cy="nombreCas" formControlName="nombreCas" />
-        </div>
+<!-- Parents Consanguins -->
+<div class="mb-3">
+  <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+  <select
+    class="form-control"
+    name="parentsConsanguins"
+    formControlName="parentsConsanguins"
+    id="field_parentsConsanguins"
+    data-cy="parentsConsanguins"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_cas1Numero">Cas 1 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="cas1Numero"
-            id="field_cas1Numero"
-            data-cy="cas1Numero"
-            formControlName="cas1Numero"
-          />
-        </div>
+<!-- Condition : Degré Parenté affiché uniquement si "OUI" -->
+@let consanguinsValue = editForm.get('parentsConsanguins')?.value;
+@if (consanguinsValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_degreParenteConsanguins">Degré Parenté</label>
+    <select
+      class="form-control"
+      name="degreParenteConsanguins"
+      formControlName="degreParenteConsanguins"
+      id="field_degreParenteConsanguins"
+      data-cy="degreParenteConsanguins"
+    >
+      <option [ngValue]="null"></option>
+      @for (degreParente of degreParenteValues; track $index) {
+        <option [value]="degreParente">
+          {{
+            {
+              null: '',
+              TROISIEME_DEGRE: 'TROISIEME_DEGRE',
+              QUATRIEME_DEGRE: 'QUATRIEME_DEGRE',
+              LOINTAIN: 'LOINTAIN'
+            }[degreParente]
+          }}
+        </option>
+      }
+    </select>
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteCas1">Lien Parente Cas 1</label>
-          <select
-            class="form-control"
-            name="lienParenteCas1"
-            formControlName="lienParenteCas1"
-            id="field_lienParenteCas1"
-            data-cy="lienParenteCas1"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
-            }
-          </select>
-        </div>
 
-        @let degreParenteCas1Ref = editForm.get('degreParenteCas1')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCas1">Degre Parente Cas 1</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCas1"
-            id="field_degreParenteCas1"
-            data-cy="degreParenteCas1"
-            formControlName="degreParenteCas1"
-          />
-          @if (degreParenteCas1Ref.invalid && (degreParenteCas1Ref.dirty || degreParenteCas1Ref.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCas1')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
+<!-- Cas Similaires -->
+<div class="mb-3">
+  <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
+  <select
+    class="form-control"
+    name="casSimilaires"
+    formControlName="casSimilaires"
+    id="field_casSimilaires"
+    data-cy="casSimilaires"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
+
+<!-- Affichage conditionnel si OUI -->
+@let casSimilairesValue = editForm.get('casSimilaires')?.value;
+@if (casSimilairesValue === 'OUI') {
+
+  <div class="mb-3">
+    <label class="form-label" for="field_nombreCas">Nombre Cas</label>
+    <input
+      type="number"
+      min="1"
+      max="3"
+      class="form-control"
+      name="nombreCas"
+      id="field_nombreCas"
+      data-cy="nombreCas"
+      formControlName="nombreCas"
+    />
+  </div>
+
+  @let nombreCasValue = editForm.get('nombreCas')?.value;
+  @for (i of [1, 2, 3]; track i) {
+    @if (nombreCasValue != null && nombreCasValue >= i) {
+
+      <!-- Cas {{i}} Numero -->
+      <div class="mb-3">
+        <label class="form-label" for="field_cas{{i}}Numero">Cas {{i}} Numero</label>
+        <input
+          type="number"
+          class="form-control"
+          name="cas{{i}}Numero"
+          id="field_cas{{i}}Numero"
+          [attr.data-cy]="'cas' + i + 'Numero'"
+          formControlName="cas{{i}}Numero"
+        />
+      </div>
+
+      <!-- Lien Parenté -->
+      <div class="mb-3">
+        <label class="form-label" for="field_lienParenteCas{{i}}">Lien Parente Cas {{i}}</label>
+        <select
+          class="form-control"
+          name="lienParenteCas{{i}}"
+          formControlName="lienParenteCas{{i}}"
+          id="field_lienParenteCas{{i}}"
+          [attr.data-cy]="'lienParenteCas' + i"
+        >
+          <option [ngValue]="null"></option>
+          @for (lienParente of lienParenteValues; track $index) {
+            <option [value]="lienParente">
+              {{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}
+            </option>
           }
-        </div>
+        </select>
+      </div>
 
-        @let typeHemorragieCas1Ref = editForm.get('typeHemorragieCas1')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragieCas1">Type Hemorragie Cas 1</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHemorragieCas1"
-            id="field_typeHemorragieCas1"
-            data-cy="typeHemorragieCas1"
-            formControlName="typeHemorragieCas1"
-          />
-          @if (typeHemorragieCas1Ref.invalid && (typeHemorragieCas1Ref.dirty || typeHemorragieCas1Ref.touched)) {
-            <div>
-              @if (editForm.get('typeHemorragieCas1')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_cas2Numero">Cas 2 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="cas2Numero"
-            id="field_cas2Numero"
-            data-cy="cas2Numero"
-            formControlName="cas2Numero"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteCas2">Lien Parente Cas 2</label>
-          <select
-            class="form-control"
-            name="lienParenteCas2"
-            formControlName="lienParenteCas2"
-            id="field_lienParenteCas2"
-            data-cy="lienParenteCas2"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+      <!-- Degré Parenté -->
+      @let degreParenteRef = editForm.get('degreParenteCas' + i)!;
+      <div class="mb-3">
+        <label class="form-label" for="field_degreParenteCas{{i}}">Degré Parenté Cas {{i}}</label>
+        <input
+          type="text"
+          class="form-control"
+          name="degreParenteCas{{i}}"
+          id="field_degreParenteCas{{i}}"
+          [attr.data-cy]="'degreParenteCas' + i"
+          formControlName="degreParenteCas{{i}}"
+        />
+        @if (degreParenteRef.invalid && (degreParenteRef.dirty || degreParenteRef.touched)) {
+          <div>
+            @if (degreParenteRef.errors?.maxlength) {
+              <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
             }
-          </select>
-        </div>
+          </div>
+        }
+      </div>
 
-        @let degreParenteCas2Ref = editForm.get('degreParenteCas2')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCas2">Degre Parente Cas 2</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCas2"
-            id="field_degreParenteCas2"
-            data-cy="degreParenteCas2"
-            formControlName="degreParenteCas2"
-          />
-          @if (degreParenteCas2Ref.invalid && (degreParenteCas2Ref.dirty || degreParenteCas2Ref.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCas2')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let typeHemorragieCas2Ref = editForm.get('typeHemorragieCas2')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragieCas2">Type Hemorragie Cas 2</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHemorragieCas2"
-            id="field_typeHemorragieCas2"
-            data-cy="typeHemorragieCas2"
-            formControlName="typeHemorragieCas2"
-          />
-          @if (typeHemorragieCas2Ref.invalid && (typeHemorragieCas2Ref.dirty || typeHemorragieCas2Ref.touched)) {
-            <div>
-              @if (editForm.get('typeHemorragieCas2')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_cas3Numero">Cas 3 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="cas3Numero"
-            id="field_cas3Numero"
-            data-cy="cas3Numero"
-            formControlName="cas3Numero"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteCas3">Lien Parente Cas 3</label>
-          <select
-            class="form-control"
-            name="lienParenteCas3"
-            formControlName="lienParenteCas3"
-            id="field_lienParenteCas3"
-            data-cy="lienParenteCas3"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
+      <!-- Type Hémorragie -->
+      @let typeHemorragieRef = editForm.get('typeHemorragieCas' + i)!;
+      <div class="mb-3">
+        <label class="form-label" for="field_typeHemorragieCas{{i}}">Type Hémorragie Cas {{i}}</label>
+        <input
+          type="text"
+          class="form-control"
+          name="typeHemorragieCas{{i}}"
+          id="field_typeHemorragieCas{{i}}"
+          [attr.data-cy]="'typeHemorragieCas' + i"
+          formControlName="typeHemorragieCas{{i}}"
+        />
+        @if (typeHemorragieRef.invalid && (typeHemorragieRef.dirty || typeHemorragieRef.touched)) {
+          <div>
+            @if (typeHemorragieRef.errors?.maxlength) {
+              <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
             }
-          </select>
-        </div>
+          </div>
+        }
+      </div>
 
-        @let degreParenteCas3Ref = editForm.get('degreParenteCas3')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCas3">Degre Parente Cas 3</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCas3"
-            id="field_degreParenteCas3"
-            data-cy="degreParenteCas3"
-            formControlName="degreParenteCas3"
-          />
-          @if (degreParenteCas3Ref.invalid && (degreParenteCas3Ref.dirty || degreParenteCas3Ref.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCas3')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
+    }
+  }
+}
+
+
+
+<!-- Décès Syndrome Hémorragique -->
+<div class="mb-3">
+  <label class="form-label" for="field_decesSyndromeHemorragique">Décès Syndrome Hémorragique</label>
+  <select
+    class="form-control"
+    name="decesSyndromeHemorragique"
+    formControlName="decesSyndromeHemorragique"
+    id="field_decesSyndromeHemorragique"
+    data-cy="decesSyndromeHemorragique"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+<!-- Bloc conditionnel -->
+@let decesSyndromeValue = editForm.get('decesSyndromeHemorragique')?.value;
+@if (decesSyndromeValue === 'OUI') {
+
+  <!-- Nombre de décès -->
+  <div class="mb-3">
+    <label class="form-label" for="field_nombreDeces">Nombre Décès</label>
+    <input
+      type="number"
+      min="1"
+      max="3"
+      class="form-control"
+      name="nombreDeces"
+      id="field_nombreDeces"
+      data-cy="nombreDeces"
+      formControlName="nombreDeces"
+    />
+  </div>
+
+  <!-- Boucle sur les cas de décès -->
+  @let nombreDecesValue = editForm.get('nombreDeces')?.value;
+  @for (i of [1, 2, 3]; track i) {
+    @if (nombreDecesValue != null && nombreDecesValue >= i) {
+
+      <div class="mb-3">
+        <label class="form-label" for="field_deces{{i}}Numero">Décès {{i}} Numéro</label>
+        <input
+          type="number"
+          class="form-control"
+          name="deces{{i}}Numero"
+          id="field_deces{{i}}Numero"
+          [attr.data-cy]="'deces' + i + 'Numero'"
+          formControlName="deces{{i}}Numero"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="field_lienParenteDeces{{i}}">Lien Parenté Décès {{i}}</label>
+        <select
+          class="form-control"
+          name="lienParenteDeces{{i}}"
+          formControlName="lienParenteDeces{{i}}"
+          id="field_lienParenteDeces{{i}}"
+          [attr.data-cy]="'lienParenteDeces' + i"
+        >
+          <option [ngValue]="null"></option>
+          @for (lienParente of lienParenteValues; track $index) {
+            <option [value]="lienParente">
+              {{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}
+            </option>
           }
-        </div>
+        </select>
+      </div>
 
-        @let typeHemorragieCas3Ref = editForm.get('typeHemorragieCas3')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragieCas3">Type Hemorragie Cas 3</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHemorragieCas3"
-            id="field_typeHemorragieCas3"
-            data-cy="typeHemorragieCas3"
-            formControlName="typeHemorragieCas3"
-          />
-          @if (typeHemorragieCas3Ref.invalid && (typeHemorragieCas3Ref.dirty || typeHemorragieCas3Ref.touched)) {
-            <div>
-              @if (editForm.get('typeHemorragieCas3')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_decesSyndromeHemorragique">Deces Syndrome Hemorragique</label>
-          <select
-            class="form-control"
-            name="decesSyndromeHemorragique"
-            formControlName="decesSyndromeHemorragique"
-            id="field_decesSyndromeHemorragique"
-            data-cy="decesSyndromeHemorragique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+      @let causeDecesRef = editForm.get('causeDeces' + i)!;
+      <div class="mb-3">
+        <label class="form-label" for="field_causeDeces{{i}}">Cause Décès {{i}}</label>
+        <input
+          type="text"
+          class="form-control"
+          name="causeDeces{{i}}"
+          id="field_causeDeces{{i}}"
+          [attr.data-cy]="'causeDeces' + i"
+          formControlName="causeDeces{{i}}"
+        />
+        @if (causeDecesRef.invalid && (causeDecesRef.dirty || causeDecesRef.touched)) {
+          <div>
+            @if (causeDecesRef.errors?.maxlength) {
+              <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
             }
-          </select>
-        </div>
+          </div>
+        }
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nombreDeces">Nombre Deces</label>
-          <input
-            type="number"
-            class="form-control"
-            name="nombreDeces"
-            id="field_nombreDeces"
-            data-cy="nombreDeces"
-            formControlName="nombreDeces"
-          />
-        </div>
+    }
+  }
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_deces1Numero">Deces 1 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="deces1Numero"
-            id="field_deces1Numero"
-            data-cy="deces1Numero"
-            formControlName="deces1Numero"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteDeces1">Lien Parente Deces 1</label>
-          <select
-            class="form-control"
-            name="lienParenteDeces1"
-            formControlName="lienParenteDeces1"
-            id="field_lienParenteDeces1"
-            data-cy="lienParenteDeces1"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
-            }
-          </select>
-        </div>
-
-        @let causeDeces1Ref = editForm.get('causeDeces1')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeDeces1">Cause Deces 1</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeDeces1"
-            id="field_causeDeces1"
-            data-cy="causeDeces1"
-            formControlName="causeDeces1"
-          />
-          @if (causeDeces1Ref.invalid && (causeDeces1Ref.dirty || causeDeces1Ref.touched)) {
-            <div>
-              @if (editForm.get('causeDeces1')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_deces2Numero">Deces 2 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="deces2Numero"
-            id="field_deces2Numero"
-            data-cy="deces2Numero"
-            formControlName="deces2Numero"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteDeces2">Lien Parente Deces 2</label>
-          <select
-            class="form-control"
-            name="lienParenteDeces2"
-            formControlName="lienParenteDeces2"
-            id="field_lienParenteDeces2"
-            data-cy="lienParenteDeces2"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
-            }
-          </select>
-        </div>
-
-        @let causeDeces2Ref = editForm.get('causeDeces2')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeDeces2">Cause Deces 2</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeDeces2"
-            id="field_causeDeces2"
-            data-cy="causeDeces2"
-            formControlName="causeDeces2"
-          />
-          @if (causeDeces2Ref.invalid && (causeDeces2Ref.dirty || causeDeces2Ref.touched)) {
-            <div>
-              @if (editForm.get('causeDeces2')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_deces3Numero">Deces 3 Numero</label>
-          <input
-            type="number"
-            class="form-control"
-            name="deces3Numero"
-            id="field_deces3Numero"
-            data-cy="deces3Numero"
-            formControlName="deces3Numero"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteDeces3">Lien Parente Deces 3</label>
-          <select
-            class="form-control"
-            name="lienParenteDeces3"
-            formControlName="lienParenteDeces3"
-            id="field_lienParenteDeces3"
-            data-cy="lienParenteDeces3"
-          >
-            <option [ngValue]="null"></option>
-            @for (lienParente of lienParenteValues; track $index) {
-              <option [value]="lienParente">{{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[lienParente] }}</option>
-            }
-          </select>
-        </div>
-
-        @let causeDeces3Ref = editForm.get('causeDeces3')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeDeces3">Cause Deces 3</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeDeces3"
-            id="field_causeDeces3"
-            data-cy="causeDeces3"
-            formControlName="causeDeces3"
-          />
-          @if (causeDeces3Ref.invalid && (causeDeces3Ref.dirty || causeDeces3Ref.touched)) {
-            <div>
-              @if (editForm.get('causeDeces3')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_enqueteFamiliale">Enquete Familiale</label>
@@ -1087,11 +924,40 @@
             data-cy="enqueteFamiliale"
           >
             <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
+              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
             }
           </select>
         </div>
+
+
+          </div>
+  </div>
+</div>
+
+
+          <!-- Accordéon Section 3: Circonstances de découverte -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingCirconstances">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseCirconstances"
+      aria-expanded="false"
+      aria-controls="collapseCirconstances"
+    >
+      Circonstances de découverte
+    </button>
+  </h2>
+  <div
+    id="collapseCirconstances"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingCirconstances"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Circonstances de découverte -->
 
         <div class="mb-3">
           <label class="form-label" for="field_syndromeHemorragique">Syndrome Hemorragique</label>
