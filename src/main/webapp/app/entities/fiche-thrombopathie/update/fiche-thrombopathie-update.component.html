@@ -681,114 +681,137 @@
           }
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
-          <select
-            class="form-control"
-            name="casSimilaires"
-            formControlName="casSimilaires"
-            id="field_casSimilaires"
-            data-cy="casSimilaires"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label" for="field_casSimilaires">Cas Similaires dans la famille</label>
+  <select
+    class="form-control"
+    name="casSimilaires"
+    formControlName="casSimilaires"
+    id="field_casSimilaires"
+    data-cy="casSimilaires"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nombreCas">Nombre Cas</label>
-          <input type="number" class="form-control" name="nombreCas" id="field_nombreCas" data-cy="nombreCas" formControlName="nombreCas" />
-        </div>
+<!-- Condition affichage si OUI -->
+@let casSimilaires = editForm.get('casSimilaires')?.value;
+@if (casSimilaires === 'OUI') {
 
-        @let degreParenteCasSimilairesRef = editForm.get('degreParenteCasSimilaires')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCasSimilaires">Degre Parente Cas Similaires</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteCasSimilaires"
-            id="field_degreParenteCasSimilaires"
-            data-cy="degreParenteCasSimilaires"
-            formControlName="degreParenteCasSimilaires"
-          />
-          @if (degreParenteCasSimilairesRef.invalid && (degreParenteCasSimilairesRef.dirty || degreParenteCasSimilairesRef.touched)) {
-            <div>
-              @if (editForm.get('degreParenteCasSimilaires')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+  <div class="mb-3">
+    <label class="form-label" for="field_nombreCas">Nombre Cas</label>
+    <input
+      type="number"
+      class="form-control"
+      name="nombreCas"
+      id="field_nombreCas"
+      data-cy="nombreCas"
+      formControlName="nombreCas"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_decesSyndromeHemorragique">Deces Syndrome Hemorragique</label>
-          <select
-            class="form-control"
-            name="decesSyndromeHemorragique"
-            formControlName="decesSyndromeHemorragique"
-            id="field_decesSyndromeHemorragique"
-            data-cy="decesSyndromeHemorragique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  @let degreParenteCasSimilairesRef = editForm.get('degreParenteCasSimilaires')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_degreParenteCasSimilaires">Degré Parenté Cas Similaires</label>
+    <input
+      type="text"
+      class="form-control"
+      name="degreParenteCasSimilaires"
+      id="field_degreParenteCasSimilaires"
+      data-cy="degreParenteCasSimilaires"
+      formControlName="degreParenteCasSimilaires"
+    />
+    @if (degreParenteCasSimilairesRef.invalid && (degreParenteCasSimilairesRef.dirty || degreParenteCasSimilairesRef.touched)) {
+      <div>
+        @if (editForm.get('degreParenteCasSimilaires')?.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+        }
+      </div>
+    }
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nombreDeces">Nombre Deces</label>
-          <input
-            type="number"
-            class="form-control"
-            name="nombreDeces"
-            id="field_nombreDeces"
-            data-cy="nombreDeces"
-            formControlName="nombreDeces"
-          />
-        </div>
+}
 
-        @let typeHemorragieRef = editForm.get('typeHemorragie')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemorragie">Type Hemorragie</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHemorragie"
-            id="field_typeHemorragie"
-            data-cy="typeHemorragie"
-            formControlName="typeHemorragie"
-          />
-          @if (typeHemorragieRef.invalid && (typeHemorragieRef.dirty || typeHemorragieRef.touched)) {
-            <div>
-              @if (editForm.get('typeHemorragie')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
 
-        @let lienParenteDecesRef = editForm.get('lienParenteDeces')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_lienParenteDeces">Lien Parente Deces</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lienParenteDeces"
-            id="field_lienParenteDeces"
-            data-cy="lienParenteDeces"
-            formControlName="lienParenteDeces"
-          />
-          @if (lienParenteDecesRef.invalid && (lienParenteDecesRef.dirty || lienParenteDecesRef.touched)) {
-            <div>
-              @if (editForm.get('lienParenteDeces')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label" for="field_decesSyndromeHemorragique">Décès Syndrome Hémorragique</label>
+  <select
+    class="form-control"
+    name="decesSyndromeHemorragique"
+    formControlName="decesSyndromeHemorragique"
+    id="field_decesSyndromeHemorragique"
+    data-cy="decesSyndromeHemorragique"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+<!-- Condition d'affichage -->
+@let decesSHValue = editForm.get('decesSyndromeHemorragique')?.value;
+@if (decesSHValue === 'OUI') {
+
+  <div class="mb-3">
+    <label class="form-label" for="field_nombreDeces">Nombre Décès</label>
+    <input
+      type="number"
+      class="form-control"
+      name="nombreDeces"
+      id="field_nombreDeces"
+      data-cy="nombreDeces"
+      formControlName="nombreDeces"
+    />
+  </div>
+
+  @let typeHemorragieRef = editForm.get('typeHemorragie')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_typeHemorragie">Type Hémorragie</label>
+    <input
+      type="text"
+      class="form-control"
+      name="typeHemorragie"
+      id="field_typeHemorragie"
+      data-cy="typeHemorragie"
+      formControlName="typeHemorragie"
+    />
+    @if (typeHemorragieRef.invalid && (typeHemorragieRef.dirty || typeHemorragieRef.touched)) {
+      <div>
+        @if (editForm.get('typeHemorragie')?.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+
+  @let lienParenteDecesRef = editForm.get('lienParenteDeces')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_lienParenteDeces">Lien Parenté Décès</label>
+    <input
+      type="text"
+      class="form-control"
+      name="lienParenteDeces"
+      id="field_lienParenteDeces"
+      data-cy="lienParenteDeces"
+      formControlName="lienParenteDeces"
+    />
+    @if (lienParenteDecesRef.invalid && (lienParenteDecesRef.dirty || lienParenteDecesRef.touched)) {
+      <div>
+        @if (editForm.get('lienParenteDeces')?.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_enqueteFamiliale">Enquete Familiale</label>
@@ -826,58 +849,99 @@
           }
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_antecedentsChirurgicaux">Antecedents Chirurgicaux</label>
-          <select
-            class="form-control"
-            name="antecedentsChirurgicaux"
-            formControlName="antecedentsChirurgicaux"
-            id="field_antecedentsChirurgicaux"
-            data-cy="antecedentsChirurgicaux"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Antécédents chirurgicaux -->
+<div class="mb-3">
+  <label class="form-label" for="field_antecedentsChirurgicaux">Antécédents Chirurgicaux</label>
+  <select
+    class="form-control"
+    name="antecedentsChirurgicaux"
+    formControlName="antecedentsChirurgicaux"
+    id="field_antecedentsChirurgicaux"
+    data-cy="antecedentsChirurgicaux"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        @let typeChirurgieRef = editForm.get('typeChirurgie')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeChirurgie">Type Chirurgie</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeChirurgie"
-            id="field_typeChirurgie"
-            data-cy="typeChirurgie"
-            formControlName="typeChirurgie"
-          />
-          @if (typeChirurgieRef.invalid && (typeChirurgieRef.dirty || typeChirurgieRef.touched)) {
-            <div>
-              @if (editForm.get('typeChirurgie')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- Affichage conditionnel -->
+@let antecedentsChirurgicauxValue = editForm.get('antecedentsChirurgicaux')?.value;
+@if (antecedentsChirurgicauxValue === 'OUI') {
 
-        <div class="mb-3">
-          <label class="form-label" for="field_complicationHemorragique">Complication Hemorragique</label>
-          <select
-            class="form-control"
-            name="complicationHemorragique"
-            formControlName="complicationHemorragique"
-            id="field_complicationHemorragique"
-            data-cy="complicationHemorragique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  @let typeChirurgieRef = editForm.get('typeChirurgie')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_typeChirurgie">Type Chirurgie</label>
+    <input
+      type="text"
+      class="form-control"
+      name="typeChirurgie"
+      id="field_typeChirurgie"
+      data-cy="typeChirurgie"
+      formControlName="typeChirurgie"
+    />
+    @if (typeChirurgieRef.invalid && (typeChirurgieRef.dirty || typeChirurgieRef.touched)) {
+      <div>
+        @if (editForm.get('typeChirurgie')?.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
 
+  <div class="mb-3">
+    <label class="form-label" for="field_complicationHemorragique">Complication Hémorragique</label>
+    <select
+      class="form-control"
+      name="complicationHemorragique"
+      formControlName="complicationHemorragique"
+      id="field_complicationHemorragique"
+      data-cy="complicationHemorragique"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+      }
+    </select>
+  </div>
+}
+
+
+
+          </div>
+  </div>
+</div>
+
+
+          <!-- Accordéon Section 3: Circonstances de découverte -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingCirconstances">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseCirconstances"
+      aria-expanded="false"
+      aria-controls="collapseCirconstances"
+    >
+      Circonstances de découverte
+    </button>
+  </h2>
+  <div
+    id="collapseCirconstances"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingCirconstances"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Circonstances de découverte -->
+
+      
+
+
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_agePremierSigneHemorragique">Age Premier Signe Hemorragique</label>
           <input
