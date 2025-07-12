@@ -14,7 +14,7 @@
         }
 
 
-        <div class="accordion" id="ficheAccordion">
+       <div class="accordion" id="ficheAccordion">
           <!-- Accordéon Section 1: Identification -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingIdentification">
@@ -37,11 +37,9 @@
             >
               <div class="accordion-body">
                 <!-- Champs pour la section Identification -->
-
-
-        
+                
         <div class="mb-3">
-          <label class="form-label" for="field_dossierNumber">Numéro Dossier </label>
+          <label class="form-label" for="field_dossierNumber">Numéro de dossier</label>
           <input
             type="text"
             class="form-control"
@@ -54,7 +52,7 @@
 
         @let ordreNumberRef = editForm.get('ordreNumber')!;
         <div class="mb-3">
-          <label class="form-label" for="field_ordreNumber">Numéro Ordre </label>
+          <label class="form-label" for="field_ordreNumber">Numéro d'ordre</label>
           <input
             type="text"
             class="form-control"
@@ -74,7 +72,7 @@
 
         @let indexNumberRef = editForm.get('indexNumber')!;
         <div class="mb-3">
-          <label class="form-label" for="field_indexNumber">Numéro Index </label>
+          <label class="form-label" for="field_indexNumber">Numéro d'index</label>
           <input
             type="text"
             class="form-control"
@@ -94,7 +92,7 @@
 
         @let prenomRef = editForm.get('prenom')!;
         <div class="mb-3">
-          <label class="form-label" for="field_prenom">Prenom</label>
+          <label class="form-label" for="field_prenom">Prénom</label>
           <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
           @if (prenomRef.invalid && (prenomRef.dirty || prenomRef.touched)) {
             <div>
@@ -120,7 +118,7 @@
 
         @let nomJeuneFilleRef = editForm.get('nomJeuneFille')!;
         <div class="mb-3">
-          <label class="form-label" for="field_nomJeuneFille">Nom Jeune Fille</label>
+          <label class="form-label" for="field_nomJeuneFille">Nom de Jeune Fille</label>
           <input
             type="text"
             class="form-control"
@@ -280,7 +278,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_dateNaissance">Date Naissance</label>
+          <label class="form-label" for="field_dateNaissance">Date de Naissance</label>
           <div class="input-group">
             <input
               id="field_dateNaissance"
@@ -300,7 +298,7 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_ageActuel">Age Actuel</label>
-          <input type="number" class="form-control" name="ageActuel" id="field_ageActuel" data-cy="ageActuel" formControlName="ageActuel" />
+          <input type="number" class="form-control" name="ageActuel" id="field_ageActuel" data-cy="ageActuel" formControlName="ageActuel" readonly/>
         </div>
 
         <div class="mb-3">
@@ -368,7 +366,7 @@
 
         @let telephoneRef = editForm.get('telephone')!;
         <div class="mb-3">
-          <label class="form-label" for="field_telephone">Telephone</label>
+          <label class="form-label" for="field_telephone">Téléphone</label>
           <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
           @if (telephoneRef.invalid && (telephoneRef.dirty || telephoneRef.touched)) {
             <div>
@@ -381,7 +379,7 @@
 
         @let prenomPereRef = editForm.get('prenomPere')!;
         <div class="mb-3">
-          <label class="form-label" for="field_prenomPere">Prenom Pere</label>
+          <label class="form-label" for="field_prenomPere">Prénom Père</label>
           <input
             type="text"
             class="form-control"
@@ -401,7 +399,7 @@
 
         @let professionPereRef = editForm.get('professionPere')!;
         <div class="mb-3">
-          <label class="form-label" for="field_professionPere">Profession Pere</label>
+          <label class="form-label" for="field_professionPere">Profession Père</label>
           <input
             type="text"
             class="form-control"
@@ -421,7 +419,7 @@
 
         @let nomPrenomMereRef = editForm.get('nomPrenomMere')!;
         <div class="mb-3">
-          <label class="form-label" for="field_nomPrenomMere">Nom Prenom Mere</label>
+          <label class="form-label" for="field_nomPrenomMere">Nom Prénom Mère</label>
           <input
             type="text"
             class="form-control"
@@ -441,7 +439,7 @@
 
         @let professionMereRef = editForm.get('professionMere')!;
         <div class="mb-3">
-          <label class="form-label" for="field_professionMere">Profession Mere</label>
+          <label class="form-label" for="field_professionMere">Profession Mère</label>
           <input
             type="text"
             class="form-control"
@@ -461,7 +459,7 @@
 
         @let medecinTraitantRef = editForm.get('medecinTraitant')!;
         <div class="mb-3">
-          <label class="form-label" for="field_medecinTraitant">Medecin Traitant</label>
+          <label class="form-label" for="field_medecinTraitant">Médecin Traitant</label>
           <input
             type="text"
             class="form-control"
@@ -572,7 +570,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_anneeDiagnostic">Annee Diagnostic</label>
+          <label class="form-label" for="field_anneeDiagnostic">Année Diagnostic</label>
           <input
             type="number"
             class="form-control"
@@ -581,22 +579,6 @@
             data-cy="anneeDiagnostic"
             formControlName="anneeDiagnostic"
           />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_consentementRegistre">Consentement Registre</label>
-          <select
-            class="form-control"
-            name="consentementRegistre"
-            formControlName="consentementRegistre"
-            id="field_consentementRegistre"
-            data-cy="consentementRegistre"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
         </div>
 
         <div class="mb-3">
@@ -618,7 +600,23 @@
           </div>
         </div>
 
+        <div class="mb-3">
+          <label class="form-label" for="field_consentementRegistre">Consentement Registre</label>
+          <select
+            class="form-control"
+            name="consentementRegistre"
+            formControlName="consentementRegistre"
+            id="field_consentementRegistre"
+            data-cy="consentementRegistre"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
 
+                
               </div>
             </div>
           </div>
