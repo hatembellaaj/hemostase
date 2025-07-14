@@ -2641,34 +2641,47 @@
 </ng-container>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_thrombose">Thrombose</label>
-          <input type="checkbox" class="form-check" name="thrombose" id="field_thrombose" data-cy="thrombose" formControlName="thrombose" />
-        </div>
+<!-- Groupe de complications sur une seule ligne avec checkbox avant le texte -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+  <!-- Thrombose -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="thrombose"
+      id="field_thrombose"
+      data-cy="thrombose"
+      formControlName="thrombose"
+    />
+    <label class="form-check-label mb-0" for="field_thrombose">Thrombose</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_reactionAllergique">Reaction Allergique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="reactionAllergique"
-            id="field_reactionAllergique"
-            data-cy="reactionAllergique"
-            formControlName="reactionAllergique"
-          />
-        </div>
+  <!-- Réaction Allergique -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="reactionAllergique"
+      id="field_reactionAllergique"
+      data-cy="reactionAllergique"
+      formControlName="reactionAllergique"
+    />
+    <label class="form-check-label mb-0" for="field_reactionAllergique">Réaction allergique</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_alloimmunisation">Alloimmunisation</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="alloimmunisation"
-            id="field_alloimmunisation"
-            data-cy="alloimmunisation"
-            formControlName="alloimmunisation"
-          />
-        </div>
+  <!-- Autre Complication -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="autreComplication"
+      id="field_autreComplication"
+      data-cy="autreComplication"
+      formControlName="autreComplication"
+    />
+    <label class="form-check-label mb-0" for="field_autreComplication">Autre complication</label>
+  </div>
+</div>
 
         @let autresComplicationsRef = editForm.get('autresComplications')!;
         <div class="mb-3">
