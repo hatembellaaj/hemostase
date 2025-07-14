@@ -2968,24 +2968,25 @@
   </div>
 
   <!-- Autre cause -->
-  <div class="mb-3">
-    <label class="form-label" for="field_autreCauseDeces">Autre Cause Décès</label>
-    <input
-      type="text"
-      class="form-control"
-      name="autreCauseDeces"
-      id="field_autreCauseDeces"
-      data-cy="autreCauseDeces"
-      formControlName="autreCauseDeces"
-    />
-    @if (autreCauseDecesRef.invalid && (autreCauseDecesRef.dirty || autreCauseDecesRef.touched)) {
-      <div>
-        @if (editForm.get('autreCauseDeces')?.errors?.maxlength) {
-          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-        }
-      </div>
-    }
-  </div>
+        @let autreCauseDecesRef = editForm.get('autreCauseDeces')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_autreCauseDeces">Autre Cause Deces</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreCauseDeces"
+            id="field_autreCauseDeces"
+            data-cy="autreCauseDeces"
+            formControlName="autreCauseDeces"
+          />
+          @if (autreCauseDecesRef.invalid && (autreCauseDecesRef.dirty || autreCauseDecesRef.touched)) {
+            <div>
+              @if (editForm.get('autreCauseDeces')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
 }
 
       </div>
