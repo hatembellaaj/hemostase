@@ -2930,40 +2930,123 @@
     />
   </div>
 
-  <!-- Cause Décès -->
-  <div class="mb-3">
-    <label class="form-label" for="field_causeDeces">Cause du Décès</label>
-    <select
-      class="form-control"
-      name="causeDeces"
-      formControlName="causeDeces"
-      id="field_causeDeces"
-      data-cy="causeDeces"
-    >
-      <option [ngValue]="null"></option>
-      @for (causeDeces of causeDecesValues; track $index) {
-        <option [value]="causeDeces">
-          {{
-            {
-              null: '',
-              HEMORRAGIE_SNC: 'HEMORRAGIE_SNC',
-              HEMORRAGIE_AUTRE: 'HEMORRAGIE_AUTRE',
-              HIV: 'HIV',
-              INFECTION_AUTRE: 'INFECTION_AUTRE',
-              THROMBOEMBOLIQUE: 'THROMBOEMBOLIQUE',
-              CANCER: 'CANCER',
-              COVID19: 'COVID19',
-              INCONNUE: 'INCONNUE',
-              AUTRE: 'AUTRE',
-            }[causeDeces]
-          }}
-        </option>
-      }
-    </select>
-  </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesSNC">Cause Deces SNC</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesSNC"
+            id="field_causeDecesSNC"
+            data-cy="causeDecesSNC"
+            formControlName="causeDecesSNC"
+          />
+        </div>
 
-}
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesAutreHemorragie">Cause Deces Autre Hemorragie</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesAutreHemorragie"
+            id="field_causeDecesAutreHemorragie"
+            data-cy="causeDecesAutreHemorragie"
+            formControlName="causeDecesAutreHemorragie"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesVIH">Cause Deces VIH</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesVIH"
+            id="field_causeDecesVIH"
+            data-cy="causeDecesVIH"
+            formControlName="causeDecesVIH"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesAutreInfection">Cause Deces Autre Infection</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesAutreInfection"
+            id="field_causeDecesAutreInfection"
+            data-cy="causeDecesAutreInfection"
+            formControlName="causeDecesAutreInfection"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesThromboembolique">Cause Deces Thromboembolique</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesThromboembolique"
+            id="field_causeDecesThromboembolique"
+            data-cy="causeDecesThromboembolique"
+            formControlName="causeDecesThromboembolique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesCancer">Cause Deces Cancer</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesCancer"
+            id="field_causeDecesCancer"
+            data-cy="causeDecesCancer"
+            formControlName="causeDecesCancer"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesCovid19">Cause Deces Covid 19</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesCovid19"
+            id="field_causeDecesCovid19"
+            data-cy="causeDecesCovid19"
+            formControlName="causeDecesCovid19"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_causeDecesInconnue">Cause Deces Inconnue</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="causeDecesInconnue"
+            id="field_causeDecesInconnue"
+            data-cy="causeDecesInconnue"
+            formControlName="causeDecesInconnue"
+          />
+        </div>
+
+        @let autreCauseDecesRef = editForm.get('autreCauseDeces')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_autreCauseDeces">Autre Cause Deces</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreCauseDeces"
+            id="field_autreCauseDeces"
+            data-cy="autreCauseDeces"
+            formControlName="autreCauseDeces"
+          />
+          @if (autreCauseDecesRef.invalid && (autreCauseDecesRef.dirty || autreCauseDecesRef.touched)) {
+            <div>
+              @if (editForm.get('autreCauseDeces')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+              }
+            </div>
+          }
+        </div>
       </div>
+
                     <!-- Champs pour les sections  -->
               </div>
             </div>
