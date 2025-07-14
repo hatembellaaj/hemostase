@@ -1602,21 +1602,21 @@
   class="mb-3"
   *ngIf="editForm.get('mutationPresente')?.value"
 >
-  <label class="form-label" for="field_mutationType">Mutation Type</label>
-  <select
-    class="form-control"
-    name="mutationType"
-    formControlName="mutationType"
-    id="field_mutationType"
-    data-cy="mutationType"
-  >
-    <option [ngValue]="null"></option>
-    @for (mutationType of mutationTypeValues; track $index) {
-      <option [value]="mutationType">
-        {{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE', AUCUNE: 'AUCUNE' }[mutationType] }}
-      </option>
-    }
-  </select>
+
+          <label class="form-label" for="field_mutationZygote">Mutation Zygote</label>
+          <select
+            class="form-control"
+            name="mutationZygote"
+            formControlName="mutationZygote"
+            id="field_mutationZygote"
+            data-cy="mutationZygote"
+          >
+            <option [ngValue]="null"></option>
+            @for (typeZygote of typeZygoteValues; track $index) {
+              <option [value]="typeZygote">{{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[typeZygote] }}</option>
+            }
+          </select>
+
 </div>
 
 <!-- Mutation 2 Nom (commenté) -->
