@@ -1706,119 +1706,172 @@
 
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_epistaxis">Epistaxis</label>
-          <input type="checkbox" class="form-check" name="epistaxis" id="field_epistaxis" data-cy="epistaxis" formControlName="epistaxis" />
-        </div>
+            <div class="mb-2">
+  <label class="fw-bold d-block">a. Hémorragies cutanéo-muqueuses :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceEpistaxis">Frequence Epistaxis</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceEpistaxis"
-            id="field_frequenceEpistaxis"
-            data-cy="frequenceEpistaxis"
-            formControlName="frequenceEpistaxis"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="epistaxis"
+    id="field_epistaxis"
+    data-cy="epistaxis"
+    formControlName="epistaxis"
+  />
+  
+  <!-- Label Epistaxis -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_epistaxis">
+    Epistaxis
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_gingivorragies">Gingivorragies</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="gingivorragies"
-            id="field_gingivorragies"
-            data-cy="gingivorragies"
-            formControlName="gingivorragies"
-          />
-        </div>
+  <!-- Champ fréquence conditionnel -->
+  <div *ngIf="editForm.get('epistaxis')?.value" class="flex-grow-1">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence Epistaxis"
+      name="frequenceEpistaxis"
+      id="field_frequenceEpistaxis"
+      data-cy="frequenceEpistaxis"
+      formControlName="frequenceEpistaxis"
+    />
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeGingivorragies">Type Gingivorragies</label>
-          <select
-            class="form-control"
-            name="typeGingivorragies"
-            formControlName="typeGingivorragies"
-            id="field_typeGingivorragies"
-            data-cy="typeGingivorragies"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceGingivorragies">Frequence Gingivorragies</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceGingivorragies"
-            id="field_frequenceGingivorragies"
-            data-cy="frequenceGingivorragies"
-            formControlName="frequenceGingivorragies"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="gingivorragies"
+    id="field_gingivorragies"
+    data-cy="gingivorragies"
+    formControlName="gingivorragies"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ecchymose">Ecchymose</label>
-          <input type="checkbox" class="form-check" name="ecchymose" id="field_ecchymose" data-cy="ecchymose" formControlName="ecchymose" />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_gingivorragies">
+    Gingivorragies
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeEcchymose">Type Ecchymose</label>
-          <select
-            class="form-control"
-            name="typeEcchymose"
-            formControlName="typeEcchymose"
-            id="field_typeEcchymose"
-            data-cy="typeEcchymose"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Type + Fréquence : affichés si cochée -->
+  <ng-container *ngIf="editForm.get('gingivorragies')?.value">
+    <select
+      class="form-control me-2"
+      name="typeGingivorragies"
+      formControlName="typeGingivorragies"
+      id="field_typeGingivorragies"
+      data-cy="typeGingivorragies"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceEcchymose">Frequence Ecchymose</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceEcchymose"
-            id="field_frequenceEcchymose"
-            data-cy="frequenceEcchymose"
-            formControlName="frequenceEcchymose"
-          />
-        </div>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceGingivorragies"
+      id="field_frequenceGingivorragies"
+      data-cy="frequenceGingivorragies"
+      formControlName="frequenceGingivorragies"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_menorragie">Menorragie</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="menorragie"
-            id="field_menorragie"
-            data-cy="menorragie"
-            formControlName="menorragie"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceMenorragie">Frequence Menorragie</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceMenorragie"
-            id="field_frequenceMenorragie"
-            data-cy="frequenceMenorragie"
-            formControlName="frequenceMenorragie"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="ecchymose"
+    id="field_ecchymose"
+    data-cy="ecchymose"
+    formControlName="ecchymose"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_ecchymose">
+    Ecchymose
+  </label>
+
+  <!-- Champs conditionnels -->
+  <ng-container *ngIf="editForm.get('ecchymose')?.value">
+    <select
+      class="form-control me-2"
+      name="typeEcchymose"
+      formControlName="typeEcchymose"
+      id="field_typeEcchymose"
+      data-cy="typeEcchymose"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
+
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceEcchymose"
+      id="field_frequenceEcchymose"
+      data-cy="frequenceEcchymose"
+      formControlName="frequenceEcchymose"
+    />
+  </ng-container>
+</div>
+
+
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="menorragie"
+    id="field_menorragie"
+    data-cy="menorragie"
+    formControlName="menorragie"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_menorragie">
+    Ménorragie
+  </label>
+
+  <!-- Champ fréquence (conditionnel) -->
+  <ng-container *ngIf="editForm.get('menorragie')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceMenorragie"
+      id="field_frequenceMenorragie"
+      data-cy="frequenceMenorragie"
+      formControlName="frequenceMenorragie"
+    />
+  </ng-container>
+</div>
+
+
+                  <div class="mb-2">
+  <label class="fw-bold d-block">b. Hémorragies viscérales et profondes</label>
+</div>
+
+<!-- Titre de section -->
+<div class="mb-2">
+  <label class="fw-bold d-block">b. Hémorragies viscérales et profondes</label>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_hematemese">Hematemese</label>
