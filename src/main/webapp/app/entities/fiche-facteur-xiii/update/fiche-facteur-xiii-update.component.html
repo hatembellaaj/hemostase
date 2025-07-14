@@ -898,18 +898,14 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_enqueteFamiliale">Enquete Familiale</label>
-          <select
-            class="form-control"
+          <input
+            type="checkbox"
+            class="form-check"
             name="enqueteFamiliale"
-            formControlName="enqueteFamiliale"
             id="field_enqueteFamiliale"
             data-cy="enqueteFamiliale"
-          >
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
+            formControlName="enqueteFamiliale"
+          />
         </div>
 
           </div>
