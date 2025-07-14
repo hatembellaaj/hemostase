@@ -2484,97 +2484,162 @@
 </div>
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_inhibiteurs">Inhibiteurs</label>
-          <select class="form-control" name="inhibiteurs" formControlName="inhibiteurs" id="field_inhibiteurs" data-cy="inhibiteurs">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Inhibiteurs -->
+<div class="mb-3">
+  <label class="form-label" for="field_inhibiteurs">Inhibiteurs</label>
+  <select
+    class="form-control"
+    name="inhibiteurs"
+    formControlName="inhibiteurs"
+    id="field_inhibiteurs"
+    data-cy="inhibiteurs"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_inhibiteurNeutralisant">Inhibiteur Neutralisant</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="inhibiteurNeutralisant"
-            id="field_inhibiteurNeutralisant"
-            data-cy="inhibiteurNeutralisant"
-            formControlName="inhibiteurNeutralisant"
-          />
-        </div>
+<!-- Bloc conditionnel si inhibiteurs == OUI -->
+<ng-container *ngIf="editForm.get('inhibiteurs')?.value === 'OUI'">
 
-        <div class="mb-3">
-          <label class="form-label" for="field_titreInhibiteurNeutralisant">Titre Inhibiteur Neutralisant</label>
-          <input
-            type="number"
-            class="form-control"
-            name="titreInhibiteurNeutralisant"
-            id="field_titreInhibiteurNeutralisant"
-            data-cy="titreInhibiteurNeutralisant"
-            formControlName="titreInhibiteurNeutralisant"
-          />
-        </div>
+  <!-- Neutralisant & Non Neutralisant sur la même ligne -->
+  <div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+    <!-- Checkbox Neutralisant -->
+    <div class="d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check"
+        name="inhibiteurNeutralisant"
+        id="field_inhibiteurNeutralisant"
+        data-cy="inhibiteurNeutralisant"
+        formControlName="inhibiteurNeutralisant"
+      />
+      <label class="form-label ms-2 mb-0" for="field_inhibiteurNeutralisant">
+        Inhibiteur Neutralisant
+      </label>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_inhibiteurNonNeutralisant">Inhibiteur Non Neutralisant</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="inhibiteurNonNeutralisant"
-            id="field_inhibiteurNonNeutralisant"
-            data-cy="inhibiteurNonNeutralisant"
-            formControlName="inhibiteurNonNeutralisant"
-          />
-        </div>
+    <!-- Checkbox Non Neutralisant -->
+    <div class="d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check"
+        name="inhibiteurNonNeutralisant"
+        id="field_inhibiteurNonNeutralisant"
+        data-cy="inhibiteurNonNeutralisant"
+        formControlName="inhibiteurNonNeutralisant"
+      />
+      <label class="form-label ms-2 mb-0" for="field_inhibiteurNonNeutralisant">
+        Inhibiteur Non Neutralisant
+      </label>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_infectionsVirales">Infections Virales</label>
-          <select
-            class="form-control"
-            name="infectionsVirales"
-            formControlName="infectionsVirales"
-            id="field_infectionsVirales"
-            data-cy="infectionsVirales"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Champ titre si neutralisant coché -->
+  <div class="mb-3" *ngIf="editForm.get('inhibiteurNeutralisant')?.value">
+    <label class="form-label" for="field_titreInhibiteurNeutralisant">
+      Titre Inhibiteur Neutralisant
+    </label>
+    <input
+      type="number"
+      class="form-control"
+      name="titreInhibiteurNeutralisant"
+      id="field_titreInhibiteurNeutralisant"
+      data-cy="titreInhibiteurNeutralisant"
+      formControlName="titreInhibiteurNeutralisant"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hepatiteB">Hepatite B</label>
-          <select class="form-control" name="hepatiteB" formControlName="hepatiteB" id="field_hepatiteB" data-cy="hepatiteB">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+</ng-container>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hepatiteC">Hepatite C</label>
-          <select class="form-control" name="hepatiteC" formControlName="hepatiteC" id="field_hepatiteC" data-cy="hepatiteC">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_vih">Vih</label>
-          <select class="form-control" name="vih" formControlName="vih" id="field_vih" data-cy="vih">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+
+
+<!-- Infections Virales -->
+<div class="mb-3">
+  <label class="form-label" for="field_infectionsVirales">Infections Virales</label>
+  <select
+    class="form-control"
+    name="infectionsVirales"
+    formControlName="infectionsVirales"
+    id="field_infectionsVirales"
+    data-cy="infectionsVirales"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
+
+<!-- Autres champs affichés seulement si infectionsVirales == OUI -->
+<ng-container *ngIf="editForm.get('infectionsVirales')?.value === 'OUI'">
+
+  <!-- Hépatite B -->
+  <div class="mb-3">
+    <label class="form-label" for="field_hepatiteB">Hépatite B</label>
+    <select
+      class="form-control"
+      name="hepatiteB"
+      formControlName="hepatiteB"
+      id="field_hepatiteB"
+      data-cy="hepatiteB"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <!-- Hépatite C -->
+  <div class="mb-3">
+    <label class="form-label" for="field_hepatiteC">Hépatite C</label>
+    <select
+      class="form-control"
+      name="hepatiteC"
+      formControlName="hepatiteC"
+      id="field_hepatiteC"
+      data-cy="hepatiteC"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <!-- VIH -->
+  <div class="mb-3">
+    <label class="form-label" for="field_vih">VIH</label>
+    <select
+      class="form-control"
+      name="vih"
+      formControlName="vih"
+      id="field_vih"
+      data-cy="vih"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
+
+</ng-container>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_thrombose">Thrombose</label>
