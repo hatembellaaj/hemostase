@@ -1869,7 +1869,98 @@
   <label class="fw-bold d-block">b. Hémorragies viscérales et profondes</label>
 </div>
 
-Epistaxis
+<!-- Hématémèse + fréquence sur une ligne -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hematemese"
+    id="field_hematemese"
+    data-cy="hematemese"
+    formControlName="hematemese"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hematemese">
+    Hématémèse
+  </label>
+
+  <!-- Champ fréquence conditionnel -->
+  <ng-container *ngIf="editForm.get('hematemese')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematemese"
+      id="field_frequenceHematemese"
+      data-cy="frequenceHematemese"
+      formControlName="frequenceHematemese"
+    />
+  </ng-container>
+</div>
+
+
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="rectorragie"
+    id="field_rectorragie"
+    data-cy="rectorragie"
+    formControlName="rectorragie"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_rectorragie">
+    Rectorragie
+  </label>
+
+  <!-- Champ conditionnel -->
+  <ng-container *ngIf="editForm.get('rectorragie')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceRectorragie"
+      id="field_frequenceRectorragie"
+      data-cy="frequenceRectorragie"
+      formControlName="frequenceRectorragie"
+    />
+  </ng-container>
+</div>
+
+
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hematurie"
+    id="field_hematurie"
+    data-cy="hematurie"
+    formControlName="hematurie"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hematurie">
+    Hématurie
+  </label>
+
+  <!-- Champ fréquence (visible seulement si case cochée) -->
+  <ng-container *ngIf="editForm.get('hematurie')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematurie"
+      id="field_frequenceHematurie"
+      data-cy="frequenceHematurie"
+      formControlName="frequenceHematurie"
+    />
+  </ng-container>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_hemorragiePostTraumatique">Hemorragie Post Traumatique</label>
