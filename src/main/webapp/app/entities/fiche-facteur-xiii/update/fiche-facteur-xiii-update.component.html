@@ -896,17 +896,20 @@
   }
 }
 
-        <div class="mb-3">
-          <label class="form-label" for="field_enqueteFamiliale">Enquete Familiale</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="enqueteFamiliale"
-            id="field_enqueteFamiliale"
-            data-cy="enqueteFamiliale"
-            formControlName="enqueteFamiliale"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="enqueteFamiliale"
+    id="field_enqueteFamiliale"
+    data-cy="enqueteFamiliale"
+    formControlName="enqueteFamiliale"
+  />
+  <label class="form-label ms-2 mb-0" for="field_enqueteFamiliale">
+    Enquête Familiale
+  </label>
+</div>
+
 
           </div>
   </div>
@@ -939,17 +942,20 @@
 
       
 
-        <div class="mb-3">
-          <label class="form-label" for="field_decouverteFortuite">Decouverte Fortuite</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="decouverteFortuite"
-            id="field_decouverteFortuite"
-            data-cy="decouverteFortuite"
-            formControlName="decouverteFortuite"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="decouverteFortuite"
+    id="field_decouverteFortuite"
+    data-cy="decouverteFortuite"
+    formControlName="decouverteFortuite"
+  />
+  <label class="form-label ms-2 mb-0" for="field_decouverteFortuite">
+    Découverte Fortuite
+  </label>
+</div>
+
 
 <!-- Checkbox principale -->
 <div class="mb-3 d-flex align-items-center">
@@ -1049,77 +1055,85 @@
 
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_datePremierSigneCliniqueEvocateurJour">Date Premier Signe Clinique Evocateur Jour</label>
-          <input
-            type="number"
-            class="form-control"
-            name="datePremierSigneCliniqueEvocateurJour"
-            id="field_datePremierSigneCliniqueEvocateurJour"
-            data-cy="datePremierSigneCliniqueEvocateurJour"
-            formControlName="datePremierSigneCliniqueEvocateurJour"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label d-block">Date Premier Signe Clinique Évocateur</label>
+  <div class="row">
+    <div class="col">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Jour"
+        name="datePremierSigneCliniqueEvocateurJour"
+        id="field_datePremierSigneCliniqueEvocateurJour"
+        data-cy="datePremierSigneCliniqueEvocateurJour"
+        formControlName="datePremierSigneCliniqueEvocateurJour"
+      />
+    </div>
+    <div class="col">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Mois"
+        name="datePremierSigneCliniqueEvocateurMois"
+        id="field_datePremierSigneCliniqueEvocateurMois"
+        data-cy="datePremierSigneCliniqueEvocateurMois"
+        formControlName="datePremierSigneCliniqueEvocateurMois"
+      />
+    </div>
+    <div class="col">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Année"
+        name="datePremierSigneCliniqueEvocateurAnnee"
+        id="field_datePremierSigneCliniqueEvocateurAnnee"
+        data-cy="datePremierSigneCliniqueEvocateurAnnee"
+        formControlName="datePremierSigneCliniqueEvocateurAnnee"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_datePremierSigneCliniqueEvocateurMois">Date Premier Signe Clinique Evocateur Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="datePremierSigneCliniqueEvocateurMois"
-            id="field_datePremierSigneCliniqueEvocateurMois"
-            data-cy="datePremierSigneCliniqueEvocateurMois"
-            formControlName="datePremierSigneCliniqueEvocateurMois"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_datePremierSigneCliniqueEvocateurAnnee">Date Premier Signe Clinique Evocateur Annee</label>
-          <input
-            type="number"
-            class="form-control"
-            name="datePremierSigneCliniqueEvocateurAnnee"
-            id="field_datePremierSigneCliniqueEvocateurAnnee"
-            data-cy="datePremierSigneCliniqueEvocateurAnnee"
-            formControlName="datePremierSigneCliniqueEvocateurAnnee"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label d-block">Âge au Diagnostic</label>
+  <div class="row">
+    <div class="col">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Jour"
+        name="ageDiagnosticJour"
+        id="field_ageDiagnosticJour"
+        data-cy="ageDiagnosticJour"
+        formControlName="ageDiagnosticJour"
+      />
+    </div>
+    <div class="col">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Mois"
+        name="ageDiagnosticMois"
+        id="field_ageDiagnosticMois"
+        data-cy="ageDiagnosticMois"
+        formControlName="ageDiagnosticMois"
+      />
+    </div>
+    <div class="col">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Année"
+        name="ageDiagnosticAnnee"
+        id="field_ageDiagnosticAnnee"
+        data-cy="ageDiagnosticAnnee"
+        formControlName="ageDiagnosticAnnee"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticJour">Age Diagnostic Jour</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticJour"
-            id="field_ageDiagnosticJour"
-            data-cy="ageDiagnosticJour"
-            formControlName="ageDiagnosticJour"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticMois">Age Diagnostic Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticMois"
-            id="field_ageDiagnosticMois"
-            data-cy="ageDiagnosticMois"
-            formControlName="ageDiagnosticMois"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticAnnee">Age Diagnostic Annee</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticAnnee"
-            id="field_ageDiagnosticAnnee"
-            data-cy="ageDiagnosticAnnee"
-            formControlName="ageDiagnosticAnnee"
-          />
-        </div>
 
 
     </div>
