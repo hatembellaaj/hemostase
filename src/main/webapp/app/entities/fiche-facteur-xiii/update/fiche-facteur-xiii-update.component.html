@@ -2772,15 +2772,13 @@
 
 
         <div class="mb-3">
-          <label class="form-label" for="field_statutSocial">Statut Social</label>
-          <select class="form-control" name="statutSocial" formControlName="statutSocial" id="field_statutSocial" data-cy="statutSocial">
+          <label class="form-label" for="field_vieSociale">Vie Sociale</label>
+          <select class="form-control" name="vieSociale" formControlName="vieSociale" id="field_vieSociale" data-cy="vieSociale">
             <option [ngValue]="null"></option>
-            @for (statutSocial of statutSocialValues; track $index) {
-              <option [value]="statutSocial">
+            @for (vieSociale of vieSocialeValues; track $index) {
+              <option [value]="vieSociale">
                 {{
-                  { null: '', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE', SCOLARISE: 'SCOLARISE', PRESCOLARISE: 'PRESCOLARISE' }[
-                    statutSocial
-                  ]
+                  { null: '', PRESCOLAIRE: 'PRESCOLAIRE', SCOLARISE: 'SCOLARISE', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE' }[vieSociale]
                 }}
               </option>
             }
