@@ -955,114 +955,72 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_explorationSyndromeHemorragique">Exploration Syndrome Hemorragique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="explorationSyndromeHemorragique"
-            id="field_explorationSyndromeHemorragique"
-            data-cy="explorationSyndromeHemorragique"
-            formControlName="explorationSyndromeHemorragique"
-          />
-        </div>
-
-    </div>
-  </div>
+<!-- Exploration Syndrome Hemorragique -->
+<div class="mb-3 form-check">
+  <input
+    type="checkbox"
+    class="form-check-input"
+    id="field_explorationSyndromeHemorragique"
+    formControlName="explorationSyndromeHemorragique"
+  />
+  <label class="form-check-label" for="field_explorationSyndromeHemorragique">
+    Exploration d'un syndrome hémorragique
+  </label>
 </div>
 
-<!-- Accordéon Section 8: MANIFESTATIONS CLINIQUES -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingManifestationsCliniques">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseManifestationsCliniques"
-      aria-expanded="false"
-      aria-controls="collapseManifestationsCliniques"
-    >
-      Manifestations Cliniques
-    </button>
-  </h2>
-  <div
-    id="collapseManifestationsCliniques"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingManifestationsCliniques"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section MANIFESTATIONS CLINIQUES -->
+<!-- Champs affichés uniquement si coché -->
+<div *ngIf="editForm.get('explorationSyndromeHemorragique')?.value">
 
-      
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="field_hemorragieChuteCordon"
+      formControlName="hemorragieChuteCordon" />
+    <label class="form-check-label" for="field_hemorragieChuteCordon">
+      Hémorragie Chute Cordon
+    </label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieChuteCordon">Hemorragie Chute Cordon</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieChuteCordon"
-            id="field_hemorragieChuteCordon"
-            data-cy="hemorragieChuteCordon"
-            formControlName="hemorragieChuteCordon"
-          />
-        </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="field_metroragieMenarche"
+      formControlName="metroragieMenarche" />
+    <label class="form-check-label" for="field_metroragieMenarche">
+      Métrorragie Ménarche
+    </label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_metroragieMenarche">Metroragie Menarche</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="metroragieMenarche"
-            id="field_metroragieMenarche"
-            data-cy="metroragieMenarche"
-            formControlName="metroragieMenarche"
-          />
-        </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="field_hemorragieCerebraleNN"
+      formControlName="hemorragieCerebraleNN" />
+    <label class="form-check-label" for="field_hemorragieCerebraleNN">
+      Hémorragie Cérébrale NN
+    </label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieCerebraleNN">Hemorragie Cerebrale NN</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieCerebraleNN"
-            id="field_hemorragieCerebraleNN"
-            data-cy="hemorragieCerebraleNN"
-            formControlName="hemorragieCerebraleNN"
-          />
-        </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="field_hemorragiePostPartum"
+      formControlName="hemorragiePostPartum" />
+    <label class="form-check-label" for="field_hemorragiePostPartum">
+      Hémorragie Post-Partum
+    </label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragiePostPartum">Hemorragie Post Partum</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragiePostPartum"
-            id="field_hemorragiePostPartum"
-            data-cy="hemorragiePostPartum"
-            formControlName="hemorragiePostPartum"
-          />
-        </div>
+  <div class="mb-3">
+    <label class="form-label" for="field_autresCirconstances">Autres Circonstances</label>
+    <input
+      type="text"
+      class="form-control"
+      id="field_autresCirconstances"
+      formControlName="autresCirconstances"
+    />
+    <div *ngIf="editForm.get('autresCirconstances')?.invalid &&
+                (editForm.get('autresCirconstances')?.dirty || editForm.get('autresCirconstances')?.touched)">
+      <small class="form-text text-danger">
+        Ce champ doit faire moins de 255 caractères.
+      </small>
+    </div>
+  </div>
 
-        @let autresCirconstancesRef = editForm.get('autresCirconstances')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_autresCirconstances">Autres Circonstances</label>
-          <input
-            type="text"
-            class="form-control"
-            name="autresCirconstances"
-            id="field_autresCirconstances"
-            data-cy="autresCirconstances"
-            formControlName="autresCirconstances"
-          />
-          @if (autresCirconstancesRef.invalid && (autresCirconstancesRef.dirty || autresCirconstancesRef.touched)) {
-            <div>
-              @if (editForm.get('autresCirconstances')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_datePremierSigneCliniqueEvocateurJour">Date Premier Signe Clinique Evocateur Jour</label>
