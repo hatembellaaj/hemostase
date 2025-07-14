@@ -1164,52 +1164,112 @@
       <!-- Contenu pour la section Biologie -->
 
 
+<div class="mb-2">
+  <label class="fw-bold d-block">Hémogramme :</label>
+</div>
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_hb">Hb</label>
-          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
-        </div>
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="field_hb">Hb (g/dl)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hb"
+        id="field_hb"
+        data-cy="hb"
+        formControlName="hb"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_ht">Ht  (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="ht"
+        id="field_ht"
+        data-cy="ht"
+        formControlName="ht"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_plaquettes">Plaquettes (/mm3) </label>
+      <input
+        type="number"
+        class="form-control"
+        name="plaquettes"
+        id="field_plaquettes"
+        data-cy="plaquettes"
+        formControlName="plaquettes"
+      />
+    </div>
+  </div>
+</div>
+
+
+      <div class="mb-2">
+  <label class="fw-bold d-block">Bilan d’hémostase :</label>
+</div>
+
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="field_tp">Tp (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tp"
+        id="field_tp"
+        data-cy="tp"
+        formControlName="tp"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_tpMT">Tp (%) (M+T)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tpMT"
+        id="field_tpMT"
+        data-cy="tpMT"
+        formControlName="tpMT"
+      />
+    </div>
+  </div>
+</div>
+
+
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="field_tca">Tca (s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tca"
+        id="field_tca"
+        data-cy="tca"
+        formControlName="tca"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_tcaMT">Tca (s) (M+T)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tcaMT"
+        id="field_tcaMT"
+        data-cy="tcaMT"
+        formControlName="tcaMT"
+      />
+    </div>
+  </div>
+</div>
+
 
         <div class="mb-3">
-          <label class="form-label" for="field_ht">Ht</label>
-          <input type="number" class="form-control" name="ht" id="field_ht" data-cy="ht" formControlName="ht" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_plaquettes">Plaquettes</label>
-          <input
-            type="number"
-            class="form-control"
-            name="plaquettes"
-            id="field_plaquettes"
-            data-cy="plaquettes"
-            formControlName="plaquettes"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp</label>
-          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tpMT">Tp MT</label>
-          <input type="number" class="form-control" name="tpMT" id="field_tpMT" data-cy="tpMT" formControlName="tpMT" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tca">Tca</label>
-          <input type="number" class="form-control" name="tca" id="field_tca" data-cy="tca" formControlName="tca" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT">Tca MT</label>
-          <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_fibrinogene">Fibrinogene</label>
+          <label class="form-label" for="field_fibrinogene">Fibrinogene (g/l) </label>
           <input
             type="number"
             class="form-control"
@@ -1270,53 +1330,63 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_techniqueChromogenique">Technique Chromogenique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="techniqueChromogenique"
-            id="field_techniqueChromogenique"
-            data-cy="techniqueChromogenique"
-            formControlName="techniqueChromogenique"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="techniqueChromogenique"
+    id="field_techniqueChromogenique"
+    data-cy="techniqueChromogenique"
+    formControlName="techniqueChromogenique"
+  />
+  <label class="form-label ms-2 mb-0 me-3" for="field_techniqueChromogenique">
+    Technique Chromogénique
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxChromogenique">Taux Chromogenique</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tauxChromogenique"
-            id="field_tauxChromogenique"
-            data-cy="tauxChromogenique"
-            formControlName="tauxChromogenique"
-          />
-        </div>
+  <!-- Champ conditionnel -->
+  <div *ngIf="editForm.get('techniqueChromogenique')?.value" class="flex-grow-1">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Taux Chromogénique"
+      name="tauxChromogenique"
+      id="field_tauxChromogenique"
+      data-cy="tauxChromogenique"
+      formControlName="tauxChromogenique"
+    />
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_techniqueSolubiliteCaillot">Technique Solubilite Caillot</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="techniqueSolubiliteCaillot"
-            id="field_techniqueSolubiliteCaillot"
-            data-cy="techniqueSolubiliteCaillot"
-            formControlName="techniqueSolubiliteCaillot"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxSolubiliteCaillot">Taux Solubilite Caillot</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tauxSolubiliteCaillot"
-            id="field_tauxSolubiliteCaillot"
-            data-cy="tauxSolubiliteCaillot"
-            formControlName="tauxSolubiliteCaillot"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="techniqueSolubiliteCaillot"
+    id="field_techniqueSolubiliteCaillot"
+    data-cy="techniqueSolubiliteCaillot"
+    formControlName="techniqueSolubiliteCaillot"
+  />
+  <label class="form-label ms-2 mb-0 me-3" for="field_techniqueSolubiliteCaillot">
+    Technique Solubilité Caillot
+  </label>
+
+  <!-- Champ conditionnel -->
+  <div *ngIf="editForm.get('techniqueSolubiliteCaillot')?.value" class="flex-grow-1">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Taux Solubilité Caillot"
+      name="tauxSolubiliteCaillot"
+      id="field_tauxSolubiliteCaillot"
+      data-cy="tauxSolubiliteCaillot"
+      formControlName="tauxSolubiliteCaillot"
+    />
+  </div>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_confirmationMoleculaire">Confirmation Moleculaire</label>
