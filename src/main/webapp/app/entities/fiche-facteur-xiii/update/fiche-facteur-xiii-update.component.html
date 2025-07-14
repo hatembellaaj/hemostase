@@ -2048,143 +2048,178 @@
 </div>
       
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ruptureKystesHemorragiques">Rupture Kystes Hemorragiques</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="ruptureKystesHemorragiques"
-            id="field_ruptureKystesHemorragiques"
-            data-cy="ruptureKystesHemorragiques"
-            formControlName="ruptureKystesHemorragiques"
-          />
-        </div>
+<!-- Rupture Kystes Hémorragiques -->
+<div class="mb-3 d-flex align-items-center">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="ruptureKystesHemorragiques"
+    id="field_ruptureKystesHemorragiques"
+    data-cy="ruptureKystesHemorragiques"
+    formControlName="ruptureKystesHemorragiques"
+  />
+  <label class="form-label ms-2 mb-0" for="field_ruptureKystesHemorragiques">
+    Rupture Kystes Hémorragiques
+  </label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragiesPostChirurgicales">Hemorragies Post Chirurgicales</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragiesPostChirurgicales"
-            id="field_hemorragiesPostChirurgicales"
-            data-cy="hemorragiesPostChirurgicales"
-            formControlName="hemorragiesPostChirurgicales"
-          />
-        </div>
+<!-- Hémorragies Post Chirurgicales -->
+<div class="mb-3 d-flex align-items-center">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hemorragiesPostChirurgicales"
+    id="field_hemorragiesPostChirurgicales"
+    data-cy="hemorragiesPostChirurgicales"
+    formControlName="hemorragiesPostChirurgicales"
+  />
+  <label class="form-label ms-2 mb-0" for="field_hemorragiesPostChirurgicales">
+    Hémorragies Post Chirurgicales
+  </label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemoperitone">Hemoperitone</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemoperitone"
-            id="field_hemoperitone"
-            data-cy="hemoperitone"
-            formControlName="hemoperitone"
-          />
-        </div>
+<!-- Hémopéritoine -->
+<div class="mb-3 d-flex align-items-center">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hemoperitone"
+    id="field_hemoperitone"
+    data-cy="hemoperitone"
+    formControlName="hemoperitone"
+  />
+  <label class="form-label ms-2 mb-0" for="field_hemoperitone">
+    Hémopéritoine
+  </label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_accidentsThrombotiques">Accidents Thrombotiques</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="accidentsThrombotiques"
-            id="field_accidentsThrombotiques"
-            data-cy="accidentsThrombotiques"
-            formControlName="accidentsThrombotiques"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeAccidentsThrombotiques">Type Accidents Thrombotiques</label>
-          <select
-            class="form-control"
-            name="typeAccidentsThrombotiques"
-            formControlName="typeAccidentsThrombotiques"
-            id="field_typeAccidentsThrombotiques"
-            data-cy="typeAccidentsThrombotiques"
-          >
-            <option [ngValue]="null"></option>
-            @for (accidentsThrombotiquesType of accidentsThrombotiquesTypeValues; track $index) {
-              <option [value]="accidentsThrombotiquesType">
-                {{ { null: '', VEINEUX: 'VEINEUX', ARTERIEL: 'ARTERIEL' }[accidentsThrombotiquesType] }}
-              </option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="accidentsThrombotiques"
+    id="field_accidentsThrombotiques"
+    data-cy="accidentsThrombotiques"
+    formControlName="accidentsThrombotiques"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieGrave">Hemorragie Grave</label>
-          <select
-            class="form-control"
-            name="hemorragieGrave"
-            formControlName="hemorragieGrave"
-            id="field_hemorragieGrave"
-            data-cy="hemorragieGrave"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_accidentsThrombotiques">
+    Accidents Thrombotiques
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_graveDeglobulisation">Grave Deglobulisation</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graveDeglobulisation"
-            id="field_graveDeglobulisation"
-            data-cy="graveDeglobulisation"
-            formControlName="graveDeglobulisation"
-          />
-        </div>
+  <!-- Type (affiché seulement si case cochée) -->
+  <ng-container *ngIf="editForm.get('accidentsThrombotiques')?.value">
+    <select
+      class="form-control"
+      name="typeAccidentsThrombotiques"
+      formControlName="typeAccidentsThrombotiques"
+      id="field_typeAccidentsThrombotiques"
+      data-cy="typeAccidentsThrombotiques"
+    >
+      <option [ngValue]="null"></option>
+      @for (accidentsThrombotiquesType of accidentsThrombotiquesTypeValues; track $index) {
+        <option [value]="accidentsThrombotiquesType">
+          {{ { null: '', VEINEUX: 'VEINEUX', ARTERIEL: 'ARTÉRIEL' }[accidentsThrombotiquesType] }}
+        </option>
+      }
+    </select>
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_graveEtatDeChoc">Grave Etat De Choc</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graveEtatDeChoc"
-            id="field_graveEtatDeChoc"
-            data-cy="graveEtatDeChoc"
-            formControlName="graveEtatDeChoc"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_graveParLocalisation">Grave Par Localisation</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graveParLocalisation"
-            id="field_graveParLocalisation"
-            data-cy="graveParLocalisation"
-            formControlName="graveParLocalisation"
-          />
-        </div>
+<!-- Hémorragie Grave -->
+<div class="mb-3">
+  <label class="form-label" for="field_hemorragieGrave">Hémorragie Grave</label>
+  <select
+    class="form-control"
+    name="hemorragieGrave"
+    formControlName="hemorragieGrave"
+    id="field_hemorragieGrave"
+    data-cy="hemorragieGrave"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        @let siegeGraviteLocalisationRef = editForm.get('siegeGraviteLocalisation')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_siegeGraviteLocalisation">Siege Gravite Localisation</label>
-          <input
-            type="text"
-            class="form-control"
-            name="siegeGraviteLocalisation"
-            id="field_siegeGraviteLocalisation"
-            data-cy="siegeGraviteLocalisation"
-            formControlName="siegeGraviteLocalisation"
-          />
-          @if (siegeGraviteLocalisationRef.invalid && (siegeGraviteLocalisationRef.dirty || siegeGraviteLocalisationRef.touched)) {
-            <div>
-              @if (editForm.get('siegeGraviteLocalisation')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- Champs conditionnels si Hemorragie Grave == OUI -->
+<ng-container *ngIf="editForm.get('hemorragieGrave')?.value === 'OUI'">
+
+  <!-- Dégobulisation -->
+  <div class="mb-3 d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check"
+      name="graveDeglobulisation"
+      id="field_graveDeglobulisation"
+      data-cy="graveDeglobulisation"
+      formControlName="graveDeglobulisation"
+    />
+    <label class="form-label ms-2 mb-0" for="field_graveDeglobulisation">
+      Dégobulisation
+    </label>
+  </div>
+
+  <!-- État de choc -->
+  <div class="mb-3 d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check"
+      name="graveEtatDeChoc"
+      id="field_graveEtatDeChoc"
+      data-cy="graveEtatDeChoc"
+      formControlName="graveEtatDeChoc"
+    />
+    <label class="form-label ms-2 mb-0" for="field_graveEtatDeChoc">
+      État de choc
+    </label>
+  </div>
+
+  <!-- Par localisation -->
+  <div class="mb-3 d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check"
+      name="graveParLocalisation"
+      id="field_graveParLocalisation"
+      data-cy="graveParLocalisation"
+      formControlName="graveParLocalisation"
+    />
+    <label class="form-label ms-2 mb-0" for="field_graveParLocalisation">
+      Par localisation
+    </label>
+  </div>
+
+  <!-- Siège (champ texte avec validation) -->
+  @let siegeGraviteLocalisationRef = editForm.get('siegeGraviteLocalisation')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_siegeGraviteLocalisation">Siège gravité localisation</label>
+    <input
+      type="text"
+      class="form-control"
+      name="siegeGraviteLocalisation"
+      id="field_siegeGraviteLocalisation"
+      data-cy="siegeGraviteLocalisation"
+      formControlName="siegeGraviteLocalisation"
+    />
+    @if (siegeGraviteLocalisationRef.invalid && (siegeGraviteLocalisationRef.dirty || siegeGraviteLocalisationRef.touched)) {
+      <div>
+        @if (siegeGraviteLocalisationRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+
+</ng-container>
+
 
                               <div class="mb-2">
   <label class="fw-bold d-block">3. Chirurgies et circoncision :</label>
