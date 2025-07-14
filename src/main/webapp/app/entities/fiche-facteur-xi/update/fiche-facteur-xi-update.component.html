@@ -1540,73 +1540,107 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_confirmationMoleculaire">Confirmation Moleculaire</label>
-          <select
-            class="form-control"
-            name="confirmationMoleculaire"
-            formControlName="confirmationMoleculaire"
-            id="field_confirmationMoleculaire"
-            data-cy="confirmationMoleculaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (faiteNonFaite of faiteNonFaiteValues; track $index) {
-              <option [value]="faiteNonFaite">{{ { null: '', FAITE: 'FAITE', NONFAITE: 'NONFAITE' }[faiteNonFaite] }}</option>
-            }
-          </select>
-        </div>
+<!-- Confirmation Moléculaire -->
+<div class="mb-3 d-flex align-items-center">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="confirmationMoleculaire"
+    id="field_confirmationMoleculaire"
+    data-cy="confirmationMoleculaire"
+    formControlName="confirmationMoleculaire"
+  />
+  <label class="form-label ms-2 mb-0" for="field_confirmationMoleculaire">
+    Confirmation Moléculaire
+  </label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_mutationPresente">Mutation Presente</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="mutationPresente"
-            id="field_mutationPresente"
-            data-cy="mutationPresente"
-            formControlName="mutationPresente"
-          />
-        </div>
+<!-- Mutation Présente -->
+<div
+  class="mb-3 d-flex align-items-center"
+  *ngIf="editForm.get('confirmationMoleculaire')?.value"
+>
+  <input
+    type="checkbox"
+    class="form-check"
+    name="mutationPresente"
+    id="field_mutationPresente"
+    data-cy="mutationPresente"
+    formControlName="mutationPresente"
+  />
+  <label class="form-label ms-2 mb-0" for="field_mutationPresente">
+    Mutation Présente
+  </label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_mutationNom">Mutation Nom</label>
-          <input
-            type="text"
-            class="form-control"
-            name="mutationNom"
-            id="field_mutationNom"
-            data-cy="mutationNom"
-            formControlName="mutationNom"
-          />
-        </div>
+<!-- Mutation Nom -->
+<div
+  class="mb-3"
+  *ngIf="editForm.get('mutationPresente')?.value"
+>
+  @let mutationNomRef = editForm.get('mutationNom')!;
+  <label class="form-label" for="field_mutationNom">Mutation Nom</label>
+  <input
+    type="text"
+    class="form-control"
+    name="mutationNom"
+    id="field_mutationNom"
+    data-cy="mutationNom"
+    formControlName="mutationNom"
+  />
+  @if (mutationNomRef.invalid && (mutationNomRef.dirty || mutationNomRef.touched)) {
+    <div>
+      @if (mutationNomRef.errors?.maxlength) {
+        <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+      }
+    </div>
+  }
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_mutationZygote">Mutation Zygote</label>
-          <select
-            class="form-control"
-            name="mutationZygote"
-            formControlName="mutationZygote"
-            id="field_mutationZygote"
-            data-cy="mutationZygote"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeZygote of typeZygoteValues; track $index) {
-              <option [value]="typeZygote">{{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE' }[typeZygote] }}</option>
-            }
-          </select>
-        </div>
+<!-- Mutation Type -->
+<div
+  class="mb-3"
+  *ngIf="editForm.get('mutationPresente')?.value"
+>
+  <label class="form-label" for="field_mutationType">Mutation Type</label>
+  <select
+    class="form-control"
+    name="mutationType"
+    formControlName="mutationType"
+    id="field_mutationType"
+    data-cy="mutationType"
+  >
+    <option [ngValue]="null"></option>
+    @for (mutationType of mutationTypeValues; track $index) {
+      <option [value]="mutationType">
+        {{ { null: '', HETEROZYGOTE: 'HETEROZYGOTE', HOMOZYGOTE: 'HOMOZYGOTE', AUCUNE: 'AUCUNE' }[mutationType] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_mutation2Nom">Mutation 2 Nom</label>
-          <input
-            type="text"
-            class="form-control"
-            name="mutation2Nom"
-            id="field_mutation2Nom"
-            data-cy="mutation2Nom"
-            formControlName="mutation2Nom"
-          />
-        </div>
+<!-- Mutation 2 Nom (commenté) -->
+<!--
+<div class="mb-3">
+  @let mutation2NomRef = editForm.get('mutation2Nom')!;
+  <label class="form-label" for="field_mutation2Nom">Mutation 2 Nom</label>
+  <input
+    type="text"
+    class="form-control"
+    name="mutation2Nom"
+    id="field_mutation2Nom"
+    data-cy="mutation2Nom"
+    formControlName="mutation2Nom"
+  />
+  @if (mutation2NomRef.invalid && (mutation2NomRef.dirty || mutation2NomRef.touched)) {
+    <div>
+      @if (mutation2NomRef.errors?.maxlength) {
+        <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+      }
+    </div>
+  }
+</div>
+-->
 
         <div class="mb-3">
           <label class="form-label" for="field_serologieVHB">Serologie VHB</label>
