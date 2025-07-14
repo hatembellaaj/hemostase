@@ -1378,47 +1378,104 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp</label>
-          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
-        </div>
+<div class="mb-3">
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tp">Tp (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tp"
+        id="field_tp"
+        data-cy="tp"
+        formControlName="tp"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tpMPlusT">Tp M Plus T</label>
-          <input type="number" class="form-control" name="tpMPlusT" id="field_tpMPlusT" data-cy="tpMPlusT" formControlName="tpMPlusT" />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tpMPlusT">Tp (M + T) (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tpMPlusT"
+        id="field_tpMPlusT"
+        data-cy="tpMPlusT"
+        formControlName="tpMPlusT"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_fibrinogene">Fibrinogene</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fibrinogene"
-            id="field_fibrinogene"
-            data-cy="fibrinogene"
-            formControlName="fibrinogene"
-          />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_fibrinogene">Fibrinogène (g/l)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="fibrinogene"
+        id="field_fibrinogene"
+        data-cy="fibrinogene"
+        formControlName="fibrinogene"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT">Tca MT</label>
-          <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMPlusT">Tca M Plus T</label>
-          <input type="number" class="form-control" name="tcaMPlusT" id="field_tcaMPlusT" data-cy="tcaMPlusT" formControlName="tcaMPlusT" />
-        </div>
+<div class="mb-3">
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tcaMT">TCA (M/T) (s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tcaMT"
+        id="field_tcaMT"
+        data-cy="tcaMT"
+        formControlName="tcaMT"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaTemoin">Tca Temoin</label>
-          <input type="number" class="form-control" name="tcaTemoin" id="field_tcaTemoin" data-cy="tcaTemoin" formControlName="tcaTemoin" />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tcaMPlusT">TCA (M+T) (s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tcaMPlusT"
+        id="field_tcaMPlusT"
+        data-cy="tcaMPlusT"
+        formControlName="tcaMPlusT"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_facteurXI">Facteur XI</label>
-          <input type="number" class="form-control" name="facteurXI" id="field_facteurXI" data-cy="facteurXI" formControlName="facteurXI" />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tcaTemoin">TCA (Témoin) (s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tcaTemoin"
+        id="field_tcaTemoin"
+        data-cy="tcaTemoin"
+        formControlName="tcaTemoin"
+      />
+    </div>
+  </div>
+</div>
+
+
+<div class="mb-3">
+  <label class="form-label d-block">Dosage du facteur déficitaire</label>
+  <div class="d-flex align-items-center">
+    <label class="form-label mb-0 me-2" for="field_facteurXI">Facteur XI : Taux</label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="facteurXI"
+      id="field_facteurXI"
+      data-cy="facteurXI"
+      formControlName="facteurXI"
+    />
+    <span>%</span>
+  </div>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_autresFacteursDosageDescription">Autres Facteurs Dosage Description</label>
@@ -1430,43 +1487,58 @@
             data-cy="autresFacteursDosageDescription"
             formControlName="autresFacteursDosageDescription"
           />
-        </div>
+        </div><div class="mb-3">
+  <label class="form-label d-block">Dosage des autres facteurs ………………………………. </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autresFacteursTaux1">Autres Facteurs Taux 1</label>
-          <input
-            type="number"
-            class="form-control"
-            name="autresFacteursTaux1"
-            id="field_autresFacteursTaux1"
-            data-cy="autresFacteursTaux1"
-            formControlName="autresFacteursTaux1"
-          />
-        </div>
+  <!-- Ligne 1 -->
+  <div class="d-flex align-items-center mb-2">
+    <label class="form-label mb-0 me-2" for="field_autresFacteursTaux1">
+      Facteur(s) (FVIII, FIX, FXII)
+    </label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="autresFacteursTaux1"
+      id="field_autresFacteursTaux1"
+      data-cy="autresFacteursTaux1"
+      formControlName="autresFacteursTaux1"
+    />
+    <span>%</span>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autresFacteursTaux2">Autres Facteurs Taux 2</label>
-          <input
-            type="number"
-            class="form-control"
-            name="autresFacteursTaux2"
-            id="field_autresFacteursTaux2"
-            data-cy="autresFacteursTaux2"
-            formControlName="autresFacteursTaux2"
-          />
-        </div>
+  <!-- Ligne 2 -->
+  <div class="d-flex align-items-center mb-2">
+    <label class="form-label mb-0 me-2" for="field_autresFacteursTaux2">
+      + (FVIII, FIX, FXII)
+    </label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="autresFacteursTaux2"
+      id="field_autresFacteursTaux2"
+      data-cy="autresFacteursTaux2"
+      formControlName="autresFacteursTaux2"
+    />
+    <span>%</span>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autresFacteursTaux3">Autres Facteurs Taux 3</label>
-          <input
-            type="number"
-            class="form-control"
-            name="autresFacteursTaux3"
-            id="field_autresFacteursTaux3"
-            data-cy="autresFacteursTaux3"
-            formControlName="autresFacteursTaux3"
-          />
-        </div>
+  <!-- Ligne 3 -->
+  <div class="d-flex align-items-center">
+    <label class="form-label mb-0 me-2" for="field_autresFacteursTaux3">
+      + (FVIII, FIX, FXII)
+    </label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="autresFacteursTaux3"
+      id="field_autresFacteursTaux3"
+      data-cy="autresFacteursTaux3"
+      formControlName="autresFacteursTaux3"
+    />
+    <span>%</span>
+  </div>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_confirmationMoleculaire">Confirmation Moleculaire</label>
