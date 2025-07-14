@@ -1301,37 +1301,82 @@
       
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_hb">Hb</label>
-          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
-        </div>
+<div class="mb-2">
+  <label class="fw-bold d-block">Hémogramme :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hte">Hte</label>
-          <input type="number" class="form-control" name="hte" id="field_hte" data-cy="hte" formControlName="hte" />
-        </div>
+      
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="field_hb">Hb (g/dl)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hb"
+        id="field_hb"
+        data-cy="hb"
+        formControlName="hb"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_ht">Ht  (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="ht"
+        id="field_ht"
+        data-cy="ht"
+        formControlName="ht"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_plaquettes">Plaquettes (/mm3) </label>
+      <input
+        type="number"
+        class="form-control"
+        name="plaquettes"
+        id="field_plaquettes"
+        data-cy="plaquettes"
+        formControlName="plaquettes"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_plaquettes">Plaquettes</label>
-          <input
-            type="number"
-            class="form-control"
-            name="plaquettes"
-            id="field_plaquettes"
-            data-cy="plaquettes"
-            formControlName="plaquettes"
-          />
-        </div>
+            <div class="mb-2">
+  <label class="fw-bold d-block">Bilan d’hémostase :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_pfaColEpi">Pfa Col Epi</label>
-          <input type="number" class="form-control" name="pfaColEpi" id="field_pfaColEpi" data-cy="pfaColEpi" formControlName="pfaColEpi" />
-        </div>
+<div class="mb-3">
+  <label class="form-label fw-bold">TO (PFA 200) :</label>
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_pfaColEpi">Col / Epi(s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="pfaColEpi"
+        id="field_pfaColEpi"
+        data-cy="pfaColEpi"
+        formControlName="pfaColEpi"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_pfaColADP">Pfa Col ADP</label>
-          <input type="number" class="form-control" name="pfaColADP" id="field_pfaColADP" data-cy="pfaColADP" formControlName="pfaColADP" />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_pfaColADP">Col / ADP(s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="pfaColADP"
+        id="field_pfaColADP"
+        data-cy="pfaColADP"
+        formControlName="pfaColADP"
+      />
+    </div>
+  </div>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_tp">Tp</label>
