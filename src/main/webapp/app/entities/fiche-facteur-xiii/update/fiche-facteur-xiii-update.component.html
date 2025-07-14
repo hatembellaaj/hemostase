@@ -2733,41 +2733,40 @@
       <!-- Contenu pour la section Etat Actuel -->
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_adherenceTherapeutique">Adherence Therapeutique</label>
-          <select
-            class="form-control"
-            name="adherenceTherapeutique"
-            formControlName="adherenceTherapeutique"
-            id="field_adherenceTherapeutique"
-            data-cy="adherenceTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Sélection Adhérence Thérapeutique -->
+<div class="mb-3">
+  <label class="form-label" for="field_adherenceTherapeutique">Adhérence Thérapeutique</label>
+  <select
+    class="form-control"
+    name="adherenceTherapeutique"
+    formControlName="adherenceTherapeutique"
+    id="field_adherenceTherapeutique"
+    data-cy="adherenceTherapeutique"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        @let causeNonAdherenceRef = editForm.get('causeNonAdherence')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeNonAdherence">Cause Non Adherence</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeNonAdherence"
-            id="field_causeNonAdherence"
-            data-cy="causeNonAdherence"
-            formControlName="causeNonAdherence"
-          />
-          @if (causeNonAdherenceRef.invalid && (causeNonAdherenceRef.dirty || causeNonAdherenceRef.touched)) {
-            <div>
-              @if (editForm.get('causeNonAdherence')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- Affichage conditionnel si NON -->
+@let adherenceValue = editForm.get('adherenceTherapeutique')?.value;
+@if (adherenceValue === 'NON') {
+  <div class="mb-3">
+    <label class="form-label" for="field_causeNonAdherence">Cause Non Adhérence</label>
+    <input
+      type="text"
+      class="form-control"
+      name="causeNonAdherence"
+      id="field_causeNonAdherence"
+      data-cy="causeNonAdherence"
+      formControlName="causeNonAdherence"
+    />
+  </div>
+}
 
         <div class="mb-3">
           <label class="form-label" for="field_vieSociale">Vie Sociale</label>
@@ -2803,71 +2802,76 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_activitePhysique">Activite Physique</label>
-          <select
-            class="form-control"
-            name="activitePhysique"
-            formControlName="activitePhysique"
-            id="field_activitePhysique"
-            data-cy="activitePhysique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+ <!-- Activité Physique -->
+<div class="mb-3">
+  <label class="form-label" for="field_activitePhysique">Activité Physique</label>
+  <select
+    class="form-control"
+    name="activitePhysique"
+    formControlName="activitePhysique"
+    id="field_activitePhysique"
+    data-cy="activitePhysique"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        @let typeActivitePhysiqueRef = editForm.get('typeActivitePhysique')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeActivitePhysique">Type Activite Physique</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeActivitePhysique"
-            id="field_typeActivitePhysique"
-            data-cy="typeActivitePhysique"
-            formControlName="typeActivitePhysique"
-          />
-          @if (typeActivitePhysiqueRef.invalid && (typeActivitePhysiqueRef.dirty || typeActivitePhysiqueRef.touched)) {
-            <div>
-              @if (editForm.get('typeActivitePhysique')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- Affichage conditionnel : Type Activité Physique -->
+@let activiteValue = editForm.get('activitePhysique')?.value;
+@if (activiteValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_typeActivitePhysique">Type Activité Physique</label>
+    <input
+      type="text"
+      class="form-control"
+      name="typeActivitePhysique"
+      id="field_typeActivitePhysique"
+      data-cy="typeActivitePhysique"
+      formControlName="typeActivitePhysique"
+    />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_sequelles">Sequelles</label>
-          <select class="form-control" name="sequelles" formControlName="sequelles" id="field_sequelles" data-cy="sequelles">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        @let typeSequellesRef = editForm.get('typeSequelles')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeSequelles">Type Sequelles</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeSequelles"
-            id="field_typeSequelles"
-            data-cy="typeSequelles"
-            formControlName="typeSequelles"
-          />
-          @if (typeSequellesRef.invalid && (typeSequellesRef.dirty || typeSequellesRef.touched)) {
-            <div>
-              @if (editForm.get('typeSequelles')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- Séquelles -->
+<div class="mb-3">
+  <label class="form-label" for="field_sequelles">Séquelles</label>
+  <select
+    class="form-control"
+    name="sequelles"
+    formControlName="sequelles"
+    id="field_sequelles"
+    data-cy="sequelles"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
+
+<!-- Condition : afficher seulement si "OUI" -->
+@let sequellesValue = editForm.get('sequelles')?.value;
+@if (sequellesValue === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_typeSequelles">Type Séquelles</label>
+    <input
+      type="text"
+      class="form-control"
+      name="typeSequelles"
+      id="field_typeSequelles"
+      data-cy="typeSequelles"
+      formControlName="typeSequelles"
+    />
+  </div>
+}
 
         <div class="mb-3">
           <label class="form-label" for="field_patientDecede">Patient Decede</label>
