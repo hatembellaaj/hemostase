@@ -1703,185 +1703,214 @@ partum)
   </ng-container>
 </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSousCutane">Hematome Sous Cutane</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeSousCutane"
-            id="field_hematomeSousCutane"
-            data-cy="hematomeSousCutane"
-            formControlName="hematomeSousCutane"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-3">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check-input"
+    name="hematomeSousCutane"
+    id="field_hematomeSousCutane"
+    data-cy="hematomeSousCutane"
+    formControlName="hematomeSousCutane"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHematomeSousCutane">Type Hematome Sous Cutane</label>
-          <select
-            class="form-control"
-            name="typeHematomeSousCutane"
-            formControlName="typeHematomeSousCutane"
-            id="field_typeHematomeSousCutane"
-            data-cy="typeHematomeSousCutane"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Label -->
+  <label class="form-label mb-0 me-3" for="field_hematomeSousCutane">
+    Hématome Sous-Cutané
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHematomeSousCutane">Frequence Hematome Sous Cutane</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHematomeSousCutane"
-            id="field_frequenceHematomeSousCutane"
-            data-cy="frequenceHematomeSousCutane"
-            formControlName="frequenceHematomeSousCutane"
-          />
-        </div>
+  <!-- Champs conditionnels -->
+  <ng-container *ngIf="editForm.get('hematomeSousCutane')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeHematomeSousCutane"
+      formControlName="typeHematomeSousCutane"
+      id="field_typeHematomeSousCutane"
+      data-cy="typeHematomeSousCutane"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeMusculaire">Hematome Musculaire</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeMusculaire"
-            id="field_hematomeMusculaire"
-            data-cy="hematomeMusculaire"
-            formControlName="hematomeMusculaire"
-          />
-        </div>
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematomeSousCutane"
+      id="field_frequenceHematomeSousCutane"
+      data-cy="frequenceHematomeSousCutane"
+      formControlName="frequenceHematomeSousCutane"
+    />
+  </ng-container>
+</div>
 
-        @let siegeHematomeMusculaireRef = editForm.get('siegeHematomeMusculaire')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_siegeHematomeMusculaire">Siege Hematome Musculaire</label>
-          <input
-            type="text"
-            class="form-control"
-            name="siegeHematomeMusculaire"
-            id="field_siegeHematomeMusculaire"
-            data-cy="siegeHematomeMusculaire"
-            formControlName="siegeHematomeMusculaire"
-          />
-          @if (siegeHematomeMusculaireRef.invalid && (siegeHematomeMusculaireRef.dirty || siegeHematomeMusculaireRef.touched)) {
-            <div>
-              @if (editForm.get('siegeHematomeMusculaire')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHematomeMusculaire">Type Hematome Musculaire</label>
-          <select
-            class="form-control"
-            name="typeHematomeMusculaire"
-            formControlName="typeHematomeMusculaire"
-            id="field_typeHematomeMusculaire"
-            data-cy="typeHematomeMusculaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-3">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check-input"
+    name="hematomeMusculaire"
+    id="field_hematomeMusculaire"
+    data-cy="hematomeMusculaire"
+    formControlName="hematomeMusculaire"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHematomeMusculaire">Frequence Hematome Musculaire</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHematomeMusculaire"
-            id="field_frequenceHematomeMusculaire"
-            data-cy="frequenceHematomeMusculaire"
-            formControlName="frequenceHematomeMusculaire"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label mb-0 me-3" for="field_hematomeMusculaire">
+    Hématome Musculaire
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthrose">Hemarthrose</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemarthrose"
-            id="field_hemarthrose"
-            data-cy="hemarthrose"
-            formControlName="hemarthrose"
-          />
-        </div>
+  <!-- Champs conditionnels -->
+  <ng-container *ngIf="editForm.get('hematomeMusculaire')?.value">
+    <!-- Siège -->
+    <div class="d-flex flex-column">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Siège"
+        name="siegeHematomeMusculaire"
+        id="field_siegeHematomeMusculaire"
+        data-cy="siegeHematomeMusculaire"
+        formControlName="siegeHematomeMusculaire"
+      />
+      @if (editForm.get('siegeHematomeMusculaire')?.invalid && (editForm.get('siegeHematomeMusculaire')?.dirty || editForm.get('siegeHematomeMusculaire')?.touched)) {
+        <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+      }
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemarthrose">Type Hemarthrose</label>
-          <select
-            class="form-control"
-            name="typeHemarthrose"
-            formControlName="typeHemarthrose"
-            id="field_typeHemarthrose"
-            data-cy="typeHemarthrose"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeHematomeMusculaire"
+      formControlName="typeHematomeMusculaire"
+      id="field_typeHematomeMusculaire"
+      data-cy="typeHematomeMusculaire"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHemarthrose">Frequence Hemarthrose</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHemarthrose"
-            id="field_frequenceHemarthrose"
-            data-cy="frequenceHemarthrose"
-            formControlName="frequenceHemarthrose"
-          />
-        </div>
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematomeMusculaire"
+      id="field_frequenceHematomeMusculaire"
+      data-cy="frequenceHematomeMusculaire"
+      formControlName="frequenceHematomeMusculaire"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_saignementSNC">Saignement SNC</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="saignementSNC"
-            id="field_saignementSNC"
-            data-cy="saignementSNC"
-            formControlName="saignementSNC"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeSaignementSNC">Type Saignement SNC</label>
-          <select
-            class="form-control"
-            name="typeSaignementSNC"
-            formControlName="typeSaignementSNC"
-            id="field_typeSaignementSNC"
-            data-cy="typeSaignementSNC"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+<!-- Hémarthrose -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hemarthrose"
+    id="field_hemarthrose"
+    data-cy="hemarthrose"
+    formControlName="hemarthrose"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceSaignementSNC">Frequence Saignement SNC</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceSaignementSNC"
-            id="field_frequenceSaignementSNC"
-            data-cy="frequenceSaignementSNC"
-            formControlName="frequenceSaignementSNC"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hemarthrose">
+    Hémarthrose
+  </label>
+
+  <!-- Champs conditionnels si case cochée -->
+  <ng-container *ngIf="editForm.get('hemarthrose')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeHemarthrose"
+      formControlName="typeHemarthrose"
+      id="field_typeHemarthrose"
+      data-cy="typeHemarthrose"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
+
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHemarthrose"
+      id="field_frequenceHemarthrose"
+      data-cy="frequenceHemarthrose"
+      formControlName="frequenceHemarthrose"
+    />
+  </ng-container>
+</div>
+
+
+<!-- Saignement SNC -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="saignementSNC"
+    id="field_saignementSNC"
+    data-cy="saignementSNC"
+    formControlName="saignementSNC"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_saignementSNC">
+    Saignement SNC
+  </label>
+
+  <!-- Champs conditionnels si coché -->
+  <ng-container *ngIf="editForm.get('saignementSNC')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeSaignementSNC"
+      formControlName="typeSaignementSNC"
+      id="field_typeSaignementSNC"
+      data-cy="typeSaignementSNC"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
+
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceSaignementSNC"
+      id="field_frequenceSaignementSNC"
+      data-cy="frequenceSaignementSNC"
+      formControlName="frequenceSaignementSNC"
+    />
+  </ng-container>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_ruptureKystesHemorragiques">Rupture Kystes Hemorragiques</label>
