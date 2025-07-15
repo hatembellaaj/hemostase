@@ -1116,27 +1116,53 @@ partum)
 
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_hb">Hb</label>
-          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
-        </div>
+<div class="mb-2">
+  <label class="fw-bold d-block">Hémogramme :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ht">Ht</label>
-          <input type="number" class="form-control" name="ht" id="field_ht" data-cy="ht" formControlName="ht" />
-        </div>
+      
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="field_hb">Hb (g/dl)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hb"
+        id="field_hb"
+        data-cy="hb"
+        formControlName="hb"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_ht">Ht  (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="ht"
+        id="field_ht"
+        data-cy="ht"
+        formControlName="ht"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_plaquettes">Plaquettes (/mm3) </label>
+      <input
+        type="number"
+        class="form-control"
+        name="plaquettes"
+        id="field_plaquettes"
+        data-cy="plaquettes"
+        formControlName="plaquettes"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_plaquettes">Plaquettes</label>
-          <input
-            type="number"
-            class="form-control"
-            name="plaquettes"
-            id="field_plaquettes"
-            data-cy="plaquettes"
-            formControlName="plaquettes"
-          />
-        </div>
+
+      <div class="mb-2">
+  <label class="fw-bold d-block">Bilan d’hémostase :</label>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_toPfa200ColEpi">To Pfa 200 Col Epi</label>
