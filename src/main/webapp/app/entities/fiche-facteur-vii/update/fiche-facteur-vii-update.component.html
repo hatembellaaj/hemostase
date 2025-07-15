@@ -2439,42 +2439,80 @@ partum)
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_adhesionTherapeutique">Adhesion Therapeutique</label>
-          <select
-            class="form-control"
-            name="adhesionTherapeutique"
-            formControlName="adhesionTherapeutique"
-            id="field_adhesionTherapeutique"
-            data-cy="adhesionTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        @let causeNonAdhesionRef = editForm.get('causeNonAdhesion')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeNonAdhesion">Cause Non Adhesion</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeNonAdhesion"
-            id="field_causeNonAdhesion"
-            data-cy="causeNonAdhesion"
-            formControlName="causeNonAdhesion"
-          />
-          @if (causeNonAdhesionRef.invalid && (causeNonAdhesionRef.dirty || causeNonAdhesionRef.touched)) {
-            <div>
-              @if (editForm.get('causeNonAdhesion')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+      </div>
+  </div>
+</div>
 
+<!-- Accordéon Section 12: ETAT ACTUEL -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingEtatActuel">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseEtatActuel"
+      aria-expanded="false"
+      aria-controls="collapseEtatActuel"
+    >
+      Etat Actuel
+    </button>
+  </h2>
+  <div
+    id="collapseEtatActuel"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingEtatActuel"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Etat Actuel -->
+
+
+
+      
+<div class="mb-3">
+  <label class="form-label" for="field_adhesionTherapeutique">Adhésion Thérapeutique</label>
+  <select
+    class="form-control"
+    name="adhesionTherapeutique"
+    formControlName="adhesionTherapeutique"
+    id="field_adhesionTherapeutique"
+    data-cy="adhesionTherapeutique"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
+
+<!-- Affichage conditionnel si "NON" -->
+@let adhesionValue = editForm.get('adhesionTherapeutique')?.value;
+@if (adhesionValue === 'NON') {
+  @let causeNonAdhesionRef = editForm.get('causeNonAdhesion')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_causeNonAdhesion">Cause Non Adhésion</label>
+    <input
+      type="text"
+      class="form-control"
+      name="causeNonAdhesion"
+      id="field_causeNonAdhesion"
+      data-cy="causeNonAdhesion"
+      formControlName="causeNonAdhesion"
+    />
+    @if (causeNonAdhesionRef.invalid && (causeNonAdhesionRef.dirty || causeNonAdhesionRef.touched)) {
+      <div>
+        @if (editForm.get('causeNonAdhesion')?.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_vieSociale">Vie Sociale</label>
           <select class="form-control" name="vieSociale" formControlName="vieSociale" id="field_vieSociale" data-cy="vieSociale">
