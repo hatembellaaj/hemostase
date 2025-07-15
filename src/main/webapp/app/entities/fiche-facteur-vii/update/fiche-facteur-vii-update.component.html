@@ -987,32 +987,7 @@ partum)
   </div>
 </div>
 
-          </div>
-  </div>
-</div>
 
-<!-- Accordéon Section 6: Biologie au moment du diagnostic -->
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingBiologie">
-    <button
-      class="accordion-button collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseBiologie"
-      aria-expanded="false"
-      aria-controls="collapseBiologie"
-    >
-      Biologie au moment du diagnostic
-    </button>
-  </h2>
-  <div
-    id="collapseBiologie"
-    class="accordion-collapse collapse"
-    aria-labelledby="headingBiologie"
-    data-bs-parent="#ficheAccordion"
-  >
-    <div class="accordion-body">
-      <!-- Contenu pour la section Biologie -->
 
         <div class="mb-3">
           <label class="form-label" for="field_typeExplorationSyndromeHemorragique">Type Exploration Syndrome Hemorragique</label>
@@ -1061,42 +1036,86 @@ partum)
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticJour">Age Diagnostic Jour</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticJour"
-            id="field_ageDiagnosticJour"
-            data-cy="ageDiagnosticJour"
-            formControlName="ageDiagnosticJour"
-          />
-        </div>
+<!-- Label commun -->
+<div class="mb-2">
+  <label class="form-label">Âge au diagnostic</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticMois">Age Diagnostic Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticMois"
-            id="field_ageDiagnosticMois"
-            data-cy="ageDiagnosticMois"
-            formControlName="ageDiagnosticMois"
-          />
-        </div>
+<!-- Les trois champs sur la même ligne -->
+<div class="mb-3 d-flex gap-3 flex-wrap">
+  <!-- Jours -->
+  <div class="flex-fill">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Jours"
+      name="ageDiagnosticJour"
+      id="field_ageDiagnosticJour"
+      data-cy="ageDiagnosticJour"
+      formControlName="ageDiagnosticJour"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticAnnee">Age Diagnostic Annee</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticAnnee"
-            id="field_ageDiagnosticAnnee"
-            data-cy="ageDiagnosticAnnee"
-            formControlName="ageDiagnosticAnnee"
-          />
-        </div>
+  <!-- Mois -->
+  <div class="flex-fill">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Mois"
+      name="ageDiagnosticMois"
+      id="field_ageDiagnosticMois"
+      data-cy="ageDiagnosticMois"
+      formControlName="ageDiagnosticMois"
+    />
+  </div>
 
+  <!-- Années -->
+  <div class="flex-fill">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Années"
+      name="ageDiagnosticAnnee"
+      id="field_ageDiagnosticAnnee"
+      data-cy="ageDiagnosticAnnee"
+      formControlName="ageDiagnosticAnnee"
+    />
+  </div>
+</div>
+
+
+
+
+          </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 6: Biologie au moment du diagnostic -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingBiologie">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseBiologie"
+      aria-expanded="false"
+      aria-controls="collapseBiologie"
+    >
+      Biologie au moment du diagnostic
+    </button>
+  </h2>
+  <div
+    id="collapseBiologie"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingBiologie"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Biologie -->
+
+
+
+      
         <div class="mb-3">
           <label class="form-label" for="field_hb">Hb</label>
           <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
