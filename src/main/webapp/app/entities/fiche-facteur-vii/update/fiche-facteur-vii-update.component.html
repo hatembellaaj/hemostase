@@ -1164,51 +1164,75 @@ partum)
   <label class="fw-bold d-block">Bilan d’hémostase :</label>
 </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_toPfa200ColEpi">To Pfa 200 Col Epi</label>
-          <input
-            type="number"
-            class="form-control"
-            name="toPfa200ColEpi"
-            id="field_toPfa200ColEpi"
-            data-cy="toPfa200ColEpi"
-            formControlName="toPfa200ColEpi"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label fw-bold">TO (PFA 200) :</label>
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_pfaColEpi">Col / Epi(s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="pfaColEpi"
+        id="field_pfaColEpi"
+        data-cy="pfaColEpi"
+        formControlName="pfaColEpi"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_toPfa200ColAdp">To Pfa 200 Col Adp</label>
-          <input
-            type="number"
-            class="form-control"
-            name="toPfa200ColAdp"
-            id="field_toPfa200ColAdp"
-            data-cy="toPfa200ColAdp"
-            formControlName="toPfa200ColAdp"
-          />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_pfaColADP">Col / ADP(s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="pfaColADP"
+        id="field_pfaColADP"
+        data-cy="pfaColADP"
+        formControlName="pfaColADP"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp</label>
-          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tpMT">Tp MT</label>
-          <input type="number" class="form-control" name="tpMT" id="field_tpMT" data-cy="tpMT" formControlName="tpMT" />
-        </div>
+<div class="mb-3">
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tp">Tp (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tp"
+        id="field_tp"
+        data-cy="tp"
+        formControlName="tp"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_fibrinogene">Fibrinogene</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fibrinogene"
-            id="field_fibrinogene"
-            data-cy="fibrinogene"
-            formControlName="fibrinogene"
-          />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tpMPlusT">Tp (M + T) (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tpMPlusT"
+        id="field_tpMPlusT"
+        data-cy="tpMPlusT"
+        formControlName="tpMPlusT"
+      />
+    </div>
+
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_fibrinogene">Fibrinogène (g/l)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="fibrinogene"
+        id="field_fibrinogene"
+        data-cy="fibrinogene"
+        formControlName="fibrinogene"
+      />
+    </div>
+  </div>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_tcaMT">Tca MT</label>
