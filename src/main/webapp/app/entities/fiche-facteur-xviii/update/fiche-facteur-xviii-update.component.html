@@ -2663,149 +2663,107 @@
 
       
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementPFC">Traitement PFC</label>
-          <select
-            class="form-control"
-            name="traitementPFC"
-            formControlName="traitementPFC"
-            id="field_traitementPFC"
-            data-cy="traitementPFC"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Traitement substitutif -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementPFC">PFC</label>
+  <select class="form-control" name="traitementPFC" formControlName="traitementPFC" id="field_traitementPFC" data-cy="traitementPFC">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementCryoprecipite">Traitement Cryoprecipite</label>
-          <select
-            class="form-control"
-            name="traitementCryoprecipite"
-            formControlName="traitementCryoprecipite"
-            id="field_traitementCryoprecipite"
-            data-cy="traitementCryoprecipite"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementCryoprecipite">Cryoprécipité</label>
+  <select class="form-control" name="traitementCryoprecipite" formControlName="traitementCryoprecipite" id="field_traitementCryoprecipite" data-cy="traitementCryoprecipite">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementConcentreFacteurXI">Traitement Concentre Facteur XI</label>
-          <select
-            class="form-control"
-            name="traitementConcentreFacteurXI"
-            formControlName="traitementConcentreFacteurXI"
-            id="field_traitementConcentreFacteurXI"
-            data-cy="traitementConcentreFacteurXI"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementConcentreFacteurXI">Concentré Facteur XI</label>
+  <select class="form-control" name="traitementConcentreFacteurXI" formControlName="traitementConcentreFacteurXI" id="field_traitementConcentreFacteurXI" data-cy="traitementConcentreFacteurXI">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementCulotsPlaquettaires">Traitement Culots Plaquettaires</label>
-          <select
-            class="form-control"
-            name="traitementCulotsPlaquettaires"
-            formControlName="traitementCulotsPlaquettaires"
-            id="field_traitementCulotsPlaquettaires"
-            data-cy="traitementCulotsPlaquettaires"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementCulotsPlaquettaires">Culots Plaquettaires</label>
+  <select class="form-control" name="traitementCulotsPlaquettaires" formControlName="traitementCulotsPlaquettaires" id="field_traitementCulotsPlaquettaires" data-cy="traitementCulotsPlaquettaires">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementDicynone">Traitement Dicynone</label>
-          <select
-            class="form-control"
-            name="traitementDicynone"
-            formControlName="traitementDicynone"
-            id="field_traitementDicynone"
-            data-cy="traitementDicynone"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Titre: traitement adjuvant -->
+<div class="mb-2">
+  <label class="fw-bold d-block">2. Le traitement adjuvant :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementExacyl">Traitement Exacyl</label>
-          <select
-            class="form-control"
-            name="traitementExacyl"
-            formControlName="traitementExacyl"
-            id="field_traitementExacyl"
-            data-cy="traitementExacyl"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementDicynone">Dicynone</label>
+  <select class="form-control" name="traitementDicynone" formControlName="traitementDicynone" id="field_traitementDicynone" data-cy="traitementDicynone">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementMartial">Traitement Martial</label>
-          <select
-            class="form-control"
-            name="traitementMartial"
-            formControlName="traitementMartial"
-            id="field_traitementMartial"
-            data-cy="traitementMartial"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementExacyl">Exacyl</label>
+  <select class="form-control" name="traitementExacyl" formControlName="traitementExacyl" id="field_traitementExacyl" data-cy="traitementExacyl">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementOestroprogestatif">Traitement Oestroprogestatif</label>
-          <select
-            class="form-control"
-            name="traitementOestroprogestatif"
-            formControlName="traitementOestroprogestatif"
-            id="field_traitementOestroprogestatif"
-            data-cy="traitementOestroprogestatif"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementMartial">Martial</label>
+  <select class="form-control" name="traitementMartial" formControlName="traitementMartial" id="field_traitementMartial" data-cy="traitementMartial">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_transfusionCGR">Transfusion CGR</label>
-          <select
-            class="form-control"
-            name="transfusionCGR"
-            formControlName="transfusionCGR"
-            id="field_transfusionCGR"
-            data-cy="transfusionCGR"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_traitementOestroprogestatif">Oestroprogestatif</label>
+  <select class="form-control" name="traitementOestroprogestatif" formControlName="traitementOestroprogestatif" id="field_traitementOestroprogestatif" data-cy="traitementOestroprogestatif">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label me-2 mb-0" for="field_transfusionCGR">Transfusion CGR</label>
+  <select class="form-control" name="transfusionCGR" formControlName="transfusionCGR" id="field_transfusionCGR" data-cy="transfusionCGR">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+<!-- Titre: Complications -->
+<div class="mb-2">
+  <label class="fw-bold d-block">3. Complications liées au traitement :</label>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_alloImmunisation">Allo Immunisation</label>
