@@ -2765,112 +2765,209 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_alloImmunisation">Allo Immunisation</label>
-          <select
-            class="form-control"
-            name="alloImmunisation"
-            formControlName="alloImmunisation"
-            id="field_alloImmunisation"
-            data-cy="alloImmunisation"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+                              <div class="mb-2">
+  <label class="fw-bold d-block">3. Complications liées au traitement :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_inhibiteurNeutralisant">Inhibiteur Neutralisant</label>
-          <select
-            class="form-control"
-            name="inhibiteurNeutralisant"
-            formControlName="inhibiteurNeutralisant"
-            id="field_inhibiteurNeutralisant"
-            data-cy="inhibiteurNeutralisant"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+      
+<!-- Inhibiteurs -->
+<div class="mb-3">
+  <label class="form-label" for="field_inhibiteurs">Inhibiteurs</label>
+  <select
+    class="form-control"
+    name="inhibiteurs"
+    formControlName="inhibiteurs"
+    id="field_inhibiteurs"
+    data-cy="inhibiteurs"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_titreInhibiteurUB">Titre Inhibiteur UB</label>
-          <input
-            type="number"
-            class="form-control"
-            name="titreInhibiteurUB"
-            id="field_titreInhibiteurUB"
-            data-cy="titreInhibiteurUB"
-            formControlName="titreInhibiteurUB"
-          />
-        </div>
+<!-- Bloc conditionnel si inhibiteurs == OUI -->
+<ng-container *ngIf="editForm.get('inhibiteurs')?.value === 'OUI'">
 
-        <div class="mb-3">
-          <label class="form-label" for="field_inhibiteurNonNeutralisant">Inhibiteur Non Neutralisant</label>
-          <select
-            class="form-control"
-            name="inhibiteurNonNeutralisant"
-            formControlName="inhibiteurNonNeutralisant"
-            id="field_inhibiteurNonNeutralisant"
-            data-cy="inhibiteurNonNeutralisant"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Neutralisant & Non Neutralisant sur la même ligne -->
+  <div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+    <!-- Checkbox Neutralisant -->
+    <div class="d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check"
+        name="inhibiteurNeutralisant"
+        id="field_inhibiteurNeutralisant"
+        data-cy="inhibiteurNeutralisant"
+        formControlName="inhibiteurNeutralisant"
+      />
+      <label class="form-label ms-2 mb-0" for="field_inhibiteurNeutralisant">
+        Inhibiteur Neutralisant
+      </label>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_infectionVIH">Infection VIH</label>
-          <select class="form-control" name="infectionVIH" formControlName="infectionVIH" id="field_infectionVIH" data-cy="infectionVIH">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+    <!-- Checkbox Non Neutralisant -->
+    <div class="d-flex align-items-center">
+      <input
+        type="checkbox"
+        class="form-check"
+        name="inhibiteurNonNeutralisant"
+        id="field_inhibiteurNonNeutralisant"
+        data-cy="inhibiteurNonNeutralisant"
+        formControlName="inhibiteurNonNeutralisant"
+      />
+      <label class="form-label ms-2 mb-0" for="field_inhibiteurNonNeutralisant">
+        Inhibiteur Non Neutralisant
+      </label>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_infectionVHC">Infection VHC</label>
-          <select class="form-control" name="infectionVHC" formControlName="infectionVHC" id="field_infectionVHC" data-cy="infectionVHC">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Champ titre si neutralisant coché -->
+  <div class="mb-3" *ngIf="editForm.get('inhibiteurNeutralisant')?.value">
+    <label class="form-label" for="field_titreInhibiteurNeutralisant">
+      Titre Inhibiteur Neutralisant
+    </label>
+    <input
+      type="number"
+      class="form-control"
+      name="titreInhibiteurNeutralisant"
+      id="field_titreInhibiteurNeutralisant"
+      data-cy="titreInhibiteurNeutralisant"
+      formControlName="titreInhibiteurNeutralisant"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_infectionVHB">Infection VHB</label>
-          <select class="form-control" name="infectionVHB" formControlName="infectionVHB" id="field_infectionVHB" data-cy="infectionVHB">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+</ng-container>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_thrombose">Thrombose</label>
-          <input type="checkbox" class="form-check" name="thrombose" id="field_thrombose" data-cy="thrombose" formControlName="thrombose" />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_reactionAllergique">Reaction Allergique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="reactionAllergique"
-            id="field_reactionAllergique"
-            data-cy="reactionAllergique"
-            formControlName="reactionAllergique"
-          />
-        </div>
+
+
+<!-- Infections Virales -->
+<div class="mb-3">
+  <label class="form-label" for="field_infectionsVirales">Infections Virales</label>
+  <select
+    class="form-control"
+    name="infectionsVirales"
+    formControlName="infectionsVirales"
+    id="field_infectionsVirales"
+    data-cy="infectionsVirales"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
+
+<!-- Autres champs affichés seulement si infectionsVirales == OUI -->
+<ng-container *ngIf="editForm.get('infectionsVirales')?.value === 'OUI'">
+
+  <!-- Hépatite B -->
+  <div class="mb-3">
+    <label class="form-label" for="field_hepatiteB">Hépatite B</label>
+    <select
+      class="form-control"
+      name="hepatiteB"
+      formControlName="hepatiteB"
+      id="field_hepatiteB"
+      data-cy="hepatiteB"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <!-- Hépatite C -->
+  <div class="mb-3">
+    <label class="form-label" for="field_hepatiteC">Hépatite C</label>
+    <select
+      class="form-control"
+      name="hepatiteC"
+      formControlName="hepatiteC"
+      id="field_hepatiteC"
+      data-cy="hepatiteC"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <!-- VIH -->
+  <div class="mb-3">
+    <label class="form-label" for="field_vih">VIH</label>
+    <select
+      class="form-control"
+      name="vih"
+      formControlName="vih"
+      id="field_vih"
+      data-cy="vih"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
+
+</ng-container>
+
+
+<!-- Groupe de complications sur une seule ligne avec checkbox avant le texte -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-4">
+  <!-- Thrombose -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="thrombose"
+      id="field_thrombose"
+      data-cy="thrombose"
+      formControlName="thrombose"
+    />
+    <label class="form-check-label mb-0" for="field_thrombose">Thrombose</label>
+  </div>
+
+  <!-- Réaction Allergique -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="reactionAllergique"
+      id="field_reactionAllergique"
+      data-cy="reactionAllergique"
+      formControlName="reactionAllergique"
+    />
+    <label class="form-check-label mb-0" for="field_reactionAllergique">Réaction allergique</label>
+  </div>
+
+  <!-- Autre Complication -->
+  <div class="form-check d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="autreComplication"
+      id="field_autreComplication"
+      data-cy="autreComplication"
+      formControlName="autreComplication"
+    />
+    <label class="form-check-label mb-0" for="field_autreComplication">Autre complication</label>
+  </div>
+</div>
 
         @let autresComplicationsRef = editForm.get('autresComplications')!;
         <div class="mb-3">
@@ -2891,6 +2988,35 @@
             </div>
           }
         </div>
+
+
+
+      </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 12: ETAT ACTUEL -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingEtatActuel">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseEtatActuel"
+      aria-expanded="false"
+      aria-controls="collapseEtatActuel"
+    >
+      Etat Actuel
+    </button>
+  </h2>
+  <div
+    id="collapseEtatActuel"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingEtatActuel"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Etat Actuel -->
 
         <div class="mb-3">
           <label class="form-label" for="field_adherenceTherapeutique">Adherence Therapeutique</label>
