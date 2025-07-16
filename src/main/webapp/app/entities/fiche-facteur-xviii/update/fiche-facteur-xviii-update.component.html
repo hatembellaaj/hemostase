@@ -2322,7 +2322,11 @@
   </ng-container>
 </div>
 
-        <div class="mb-3">
+                        <div class="mb-2">
+  <label class="fw-bold d-block">2. Autres manifestations :</label>
+</div>
+
+        <!--div class="mb-3">
           <label class="form-label" for="field_autresManifestations">Autres Manifestations</label>
           <input
             type="checkbox"
@@ -2332,207 +2336,214 @@
             data-cy="autresManifestations"
             formControlName="autresManifestations"
           />
-        </div>
+    </div-->
 
-        <div class="mb-3">
-          <label class="form-label" for="field_faussesCouchesSpontaneesRecurrence">Fausses Couches Spontanees Recurrence</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="faussesCouchesSpontaneesRecurrence"
-            id="field_faussesCouchesSpontaneesRecurrence"
-            data-cy="faussesCouchesSpontaneesRecurrence"
-            formControlName="faussesCouchesSpontaneesRecurrence"
-          />
-        </div>
+<!-- Fausses couches spontanées récidivantes -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="faussesCouchesSpontaneesRecurrence"
+    id="field_faussesCouchesSpontaneesRecurrence"
+    data-cy="faussesCouchesSpontaneesRecurrence"
+    formControlName="faussesCouchesSpontaneesRecurrence"
+  />
+  <label class="form-label ms-2 mb-0 me-3" for="field_faussesCouchesSpontaneesRecurrence">
+    Fausses Couches Spontanées Récurrentes
+  </label>
+  <ng-container *ngIf="editForm.get('faussesCouchesSpontaneesRecurrence')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceFaussesCouches"
+      id="field_frequenceFaussesCouches"
+      data-cy="frequenceFaussesCouches"
+      formControlName="frequenceFaussesCouches"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceFaussesCouches">Frequence Fausses Couches</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceFaussesCouches"
-            id="field_frequenceFaussesCouches"
-            data-cy="frequenceFaussesCouches"
-            formControlName="frequenceFaussesCouches"
-          />
-        </div>
+<!-- Accidents thrombotiques -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="accidentsThrombotiques"
+    id="field_accidentsThrombotiques"
+    data-cy="accidentsThrombotiques"
+    formControlName="accidentsThrombotiques"
+  />
+  <label class="form-label ms-2 mb-0 me-3" for="field_accidentsThrombotiques">
+    Accidents Thrombotiques
+  </label>
+  <ng-container *ngIf="editForm.get('accidentsThrombotiques')?.value">
+    <input
+      type="checkbox"
+      class="form-check"
+      name="thromboseVeineuse"
+      id="field_thromboseVeineuse"
+      data-cy="thromboseVeineuse"
+      formControlName="thromboseVeineuse"
+    />
+    <label class="form-label ms-2 me-3 mb-0" for="field_thromboseVeineuse">Thrombose Veineuse</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_accidentsThrombotiques">Accidents Thrombotiques</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="accidentsThrombotiques"
-            id="field_accidentsThrombotiques"
-            data-cy="accidentsThrombotiques"
-            formControlName="accidentsThrombotiques"
-          />
-        </div>
+    <input
+      type="checkbox"
+      class="form-check"
+      name="thromboseArterielle"
+      id="field_thromboseArterielle"
+      data-cy="thromboseArterielle"
+      formControlName="thromboseArterielle"
+    />
+    <label class="form-label ms-2 me-3 mb-0" for="field_thromboseArterielle">Thrombose Artérielle</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_thromboseVeineuse">Thrombose Veineuse</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="thromboseVeineuse"
-            id="field_thromboseVeineuse"
-            data-cy="thromboseVeineuse"
-            formControlName="thromboseVeineuse"
-          />
-        </div>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceAccidentsThrombotiques"
+      id="field_frequenceAccidentsThrombotiques"
+      data-cy="frequenceAccidentsThrombotiques"
+      formControlName="frequenceAccidentsThrombotiques"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_thromboseArterielle">Thrombose Arterielle</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="thromboseArterielle"
-            id="field_thromboseArterielle"
-            data-cy="thromboseArterielle"
-            formControlName="thromboseArterielle"
-          />
-        </div>
+<!-- Hémopéritoine -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hemoperitoine"
+    id="field_hemoperitoine"
+    data-cy="hemoperitoine"
+    formControlName="hemoperitoine"
+  />
+  <label class="form-label ms-2 mb-0 me-3" for="field_hemoperitoine">
+    Hémopéritoine
+  </label>
+  <ng-container *ngIf="editForm.get('hemoperitoine')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHemoperitoine"
+      id="field_frequenceHemoperitoine"
+      data-cy="frequenceHemoperitoine"
+      formControlName="frequenceHemoperitoine"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceAccidentsThrombotiques">Frequence Accidents Thrombotiques</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceAccidentsThrombotiques"
-            id="field_frequenceAccidentsThrombotiques"
-            data-cy="frequenceAccidentsThrombotiques"
-            formControlName="frequenceAccidentsThrombotiques"
-          />
-        </div>
+<!-- Rupture kystes hémorragiques -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="ruptureKystesHemorragiques"
+    id="field_ruptureKystesHemorragiques"
+    data-cy="ruptureKystesHemorragiques"
+    formControlName="ruptureKystesHemorragiques"
+  />
+  <label class="form-label ms-2 mb-0 me-3" for="field_ruptureKystesHemorragiques">
+    Rupture Kystes Hémorragiques
+  </label>
+  <ng-container *ngIf="editForm.get('ruptureKystesHemorragiques')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceRuptureKystes"
+      id="field_frequenceRuptureKystes"
+      data-cy="frequenceRuptureKystes"
+      formControlName="frequenceRuptureKystes"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemoperitoine">Hemoperitoine</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemoperitoine"
-            id="field_hemoperitoine"
-            data-cy="hemoperitoine"
-            formControlName="hemoperitoine"
-          />
-        </div>
+<!-- Hémorragie grave -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hemorragieGrave"
+    id="field_hemorragieGrave"
+    data-cy="hemorragieGrave"
+    formControlName="hemorragieGrave"
+  />
+  <label class="form-label ms-2 mb-0 me-3" for="field_hemorragieGrave">
+    Hémorragie Grave
+  </label>
+  <ng-container *ngIf="editForm.get('hemorragieGrave')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHemorragieGrave"
+      id="field_frequenceHemorragieGrave"
+      data-cy="frequenceHemorragieGrave"
+      formControlName="frequenceHemorragieGrave"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHemoperitoine">Frequence Hemoperitoine</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHemoperitoine"
-            id="field_frequenceHemoperitoine"
-            data-cy="frequenceHemoperitoine"
-            formControlName="frequenceHemoperitoine"
-          />
-        </div>
+<!-- Gravité - critères -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <input
+    type="checkbox"
+    class="form-check"
+    name="graviteDeglobulisation"
+    id="field_graviteDeglobulisation"
+    data-cy="graviteDeglobulisation"
+    formControlName="graviteDeglobulisation"
+  />
+  <label class="form-label ms-2 me-3 mb-0" for="field_graviteDeglobulisation">Dégobulisation</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ruptureKystesHemorragiques">Rupture Kystes Hemorragiques</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="ruptureKystesHemorragiques"
-            id="field_ruptureKystesHemorragiques"
-            data-cy="ruptureKystesHemorragiques"
-            formControlName="ruptureKystesHemorragiques"
-          />
-        </div>
+  <input
+    type="checkbox"
+    class="form-check"
+    name="graviteEtatDeChoc"
+    id="field_graviteEtatDeChoc"
+    data-cy="graviteEtatDeChoc"
+    formControlName="graviteEtatDeChoc"
+  />
+  <label class="form-label ms-2 me-3 mb-0" for="field_graviteEtatDeChoc">État de choc</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceRuptureKystes">Frequence Rupture Kystes</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceRuptureKystes"
-            id="field_frequenceRuptureKystes"
-            data-cy="frequenceRuptureKystes"
-            formControlName="frequenceRuptureKystes"
-          />
-        </div>
+  <input
+    type="checkbox"
+    class="form-check"
+    name="graviteParLocalisation"
+    id="field_graviteParLocalisation"
+    data-cy="graviteParLocalisation"
+    formControlName="graviteParLocalisation"
+  />
+  <label class="form-label ms-2 me-3 mb-0" for="field_graviteParLocalisation">Par localisation</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieGrave">Hemorragie Grave</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieGrave"
-            id="field_hemorragieGrave"
-            data-cy="hemorragieGrave"
-            formControlName="hemorragieGrave"
-          />
-        </div>
+<!-- Siège de la localisation grave -->
+<ng-container *ngIf="editForm.get('graviteParLocalisation')?.value">
+  @let siegeGraviteLocalisationRef = editForm.get('siegeGraviteLocalisation')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_siegeGraviteLocalisation">Siège de la localisation grave</label>
+    <input
+      type="text"
+      class="form-control"
+      name="siegeGraviteLocalisation"
+      id="field_siegeGraviteLocalisation"
+      data-cy="siegeGraviteLocalisation"
+      formControlName="siegeGraviteLocalisation"
+    />
+    @if (siegeGraviteLocalisationRef.invalid && (siegeGraviteLocalisationRef.dirty || siegeGraviteLocalisationRef.touched)) {
+      <div>
+        @if (siegeGraviteLocalisationRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+</ng-container>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHemorragieGrave">Frequence Hemorragie Grave</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHemorragieGrave"
-            id="field_frequenceHemorragieGrave"
-            data-cy="frequenceHemorragieGrave"
-            formControlName="frequenceHemorragieGrave"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_graviteDeglobulisation">Gravite Deglobulisation</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graviteDeglobulisation"
-            id="field_graviteDeglobulisation"
-            data-cy="graviteDeglobulisation"
-            formControlName="graviteDeglobulisation"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_graviteEtatDeChoc">Gravite Etat De Choc</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graviteEtatDeChoc"
-            id="field_graviteEtatDeChoc"
-            data-cy="graviteEtatDeChoc"
-            formControlName="graviteEtatDeChoc"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_graviteParLocalisation">Gravite Par Localisation</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="graviteParLocalisation"
-            id="field_graviteParLocalisation"
-            data-cy="graviteParLocalisation"
-            formControlName="graviteParLocalisation"
-          />
-        </div>
-
-        @let siegeGraviteLocalisationRef = editForm.get('siegeGraviteLocalisation')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_siegeGraviteLocalisation">Siege Gravite Localisation</label>
-          <input
-            type="text"
-            class="form-control"
-            name="siegeGraviteLocalisation"
-            id="field_siegeGraviteLocalisation"
-            data-cy="siegeGraviteLocalisation"
-            formControlName="siegeGraviteLocalisation"
-          />
-          @if (siegeGraviteLocalisationRef.invalid && (siegeGraviteLocalisationRef.dirty || siegeGraviteLocalisationRef.touched)) {
-            <div>
-              @if (editForm.get('siegeGraviteLocalisation')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_chirurgiePrepare">Chirurgie Prepare</label>
