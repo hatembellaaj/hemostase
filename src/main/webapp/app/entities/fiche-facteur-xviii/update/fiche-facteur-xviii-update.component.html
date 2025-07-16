@@ -1439,101 +1439,112 @@
   </div>
 </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_facteurDeficitaireAutre">Facteur Deficitaire Autre</label>
-          <input
-            type="text"
-            class="form-control"
-            name="facteurDeficitaireAutre"
-            id="field_facteurDeficitaireAutre"
-            data-cy="facteurDeficitaireAutre"
-            formControlName="facteurDeficitaireAutre"
-          />
-        </div>
+<!-- Facteur déficitaire autre que le fibrinogène -->
+<div class="mb-3">
+  <label class="form-label d-block">Facteur déficitaire autre que le fibrinogène :</label>
+  <div class="d-flex align-items-center">
+    <label class="form-label mb-0 me-2" for="field_facteurDeficitaireAutre">Facteur (V, X, II) :</label>
+    <input
+      type="text"
+      class="form-control w-auto me-2"
+      name="facteurDeficitaireAutre"
+      id="field_facteurDeficitaireAutre"
+      data-cy="facteurDeficitaireAutre"
+      formControlName="facteurDeficitaireAutre"
+    />
+    <label class="form-label mb-0 me-2" for="field_tauxFacteurDeficitaireAutre">Taux</label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="tauxFacteurDeficitaireAutre"
+      id="field_tauxFacteurDeficitaireAutre"
+      data-cy="tauxFacteurDeficitaireAutre"
+      formControlName="tauxFacteurDeficitaireAutre"
+    />
+    <span>%</span>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxFacteurDeficitaireAutre">Taux Facteur Deficitaire Autre</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tauxFacteurDeficitaireAutre"
-            id="field_tauxFacteurDeficitaireAutre"
-            data-cy="tauxFacteurDeficitaireAutre"
-            formControlName="tauxFacteurDeficitaireAutre"
-          />
-        </div>
+<!-- Dosage des autres facteurs -->
+<div class="mb-3">
+  <label class="form-label d-block">Dosage des autres facteurs :</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_facteurSupplementaire1">Facteur Supplementaire 1</label>
-          <input
-            type="text"
-            class="form-control"
-            name="facteurSupplementaire1"
-            id="field_facteurSupplementaire1"
-            data-cy="facteurSupplementaire1"
-            formControlName="facteurSupplementaire1"
-          />
-        </div>
+  <!-- Ligne 1 -->
+  <div class="d-flex align-items-center mb-2">
+    <label class="form-label mb-0 me-2" for="field_facteurSupplementaire1">
+      Facteur(s) (VII, V, X, II, IX, VIII, IX, XI, XII, FXIII)
+    </label>
+    <input
+      type="text"
+      class="form-control w-auto me-2"
+      name="facteurSupplementaire1"
+      id="field_facteurSupplementaire1"
+      data-cy="facteurSupplementaire1"
+      formControlName="facteurSupplementaire1"
+    />
+    <label class="form-label mb-0 me-2" for="field_tauxSupplementaire1">Taux</label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="tauxSupplementaire1"
+      id="field_tauxSupplementaire1"
+      data-cy="tauxSupplementaire1"
+      formControlName="tauxSupplementaire1"
+    />
+    <span>%</span>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxSupplementaire1">Taux Supplementaire 1</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tauxSupplementaire1"
-            id="field_tauxSupplementaire1"
-            data-cy="tauxSupplementaire1"
-            formControlName="tauxSupplementaire1"
-          />
-        </div>
+  <!-- Ligne 2 -->
+  <div class="d-flex align-items-center mb-2">
+    <label class="form-label mb-0 me-2" for="field_facteurSupplementaire2">
+      + (VII, V, X, II, IX, VIII, IX, XI, XII, FXIII)
+    </label>
+    <input
+      type="text"
+      class="form-control w-auto me-2"
+      name="facteurSupplementaire2"
+      id="field_facteurSupplementaire2"
+      data-cy="facteurSupplementaire2"
+      formControlName="facteurSupplementaire2"
+    />
+    <label class="form-label mb-0 me-2" for="field_tauxSupplementaire2">Taux</label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="tauxSupplementaire2"
+      id="field_tauxSupplementaire2"
+      data-cy="tauxSupplementaire2"
+      formControlName="tauxSupplementaire2"
+    />
+    <span>%</span>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_facteurSupplementaire2">Facteur Supplementaire 2</label>
-          <input
-            type="text"
-            class="form-control"
-            name="facteurSupplementaire2"
-            id="field_facteurSupplementaire2"
-            data-cy="facteurSupplementaire2"
-            formControlName="facteurSupplementaire2"
-          />
-        </div>
+  <!-- Ligne 3 -->
+  <div class="d-flex align-items-center">
+    <label class="form-label mb-0 me-2" for="field_facteurSupplementaire3">
+      + (VII, V, X, II, IX, VIII, IX, XI, XII, FXIII)
+    </label>
+    <input
+      type="text"
+      class="form-control w-auto me-2"
+      name="facteurSupplementaire3"
+      id="field_facteurSupplementaire3"
+      data-cy="facteurSupplementaire3"
+      formControlName="facteurSupplementaire3"
+    />
+    <label class="form-label mb-0 me-2" for="field_tauxSupplementaire3">Taux</label>
+    <input
+      type="number"
+      class="form-control w-auto me-2"
+      name="tauxSupplementaire3"
+      id="field_tauxSupplementaire3"
+      data-cy="tauxSupplementaire3"
+      formControlName="tauxSupplementaire3"
+    />
+    <span>%</span>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxSupplementaire2">Taux Supplementaire 2</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tauxSupplementaire2"
-            id="field_tauxSupplementaire2"
-            data-cy="tauxSupplementaire2"
-            formControlName="tauxSupplementaire2"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_facteurSupplementaire3">Facteur Supplementaire 3</label>
-          <input
-            type="text"
-            class="form-control"
-            name="facteurSupplementaire3"
-            id="field_facteurSupplementaire3"
-            data-cy="facteurSupplementaire3"
-            formControlName="facteurSupplementaire3"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxSupplementaire3">Taux Supplementaire 3</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tauxSupplementaire3"
-            id="field_tauxSupplementaire3"
-            data-cy="tauxSupplementaire3"
-            formControlName="tauxSupplementaire3"
-          />
-        </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_confirmationMoleculaire">Confirmation Moleculaire</label>
