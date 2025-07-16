@@ -939,63 +939,75 @@
     <div class="accordion-body">
       <!-- Contenu pour la section Circonstances de découverte -->
 
-        <div class="mb-3">
-          <label class="form-label" for="field_circHemorragique">Circ Hemorragique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="circHemorragique"
-            id="field_circHemorragique"
-            data-cy="circHemorragique"
-            formControlName="circHemorragique"
-          />
-        </div>
+<!-- Syndrome Hémorragique -->
+<div class="mb-3">
+  <label class="form-label" for="field_syndromeHemorragique">Syndrome Hémorragique</label>
+  <select
+    class="form-control"
+    name="syndromeHemorragique"
+    formControlName="syndromeHemorragique"
+    id="field_syndromeHemorragique"
+    data-cy="syndromeHemorragique"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+<!-- Affichage conditionnel de la précision -->
+@if (editForm.get('syndromeHemorragique')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_precisionSyndromeHemorragique">Précision Syndrome Hémorragique</label>
+    <input
+      type="text"
+      class="form-control"
+      name="precisionSyndromeHemorragique"
+      id="field_precisionSyndromeHemorragique"
+      data-cy="precisionSyndromeHemorragique"
+      formControlName="precisionSyndromeHemorragique"
+    />
+  </div>
+}
+
+
+<!-- Découverte Fortuite -->
+<div class="mb-3">
+  <label class="form-label" for="field_decouverteFortuite">Découverte Fortuite</label>
+  <select
+    class="form-control"
+    name="decouverteFortuite"
+    formControlName="decouverteFortuite"
+    id="field_decouverteFortuite"
+    data-cy="decouverteFortuite"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+<!-- Affichage conditionnel de la précision -->
+@if (editForm.get('decouverteFortuite')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_precisionDecouverteFortuite">Précision Découverte Fortuite</label>
+    <input
+      type="text"
+      class="form-control"
+      name="precisionDecouverteFortuite"
+      id="field_precisionDecouverteFortuite"
+      data-cy="precisionDecouverteFortuite"
+      formControlName="precisionDecouverteFortuite"
+    />
+  </div>
+}
+
 
         <div class="mb-3">
-          <label class="form-label" for="field_precisionsCircHemorragique">Precisions Circ Hemorragique</label>
-          <input
-            type="text"
-            class="form-control"
-            name="precisionsCircHemorragique"
-            id="field_precisionsCircHemorragique"
-            data-cy="precisionsCircHemorragique"
-            formControlName="precisionsCircHemorragique"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_decouverteFortuitePreop">Decouverte Fortuite Preop</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="decouverteFortuitePreop"
-            id="field_decouverteFortuitePreop"
-            data-cy="decouverteFortuitePreop"
-            formControlName="decouverteFortuitePreop"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_precisionsDecouverteFortuite">Precisions Decouverte Fortuite</label>
-          <input
-            type="text"
-            class="form-control"
-            name="precisionsDecouverteFortuite"
-            id="field_precisionsDecouverteFortuite"
-            data-cy="precisionsDecouverteFortuite"
-            formControlName="precisionsDecouverteFortuite"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_jamaisSaignement">Jamais Saignement</label>
-          <select
-            class="form-control"
-            name="jamaisSaignement"
-            formControlName="jamaisSaignement"
-            id="field_jamaisSaignement"
-            data-cy="jamaisSaignement"
-          >
+          <label class="form-label" for="field_jamaisSaigne">Le patient n’a jamais saigné :</label>
+          <select class="form-control" name="jamaisSaigne" formControlName="jamaisSaigne" id="field_jamaisSaigne" data-cy="jamaisSaigne">
             <option [ngValue]="null"></option>
             @for (ouiNonNP of ouiNonNPValues; track $index) {
               <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
@@ -1003,41 +1015,46 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremierSigneJours">Age Premier Signe Jours</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremierSigneJours"
-            id="field_agePremierSigneJours"
-            data-cy="agePremierSigneJours"
-            formControlName="agePremierSigneJours"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-3">
+  <!-- Jours -->
+  <div class="d-flex flex-column">
+    <label class="form-label" for="field_agePremierSigneCliniqueJours">Age premier signe clinique : Jours</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremierSigneCliniqueJours"
+      id="field_agePremierSigneCliniqueJours"
+      data-cy="agePremierSigneCliniqueJours"
+      formControlName="agePremierSigneCliniqueJours"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremierSigneMois">Age Premier Signe Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremierSigneMois"
-            id="field_agePremierSigneMois"
-            data-cy="agePremierSigneMois"
-            formControlName="agePremierSigneMois"
-          />
-        </div>
+  <!-- Mois -->
+  <div class="d-flex flex-column">
+    <label class="form-label" for="field_agePremierSigneCliniqueMois">Mois</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremierSigneCliniqueMois"
+      id="field_agePremierSigneCliniqueMois"
+      data-cy="agePremierSigneCliniqueMois"
+      formControlName="agePremierSigneCliniqueMois"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremierSigneAnnees">Age Premier Signe Annees</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremierSigneAnnees"
-            id="field_agePremierSigneAnnees"
-            data-cy="agePremierSigneAnnees"
-            formControlName="agePremierSigneAnnees"
-          />
-        </div>
+  <!-- Années -->
+  <div class="d-flex flex-column">
+    <label class="form-label" for="field_agePremierSigneCliniqueAnnees">Années</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremierSigneCliniqueAnnees"
+      id="field_agePremierSigneCliniqueAnnees"
+      data-cy="agePremierSigneCliniqueAnnees"
+      formControlName="agePremierSigneCliniqueAnnees"
+    />
+  </div>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_symptomeEcchymose">Symptome Ecchymose</label>
