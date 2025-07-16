@@ -661,24 +661,24 @@
           </select>
         </div>
 
+        @let degreParenteConsanguinsRef = editForm.get('degreParenteConsanguins')!;
         <div class="mb-3">
           <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
-          <select
+          <input
+            type="text"
             class="form-control"
             name="degreParenteConsanguins"
-            formControlName="degreParenteConsanguins"
             id="field_degreParenteConsanguins"
             data-cy="degreParenteConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (degreParente of degreParenteValues; track $index) {
-              <option [value]="degreParente">
-                {{
-                  { null: '', TROISIEME_DEGRE: 'TROISIEME_DEGRE', QUATRIEME_DEGRE: 'QUATRIEME_DEGRE', LOINTAIN: 'LOINTAIN' }[degreParente]
-                }}
-              </option>
-            }
-          </select>
+            formControlName="degreParenteConsanguins"
+          />
+          @if (degreParenteConsanguinsRef.invalid && (degreParenteConsanguinsRef.dirty || degreParenteConsanguinsRef.touched)) {
+            <div>
+              @if (editForm.get('degreParenteConsanguins')?.errors?.maxlength) {
+                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+              }
+            </div>
+          }
         </div>
 
 <!-- Champ principal -->
