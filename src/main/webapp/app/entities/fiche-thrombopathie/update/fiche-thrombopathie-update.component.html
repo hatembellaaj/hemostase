@@ -645,41 +645,47 @@
     <div class="accordion-body">
       <!-- Contenu pour la section Antécédents -->
       
-        <div class="mb-3">
-          <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
-          <select
-            class="form-control"
-            name="parentsConsanguins"
-            formControlName="parentsConsanguins"
-            id="field_parentsConsanguins"
-            data-cy="parentsConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3">
+  <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+  <select
+    class="form-control"
+    name="parentsConsanguins"
+    formControlName="parentsConsanguins"
+    id="field_parentsConsanguins"
+    data-cy="parentsConsanguins"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        @let degreParenteConsanguinsRef = editForm.get('degreParenteConsanguins')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteConsanguins"
-            id="field_degreParenteConsanguins"
-            data-cy="degreParenteConsanguins"
-            formControlName="degreParenteConsanguins"
-          />
-          @if (degreParenteConsanguinsRef.invalid && (degreParenteConsanguinsRef.dirty || degreParenteConsanguinsRef.touched)) {
-            <div>
-              @if (editForm.get('degreParenteConsanguins')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@let parentsConsanguinsRef = editForm.get('parentsConsanguins')!;
+@if (parentsConsanguinsRef.value === 'OUI') {
+  @let degreParenteConsanguinsRef = editForm.get('degreParenteConsanguins')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_degreParenteConsanguins">Degré Parente Consanguins</label>
+    <input
+      type="text"
+      class="form-control"
+      name="degreParenteConsanguins"
+      id="field_degreParenteConsanguins"
+      data-cy="degreParenteConsanguins"
+      formControlName="degreParenteConsanguins"
+    />
+    @if (degreParenteConsanguinsRef.invalid && (degreParenteConsanguinsRef.dirty || degreParenteConsanguinsRef.touched)) {
+      <div>
+        @if (editForm.get('degreParenteConsanguins')?.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
+
 
 <!-- Champ principal -->
 <div class="mb-3">
