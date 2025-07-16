@@ -3016,207 +3016,153 @@
     <div class="accordion-body">
       <!-- Contenu pour la section Etat Actuel -->
 
-        <div class="mb-3">
-          <label class="form-label" for="field_adherenceTherapeutique">Adherence Therapeutique</label>
-          <select
-            class="form-control"
-            name="adherenceTherapeutique"
-            formControlName="adherenceTherapeutique"
-            id="field_adherenceTherapeutique"
-            data-cy="adherenceTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Adhérence Thérapeutique -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label mb-0 me-2" for="field_adherenceTherapeutique">Adhérence Thérapeutique</label>
+  <select class="form-control" name="adherenceTherapeutique" formControlName="adherenceTherapeutique" id="field_adherenceTherapeutique" data-cy="adherenceTherapeutique">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        @let causeNonAdherenceRef = editForm.get('causeNonAdherence')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeNonAdherence">Cause Non Adherence</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeNonAdherence"
-            id="field_causeNonAdherence"
-            data-cy="causeNonAdherence"
-            formControlName="causeNonAdherence"
-          />
-          @if (causeNonAdherenceRef.invalid && (causeNonAdherenceRef.dirty || causeNonAdherenceRef.touched)) {
-            <div>
-              @if (editForm.get('causeNonAdherence')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@if (editForm.get('adherenceTherapeutique')?.value === 'NON') {
+  <div class="mb-3">
+    <label class="form-label" for="field_causeNonAdherence">Cause Non Adhérence</label>
+    <input type="text" class="form-control" name="causeNonAdherence" id="field_causeNonAdherence" data-cy="causeNonAdherence" formControlName="causeNonAdherence" />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_statutSocial">Statut Social</label>
-          <select class="form-control" name="statutSocial" formControlName="statutSocial" id="field_statutSocial" data-cy="statutSocial">
-            <option [ngValue]="null"></option>
-            @for (statutSocial of statutSocialValues; track $index) {
-              <option [value]="statutSocial">
-                {{
-                  { null: '', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE', SCOLARISE: 'SCOLARISE', PRESCOLARISE: 'PRESCOLARISE' }[
-                    statutSocial
-                  ]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+<!-- Statut Social -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label mb-0 me-2" for="field_statutSocial">Statut Social</label>
+  <select class="form-control" name="statutSocial" formControlName="statutSocial" id="field_statutSocial" data-cy="statutSocial">
+    <option [ngValue]="null"></option>
+    @for (statutSocial of statutSocialValues; track $index) {
+      <option [value]="statutSocial">
+        {{ {
+          null: '', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE',
+          SCOLARISE: 'SCOLARISE', PRESCOLARISE: 'PRESCOLARISE'
+        }[statutSocial] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_marie">Marie</label>
-          <select class="form-control" name="marie" formControlName="marie" id="field_marie" data-cy="marie">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Marie -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label mb-0 me-2" for="field_marie">Marié</label>
+  <select class="form-control" name="marie" formControlName="marie" id="field_marie" data-cy="marie">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_enfants">Enfants</label>
-          <select class="form-control" name="enfants" formControlName="enfants" id="field_enfants" data-cy="enfants">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Enfants -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label mb-0 me-2" for="field_enfants">Enfants</label>
+  <select class="form-control" name="enfants" formControlName="enfants" id="field_enfants" data-cy="enfants">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_activitePhysique">Activite Physique</label>
-          <select
-            class="form-control"
-            name="activitePhysique"
-            formControlName="activitePhysique"
-            id="field_activitePhysique"
-            data-cy="activitePhysique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Activité Physique -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label mb-0 me-2" for="field_activitePhysique">Activité Physique</label>
+  <select class="form-control" name="activitePhysique" formControlName="activitePhysique" id="field_activitePhysique" data-cy="activitePhysique">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        @let typeActivitePhysiqueRef = editForm.get('typeActivitePhysique')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeActivitePhysique">Type Activite Physique</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeActivitePhysique"
-            id="field_typeActivitePhysique"
-            data-cy="typeActivitePhysique"
-            formControlName="typeActivitePhysique"
-          />
-          @if (typeActivitePhysiqueRef.invalid && (typeActivitePhysiqueRef.dirty || typeActivitePhysiqueRef.touched)) {
-            <div>
-              @if (editForm.get('typeActivitePhysique')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@if (editForm.get('activitePhysique')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_typeActivitePhysique">Type Activité Physique</label>
+    <input type="text" class="form-control" name="typeActivitePhysique" id="field_typeActivitePhysique" data-cy="typeActivitePhysique" formControlName="typeActivitePhysique" />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_sequelles">Sequelles</label>
-          <select class="form-control" name="sequelles" formControlName="sequelles" id="field_sequelles" data-cy="sequelles">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Séquelles -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label mb-0 me-2" for="field_sequelles">Séquelles</label>
+  <select class="form-control" name="sequelles" formControlName="sequelles" id="field_sequelles" data-cy="sequelles">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        @let typeSequellesRef = editForm.get('typeSequelles')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeSequelles">Type Sequelles</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeSequelles"
-            id="field_typeSequelles"
-            data-cy="typeSequelles"
-            formControlName="typeSequelles"
-          />
-          @if (typeSequellesRef.invalid && (typeSequellesRef.dirty || typeSequellesRef.touched)) {
-            <div>
-              @if (editForm.get('typeSequelles')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@if (editForm.get('sequelles')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_typeSequelles">Type Séquelles</label>
+    <input type="text" class="form-control" name="typeSequelles" id="field_typeSequelles" data-cy="typeSequelles" formControlName="typeSequelles" />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_patientDecede">Patient Decede</label>
-          <select
-            class="form-control"
-            name="patientDecede"
-            formControlName="patientDecede"
-            id="field_patientDecede"
-            data-cy="patientDecede"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Patient Décédé -->
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
+  <label class="form-label mb-0 me-2" for="field_patientDecede">Patient Décédé</label>
+  <select class="form-control" name="patientDecede" formControlName="patientDecede" id="field_patientDecede" data-cy="patientDecede">
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDeces">Date Deces</label>
-          <div class="input-group">
-            <input
-              id="field_dateDeces"
-              data-cy="dateDeces"
-              type="text"
-              class="form-control"
-              name="dateDeces"
-              ngbDatepicker
-              #dateDecesDp="ngbDatepicker"
-              formControlName="dateDeces"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDecesDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-          </div>
-        </div>
+@if (editForm.get('patientDecede')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_dateDeces">Date Décès</label>
+    <div class="input-group">
+      <input id="field_dateDeces" data-cy="dateDeces" type="text" class="form-control" name="dateDeces" ngbDatepicker #dateDecesDp="ngbDatepicker" formControlName="dateDeces" />
+      <button type="button" class="btn btn-secondary" (click)="dateDecesDp.toggle()">
+        <fa-icon icon="calendar-alt"></fa-icon>
+      </button>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDeces">Age Deces</label>
-          <input type="number" class="form-control" name="ageDeces" id="field_ageDeces" data-cy="ageDeces" formControlName="ageDeces" />
-        </div>
+  <div class="mb-3">
+    <label class="form-label" for="field_ageDeces">Âge au Décès</label>
+    <input type="number" class="form-control" name="ageDeces" id="field_ageDeces" data-cy="ageDeces" formControlName="ageDeces" />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_causeDeces">Cause Deces</label>
-          <select class="form-control" name="causeDeces" formControlName="causeDeces" id="field_causeDeces" data-cy="causeDeces">
-            <option [ngValue]="null"></option>
-            @for (causeDeces of causeDecesValues; track $index) {
-              <option [value]="causeDeces">
-                {{
-                  {
-                    null: '',
-                    HEMORRAGIE_SNC: 'HEMORRAGIE_SNC',
-                    HEMORRAGIE_AUTRE: 'HEMORRAGIE_AUTRE',
-                    HIV: 'HIV',
-                    INFECTION_AUTRE: 'INFECTION_AUTRE',
-                    THROMBOEMBOLIQUE: 'THROMBOEMBOLIQUE',
-                    CANCER: 'CANCER',
-                    COVID19: 'COVID19',
-                    INCONNUE: 'INCONNUE',
-                    AUTRE: 'AUTRE',
-                  }[causeDeces]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+  <!-- Causes du Décès -->
+  <div class="mb-3 d-flex flex-wrap gap-4">
+    <label class="form-label">Causes du Décès :</label>
+
+    @for (cause of [
+      { key: 'causeDecesSNC', label: 'SNC' },
+      { key: 'causeDecesAutreHemorragie', label: 'Autre Hémorragie' },
+      { key: 'causeDecesVIH', label: 'VIH' },
+      { key: 'causeDecesAutreInfection', label: 'Autre Infection' },
+      { key: 'causeDecesThromboembolique', label: 'Thromboembolique' },
+      { key: 'causeDecesCancer', label: 'Cancer' },
+      { key: 'causeDecesCovid19', label: 'Covid-19' },
+      { key: 'causeDecesInconnue', label: 'Inconnue' }
+    ]; track cause.key) {
+      <div class="form-check d-flex align-items-center">
+        <input type="checkbox" class="form-check-input me-2" [id]="'field_' + cause.key" [formControlName]="cause.key" />
+        <label class="form-check-label mb-0" [for]="'field_' + cause.key">{{ cause.label }}</label>
       </div>
+    }
+  </div>
+
+  <!-- Autre cause -->
+  <div class="mb-3">
+    <label class="form-label" for="field_autreCauseDeces">Autre Cause Décès</label>
+    <input type="text" class="form-control" name="autreCauseDeces" id="field_autreCauseDeces" data-cy="autreCauseDeces" formControlName="autreCauseDeces" />
+  </div>
+}
+
 
                           <!-- Champs pour les sections  -->
               </div>
