@@ -1269,85 +1269,101 @@
 @let resultatAgregometrieRef = editForm.get('resultatAgregometrie')!;
 @let aggregometrieRef = editForm.get('aggregometriePlaquettaire')!;
 
-<div class="mb-3">
-  <label class="form-label" for="field_aggregometriePlaquettaire">Aggregometrie Plaquettaire</label>
-  <select
-    class="form-control"
-    name="aggregometriePlaquettaire"
-    formControlName="aggregometriePlaquettaire"
-    id="field_aggregometriePlaquettaire"
-    data-cy="aggregometriePlaquettaire"
-  >
-    <option [ngValue]="null"></option>
-    @for (ouiNonNP of ouiNonNPValues; track $index) {
-      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-    }
-  </select>
-</div>
+@let aggregometrieRef = editForm.get('aggregometriePlaquettaire')!;
+@let resultatAgregometrieRef = editForm.get('resultatAgregometrie')!;
 
-@if (aggregometrieRef.value === 'OUI') {
-  <div class="mb-3">
-    <label class="form-label" for="field_resultatAgregometrie">Résultat Agrégométrie</label>
-    <input
-      type="text"
-      class="form-control"
-      name="resultatAgregometrie"
-      id="field_resultatAgregometrie"
-      data-cy="resultatAgregometrie"
-      formControlName="resultatAgregometrie"
-    />
-    @if (resultatAgregometrieRef.invalid && (resultatAgregometrieRef.dirty || resultatAgregometrieRef.touched)) {
-      <div>
-        @if (resultatAgregometrieRef.errors?.maxlength) {
-          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+<div class="mb-3">
+  <label class="form-label d-block">Agrégométrie Plaquettaire et Résultat</label>
+  <div class="row">
+    <!-- Champ Select -->
+    <div class="col-md-6">
+      <select
+        class="form-control"
+        name="aggregometriePlaquettaire"
+        formControlName="aggregometriePlaquettaire"
+        id="field_aggregometriePlaquettaire"
+        data-cy="aggregometriePlaquettaire"
+      >
+        <option [ngValue]="null"></option>
+        @for (ouiNonNP of ouiNonNPValues; track $index) {
+          <option [value]="ouiNonNP">
+            {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <!-- Champ Résultat, visible uniquement si "OUI" -->
+    @if (aggregometrieRef.value === 'OUI') {
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          name="resultatAgregometrie"
+          id="field_resultatAgregometrie"
+          data-cy="resultatAgregometrie"
+          formControlName="resultatAgregometrie"
+        />
+        @if (resultatAgregometrieRef.invalid && (resultatAgregometrieRef.dirty || resultatAgregometrieRef.touched)) {
+          <div>
+            @if (resultatAgregometrieRef.errors?.maxlength) {
+              <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+            }
+          </div>
         }
       </div>
     }
   </div>
-}
+</div>
+
 
 
 @let cmfRef = editForm.get('cmf')!;
 @let resultatCmfRef = editForm.get('resultatCmf')!;
 
 <div class="mb-3">
-  <label class="form-label" for="field_cmf">CMF</label>
-  <select
-    class="form-control"
-    name="cmf"
-    formControlName="cmf"
-    id="field_cmf"
-    data-cy="cmf"
-  >
-    <option [ngValue]="null"></option>
-    @for (ouiNonNP of ouiNonNPValues; track $index) {
-      <option [value]="ouiNonNP">
-        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
-      </option>
-    }
-  </select>
-</div>
+  <label class="form-label d-block">CMF et Résultat</label>
+  <div class="row">
+    <!-- Champ select CMF -->
+    <div class="col-md-6">
+      <select
+        class="form-control"
+        name="cmf"
+        formControlName="cmf"
+        id="field_cmf"
+        data-cy="cmf"
+      >
+        <option [ngValue]="null"></option>
+        @for (ouiNonNP of ouiNonNPValues; track $index) {
+          <option [value]="ouiNonNP">
+            {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+          </option>
+        }
+      </select>
+    </div>
 
-@if (cmfRef.value === 'OUI') {
-  <div class="mb-3">
-    <label class="form-label" for="field_resultatCmf">Résultat CMF</label>
-    <input
-      type="text"
-      class="form-control"
-      name="resultatCmf"
-      id="field_resultatCmf"
-      data-cy="resultatCmf"
-      formControlName="resultatCmf"
-    />
-    @if (resultatCmfRef.invalid && (resultatCmfRef.dirty || resultatCmfRef.touched)) {
-      <div>
-        @if (resultatCmfRef.errors?.maxlength) {
-          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+    <!-- Champ résultat CMF affiché si "OUI" -->
+    @if (cmfRef.value === 'OUI') {
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          name="resultatCmf"
+          id="field_resultatCmf"
+          data-cy="resultatCmf"
+          formControlName="resultatCmf"
+        />
+        @if (resultatCmfRef.invalid && (resultatCmfRef.dirty || resultatCmfRef.touched)) {
+          <div>
+            @if (resultatCmfRef.errors?.maxlength) {
+              <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+            }
+          </div>
         }
       </div>
     }
   </div>
-}
+</div>
 
 
         <div class="mb-3">
@@ -1374,41 +1390,54 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_etudeGenetique">Etude Genetique</label>
-          <select
-            class="form-control"
-            name="etudeGenetique"
-            formControlName="etudeGenetique"
-            id="field_etudeGenetique"
-            data-cy="etudeGenetique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@let etudeGenetiqueRef = editForm.get('etudeGenetique')!;
+@let resultatEtudeGenetiqueRef = editForm.get('resultatEtudeGenetique')!;
 
-        @let resultatEtudeGenetiqueRef = editForm.get('resultatEtudeGenetique')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_resultatEtudeGenetique">Resultat Etude Genetique</label>
-          <input
-            type="text"
-            class="form-control"
-            name="resultatEtudeGenetique"
-            id="field_resultatEtudeGenetique"
-            data-cy="resultatEtudeGenetique"
-            formControlName="resultatEtudeGenetique"
-          />
-          @if (resultatEtudeGenetiqueRef.invalid && (resultatEtudeGenetiqueRef.dirty || resultatEtudeGenetiqueRef.touched)) {
-            <div>
-              @if (editForm.get('resultatEtudeGenetique')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<div class="mb-3">
+  <label class="form-label d-block">Étude Génétique et Résultat</label>
+  <div class="row">
+    <!-- Select Étude Génétique -->
+    <div class="col-md-6">
+      <select
+        class="form-control"
+        name="etudeGenetique"
+        formControlName="etudeGenetique"
+        id="field_etudeGenetique"
+        data-cy="etudeGenetique"
+      >
+        <option [ngValue]="null"></option>
+        @for (ouiNonNP of ouiNonNPValues; track $index) {
+          <option [value]="ouiNonNP">
+            {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <!-- Champ résultat, affiché uniquement si OUI -->
+    @if (etudeGenetiqueRef.value === 'OUI') {
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          name="resultatEtudeGenetique"
+          id="field_resultatEtudeGenetique"
+          data-cy="resultatEtudeGenetique"
+          formControlName="resultatEtudeGenetique"
+        />
+        @if (resultatEtudeGenetiqueRef.invalid && (resultatEtudeGenetiqueRef.dirty || resultatEtudeGenetiqueRef.touched)) {
+          <div>
+            @if (resultatEtudeGenetiqueRef.errors?.maxlength) {
+              <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+      
 <div class="mb-3">
   <label class="form-label fw-bold">3. Diagnostic retenu :</label>
 </div>
