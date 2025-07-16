@@ -1056,137 +1056,91 @@
   </div>
 </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeEcchymose">Symptome Ecchymose</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeEcchymose"
-            id="field_symptomeEcchymose"
-            data-cy="symptomeEcchymose"
-            formControlName="symptomeEcchymose"
-          />
-        </div>
+<!-- Titre -->
+<label class="form-label fw-bold d-block mb-2">Symptômes</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeEpistaxis">Symptome Epistaxis</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeEpistaxis"
-            id="field_symptomeEpistaxis"
-            data-cy="symptomeEpistaxis"
-            formControlName="symptomeEpistaxis"
-          />
-        </div>
+<!-- Grille de 3 colonnes -->
+<div class="d-flex flex-wrap gap-3 mb-3">
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeGingivorragies">Symptome Gingivorragies</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeGingivorragies"
-            id="field_symptomeGingivorragies"
-            data-cy="symptomeGingivorragies"
-            formControlName="symptomeGingivorragies"
-          />
-        </div>
+  <!-- Ecchymose -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeEcchymose" formControlName="symptomeEcchymose" />
+    <label class="form-check-label mb-0" for="field_symptomeEcchymose">Ecchymose</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeMetrorragies">Symptome Metrorragies</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeMetrorragies"
-            id="field_symptomeMetrorragies"
-            data-cy="symptomeMetrorragies"
-            formControlName="symptomeMetrorragies"
-          />
-        </div>
+  <!-- Epistaxis -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeEpistaxis" formControlName="symptomeEpistaxis" />
+    <label class="form-check-label mb-0" for="field_symptomeEpistaxis">Epistaxis</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeMelena">Symptome Melena</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeMelena"
-            id="field_symptomeMelena"
-            data-cy="symptomeMelena"
-            formControlName="symptomeMelena"
-          />
-        </div>
+  <!-- Gingivorragies -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeGingivorragies" formControlName="symptomeGingivorragies" />
+    <label class="form-check-label mb-0" for="field_symptomeGingivorragies">Gingivorragies</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeHemoptysie">Symptome Hemoptysie</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeHemoptysie"
-            id="field_symptomeHemoptysie"
-            data-cy="symptomeHemoptysie"
-            formControlName="symptomeHemoptysie"
-          />
-        </div>
+  <!-- Metrorragies -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeMetrorragies" formControlName="symptomeMetrorragies" />
+    <label class="form-check-label mb-0" for="field_symptomeMetrorragies">Metrorragies</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomePostAmygdalectomie">Symptome Post Amygdalectomie</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomePostAmygdalectomie"
-            id="field_symptomePostAmygdalectomie"
-            data-cy="symptomePostAmygdalectomie"
-            formControlName="symptomePostAmygdalectomie"
-          />
-        </div>
+  <!-- Melena -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeMelena" formControlName="symptomeMelena" />
+    <label class="form-check-label mb-0" for="field_symptomeMelena">Melena</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomePostAvulsionDentaire">Symptome Post Avulsion Dentaire</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomePostAvulsionDentaire"
-            id="field_symptomePostAvulsionDentaire"
-            data-cy="symptomePostAvulsionDentaire"
-            formControlName="symptomePostAvulsionDentaire"
-          />
-        </div>
+  <!-- Hemoptysie -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeHemoptysie" formControlName="symptomeHemoptysie" />
+    <label class="form-check-label mb-0" for="field_symptomeHemoptysie">Hemoptysie</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeChuteCordon">Symptome Chute Cordon</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeChuteCordon"
-            id="field_symptomeChuteCordon"
-            data-cy="symptomeChuteCordon"
-            formControlName="symptomeChuteCordon"
-          />
-        </div>
+  <!-- Post Amygdalectomie -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeHemorragiePostAmygdalectomie" formControlName="symptomeHemorragiePostAmygdalectomie" />
+    <label class="form-check-label mb-0" for="field_symptomeHemorragiePostAmygdalectomie">Hémorragie post-amygdalectomie</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeAutre">Symptome Autre</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="symptomeAutre"
-            id="field_symptomeAutre"
-            data-cy="symptomeAutre"
-            formControlName="symptomeAutre"
-          />
-        </div>
+  <!-- Post Avulsion Dentaire -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeHemorragiePostAvulsionDentaire" formControlName="symptomeHemorragiePostAvulsionDentaire" />
+    <label class="form-check-label mb-0" for="field_symptomeHemorragiePostAvulsionDentaire">Hémorragie post-avulsion dentaire</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_symptomeAutreDescription">Symptome Autre Description</label>
-          <input
-            type="text"
-            class="form-control"
-            name="symptomeAutreDescription"
-            id="field_symptomeAutreDescription"
-            data-cy="symptomeAutreDescription"
-            formControlName="symptomeAutreDescription"
-          />
-        </div>
+  <!-- Chute Cordon -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeHemorragieChuteCordon" formControlName="symptomeHemorragieChuteCordon" />
+    <label class="form-check-label mb-0" for="field_symptomeHemorragieChuteCordon">Hémorragie chute cordon</label>
+  </div>
+
+  <!-- Autre -->
+  <div class="form-check d-flex align-items-center w-30">
+    <input type="checkbox" class="form-check me-2" id="field_symptomeAutre" formControlName="symptomeAutre" />
+    <label class="form-check-label mb-0" for="field_symptomeAutre">Autre</label>
+  </div>
+</div>
+
+<!-- Description "Autre" conditionnelle -->
+@let autreChecked = editForm.get('symptomeAutre')?.value;
+@if (autreChecked) {
+  <div class="mb-3">
+    <label class="form-label" for="field_symptomeAutreDescription">Préciser</label>
+    <input
+      type="text"
+      class="form-control"
+      name="symptomeAutreDescription"
+      id="field_symptomeAutreDescription"
+      data-cy="symptomeAutreDescription"
+      formControlName="symptomeAutreDescription"
+    />
+  </div>
+}
+
+
+      
 
         <div class="mb-3">
           <label class="form-label" for="field_datePremiereConsultation">Date Premiere Consultation</label>
@@ -1207,77 +1161,130 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremiereConsultationJours">Age Premiere Consultation Jours</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremiereConsultationJours"
-            id="field_agePremiereConsultationJours"
-            data-cy="agePremiereConsultationJours"
-            formControlName="agePremiereConsultationJours"
-          />
-        </div>
+<!-- Label principal -->
+<div class="mb-2">
+  <label class="form-label fw-bold">Âge première consultation</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremiereConsultationMois">Age Premiere Consultation Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremiereConsultationMois"
-            id="field_agePremiereConsultationMois"
-            data-cy="agePremiereConsultationMois"
-            formControlName="agePremiereConsultationMois"
-          />
-        </div>
+<!-- Les 3 champs sur la même ligne -->
+<div class="mb-3 d-flex flex-wrap gap-3 align-items-end">
+  <div class="flex-grow-1">
+    <label class="form-label" for="field_agePremiereConsultationJours">Jours</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremiereConsultationJours"
+      id="field_agePremiereConsultationJours"
+      data-cy="agePremiereConsultationJours"
+      formControlName="agePremiereConsultationJours"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremiereConsultationAnnees">Age Premiere Consultation Annees</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremiereConsultationAnnees"
-            id="field_agePremiereConsultationAnnees"
-            data-cy="agePremiereConsultationAnnees"
-            formControlName="agePremiereConsultationAnnees"
-          />
-        </div>
+  <div class="flex-grow-1">
+    <label class="form-label" for="field_agePremiereConsultationMois">Mois</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremiereConsultationMois"
+      id="field_agePremiereConsultationMois"
+      data-cy="agePremiereConsultationMois"
+      formControlName="agePremiereConsultationMois"
+    />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticJours">Age Diagnostic Jours</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticJours"
-            id="field_ageDiagnosticJours"
-            data-cy="ageDiagnosticJours"
-            formControlName="ageDiagnosticJours"
-          />
-        </div>
+  <div class="flex-grow-1">
+    <label class="form-label" for="field_agePremiereConsultationAnnees">Années</label>
+    <input
+      type="number"
+      class="form-control"
+      name="agePremiereConsultationAnnees"
+      id="field_agePremiereConsultationAnnees"
+      data-cy="agePremiereConsultationAnnees"
+      formControlName="agePremiereConsultationAnnees"
+    />
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticMois">Age Diagnostic Mois</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticMois"
-            id="field_ageDiagnosticMois"
-            data-cy="ageDiagnosticMois"
-            formControlName="ageDiagnosticMois"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ageDiagnosticAnnees">Age Diagnostic Annees</label>
-          <input
-            type="number"
-            class="form-control"
-            name="ageDiagnosticAnnees"
-            id="field_ageDiagnosticAnnees"
-            data-cy="ageDiagnosticAnnees"
-            formControlName="ageDiagnosticAnnees"
-          />
-        </div>
+<!-- Label principal -->
+<div class="mb-2">
+  <label class="form-label fw-bold">Âge diagnostic</label>
+</div>
+
+<!-- Les 3 champs sur une seule ligne -->
+<div class="mb-3 d-flex flex-wrap gap-3 align-items-end">
+  <div class="flex-grow-1">
+    <label class="form-label" for="field_ageDiagnosticJours">Jours</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageDiagnosticJours"
+      id="field_ageDiagnosticJours"
+      data-cy="ageDiagnosticJours"
+      formControlName="ageDiagnosticJours"
+    />
+  </div>
+
+  <div class="flex-grow-1">
+    <label class="form-label" for="field_ageDiagnosticMois">Mois</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageDiagnosticMois"
+      id="field_ageDiagnosticMois"
+      data-cy="ageDiagnosticMois"
+      formControlName="ageDiagnosticMois"
+    />
+  </div>
+
+  <div class="flex-grow-1">
+    <label class="form-label" for="field_ageDiagnosticAnnees">Années</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ageDiagnosticAnnees"
+      id="field_ageDiagnosticAnnees"
+      data-cy="ageDiagnosticAnnees"
+      formControlName="ageDiagnosticAnnees"
+    />
+  </div>
+</div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 4: Biologie au moment du diagnostic -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingBiologie">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseBiologie"
+      aria-expanded="false"
+      aria-controls="collapseBiologie"
+    >
+      Biologie au moment du diagnostic
+    </button>
+  </h2>
+  <div
+    id="collapseBiologie"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingBiologie"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section Biologie -->
+      
+
+      
+<div class="mb-2">
+  <label class="fw-bold d-block">Hémogramme :</label>
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_hb">Hb</label>
