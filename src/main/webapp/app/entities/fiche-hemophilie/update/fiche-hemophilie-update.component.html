@@ -1092,6 +1092,18 @@
   </div>
 </div>
 
+              <div class="mb-3">
+          <label class="form-label" for="field_ts">TS / PFA</label>
+          <select class="form-control" name="ts" formControlName="ts" id="field_ts" data-cy="ts">
+            <option [ngValue]="null"></option>
+            @for (testStatus of testStatusValues; track $index) {
+              <option [value]="testStatus">
+                {{ { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[testStatus] }}
+              </option>
+            }
+          </select>
+        </div>
+
 
       <div class="mb-2">
   <label class="fw-bold d-block">Bilan d’hémostase :</label>
@@ -1129,7 +1141,7 @@
 <div class="row mb-3">
   <!-- TCA (M/T) -->
   <div class="col-md-6">
-    <label class="form-label" for="field_tcaMT">TCA (M/T) (sec)</label>
+    <label class="form-label" for="field_tcaMT">TCA (sec)</label>
     <input
       type="number"
       class="form-control"
@@ -1154,8 +1166,8 @@
   </div>
 </div>
 
-<div class="row mb-3">
-  <!-- TCA (M+T) 2h -->
+<!--div class="row mb-3">
+  
   <div class="col-md-6">
     <label class="form-label" for="field_tcaMT2h">TCA (M+T) 2h (sec)</label>
     <input
@@ -1168,7 +1180,7 @@
     />
   </div>
 
-  <!-- TCA (Témoin) 2h -->
+
   <div class="col-md-6">
     <label class="form-label" for="field_tcaTemoin2h">TCA (Témoin) 2h (sec)</label>
     <input
@@ -1180,22 +1192,12 @@
       formControlName="tcaTemoin2h"
     />
   </div>
-</div>
+    </div-->
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ts">TS</label>
-          <select class="form-control" name="ts" formControlName="ts" id="field_ts" data-cy="ts">
-            <option [ngValue]="null"></option>
-            @for (testStatus of testStatusValues; track $index) {
-              <option [value]="testStatus">
-                {{ { null: '', FAIT: 'FAIT', NON_FAIT: 'NON_FAIT', NORMAL: 'NORMAL', ALLONGE: 'ALLONGE' }[testStatus] }}
-              </option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
+
+        <!--div class="mb-3">
           <label class="form-label" for="field_pfa">PFA</label>
           <select class="form-control" name="pfa" formControlName="pfa" id="field_pfa" data-cy="pfa">
             <option [ngValue]="null"></option>
@@ -1205,7 +1207,7 @@
               </option>
             }
           </select>
-        </div>
+    </div-->
 
         <div class="mb-3">
           <label class="form-label" for="field_dosageFacteurVIII">Dosage Facteur VIII (%)</label>
