@@ -1166,7 +1166,7 @@
 
       
         <div class="mb-3">
-          <label class="form-label" for="field_gb">Gb</label>
+          <label class="form-label" for="field_gb">GB</label>
           <input type="number" class="form-control" name="gb" id="field_gb" data-cy="gb" formControlName="gb" />
         </div>
 
@@ -1176,12 +1176,12 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_vgm">Vgm</label>
+          <label class="form-label" for="field_vgm">VGM</label>
           <input type="number" class="form-control" name="vgm" id="field_vgm" data-cy="vgm" formControlName="vgm" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tcmh">Tcmh</label>
+          <label class="form-label" for="field_tcmh">TCMH</label>
           <input type="number" class="form-control" name="tcmh" id="field_tcmh" data-cy="tcmh" formControlName="tcmh" />
         </div>
 
@@ -1218,17 +1218,17 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_ts">Ts</label>
+          <label class="form-label" for="field_ts">TS</label>
           <input type="number" class="form-control" name="ts" id="field_ts" data-cy="ts" formControlName="ts" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_toPfa">To Pfa</label>
+          <label class="form-label" for="field_toPfa">TO PFA</label>
           <input type="number" class="form-control" name="toPfa" id="field_toPfa" data-cy="toPfa" formControlName="toPfa" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_toPfa100ColEpi">To Pfa 100 Col Epi</label>
+          <label class="form-label" for="field_toPfa100ColEpi">TO (PFA 100) Col/ EPI</label>
           <input
             type="number"
             class="form-control"
@@ -1240,7 +1240,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_toPfa100ColAdp">To Pfa 100 Col Adp</label>
+          <label class="form-label" for="field_toPfa100ColAdp">TO (PFA 100) Col/ADP</label>
           <input
             type="number"
             class="form-control"
@@ -1252,12 +1252,12 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp</label>
+          <label class="form-label" for="field_tp">TP</label>
           <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_tca">Tca</label>
+          <label class="form-label" for="field_tca">TCA</label>
           <input type="number" class="form-control" name="tca" id="field_tca" data-cy="tca" formControlName="tca" />
         </div>
 
@@ -1266,71 +1266,89 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_aggregometriePlaquettaire">Aggregometrie Plaquettaire</label>
-          <select
-            class="form-control"
-            name="aggregometriePlaquettaire"
-            formControlName="aggregometriePlaquettaire"
-            id="field_aggregometriePlaquettaire"
-            data-cy="aggregometriePlaquettaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@let resultatAgregometrieRef = editForm.get('resultatAgregometrie')!;
+@let aggregometrieRef = editForm.get('aggregometriePlaquettaire')!;
 
-        @let resultatAgregometrieRef = editForm.get('resultatAgregometrie')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_resultatAgregometrie">Resultat Agregometrie</label>
-          <input
-            type="text"
-            class="form-control"
-            name="resultatAgregometrie"
-            id="field_resultatAgregometrie"
-            data-cy="resultatAgregometrie"
-            formControlName="resultatAgregometrie"
-          />
-          @if (resultatAgregometrieRef.invalid && (resultatAgregometrieRef.dirty || resultatAgregometrieRef.touched)) {
-            <div>
-              @if (editForm.get('resultatAgregometrie')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<div class="mb-3">
+  <label class="form-label" for="field_aggregometriePlaquettaire">Aggregometrie Plaquettaire</label>
+  <select
+    class="form-control"
+    name="aggregometriePlaquettaire"
+    formControlName="aggregometriePlaquettaire"
+    id="field_aggregometriePlaquettaire"
+    data-cy="aggregometriePlaquettaire"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_cmf">Cmf</label>
-          <select class="form-control" name="cmf" formControlName="cmf" id="field_cmf" data-cy="cmf">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@if (aggregometrieRef.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_resultatAgregometrie">Résultat Agrégométrie</label>
+    <input
+      type="text"
+      class="form-control"
+      name="resultatAgregometrie"
+      id="field_resultatAgregometrie"
+      data-cy="resultatAgregometrie"
+      formControlName="resultatAgregometrie"
+    />
+    @if (resultatAgregometrieRef.invalid && (resultatAgregometrieRef.dirty || resultatAgregometrieRef.touched)) {
+      <div>
+        @if (resultatAgregometrieRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
 
-        @let resultatCmfRef = editForm.get('resultatCmf')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_resultatCmf">Resultat Cmf</label>
-          <input
-            type="text"
-            class="form-control"
-            name="resultatCmf"
-            id="field_resultatCmf"
-            data-cy="resultatCmf"
-            formControlName="resultatCmf"
-          />
-          @if (resultatCmfRef.invalid && (resultatCmfRef.dirty || resultatCmfRef.touched)) {
-            <div>
-              @if (editForm.get('resultatCmf')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+
+@let cmfRef = editForm.get('cmf')!;
+@let resultatCmfRef = editForm.get('resultatCmf')!;
+
+<div class="mb-3">
+  <label class="form-label" for="field_cmf">CMF</label>
+  <select
+    class="form-control"
+    name="cmf"
+    formControlName="cmf"
+    id="field_cmf"
+    data-cy="cmf"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
+
+@if (cmfRef.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_resultatCmf">Résultat CMF</label>
+    <input
+      type="text"
+      class="form-control"
+      name="resultatCmf"
+      id="field_resultatCmf"
+      data-cy="resultatCmf"
+      formControlName="resultatCmf"
+    />
+    @if (resultatCmfRef.invalid && (resultatCmfRef.dirty || resultatCmfRef.touched)) {
+      <div>
+        @if (resultatCmfRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_dosageFvwAg">Dosage Fvw Ag</label>
