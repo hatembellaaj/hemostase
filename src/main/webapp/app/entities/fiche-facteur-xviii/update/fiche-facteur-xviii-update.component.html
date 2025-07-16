@@ -1286,74 +1286,158 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hb">Hb</label>
-          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
-        </div>
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="field_hb">Hb (g/dl)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hb"
+        id="field_hb"
+        data-cy="hb"
+        formControlName="hb"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_ht">Ht  (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="ht"
+        id="field_ht"
+        data-cy="ht"
+        formControlName="ht"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_plaquettes">Plaquettes (/mm3) </label>
+      <input
+        type="number"
+        class="form-control"
+        name="plaquettes"
+        id="field_plaquettes"
+        data-cy="plaquettes"
+        formControlName="plaquettes"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_ht">Ht</label>
-          <input type="number" class="form-control" name="ht" id="field_ht" data-cy="ht" formControlName="ht" />
-        </div>
+            <div class="mb-2">
+  <label class="fw-bold d-block">Bilan d’hémostase :</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_plaquettes">Plaquettes</label>
-          <input
-            type="number"
-            class="form-control"
-            name="plaquettes"
-            id="field_plaquettes"
-            data-cy="plaquettes"
-            formControlName="plaquettes"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label fw-bold">TO (PFA 200) :</label>
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_pfaColEpi">Col / Epi(s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="pfaColEpi"
+        id="field_pfaColEpi"
+        data-cy="pfaColEpi"
+        formControlName="pfaColEpi"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_colEpi">Col Epi</label>
-          <input type="number" class="form-control" name="colEpi" id="field_colEpi" data-cy="colEpi" formControlName="colEpi" />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_pfaColADP">Col / ADP(s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="pfaColADP"
+        id="field_pfaColADP"
+        data-cy="pfaColADP"
+        formControlName="pfaColADP"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_colAdp">Col Adp</label>
-          <input type="number" class="form-control" name="colAdp" id="field_colAdp" data-cy="colAdp" formControlName="colAdp" />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp</label>
-          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
-        </div>
+<div class="mb-3">
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tp">Tp (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tp"
+        id="field_tp"
+        data-cy="tp"
+        formControlName="tp"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tpMPlusT">Tp M Plus T</label>
-          <input type="number" class="form-control" name="tpMPlusT" id="field_tpMPlusT" data-cy="tpMPlusT" formControlName="tpMPlusT" />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tpMPlusT">Tp (M + T) (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tpMPlusT"
+        id="field_tpMPlusT"
+        data-cy="tpMPlusT"
+        formControlName="tpMPlusT"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_fibrinogene">Fibrinogene</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fibrinogene"
-            id="field_fibrinogene"
-            data-cy="fibrinogene"
-            formControlName="fibrinogene"
-          />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_fibrinogene">Fibrinogène (g/l)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="fibrinogene"
+        id="field_fibrinogene"
+        data-cy="fibrinogene"
+        formControlName="fibrinogene"
+      />
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT">Tca MT</label>
-          <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMPlusT">Tca M Plus T</label>
-          <input type="number" class="form-control" name="tcaMPlusT" id="field_tcaMPlusT" data-cy="tcaMPlusT" formControlName="tcaMPlusT" />
-        </div>
+<div class="mb-3">
+  <div class="d-flex flex-wrap gap-3">
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tcaMT">TCA (M/T) (s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tcaMT"
+        id="field_tcaMT"
+        data-cy="tcaMT"
+        formControlName="tcaMT"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaTemoin">Tca Temoin</label>
-          <input type="number" class="form-control" name="tcaTemoin" id="field_tcaTemoin" data-cy="tcaTemoin" formControlName="tcaTemoin" />
-        </div>
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tcaMPlusT">TCA (M+T) (s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tcaMPlusT"
+        id="field_tcaMPlusT"
+        data-cy="tcaMPlusT"
+        formControlName="tcaMPlusT"
+      />
+    </div>
+
+    <div class="flex-grow-1">
+      <label class="form-label" for="field_tcaTemoin">TCA (Témoin) (s)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="tcaTemoin"
+        id="field_tcaTemoin"
+        data-cy="tcaTemoin"
+        formControlName="tcaTemoin"
+      />
+    </div>
+  </div>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_facteurDeficitaireAutre">Facteur Deficitaire Autre</label>
