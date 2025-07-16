@@ -1439,61 +1439,74 @@
   <label class="form-label fw-bold">3. Diagnostic retenu :</label>
 </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_thrombasthenieGlanzmann">Thrombasthenie Glanzmann</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="thrombasthenieGlanzmann"
-            id="field_thrombasthenieGlanzmann"
-            data-cy="thrombasthenieGlanzmann"
-            formControlName="thrombasthenieGlanzmann"
-          />
-        </div>
+@let autreThrombopathieRef = editForm.get('autreThrombopathie')!;
+@let autreThrombopathieDetailsRef = editForm.get('autreThrombopathieDetails')!;
 
-        <div class="mb-3">
-          <label class="form-label" for="field_maladieBernardSoulier">Maladie Bernard Soulier</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="maladieBernardSoulier"
-            id="field_maladieBernardSoulier"
-            data-cy="maladieBernardSoulier"
-            formControlName="maladieBernardSoulier"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label">Thrombopathies</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_autreThrombopathie">Autre Thrombopathie</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="autreThrombopathie"
-            id="field_autreThrombopathie"
-            data-cy="autreThrombopathie"
-            formControlName="autreThrombopathie"
-          />
-        </div>
+  <!-- Thrombasthenie Glanzmann -->
+  <div class="form-check d-flex align-items-center mb-2">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="thrombasthenieGlanzmann"
+      id="field_thrombasthenieGlanzmann"
+      data-cy="thrombasthenieGlanzmann"
+      formControlName="thrombasthenieGlanzmann"
+    />
+    <label class="form-check-label" for="field_thrombasthenieGlanzmann">Thrombasthénie de Glanzmann</label>
+  </div>
 
-        @let autreThrombopathieDetailsRef = editForm.get('autreThrombopathieDetails')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_autreThrombopathieDetails">Autre Thrombopathie Details</label>
-          <input
-            type="text"
-            class="form-control"
-            name="autreThrombopathieDetails"
-            id="field_autreThrombopathieDetails"
-            data-cy="autreThrombopathieDetails"
-            formControlName="autreThrombopathieDetails"
-          />
-          @if (autreThrombopathieDetailsRef.invalid && (autreThrombopathieDetailsRef.dirty || autreThrombopathieDetailsRef.touched)) {
-            <div>
-              @if (editForm.get('autreThrombopathieDetails')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
+  <!-- Maladie Bernard Soulier -->
+  <div class="form-check d-flex align-items-center mb-2">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="maladieBernardSoulier"
+      id="field_maladieBernardSoulier"
+      data-cy="maladieBernardSoulier"
+      formControlName="maladieBernardSoulier"
+    />
+    <label class="form-check-label" for="field_maladieBernardSoulier">Maladie de Bernard-Soulier</label>
+  </div>
+
+  <!-- Autre Thrombopathie -->
+  <div class="form-check d-flex align-items-center mb-2">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="autreThrombopathie"
+      id="field_autreThrombopathie"
+      data-cy="autreThrombopathie"
+      formControlName="autreThrombopathie"
+    />
+    <label class="form-check-label" for="field_autreThrombopathie">Autre Thrombopathie</label>
+  </div>
+
+  <!-- Champ texte conditionnel -->
+  @if (autreThrombopathieRef.value === true) {
+    <div class="mt-2">
+      <label class="form-label" for="field_autreThrombopathieDetails">Détails Autre Thrombopathie</label>
+      <input
+        type="text"
+        class="form-control"
+        name="autreThrombopathieDetails"
+        id="field_autreThrombopathieDetails"
+        data-cy="autreThrombopathieDetails"
+        formControlName="autreThrombopathieDetails"
+      />
+      @if (autreThrombopathieDetailsRef.invalid && (autreThrombopathieDetailsRef.dirty || autreThrombopathieDetailsRef.touched)) {
+        <div>
+          @if (autreThrombopathieDetailsRef.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
           }
         </div>
+      }
+    </div>
+  }
+</div>
+
 
 
 
