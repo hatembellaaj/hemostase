@@ -1297,69 +1297,66 @@
           }
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_explorationMoleculaire">Exploration Moleculaire</label>
-          <select
-            class="form-control"
-            name="explorationMoleculaire"
-            formControlName="explorationMoleculaire"
-            id="field_explorationMoleculaire"
-            data-cy="explorationMoleculaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Exploration Moléculaire -->
+<div class="mb-3">
+  <label class="form-label" for="field_explorationMoleculaire">Exploration Moléculaire</label>
+  <select
+    class="form-control"
+    name="explorationMoleculaire"
+    formControlName="explorationMoleculaire"
+    id="field_explorationMoleculaire"
+    data-cy="explorationMoleculaire"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_inversionIntron22">Inversion Intron 22</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="inversionIntron22"
-            id="field_inversionIntron22"
-            data-cy="inversionIntron22"
-            formControlName="inversionIntron22"
-          />
-        </div>
+<!-- Champs conditionnels si "OUI" -->
+@if (editForm.get('explorationMoleculaire')?.value === 'OUI') {
+  <!-- Inversion Intron 22 : checkbox avant le label -->
+  <div class="mb-3 d-flex align-items-center">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      name="inversionIntron22"
+      id="field_inversionIntron22"
+      data-cy="inversionIntron22"
+      formControlName="inversionIntron22"
+    />
+    <label class="form-label ms-2 mb-0" for="field_inversionIntron22">
+      Inversion Intron 22
+    </label>
+  </div>
 
-        @let autreExplorationMoleculaireRef = editForm.get('autreExplorationMoleculaire')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_autreExplorationMoleculaire">Autre Exploration Moleculaire</label>
-          <input
-            type="text"
-            class="form-control"
-            name="autreExplorationMoleculaire"
-            id="field_autreExplorationMoleculaire"
-            data-cy="autreExplorationMoleculaire"
-            formControlName="autreExplorationMoleculaire"
-          />
-          @if (autreExplorationMoleculaireRef.invalid && (autreExplorationMoleculaireRef.dirty || autreExplorationMoleculaireRef.touched)) {
-            <div>
-              @if (editForm.get('autreExplorationMoleculaire')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+  <!-- Autre Exploration Moléculaire -->
+  @let autreExplorationMoleculaireRef = editForm.get('autreExplorationMoleculaire')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_autreExplorationMoleculaire">Autre Exploration Moléculaire</label>
+    <input
+      type="text"
+      class="form-control"
+      name="autreExplorationMoleculaire"
+      id="field_autreExplorationMoleculaire"
+      data-cy="autreExplorationMoleculaire"
+      formControlName="autreExplorationMoleculaire"
+    />
+    @if (autreExplorationMoleculaireRef.invalid && (autreExplorationMoleculaireRef.dirty || autreExplorationMoleculaireRef.touched)) {
+      <div>
+        @if (autreExplorationMoleculaireRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseMC">Hemarthrose MC</label>
-          <select
-            class="form-control"
-            name="hemarthroseMC"
-            formControlName="hemarthroseMC"
-            id="field_hemarthroseMC"
-            data-cy="hemarthroseMC"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+
+
 
     </div>
   </div>
@@ -1388,6 +1385,21 @@
     <div class="accordion-body">
 
 
+              <div class="mb-3">
+          <label class="form-label" for="field_hemarthroseMC">Hemarthrose MC</label>
+          <select
+            class="form-control"
+            name="hemarthroseMC"
+            formControlName="hemarthroseMC"
+            id="field_hemarthroseMC"
+            data-cy="hemarthroseMC"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
       
         @let hemarthroseSiegeRef = editForm.get('hemarthroseSiege')!;
         <div class="mb-3">
