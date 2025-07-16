@@ -951,17 +951,32 @@
 
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_agePremierSigneHemorragique">Age Premier Signe Hemorragique</label>
-          <input
-            type="number"
-            class="form-control"
-            name="agePremierSigneHemorragique"
-            id="field_agePremierSigneHemorragique"
-            data-cy="agePremierSigneHemorragique"
-            formControlName="agePremierSigneHemorragique"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label">Âge Premier Signe Hémorragique</label>
+  <div class="row">
+    <div class="col">
+      <label class="form-label small">En mois</label>
+      <input
+        type="number"
+        class="form-control"
+        name="agePremierSigneHemorragique"
+        id="field_agePremierSigneHemorragique"
+        data-cy="agePremierSigneHemorragique"
+        formControlName="agePremierSigneHemorragique"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label small">En années (calculé)</label>
+      <input
+        type="text"
+        class="form-control"
+        [value]="getAgeEnAnnees()"
+        disabled
+      />
+    </div>
+  </div>
+</div>
+
 
         @let typeSyndromeHemorragiqueRef = editForm.get('typeSyndromeHemorragique')!;
         <div class="mb-3">
