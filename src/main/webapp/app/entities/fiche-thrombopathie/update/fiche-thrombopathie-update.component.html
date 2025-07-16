@@ -1679,7 +1679,7 @@
 @let siegelHematomeRef = editForm.get('siegelHematome')!;
 
 <div class="mb-3">
-  <label class="form-label d-block">Hématome : présence, type et Siegel</label>
+  <label class="form-label d-block">Hématome : présence, type et Siège</label>
   <div class="row">
     <!-- Select Hématome -->
     <div class="col-md-4">
@@ -1718,7 +1718,7 @@
         </select>
       </div>
 
-      <!-- Siegel Hématome -->
+      <!-- Siège Hématome -->
       <div class="col-md-4">
         <input
           type="text"
@@ -1741,89 +1741,106 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_menoMetrorragies">Meno Metrorragies</label>
-          <select
-            class="form-control"
-            name="menoMetrorragies"
-            formControlName="menoMetrorragies"
-            id="field_menoMetrorragies"
-            data-cy="menoMetrorragies"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@let menoMetrorragiesRef = editForm.get('menoMetrorragies')!;
+@let explorationRef = editForm.get('explorationMenoMetrorragies')!;
+@let severiteRef = editForm.get('severiteMenoMetrorragies')!;
+@let typeLesionRef = editForm.get('typeLesionSousJacente')!;
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceMenoMetrorragies">Frequence Meno Metrorragies</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceMenoMetrorragies"
-            id="field_frequenceMenoMetrorragies"
-            data-cy="frequenceMenoMetrorragies"
-            formControlName="frequenceMenoMetrorragies"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label" for="field_menoMetrorragies">Méno-métrorragies</label>
+  <select
+    class="form-control"
+    name="menoMetrorragies"
+    formControlName="menoMetrorragies"
+    id="field_menoMetrorragies"
+    data-cy="menoMetrorragies"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        @let severiteMenoMetrorragiesRef = editForm.get('severiteMenoMetrorragies')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_severiteMenoMetrorragies">Severite Meno Metrorragies</label>
-          <input
-            type="text"
-            class="form-control"
-            name="severiteMenoMetrorragies"
-            id="field_severiteMenoMetrorragies"
-            data-cy="severiteMenoMetrorragies"
-            formControlName="severiteMenoMetrorragies"
-          />
-          @if (severiteMenoMetrorragiesRef.invalid && (severiteMenoMetrorragiesRef.dirty || severiteMenoMetrorragiesRef.touched)) {
-            <div>
-              @if (editForm.get('severiteMenoMetrorragies')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
+@if (menoMetrorragiesRef.value === 'OUI') {
+  <!-- Fréquence & Sévérité -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input
+        type="number"
+        class="form-control"
+        name="frequenceMenoMetrorragies"
+        id="field_frequenceMenoMetrorragies"
+        data-cy="frequenceMenoMetrorragies"
+        formControlName="frequenceMenoMetrorragies"
+        placeholder="Fréquence (/an)"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control"
+        name="severiteMenoMetrorragies"
+        id="field_severiteMenoMetrorragies"
+        data-cy="severiteMenoMetrorragies"
+        formControlName="severiteMenoMetrorragies"
+        placeholder="Sévérité"
+      />
+      @if (severiteRef.invalid && (severiteRef.dirty || severiteRef.touched)) {
+        <div>
+          @if (severiteRef.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
           }
         </div>
+      }
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_explorationMenoMetrorragies">Exploration Meno Metrorragies</label>
-          <select
-            class="form-control"
-            name="explorationMenoMetrorragies"
-            formControlName="explorationMenoMetrorragies"
-            id="field_explorationMenoMetrorragies"
-            data-cy="explorationMenoMetrorragies"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Exploration -->
+  <div class="mb-3">
+    <label class="form-label" for="field_explorationMenoMetrorragies">Exploration</label>
+    <select
+      class="form-control"
+      name="explorationMenoMetrorragies"
+      formControlName="explorationMenoMetrorragies"
+      id="field_explorationMenoMetrorragies"
+      data-cy="explorationMenoMetrorragies"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
 
-        @let typeLesionSousJacenteRef = editForm.get('typeLesionSousJacente')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeLesionSousJacente">Type Lesion Sous Jacente</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeLesionSousJacente"
-            id="field_typeLesionSousJacente"
-            data-cy="typeLesionSousJacente"
-            formControlName="typeLesionSousJacente"
-          />
-          @if (typeLesionSousJacenteRef.invalid && (typeLesionSousJacenteRef.dirty || typeLesionSousJacenteRef.touched)) {
-            <div>
-              @if (editForm.get('typeLesionSousJacente')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
+  <!-- Type Lésion : seulement si exploration = OUI -->
+  @if (explorationRef.value === 'OUI') {
+    <div class="mb-3">
+      <label class="form-label" for="field_typeLesionSousJacente">Type Lésion Sous-jacente</label>
+      <input
+        type="text"
+        class="form-control"
+        name="typeLesionSousJacente"
+        id="field_typeLesionSousJacente"
+        data-cy="typeLesionSousJacente"
+        formControlName="typeLesionSousJacente"
+      />
+      @if (typeLesionRef.invalid && (typeLesionRef.dirty || typeLesionRef.touched)) {
+        <div>
+          @if (typeLesionRef.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
           }
         </div>
+      }
+    </div>
+  }
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_hemorragieVisceres">Hemorragie Visceres</label>
