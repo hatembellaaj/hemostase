@@ -1649,9 +1649,12 @@
   }
 </div>
 
-
+            <div class="mb-2">
+  <label class="fw-bold d-block">Sérologies initiales :</label>
+</div>
+      
         <div class="mb-3">
-          <label class="form-label" for="field_serologieVHB">Serologie VHB</label>
+          <label class="form-label" for="field_serologieVHB">Sérologie VHB</label>
           <select class="form-control" name="serologieVHB" formControlName="serologieVHB" id="field_serologieVHB" data-cy="serologieVHB">
             <option [ngValue]="null"></option>
             @for (serologieStatut of serologieStatutValues; track $index) {
@@ -1663,7 +1666,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_serologieVHC">Serologie VHC</label>
+          <label class="form-label" for="field_serologieVHC">Sérologie VHC</label>
           <select class="form-control" name="serologieVHC" formControlName="serologieVHC" id="field_serologieVHC" data-cy="serologieVHC">
             <option [ngValue]="null"></option>
             @for (serologieStatut of serologieStatutValues; track $index) {
@@ -1675,7 +1678,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_serologieVIH">Serologie VIH</label>
+          <label class="form-label" for="field_serologieVIH">Sérologie VIH</label>
           <select class="form-control" name="serologieVIH" formControlName="serologieVIH" id="field_serologieVIH" data-cy="serologieVIH">
             <option [ngValue]="null"></option>
             @for (serologieStatut of serologieStatutValues; track $index) {
@@ -1685,6 +1688,47 @@
             }
           </select>
         </div>
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+<!-- Accordéon Section 5: MANIFESTATIONS CLINIQUES -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingManifestationsCliniques">
+    <button
+      class="accordion-button collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseManifestationsCliniques"
+      aria-expanded="false"
+      aria-controls="collapseManifestationsCliniques"
+    >
+      Manifestations Cliniques
+    </button>
+  </h2>
+  <div
+    id="collapseManifestationsCliniques"
+    class="accordion-collapse collapse"
+    aria-labelledby="headingManifestationsCliniques"
+    data-bs-parent="#ficheAccordion"
+  >
+    <div class="accordion-body">
+      <!-- Contenu pour la section MANIFESTATIONS CLINIQUES -->
+
+            <div class="mb-2">
+  <label class="fw-bold d-block">1. Manifestations hémorragiques :</label>
+</div>
+      
+      
+            <div class="mb-2">
+  <label class="fw-bold d-block">a. Hémorragies cutanéo-muqueuses :</label>
+</div>
+
+      
 
         <div class="mb-3">
           <label class="form-label" for="field_epistaxis">Epistaxis</label>
