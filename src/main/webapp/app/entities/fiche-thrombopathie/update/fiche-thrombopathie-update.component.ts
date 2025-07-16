@@ -92,4 +92,13 @@ export class FicheThrombopathieUpdateComponent implements OnInit {
     this.ficheThrombopathie = ficheThrombopathie;
     this.ficheThrombopathieFormService.resetForm(this.editForm, ficheThrombopathie);
   }
+
+  getAgeEnAnnees(): string {
+  const mois = this.editForm.get('agePremierSigneHemorragique')?.value;
+  if (mois != null && !isNaN(mois)) {
+    return (mois / 12).toFixed(2); // 2 chiffres après la virgule
+  }
+  return '';
+}
+
 }
