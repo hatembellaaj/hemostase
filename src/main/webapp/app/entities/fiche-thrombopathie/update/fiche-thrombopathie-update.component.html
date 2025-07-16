@@ -1842,148 +1842,191 @@
 }
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieVisceres">Hemorragie Visceres</label>
-          <select
-            class="form-control"
-            name="hemorragieVisceres"
-            formControlName="hemorragieVisceres"
-            id="field_hemorragieVisceres"
-            data-cy="hemorragieVisceres"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@let hemorragieVisceresRef = editForm.get('hemorragieVisceres')!;
+@let explorationVisceresRef = editForm.get('explorationHemorragieVisceres')!;
+@let lesionSousJacenteVisceresRef = editForm.get('lesionSousJacenteVisceres')!;
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieDigestiveHaute">Hemorragie Digestive Haute</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieDigestiveHaute"
-            id="field_hemorragieDigestiveHaute"
-            data-cy="hemorragieDigestiveHaute"
-            formControlName="hemorragieDigestiveHaute"
-          />
-        </div>
+<!-- Hémorragie Visceres -->
+<div class="mb-3">
+  <label class="form-label" for="field_hemorragieVisceres">Hémorragie Visceres</label>
+  <select
+    class="form-control"
+    name="hemorragieVisceres"
+    formControlName="hemorragieVisceres"
+    id="field_hemorragieVisceres"
+    data-cy="hemorragieVisceres"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieDigestiveBasse">Hemorragie Digestive Basse</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieDigestiveBasse"
-            id="field_hemorragieDigestiveBasse"
-            data-cy="hemorragieDigestiveBasse"
-            formControlName="hemorragieDigestiveBasse"
-          />
-        </div>
+@if (hemorragieVisceresRef.value === 'OUI') {
+  <!-- Type (3 checkboxes sur la même ligne) -->
+  <div class="mb-3">
+    <label class="form-label d-block">Type</label>
+    <div class="d-flex flex-wrap gap-3">
+      <div class="form-check d-flex align-items-center">
+        <label class="form-check-label me-2" for="field_hemorragieDigestiveHaute">Hémorragie Digestive Haute</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name="hemorragieDigestiveHaute"
+          id="field_hemorragieDigestiveHaute"
+          data-cy="hemorragieDigestiveHaute"
+          formControlName="hemorragieDigestiveHaute"
+        />
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematurie">Hematurie</label>
-          <input type="checkbox" class="form-check" name="hematurie" id="field_hematurie" data-cy="hematurie" formControlName="hematurie" />
-        </div>
+      <div class="form-check d-flex align-items-center">
+        <label class="form-check-label me-2" for="field_hemorragieDigestiveBasse">Hémorragie Digestive Basse</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name="hemorragieDigestiveBasse"
+          id="field_hemorragieDigestiveBasse"
+          data-cy="hemorragieDigestiveBasse"
+          formControlName="hemorragieDigestiveBasse"
+        />
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_explorationHemorragieVisceres">Exploration Hemorragie Visceres</label>
-          <select
-            class="form-control"
-            name="explorationHemorragieVisceres"
-            formControlName="explorationHemorragieVisceres"
-            id="field_explorationHemorragieVisceres"
-            data-cy="explorationHemorragieVisceres"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+      <div class="form-check d-flex align-items-center">
+        <label class="form-check-label me-2" for="field_hematurie">Hématurie</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name="hematurie"
+          id="field_hematurie"
+          data-cy="hematurie"
+          formControlName="hematurie"
+        />
+      </div>
+    </div>
+  </div>
 
-        @let lesionSousJacenteVisceresRef = editForm.get('lesionSousJacenteVisceres')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_lesionSousJacenteVisceres">Lesion Sous Jacente Visceres</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lesionSousJacenteVisceres"
-            id="field_lesionSousJacenteVisceres"
-            data-cy="lesionSousJacenteVisceres"
-            formControlName="lesionSousJacenteVisceres"
-          />
-          @if (lesionSousJacenteVisceresRef.invalid && (lesionSousJacenteVisceresRef.dirty || lesionSousJacenteVisceresRef.touched)) {
-            <div>
-              @if (editForm.get('lesionSousJacenteVisceres')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
+  <!-- Exploration -->
+  <div class="mb-3">
+    <label class="form-label" for="field_explorationHemorragieVisceres">Exploration</label>
+    <select
+      class="form-control"
+      name="explorationHemorragieVisceres"
+      formControlName="explorationHemorragieVisceres"
+      id="field_explorationHemorragieVisceres"
+      data-cy="explorationHemorragieVisceres"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">
+          {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <!-- Type de lésion -->
+  @if (explorationVisceresRef.value === 'OUI') {
+    <div class="mb-3">
+      <label class="form-label" for="field_lesionSousJacenteVisceres">Type de lésion sous-jacente</label>
+      <input
+        type="text"
+        class="form-control"
+        name="lesionSousJacenteVisceres"
+        id="field_lesionSousJacenteVisceres"
+        data-cy="lesionSousJacenteVisceres"
+        formControlName="lesionSousJacenteVisceres"
+      />
+      @if (lesionSousJacenteVisceresRef.invalid && (lesionSousJacenteVisceresRef.dirty || lesionSousJacenteVisceresRef.touched)) {
+        <div>
+          @if (lesionSousJacenteVisceresRef.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
           }
         </div>
+      }
+    </div>
+  }
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_interventionChirurgicale">Intervention Chirurgicale</label>
-          <select
-            class="form-control"
-            name="interventionChirurgicale"
-            formControlName="interventionChirurgicale"
-            id="field_interventionChirurgicale"
-            data-cy="interventionChirurgicale"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        @let typeInterventionChirurgicaleRef = editForm.get('typeInterventionChirurgicale')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeInterventionChirurgicale">Type Intervention Chirurgicale</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeInterventionChirurgicale"
-            id="field_typeInterventionChirurgicale"
-            data-cy="typeInterventionChirurgicale"
-            formControlName="typeInterventionChirurgicale"
-          />
-          @if (
-            typeInterventionChirurgicaleRef.invalid && (typeInterventionChirurgicaleRef.dirty || typeInterventionChirurgicaleRef.touched)
-          ) {
-            <div>
-              @if (editForm.get('typeInterventionChirurgicale')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@let interventionChirurgicaleRef = editForm.get('interventionChirurgicale')!;
+@let typeInterventionChirurgicaleRef = editForm.get('typeInterventionChirurgicale')!;
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomesCerebrales">Hematomes Cerebrales</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomesCerebrales"
-            id="field_hematomesCerebrales"
-            data-cy="hematomesCerebrales"
-            formControlName="hematomesCerebrales"
-          />
-        </div>
+<!-- Intervention Chirurgicale -->
+<div class="mb-3">
+  <label class="form-label" for="field_interventionChirurgicale">Intervention Chirurgicale</label>
+  <select
+    class="form-control"
+    name="interventionChirurgicale"
+    formControlName="interventionChirurgicale"
+    id="field_interventionChirurgicale"
+    data-cy="interventionChirurgicale"
+  >
+    <option [ngValue]="null"></option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_edcHemorragique">Edc Hemorragique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="edcHemorragique"
-            id="field_edcHemorragique"
-            data-cy="edcHemorragique"
-            formControlName="edcHemorragique"
-          />
-        </div>
+<!-- Type Intervention Chirurgicale (visible uniquement si OUI) -->
+@if (interventionChirurgicaleRef.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_typeInterventionChirurgicale">Type Intervention Chirurgicale</label>
+    <input
+      type="text"
+      class="form-control"
+      name="typeInterventionChirurgicale"
+      id="field_typeInterventionChirurgicale"
+      data-cy="typeInterventionChirurgicale"
+      formControlName="typeInterventionChirurgicale"
+    />
+    @if (
+      typeInterventionChirurgicaleRef.invalid &&
+      (typeInterventionChirurgicaleRef.dirty || typeInterventionChirurgicaleRef.touched)
+    ) {
+      <div>
+        @if (typeInterventionChirurgicaleRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
+
+
+<div class="mb-3">
+  <label class="form-label d-block">Accidents hémorragiques graves :</label>
+
+  <div class="form-check d-flex align-items-center mb-2">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="hematomesCerebrales"
+      id="field_hematomesCerebrales"
+      data-cy="hematomesCerebrales"
+      formControlName="hematomesCerebrales"
+    />
+    <label class="form-check-label" for="field_hematomesCerebrales">Hémorragie intracérébrale</label>
+  </div>
+
+  <div class="form-check d-flex align-items-center mb-2">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      name="edcHemorragique"
+      id="field_edcHemorragique"
+      data-cy="edcHemorragique"
+      formControlName="edcHemorragique"
+    />
+    <label class="form-check-label" for="field_edcHemorragique">EDC hémorragique</label>
+  </div>
+</div>
+
 
 
     </div>
