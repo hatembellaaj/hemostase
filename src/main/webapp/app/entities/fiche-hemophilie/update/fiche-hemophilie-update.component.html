@@ -1049,81 +1049,142 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hb">Hb</label>
-          <input type="number" class="form-control" name="hb" id="field_hb" data-cy="hb" formControlName="hb" />
-        </div>
+      <div class="mb-2">
+  <label class="fw-bold d-block">Hémogramme :</label>
+</div>
+
+      
+<div class="mb-3">
+  <div class="row">
+    <div class="col">
+      <label class="form-label" for="field_hb">Hb (g/dl)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="hb"
+        id="field_hb"
+        data-cy="hb"
+        formControlName="hb"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_ht">Ht  (%)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="ht"
+        id="field_ht"
+        data-cy="ht"
+        formControlName="ht"
+      />
+    </div>
+    <div class="col">
+      <label class="form-label" for="field_plaquettes">Plaquettes (/mm3) </label>
+      <input
+        type="number"
+        class="form-control"
+        name="plaquettes"
+        id="field_plaquettes"
+        data-cy="plaquettes"
+        formControlName="plaquettes"
+      />
+    </div>
+  </div>
+</div>
+
+
+      <div class="mb-2">
+  <label class="fw-bold d-block">Bilan d’hémostase :</label>
+</div>
+
+<div class="row mb-3">
+  <!-- TP -->
+  <div class="col-md-6">
+    <label class="form-label" for="field_tp">TP (%)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tp"
+      id="field_tp"
+      data-cy="tp"
+      formControlName="tp"
+    />
+  </div>
+
+  <!-- Fibrinogène -->
+  <div class="col-md-6">
+    <label class="form-label" for="field_fibrinogene">Fibrinogène</label>
+    <input
+      type="number"
+      class="form-control"
+      name="fibrinogene"
+      id="field_fibrinogene"
+      data-cy="fibrinogene"
+      formControlName="fibrinogene"
+    />
+  </div>
+</div>
+
+
+<div class="row mb-3">
+  <!-- TCA (M/T) -->
+  <div class="col-md-6">
+    <label class="form-label" for="field_tcaMT">TCA (M/T) (sec)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tcaMT"
+      id="field_tcaMT"
+      data-cy="tcaMT"
+      formControlName="tcaMT"
+    />
+  </div>
+
+  <!-- TCA (M+T) -->
+  <div class="col-md-6">
+    <label class="form-label" for="field_tcaMTTotal">TCA (M+T) (sec)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tcaMTTotal"
+      id="field_tcaMTTotal"
+      data-cy="tcaMTTotal"
+      formControlName="tcaMTTotal"
+    />
+  </div>
+</div>
+
+<div class="row mb-3">
+  <!-- TCA (M+T) 2h -->
+  <div class="col-md-6">
+    <label class="form-label" for="field_tcaMT2h">TCA (M+T) 2h (sec)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tcaMT2h"
+      id="field_tcaMT2h"
+      data-cy="tcaMT2h"
+      formControlName="tcaMT2h"
+    />
+  </div>
+
+  <!-- TCA (Témoin) 2h -->
+  <div class="col-md-6">
+    <label class="form-label" for="field_tcaTemoin2h">TCA (Témoin) 2h (sec)</label>
+    <input
+      type="number"
+      class="form-control"
+      name="tcaTemoin2h"
+      id="field_tcaTemoin2h"
+      data-cy="tcaTemoin2h"
+      formControlName="tcaTemoin2h"
+    />
+  </div>
+</div>
+
 
         <div class="mb-3">
-          <label class="form-label" for="field_ht">Ht</label>
-          <input type="number" class="form-control" name="ht" id="field_ht" data-cy="ht" formControlName="ht" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_plaquettes">Plaquettes</label>
-          <input
-            type="number"
-            class="form-control"
-            name="plaquettes"
-            id="field_plaquettes"
-            data-cy="plaquettes"
-            formControlName="plaquettes"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tp">Tp</label>
-          <input type="number" class="form-control" name="tp" id="field_tp" data-cy="tp" formControlName="tp" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_fibrinogene">Fibrinogene</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fibrinogene"
-            id="field_fibrinogene"
-            data-cy="fibrinogene"
-            formControlName="fibrinogene"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT">Tca MT</label>
-          <input type="number" class="form-control" name="tcaMT" id="field_tcaMT" data-cy="tcaMT" formControlName="tcaMT" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMTTotal">Tca MT Total</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tcaMTTotal"
-            id="field_tcaMTTotal"
-            data-cy="tcaMTTotal"
-            formControlName="tcaMTTotal"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaMT2h">Tca MT 2 H</label>
-          <input type="number" class="form-control" name="tcaMT2h" id="field_tcaMT2h" data-cy="tcaMT2h" formControlName="tcaMT2h" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tcaTemoin2h">Tca Temoin 2 H</label>
-          <input
-            type="number"
-            class="form-control"
-            name="tcaTemoin2h"
-            id="field_tcaTemoin2h"
-            data-cy="tcaTemoin2h"
-            formControlName="tcaTemoin2h"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_ts">Ts</label>
+          <label class="form-label" for="field_ts">TS</label>
           <select class="form-control" name="ts" formControlName="ts" id="field_ts" data-cy="ts">
             <option [ngValue]="null"></option>
             @for (testStatus of testStatusValues; track $index) {
@@ -1135,7 +1196,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_pfa">Pfa</label>
+          <label class="form-label" for="field_pfa">PFA</label>
           <select class="form-control" name="pfa" formControlName="pfa" id="field_pfa" data-cy="pfa">
             <option [ngValue]="null"></option>
             @for (testStatus of testStatusValues; track $index) {
@@ -1147,7 +1208,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_dosageFacteurVIII">Dosage Facteur VIII</label>
+          <label class="form-label" for="field_dosageFacteurVIII">Dosage Facteur VIII (%)</label>
           <input
             type="number"
             class="form-control"
@@ -1159,7 +1220,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_dosageFacteurIX">Dosage Facteur IX</label>
+          <label class="form-label" for="field_dosageFacteurIX">Dosage Facteur IX (%)</label>
           <input
             type="number"
             class="form-control"
@@ -1171,7 +1232,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_dosageFacteurVWActivite">Dosage Facteur VW Activite</label>
+          <label class="form-label" for="field_dosageFacteurVWActivite">Dosage Facteur vW Activité (%)</label>
           <input
             type="number"
             class="form-control"
@@ -1183,7 +1244,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_dosageFacteurVWAntigene">Dosage Facteur VW Antigene</label>
+          <label class="form-label" for="field_dosageFacteurVWAntigene">Dosage Facteur vW Antigène (%) </label>
           <input
             type="number"
             class="form-control"
