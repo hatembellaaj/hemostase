@@ -989,41 +989,46 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_decouverteFortuite">Decouverte Fortuite</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="decouverteFortuite"
-            id="field_decouverteFortuite"
-            data-cy="decouverteFortuite"
-            formControlName="decouverteFortuite"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label">Circonstance du diagnostic :</label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_enqueteFamilialeBool">Enquete Familiale Bool</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="enqueteFamilialeBool"
-            id="field_enqueteFamilialeBool"
-            data-cy="enqueteFamilialeBool"
-            formControlName="enqueteFamilialeBool"
-          />
-        </div>
+  <div class="form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      name="decouverteFortuite"
+      id="field_decouverteFortuite"
+      data-cy="decouverteFortuite"
+      formControlName="decouverteFortuite"
+    />
+    <label class="form-check-label" for="field_decouverteFortuite">Découverte Fortuite</label>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_explorationSyndromeHemorragique">Exploration Syndrome Hemorragique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="explorationSyndromeHemorragique"
-            id="field_explorationSyndromeHemorragique"
-            data-cy="explorationSyndromeHemorragique"
-            formControlName="explorationSyndromeHemorragique"
-          />
-        </div>
+  <div class="form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      name="enqueteFamilialeBool"
+      id="field_enqueteFamilialeBool"
+      data-cy="enqueteFamilialeBool"
+      formControlName="enqueteFamilialeBool"
+    />
+    <label class="form-check-label" for="field_enqueteFamilialeBool">Enquête Familiale</label>
+  </div>
+
+  <div class="form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      name="explorationSyndromeHemorragique"
+      id="field_explorationSyndromeHemorragique"
+      data-cy="explorationSyndromeHemorragique"
+      formControlName="explorationSyndromeHemorragique"
+    />
+    <label class="form-check-label" for="field_explorationSyndromeHemorragique">Exploration Syndrome Hémorragique</label>
+  </div>
+</div>
+
 
         @let typeCirconstanceDiagnosticRef = editForm.get('typeCirconstanceDiagnostic')!;
         <div class="mb-3">
