@@ -1742,7 +1742,7 @@
 
 
 @let menoMetrorragiesRef = editForm.get('menoMetrorragies')!;
-@let explorationRef = editForm.get('explorationMenoMetrorragies')!;
+@let explorationMenoRef = editForm.get('explorationMenoMetrorragies')!;
 @let severiteRef = editForm.get('severiteMenoMetrorragies')!;
 @let typeLesionRef = editForm.get('typeLesionSousJacente')!;
 
@@ -1819,7 +1819,7 @@
   </div>
 
   <!-- Type Lésion : seulement si exploration = OUI -->
-  @if (explorationRef.value === 'OUI') {
+  @if (explorationMenoRef.value === 'OUI') {
     <div class="mb-3">
       <label class="form-label" for="field_typeLesionSousJacente">Type Lésion Sous-jacente</label>
       <input
