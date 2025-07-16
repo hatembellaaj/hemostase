@@ -1889,298 +1889,438 @@
   <label class="fw-bold d-block">b. Hémorragies viscérales et profondes</label>
 </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematemese">Hematemese</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematemese"
-            id="field_hematemese"
-            data-cy="hematemese"
-            formControlName="hematemese"
-          />
-        </div>
+<!-- Hématémèse + fréquence sur une ligne -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hematemese"
+    id="field_hematemese"
+    data-cy="hematemese"
+    formControlName="hematemese"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHematemese">Frequence Hematemese</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHematemese"
-            id="field_frequenceHematemese"
-            data-cy="frequenceHematemese"
-            formControlName="frequenceHematemese"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hematemese">
+    Hématémèse
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_rectorragie">Rectorragie</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="rectorragie"
-            id="field_rectorragie"
-            data-cy="rectorragie"
-            formControlName="rectorragie"
-          />
-        </div>
+  <!-- Champ fréquence conditionnel -->
+  <ng-container *ngIf="editForm.get('hematemese')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematemese"
+      id="field_frequenceHematemese"
+      data-cy="frequenceHematemese"
+      formControlName="frequenceHematemese"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceRectorragie">Frequence Rectorragie</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceRectorragie"
-            id="field_frequenceRectorragie"
-            data-cy="frequenceRectorragie"
-            formControlName="frequenceRectorragie"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematurie">Hematurie</label>
-          <input type="checkbox" class="form-check" name="hematurie" id="field_hematurie" data-cy="hematurie" formControlName="hematurie" />
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="rectorragie"
+    id="field_rectorragie"
+    data-cy="rectorragie"
+    formControlName="rectorragie"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHematurie">Frequence Hematurie</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHematurie"
-            id="field_frequenceHematurie"
-            data-cy="frequenceHematurie"
-            formControlName="frequenceHematurie"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_rectorragie">
+    Rectorragie
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSousCutane">Hematome Sous Cutane</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeSousCutane"
-            id="field_hematomeSousCutane"
-            data-cy="hematomeSousCutane"
-            formControlName="hematomeSousCutane"
-          />
-        </div>
+  <!-- Champ conditionnel -->
+  <ng-container *ngIf="editForm.get('rectorragie')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceRectorragie"
+      id="field_frequenceRectorragie"
+      data-cy="frequenceRectorragie"
+      formControlName="frequenceRectorragie"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHematomeSousCutane">Type Hematome Sous Cutane</label>
-          <select
-            class="form-control"
-            name="typeHematomeSousCutane"
-            formControlName="typeHematomeSousCutane"
-            id="field_typeHematomeSousCutane"
-            data-cy="typeHematomeSousCutane"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHematomeSousCutane">Frequence Hematome Sous Cutane</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHematomeSousCutane"
-            id="field_frequenceHematomeSousCutane"
-            data-cy="frequenceHematomeSousCutane"
-            formControlName="frequenceHematomeSousCutane"
-          />
-        </div>
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hematurie"
+    id="field_hematurie"
+    data-cy="hematurie"
+    formControlName="hematurie"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeMusculaire">Hematome Musculaire</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomeMusculaire"
-            id="field_hematomeMusculaire"
-            data-cy="hematomeMusculaire"
-            formControlName="hematomeMusculaire"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hematurie">
+    Hématurie
+  </label>
 
-        @let siegeHematomeMusculaireRef = editForm.get('siegeHematomeMusculaire')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_siegeHematomeMusculaire">Siege Hematome Musculaire</label>
-          <input
-            type="text"
-            class="form-control"
-            name="siegeHematomeMusculaire"
-            id="field_siegeHematomeMusculaire"
-            data-cy="siegeHematomeMusculaire"
-            formControlName="siegeHematomeMusculaire"
-          />
-          @if (siegeHematomeMusculaireRef.invalid && (siegeHematomeMusculaireRef.dirty || siegeHematomeMusculaireRef.touched)) {
-            <div>
-              @if (editForm.get('siegeHematomeMusculaire')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+  <!-- Champ fréquence (visible seulement si case cochée) -->
+  <ng-container *ngIf="editForm.get('hematurie')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematurie"
+      id="field_frequenceHematurie"
+      data-cy="frequenceHematurie"
+      formControlName="frequenceHematurie"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHematomeMusculaire">Type Hematome Musculaire</label>
-          <select
-            class="form-control"
-            name="typeHematomeMusculaire"
-            formControlName="typeHematomeMusculaire"
-            id="field_typeHematomeMusculaire"
-            data-cy="typeHematomeMusculaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+<!-- Hemorragie Post Traumatique + fréquence sur une ligne -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hemorragiePostTraumatique"
+    id="field_hemorragiePostTraumatique"
+    data-cy="hemorragiePostTraumatique"
+    formControlName="hemorragiePostTraumatique"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHematomeMusculaire">Frequence Hematome Musculaire</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHematomeMusculaire"
-            id="field_frequenceHematomeMusculaire"
-            data-cy="frequenceHematomeMusculaire"
-            formControlName="frequenceHematomeMusculaire"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hemorragiePostTraumatique">
+    Hémorragie Post Traumatique
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthrose">Hemarthrose</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemarthrose"
-            id="field_hemarthrose"
-            data-cy="hemarthrose"
-            formControlName="hemarthrose"
-          />
-        </div>
+  <!-- Champ fréquence conditionnel -->
+  <ng-container *ngIf="editForm.get('hemorragiePostTraumatique')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHemorragiePostTraumatique"
+      id="field_frequenceHemorragiePostTraumatique"
+      data-cy="frequenceHemorragiePostTraumatique"
+      formControlName="frequenceHemorragiePostTraumatique"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHemarthrose">Type Hemarthrose</label>
-          <select
-            class="form-control"
-            name="typeHemarthrose"
-            formControlName="typeHemarthrose"
-            id="field_typeHemarthrose"
-            data-cy="typeHemarthrose"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceHemarthrose">Frequence Hemarthrose</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceHemarthrose"
-            id="field_frequenceHemarthrose"
-            data-cy="frequenceHemarthrose"
-            formControlName="frequenceHemarthrose"
-          />
-        </div>
+<!-- Hématome Sous-Cutané + Type + Fréquence sur une ligne -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hematomeSousCutane"
+    id="field_hematomeSousCutane"
+    data-cy="hematomeSousCutane"
+    formControlName="hematomeSousCutane"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_saignementSNC">Saignement SNC</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="saignementSNC"
-            id="field_saignementSNC"
-            data-cy="saignementSNC"
-            formControlName="saignementSNC"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hematomeSousCutane">
+    Hématome Sous-Cutané
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_typeSaignementSNC">Type Saignement SNC</label>
-          <select
-            class="form-control"
-            name="typeSaignementSNC"
-            formControlName="typeSaignementSNC"
-            id="field_typeSaignementSNC"
-            data-cy="typeSaignementSNC"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+  <!-- Champs conditionnels -->
+  <ng-container *ngIf="editForm.get('hematomeSousCutane')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeHematomeSousCutane"
+      formControlName="typeHematomeSousCutane"
+      id="field_typeHematomeSousCutane"
+      data-cy="typeHematomeSousCutane"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceSaignementSNC">Frequence Saignement SNC</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceSaignementSNC"
-            id="field_frequenceSaignementSNC"
-            data-cy="frequenceSaignementSNC"
-            formControlName="frequenceSaignementSNC"
-          />
-        </div>
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematomeSousCutane"
+      id="field_frequenceHematomeSousCutane"
+      data-cy="frequenceHematomeSousCutane"
+      formControlName="frequenceHematomeSousCutane"
+    />
+  </ng-container>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_saignementChuteCordon">Saignement Chute Cordon</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="saignementChuteCordon"
-            id="field_saignementChuteCordon"
-            data-cy="saignementChuteCordon"
-            formControlName="saignementChuteCordon"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceSaignementChuteCordon">Frequence Saignement Chute Cordon</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceSaignementChuteCordon"
-            id="field_frequenceSaignementChuteCordon"
-            data-cy="frequenceSaignementChuteCordon"
-            formControlName="frequenceSaignementChuteCordon"
-          />
-        </div>
+<!-- Hématome Musculaire + Type + Fréquence sur une ligne -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hematomeMusculaire"
+    id="field_hematomeMusculaire"
+    data-cy="hematomeMusculaire"
+    formControlName="hematomeMusculaire"
+  />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_retardCicatrisationPlaies">Retard Cicatrisation Plaies</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="retardCicatrisationPlaies"
-            id="field_retardCicatrisationPlaies"
-            data-cy="retardCicatrisationPlaies"
-            formControlName="retardCicatrisationPlaies"
-          />
-        </div>
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hematomeMusculaire">
+    Hématome Musculaire
+  </label>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_frequenceRetardCicatrisationPlaies">Frequence Retard Cicatrisation Plaies</label>
-          <input
-            type="number"
-            class="form-control"
-            name="frequenceRetardCicatrisationPlaies"
-            id="field_frequenceRetardCicatrisationPlaies"
-            data-cy="frequenceRetardCicatrisationPlaies"
-            formControlName="frequenceRetardCicatrisationPlaies"
-          />
-        </div>
+  <!-- Champs conditionnels -->
+  <ng-container *ngIf="editForm.get('hematomeMusculaire')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeHematomeMusculaire"
+      formControlName="typeHematomeMusculaire"
+      id="field_typeHematomeMusculaire"
+      data-cy="typeHematomeMusculaire"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
+
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematomeMusculaire"
+      id="field_frequenceHematomeMusculaire"
+      data-cy="frequenceHematomeMusculaire"
+      formControlName="frequenceHematomeMusculaire"
+    />
+  </ng-container>
+</div>
+
+
+<!-- Hématome Tissus Mous Profonds -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hematomeTissusMousProfonds"
+    id="field_hematomeTissusMousProfonds"
+    data-cy="hematomeTissusMousProfonds"
+    formControlName="hematomeTissusMousProfonds"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hematomeTissusMousProfonds">
+    Hématome Tissus Mous Profonds
+  </label>
+
+  <!-- Champs visibles uniquement si coché -->
+  <ng-container *ngIf="editForm.get('hematomeTissusMousProfonds')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeHematomeTissusMousProfonds"
+      formControlName="typeHematomeTissusMousProfonds"
+      id="field_typeHematomeTissusMousProfonds"
+      data-cy="typeHematomeTissusMousProfonds"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
+
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHematomeTissusMousProfonds"
+      id="field_frequenceHematomeTissusMousProfonds"
+      data-cy="frequenceHematomeTissusMousProfonds"
+      formControlName="frequenceHematomeTissusMousProfonds"
+    />
+  </ng-container>
+</div>
+
+
+<!-- Hémarthrose -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="hemarthrose"
+    id="field_hemarthrose"
+    data-cy="hemarthrose"
+    formControlName="hemarthrose"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_hemarthrose">
+    Hémarthrose
+  </label>
+
+  <!-- Champs conditionnels si case cochée -->
+  <ng-container *ngIf="editForm.get('hemarthrose')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeHemarthrose"
+      formControlName="typeHemarthrose"
+      id="field_typeHemarthrose"
+      data-cy="typeHemarthrose"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
+
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceHemarthrose"
+      id="field_frequenceHemarthrose"
+      data-cy="frequenceHemarthrose"
+      formControlName="frequenceHemarthrose"
+    />
+  </ng-container>
+</div>
+
+
+<!-- Saignement SNC -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="saignementSNC"
+    id="field_saignementSNC"
+    data-cy="saignementSNC"
+    formControlName="saignementSNC"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_saignementSNC">
+    Saignement SNC
+  </label>
+
+  <!-- Champs conditionnels si coché -->
+  <ng-container *ngIf="editForm.get('saignementSNC')?.value">
+    <!-- Type -->
+    <select
+      class="form-control"
+      name="typeSaignementSNC"
+      formControlName="typeSaignementSNC"
+      id="field_typeSaignementSNC"
+      data-cy="typeSaignementSNC"
+    >
+      <option [ngValue]="null"></option>
+      @for (typeManifestation of typeManifestationValues; track $index) {
+        <option [value]="typeManifestation">
+          {{ { null: '', SPONTANE: 'SPONTANÉ', PROVOQUE: 'PROVOQUÉ' }[typeManifestation] }}
+        </option>
+      }
+    </select>
+
+    <!-- Fréquence -->
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceSaignementSNC"
+      id="field_frequenceSaignementSNC"
+      data-cy="frequenceSaignementSNC"
+      formControlName="frequenceSaignementSNC"
+    />
+  </ng-container>
+</div>
+
+
+<!-- Saignement Chute Cordon -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="saignementChuteCordon"
+    id="field_saignementChuteCordon"
+    data-cy="saignementChuteCordon"
+    formControlName="saignementChuteCordon"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_saignementChuteCordon">
+    Saignement Chute Cordon
+  </label>
+
+  <!-- Champ Fréquence conditionnel -->
+  <ng-container *ngIf="editForm.get('saignementChuteCordon')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceSaignementChuteCordon"
+      id="field_frequenceSaignementChuteCordon"
+      data-cy="frequenceSaignementChuteCordon"
+      formControlName="frequenceSaignementChuteCordon"
+    />
+  </ng-container>
+</div>
+
+
+<!-- Retard Cicatrisation Plaies -->
+<div class="mb-3 d-flex align-items-center flex-wrap gap-2">
+  <!-- Checkbox -->
+  <input
+    type="checkbox"
+    class="form-check"
+    name="retardCicatrisationPlaies"
+    id="field_retardCicatrisationPlaies"
+    data-cy="retardCicatrisationPlaies"
+    formControlName="retardCicatrisationPlaies"
+  />
+
+  <!-- Label -->
+  <label class="form-label ms-2 mb-0 me-3" for="field_retardCicatrisationPlaies">
+    Retard Cicatrisation Plaies
+  </label>
+
+  <!-- Champ Fréquence conditionnel -->
+  <ng-container *ngIf="editForm.get('retardCicatrisationPlaies')?.value">
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Fréquence"
+      name="frequenceRetardCicatrisationPlaies"
+      id="field_frequenceRetardCicatrisationPlaies"
+      data-cy="frequenceRetardCicatrisationPlaies"
+      formControlName="frequenceRetardCicatrisationPlaies"
+    />
+  </ng-container>
+</div>
 
         <div class="mb-3">
           <label class="form-label" for="field_autresManifestations">Autres Manifestations</label>
