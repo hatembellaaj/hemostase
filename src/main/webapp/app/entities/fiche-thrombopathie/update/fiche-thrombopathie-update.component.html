@@ -1051,25 +1051,29 @@
 </div>
 
 
-        @let typeCirconstanceDiagnosticRef = editForm.get('typeCirconstanceDiagnostic')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeCirconstanceDiagnostic">Type Circonstance Diagnostic</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeCirconstanceDiagnostic"
-            id="field_typeCirconstanceDiagnostic"
-            data-cy="typeCirconstanceDiagnostic"
-            formControlName="typeCirconstanceDiagnostic"
-          />
-          @if (typeCirconstanceDiagnosticRef.invalid && (typeCirconstanceDiagnosticRef.dirty || typeCirconstanceDiagnosticRef.touched)) {
-            <div>
-              @if (editForm.get('typeCirconstanceDiagnostic')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@let typeCirconstanceDiagnosticRef = editForm.get('typeCirconstanceDiagnostic')!;
+@let explorationRef = editForm.get('explorationSyndromeHemorragique')!;
+@if (explorationRef.value === true) {
+  <div class="mb-3">
+    <label class="form-label" for="field_typeCirconstanceDiagnostic">Type</label>
+    <input
+      type="text"
+      class="form-control"
+      name="typeCirconstanceDiagnostic"
+      id="field_typeCirconstanceDiagnostic"
+      data-cy="typeCirconstanceDiagnostic"
+      formControlName="typeCirconstanceDiagnostic"
+    />
+    @if (typeCirconstanceDiagnosticRef.invalid && (typeCirconstanceDiagnosticRef.dirty || typeCirconstanceDiagnosticRef.touched)) {
+      <div>
+        @if (typeCirconstanceDiagnosticRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 255 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
+
 
       <div class="mb-3">
   <label class="form-label fw-bold">2. Autres manifestations cliniques au diagnostic :</label>
