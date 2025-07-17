@@ -646,41 +646,53 @@
       <!-- Contenu pour la section Antécédents -->
 
                 
-        <div class="mb-3">
-          <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
-          <select
-            class="form-control"
-            name="parentsConsanguins"
-            formControlName="parentsConsanguins"
-            id="field_parentsConsanguins"
-            data-cy="parentsConsanguins"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-end gap-3">
+  <!-- Parents Consanguins -->
+  <div>
+    <label class="form-label" for="field_parentsConsanguins">Parents Consanguins</label>
+    <select
+      class="form-control"
+      name="parentsConsanguins"
+      formControlName="parentsConsanguins"
+      id="field_parentsConsanguins"
+      data-cy="parentsConsanguins"
+    >
+      <option [ngValue]="null"></option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+      }
+    </select>
+  </div>
 
-        @let degreParenteConsanguinsRef = editForm.get('degreParenteConsanguins')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteConsanguins">Degre Parente Consanguins</label>
-          <input
-            type="text"
-            class="form-control"
-            name="degreParenteConsanguins"
-            id="field_degreParenteConsanguins"
-            data-cy="degreParenteConsanguins"
-            formControlName="degreParenteConsanguins"
-          />
-          @if (degreParenteConsanguinsRef.invalid && (degreParenteConsanguinsRef.dirty || degreParenteConsanguinsRef.touched)) {
-            <div>
-              @if (editForm.get('degreParenteConsanguins')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
+  <!-- Degré de Parenté (affiché uniquement si OUI est sélectionné) -->
+  @if (editForm.get('parentsConsanguins')?.value === 'OUI') {
+    @let degreParenteConsanguinsRef = editForm.get('degreParenteConsanguins')!;
+    <div>
+      <label class="form-label" for="field_degreParenteConsanguins">Degré Parenté Consanguins</label>
+      <select
+        class="form-control"
+        name="degreParenteConsanguins"
+        id="field_degreParenteConsanguins"
+        data-cy="degreParenteConsanguins"
+        formControlName="degreParenteConsanguins"
+      >
+        <option [ngValue]="null"></option>
+        <option value="3ème">3ème</option>
+        <option value="4ème">4ème</option>
+        <option value="5ème">5ème</option>
+        <option value="6ème">6ème</option>
+      </select>
+      @if (degreParenteConsanguinsRef.invalid && (degreParenteConsanguinsRef.dirty || degreParenteConsanguinsRef.touched)) {
+        <div>
+          @if (editForm.get('degreParenteConsanguins')?.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
           }
         </div>
+      }
+    </div>
+  }
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
