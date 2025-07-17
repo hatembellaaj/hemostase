@@ -1372,7 +1372,7 @@
       
 
 <div class="mb-3">
-  <label class="form-label" for="field_hemarthroseMC">1 - Hémarthrose</label>
+  <label class="form-label fw-bold" for="field_hemarthroseMC">1 - Hémarthrose</label>
   <select
     class="form-control"
     name="hemarthroseMC"
@@ -1459,7 +1459,7 @@
 
 <!-- Champ principal -->
 <div class="mb-3">
-  <label class="form-label" for="field_hematomeSuperficiel">2 - Hématome superficiel</label>
+  <label class="form-label fw-bold" for="field_hematomeSuperficiel">2 - Hématome superficiel</label>
   <select
     class="form-control"
     name="hematomeSuperficiel"
@@ -1530,7 +1530,7 @@
 
 <!-- Champ principal -->
 <div class="mb-3">
-  <label class="form-label" for="field_hematomePsoas">3 - Hématome du psoas</label>
+  <label class="form-label fw-bold" for="field_hematomePsoas">3 - Hématome du psoas</label>
   <select
     class="form-control"
     name="hematomePsoas"
@@ -1957,82 +1957,94 @@
 
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_priseEnChargeTherapeutique">Prise En Charge Therapeutique</label>
-          <select
-            class="form-control"
-            name="priseEnChargeTherapeutique"
-            formControlName="priseEnChargeTherapeutique"
-            id="field_priseEnChargeTherapeutique"
-            data-cy="priseEnChargeTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (typePriseEnCharge of typePriseEnChargeValues; track $index) {
-              <option [value]="typePriseEnCharge">
-                {{ { null: '', A_LA_DEMANDE: 'A_LA_DEMANDE', PROPHYLAXIE: 'PROPHYLAXIE' }[typePriseEnCharge] }}
-              </option>
-            }
-          </select>
-        </div>
+<!-- Choix principal -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_priseEnChargeTherapeutique">Prise en charge thérapeutique</label>
+  <select
+    class="form-control"
+    name="priseEnChargeTherapeutique"
+    formControlName="priseEnChargeTherapeutique"
+    id="field_priseEnChargeTherapeutique"
+    data-cy="priseEnChargeTherapeutique"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir une option</option>
+    @for (typePriseEnCharge of typePriseEnChargeValues; track $index) {
+      <option [value]="typePriseEnCharge">
+        {{ { A_LA_DEMANDE: 'À la demande', PROPHYLAXIE: 'Prophylaxie' }[typePriseEnCharge] }}
+      </option>
+    }
+  </select>
+</div>
 
-        @let causePriseEnChargeRef = editForm.get('causePriseEnCharge')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causePriseEnCharge">Cause Prise En Charge</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causePriseEnCharge"
-            id="field_causePriseEnCharge"
-            data-cy="causePriseEnCharge"
-            formControlName="causePriseEnCharge"
-          />
-          @if (causePriseEnChargeRef.invalid && (causePriseEnChargeRef.dirty || causePriseEnChargeRef.touched)) {
-            <div>
-              @if (editForm.get('causePriseEnCharge')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
+<!-- Si A_LA_DEMANDE -->
+@if (editForm.get('priseEnChargeTherapeutique')?.value === 'A_LA_DEMANDE') {
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      name="causePriseEnCharge"
+      id="field_causePriseEnCharge"
+      placeholder="Cause (si à la demande)"
+      data-cy="causePriseEnCharge"
+      formControlName="causePriseEnCharge"
+    />
+    @let causePriseEnChargeRef = editForm.get('causePriseEnCharge')!;
+    @if (causePriseEnChargeRef.invalid && (causePriseEnChargeRef.dirty || causePriseEnChargeRef.touched)) {
+      <div>
+        @if (causePriseEnChargeRef.errors?.maxlength) {
+          <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+}
+
+<!-- Si PROPHYLAXIE -->
+@if (editForm.get('priseEnChargeTherapeutique')?.value === 'PROPHYLAXIE') {
+  <div class="mb-3 d-flex gap-3 flex-wrap align-items-end">
+    <!-- Dose / fréquence -->
+    <div class="flex-fill">
+      <input
+        type="text"
+        class="form-control"
+        name="prophylaxieDoseFrequence"
+        id="field_prophylaxieDoseFrequence"
+        placeholder="Dose et fréquence (nbre/sem)"
+        data-cy="prophylaxieDoseFrequence"
+        formControlName="prophylaxieDoseFrequence"
+      />
+      @let prophylaxieDoseFrequenceRef = editForm.get('prophylaxieDoseFrequence')!;
+      @if (prophylaxieDoseFrequenceRef.invalid && (prophylaxieDoseFrequenceRef.dirty || prophylaxieDoseFrequenceRef.touched)) {
+        <div>
+          @if (prophylaxieDoseFrequenceRef.errors?.maxlength) {
+            <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
           }
         </div>
+      }
+    </div>
 
-        @let prophylaxieDoseFrequenceRef = editForm.get('prophylaxieDoseFrequence')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_prophylaxieDoseFrequence">Prophylaxie Dose Frequence</label>
-          <input
-            type="text"
-            class="form-control"
-            name="prophylaxieDoseFrequence"
-            id="field_prophylaxieDoseFrequence"
-            data-cy="prophylaxieDoseFrequence"
-            formControlName="prophylaxieDoseFrequence"
-          />
-          @if (prophylaxieDoseFrequenceRef.invalid && (prophylaxieDoseFrequenceRef.dirty || prophylaxieDoseFrequenceRef.touched)) {
-            <div>
-              @if (editForm.get('prophylaxieDoseFrequence')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+    <!-- Date de début -->
+    <div class="flex-fill">
+      <div class="input-group">
+        <input
+          id="field_dateDebutProphylaxie"
+          data-cy="dateDebutProphylaxie"
+          type="text"
+          class="form-control"
+          placeholder="Date de début de prophylaxie"
+          name="dateDebutProphylaxie"
+          ngbDatepicker
+          #dateDebutProphylaxieDp="ngbDatepicker"
+          formControlName="dateDebutProphylaxie"
+        />
+        <button type="button" class="btn btn-secondary" (click)="dateDebutProphylaxieDp.toggle()">
+          <fa-icon icon="calendar-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDebutProphylaxie">Date Debut Prophylaxie</label>
-          <div class="input-group">
-            <input
-              id="field_dateDebutProphylaxie"
-              data-cy="dateDebutProphylaxie"
-              type="text"
-              class="form-control"
-              name="dateDebutProphylaxie"
-              ngbDatepicker
-              #dateDebutProphylaxieDp="ngbDatepicker"
-              formControlName="dateDebutProphylaxie"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDebutProphylaxieDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
-        </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_injectionType">Injection Type</label>
