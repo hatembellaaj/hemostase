@@ -2496,10 +2496,7 @@
       </div>
     </div>
   }
-}
-
-
-        <div class="mb-3">
+              <div class="mb-3">
           <label class="form-label" for="field_schemaTherapeutique">Schema Therapeutique</label>
           <select
             class="form-control"
@@ -2528,103 +2525,102 @@
             formControlName="efficaciteHemlibra"
           />
         </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_serologieHBC">Serologie HBC</label>
-          <select class="form-control" name="serologieHBC" formControlName="serologieHBC" id="field_serologieHBC" data-cy="serologieHBC">
-            <option [ngValue]="null"></option>
-            @for (serologie of serologieValues; track $index) {
-              <option [value]="serologie">{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[serologie] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_serologieHVC">Serologie HVC</label>
-          <select class="form-control" name="serologieHVC" formControlName="serologieHVC" id="field_serologieHVC" data-cy="serologieHVC">
-            <option [ngValue]="null"></option>
-            @for (serologie of serologieValues; track $index) {
-              <option [value]="serologie">{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[serologie] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDecouverteVHC">Date Decouverte VHC</label>
-          <div class="input-group">
-            <input
-              id="field_dateDecouverteVHC"
-              data-cy="dateDecouverteVHC"
-              type="text"
-              class="form-control"
-              name="dateDecouverteVHC"
-              ngbDatepicker
-              #dateDecouverteVHCDp="ngbDatepicker"
-              formControlName="dateDecouverteVHC"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDecouverteVHCDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
-        </div>
 
-        @let chargeViraleVHCRef = editForm.get('chargeViraleVHC')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_chargeViraleVHC">Charge Virale VHC</label>
-          <input
-            type="text"
-            class="form-control"
-            name="chargeViraleVHC"
-            id="field_chargeViraleVHC"
-            data-cy="chargeViraleVHC"
-            formControlName="chargeViraleVHC"
-          />
-          @if (chargeViraleVHCRef.invalid && (chargeViraleVHCRef.dirty || chargeViraleVHCRef.touched)) {
-            <div>
-              @if (editForm.get('chargeViraleVHC')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- 3. COMPLICATIONS VIRALES -->
+<div class="mb-3">
+  <label class="form-label fw-bold">3 - Complications virales</label>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_traitementVHC">Traitement VHC</label>
-          <select
-            class="form-control"
-            name="traitementVHC"
-            formControlName="traitementVHC"
-            id="field_traitementVHC"
-            data-cy="traitementVHC"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Sérologie HBC -->
+<div class="mb-3">
+  <label class="form-label" for="field_serologieHBC">Sérologie HBC</label>
+  <select class="form-control" formControlName="serologieHBC" id="field_serologieHBC">
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (serologie of serologieValues; track $index) {
+      <option [value]="serologie">{{ { POSITIVE: 'Positive', NEGATIVE: 'Négative', NP: 'NP' }[serologie] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_evolutionVHC">Evolution VHC</label>
-          <select class="form-control" name="evolutionVHC" formControlName="evolutionVHC" id="field_evolutionVHC" data-cy="evolutionVHC">
-            <option [ngValue]="null"></option>
-            @for (evolutionVHC of evolutionVHCValues; track $index) {
-              <option [value]="evolutionVHC">
-                {{ { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[evolutionVHC] }}
-              </option>
-            }
-          </select>
-        </div>
+<!-- Sérologie HVC -->
+<div class="mb-3">
+  <label class="form-label" for="field_serologieHVC">Sérologie HVC</label>
+  <select class="form-control" formControlName="serologieHVC" id="field_serologieHVC">
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (serologie of serologieValues; track $index) {
+      <option [value]="serologie">{{ { POSITIVE: 'Positive', NEGATIVE: 'Négative', NP: 'NP' }[serologie] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_serologieHIV">Serologie HIV</label>
-          <select class="form-control" name="serologieHIV" formControlName="serologieHIV" id="field_serologieHIV" data-cy="serologieHIV">
-            <option [ngValue]="null"></option>
-            @for (serologie of serologieValues; track $index) {
-              <option [value]="serologie">{{ { null: '', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', NP: 'NP' }[serologie] }}</option>
-            }
-          </select>
-        </div>
+<!-- Si sérologie HVC positive -->
+@if (editForm.get('serologieHVC')?.value === 'POSITIVE') {
+  <div class="mb-3">
+    <label class="form-label">Date de découverte VHC</label>
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="dateDecouverteVHC"
+        ngbDatepicker
+        #dateDecouverteVHCDp="ngbDatepicker"
+      />
+      <button type="button" class="btn btn-outline-secondary" (click)="dateDecouverteVHCDp.toggle()">
+        <fa-icon icon="calendar-alt"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  @let chargeViraleVHCRef = editForm.get('chargeViraleVHC')!;
+  <div class="mb-3">
+    <label class="form-label" for="field_chargeViraleVHC">Charge virale</label>
+    <input type="text" class="form-control" formControlName="chargeViraleVHC" />
+    @if (chargeViraleVHCRef.invalid && (chargeViraleVHCRef.dirty || chargeViraleVHCRef.touched)) {
+      <div>
+        @if (chargeViraleVHCRef.errors?.maxlength) {
+          <small class="text-danger">Maximum 25 caractères.</small>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Traitement VHC -->
+  <div class="mb-3">
+    <label class="form-label">Traitement VHC</label>
+    <select class="form-control" formControlName="traitementVHC">
+      <option [ngValue]="null" disabled selected hidden>Choisir</option>
+      @for (val of ouiNonNPValues; track $index) {
+        <option [value]="val">{{ { OUI: 'Oui', NON: 'Non', NP: 'NP' }[val] }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Évolution VHC -->
+  <div class="mb-3">
+    <label class="form-label">Évolution VHC</label>
+    <select class="form-control" formControlName="evolutionVHC">
+      <option [ngValue]="null" disabled selected hidden>Choisir</option>
+      <option value="DISPARITION">Disparition</option>
+      <option value="PERSISTANCE">Persistance</option>
+    </select>
+  </div>
+}
+
+<!-- Sérologie HIV -->
+<div class="mb-3">
+  <label class="form-label" for="field_serologieHIV">Sérologie HIV</label>
+  <select class="form-control" formControlName="serologieHIV" id="field_serologieHIV">
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (serologie of serologieValues; track $index) {
+      <option [value]="serologie">{{ { POSITIVE: 'Positive', NEGATIVE: 'Négative', NP: 'NP' }[serologie] }}</option>
+    }
+  </select>
+</div>
+
 
     </div>
   </div>
@@ -2641,7 +2637,7 @@
       aria-expanded="false"
       aria-controls="collapseEvolution"
     >
-      EVOLUTION
+      Evolution
     </button>
   </h2>
   <div
