@@ -1760,173 +1760,121 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_circoncision">Circoncision</label>
-          <select class="form-control" name="circoncision" formControlName="circoncision" id="field_circoncision" data-cy="circoncision">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+ <div class="mb-3">
+  <label class="form-label" for="field_circoncision">Circoncision</label>
+  <select class="form-control" formControlName="circoncision" id="field_circoncision">
+    <option [ngValue]="null"></option>
+    @for (v of ouiNonNPValues; track $index) {
+      <option [value]="v">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[v] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_circoncisionPreparation">Circoncision Preparation</label>
-          <select
-            class="form-control"
-            name="circoncisionPreparation"
-            formControlName="circoncisionPreparation"
-            id="field_circoncisionPreparation"
-            data-cy="circoncisionPreparation"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@let circoncisionCtrl = editForm.get('circoncision');
+@if (circoncisionCtrl?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_circoncisionPreparation">Préparation</label>
+    <select class="form-control" formControlName="circoncisionPreparation" id="field_circoncisionPreparation">
+      <option [ngValue]="null"></option>
+      @for (v of ouiNonNPValues; track $index) {
+        <option [value]="v">{{ { null: '', OUI: 'Oui', NON: 'Non', NP: 'NP' }[v] }}</option>
+      }
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_circoncisionSuiteOperatoire">Circoncision Suite Operatoire</label>
-          <select
-            class="form-control"
-            name="circoncisionSuiteOperatoire"
-            formControlName="circoncisionSuiteOperatoire"
-            id="field_circoncisionSuiteOperatoire"
-            data-cy="circoncisionSuiteOperatoire"
-          >
-            <option [ngValue]="null"></option>
-            @for (suiteOperatoire of suiteOperatoireValues; track $index) {
-              <option [value]="suiteOperatoire">
-                {{ { null: '', SIMPLE: 'SIMPLE', HEMORRAGIQUE: 'HEMORRAGIQUE', NP: 'NP' }[suiteOperatoire] }}
-              </option>
-            }
-          </select>
-        </div>
+  <div class="mb-3">
+    <label class="form-label" for="field_circoncisionSuiteOperatoire">Suite opératoire</label>
+    <select class="form-control" formControlName="circoncisionSuiteOperatoire" id="field_circoncisionSuiteOperatoire">
+      <option [ngValue]="null"></option>
+      @for (v of suiteOperatoireValues; track $index) {
+        <option [value]="v">{{ { null: '', SIMPLE: 'Simple', HEMORRAGIQUE: 'Hémorragique', NP: 'NP' }[v] }}</option>
+      }
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_circoncisionAge">Circoncision Age</label>
-          <input
-            type="number"
-            class="form-control"
-            name="circoncisionAge"
-            id="field_circoncisionAge"
-            data-cy="circoncisionAge"
-            formControlName="circoncisionAge"
-          />
-        </div>
+  <div class="mb-3">
+    <label class="form-label" for="field_circoncisionAge">Âge de la circoncision</label>
+    <input type="number" class="form-control" formControlName="circoncisionAge" id="field_circoncisionAge" />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_avulsionDentaire">Avulsion Dentaire</label>
-          <select
-            class="form-control"
-            name="avulsionDentaire"
-            formControlName="avulsionDentaire"
-            id="field_avulsionDentaire"
-            data-cy="avulsionDentaire"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_avulsionDentairePreparation">Avulsion Dentaire Preparation</label>
-          <select
-            class="form-control"
-            name="avulsionDentairePreparation"
-            formControlName="avulsionDentairePreparation"
-            id="field_avulsionDentairePreparation"
-            data-cy="avulsionDentairePreparation"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3">
+  <label class="form-label" for="field_avulsionDentaire">Avulsion dentaire</label>
+  <select class="form-control" formControlName="avulsionDentaire" id="field_avulsionDentaire">
+    <option [ngValue]="null"></option>
+    @for (v of ouiNonNPValues; track $index) {
+      <option [value]="v">{{ { null: '', OUI: 'Oui', NON: 'Non', NP: 'NP' }[v] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_interventionChirurgicale">Intervention Chirurgicale</label>
-          <select
-            class="form-control"
-            name="interventionChirurgicale"
-            formControlName="interventionChirurgicale"
-            id="field_interventionChirurgicale"
-            data-cy="interventionChirurgicale"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+@let avulsionCtrl = editForm.get('avulsionDentaire');
+@if (avulsionCtrl?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_avulsionDentairePreparation">Préparation</label>
+    <select class="form-control" formControlName="avulsionDentairePreparation" id="field_avulsionDentairePreparation">
+      <option [ngValue]="null"></option>
+      @for (v of ouiNonNPValues; track $index) {
+        <option [value]="v">{{ { null: '', OUI: 'Oui', NON: 'Non', NP: 'NP' }[v] }}</option>
+      }
+    </select>
+  </div>
+}
 
-        @let interventionChirurgicaleTypeRef = editForm.get('interventionChirurgicaleType')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_interventionChirurgicaleType">Intervention Chirurgicale Type</label>
-          <input
-            type="text"
-            class="form-control"
-            name="interventionChirurgicaleType"
-            id="field_interventionChirurgicaleType"
-            data-cy="interventionChirurgicaleType"
-            formControlName="interventionChirurgicaleType"
-          />
-          @if (
-            interventionChirurgicaleTypeRef.invalid && (interventionChirurgicaleTypeRef.dirty || interventionChirurgicaleTypeRef.touched)
-          ) {
-            <div>
-              @if (editForm.get('interventionChirurgicaleType')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_accidentsHemorragiquesGraves">Accidents Hemorragiques Graves</label>
-          <select
-            class="form-control"
-            name="accidentsHemorragiquesGraves"
-            formControlName="accidentsHemorragiquesGraves"
-            id="field_accidentsHemorragiquesGraves"
-            data-cy="accidentsHemorragiquesGraves"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3">
+  <label class="form-label" for="field_interventionChirurgicale">Intervention chirurgicale</label>
+  <select class="form-control" formControlName="interventionChirurgicale" id="field_interventionChirurgicale">
+    <option [ngValue]="null"></option>
+    @for (v of ouiNonNPValues; track $index) {
+      <option [value]="v">{{ { null: '', OUI: 'Oui', NON: 'Non', NP: 'NP' }[v] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_accidentsHemorragiquesGravesTypes">Accidents Hemorragiques Graves Types</label>
-          <select
-            class="form-control"
-            name="accidentsHemorragiquesGravesTypes"
-            formControlName="accidentsHemorragiquesGravesTypes"
-            id="field_accidentsHemorragiquesGravesTypes"
-            data-cy="accidentsHemorragiquesGravesTypes"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeAccidentHemorragiqueGrave of typeAccidentHemorragiqueGraveValues; track $index) {
-              <option [value]="typeAccidentHemorragiqueGrave">
-                {{
-                  {
-                    null: '',
-                    HEMATOMES_CEREBRALES: 'HEMATOMES_CEREBRALES',
-                    HEMOTHORAX: 'HEMOTHORAX',
-                    EDC_HEMORRAGIQUE: 'EDC_HEMORRAGIQUE',
-                    HEMATOME_COMPRESSIF: 'HEMATOME_COMPRESSIF',
-                  }[typeAccidentHemorragiqueGrave]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+@let interventionCtrl = editForm.get('interventionChirurgicale');
+@if (interventionCtrl?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_interventionChirurgicaleType">Type</label>
+    <input type="text" class="form-control" formControlName="interventionChirurgicaleType" id="field_interventionChirurgicaleType" />
+  </div>
+}
+
+
+<div class="mb-3">
+  <label class="form-label" for="field_accidentsHemorragiquesGraves">Accidents hémorragiques graves</label>
+  <select class="form-control" formControlName="accidentsHemorragiquesGraves" id="field_accidentsHemorragiquesGraves">
+    <option [ngValue]="null"></option>
+    @for (v of ouiNonNPValues; track $index) {
+      <option [value]="v">{{ { null: '', OUI: 'Oui', NON: 'Non', NP: 'NP' }[v] }}</option>
+    }
+  </select>
+</div>
+
+@let accidentsCtrl = editForm.get('accidentsHemorragiquesGraves');
+@if (accidentsCtrl?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label" for="field_accidentsHemorragiquesGravesTypes">Type d'accident</label>
+    <select class="form-control" formControlName="accidentsHemorragiquesGravesTypes" id="field_accidentsHemorragiquesGravesTypes">
+      <option [ngValue]="null"></option>
+      @for (type of typeAccidentHemorragiqueGraveValues; track $index) {
+        <option [value]="type">
+          {{
+            {
+              null: '',
+              HEMATOMES_CEREBRALES: 'Hématomes cérébraux',
+              HEMOTHORAX: 'Hémothorax',
+              EDC_HEMORRAGIQUE: 'EDC hémorragique',
+              HEMATOME_COMPRESSIF: 'Hématome compressif'
+            }[type]
+          }}
+        </option>
+      }
+    </select>
+  </div>
+}
+
 
     </div>
   </div>
