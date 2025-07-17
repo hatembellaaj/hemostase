@@ -2209,495 +2209,295 @@
       <!-- Contenu pour la section Complications -->
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_orthopediques">Orthopediques</label>
-          <select
-            class="form-control"
-            name="orthopediques"
-            formControlName="orthopediques"
-            id="field_orthopediques"
-            data-cy="orthopediques"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_orthopediques">Orthopédiques</label>
+  <select
+    class="form-control"
+    name="orthopediques"
+    formControlName="orthopediques"
+    id="field_orthopediques"
+    data-cy="orthopediques"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-      
-        <div class="mb-3">
-          <label class="form-label" for="field_synovite">Synovite</label>
-          <input type="checkbox" class="form-check" name="synovite" id="field_synovite" data-cy="synovite" formControlName="synovite" />
-        </div>
+<!-- Si Orthopédiques == OUI -->
+@if (editForm.get('orthopediques')?.value === 'OUI') {
+  <!-- Types d'atteintes -->
+  <div class="mb-3">
+    <label class="form-label">Type d’atteintes orthopédiques</label>
+    <div class="d-flex flex-wrap gap-3">
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="synovite" formControlName="synovite" />
+        <label for="synovite" class="form-check-label">Synovite</label>
+      </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="arthropathieHemophiliqueChronique" formControlName="arthropathieHemophiliqueChronique" />
+        <label for="arthropathieHemophiliqueChronique" class="form-check-label">Arthropathie hémophilique chronique</label>
+      </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="pseudotumeurs" formControlName="pseudotumeurs" />
+        <label for="pseudotumeurs" class="form-check-label">Pseudotumeurs</label>
+      </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="fractures" formControlName="fractures" />
+        <label for="fractures" class="form-check-label">Fractures</label>
+      </div>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_arthropathieHemophiliqueChronique">Arthropathie Hemophilique Chronique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="arthropathieHemophiliqueChronique"
-            id="field_arthropathieHemophiliqueChronique"
-            data-cy="arthropathieHemophiliqueChronique"
-            formControlName="arthropathieHemophiliqueChronique"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_pseudotumeurs">Pseudotumeurs</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="pseudotumeurs"
-            id="field_pseudotumeurs"
-            data-cy="pseudotumeurs"
-            formControlName="pseudotumeurs"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_fractures">Fractures</label>
-          <input type="checkbox" class="form-check" name="fractures" id="field_fractures" data-cy="fractures" formControlName="fractures" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_coudeDroit">Coude Droit</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="coudeDroit"
-            id="field_coudeDroit"
-            data-cy="coudeDroit"
-            formControlName="coudeDroit"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_coudeGauche">Coude Gauche</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="coudeGauche"
-            id="field_coudeGauche"
-            data-cy="coudeGauche"
-            formControlName="coudeGauche"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_genouDroit">Genou Droit</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="genouDroit"
-            id="field_genouDroit"
-            data-cy="genouDroit"
-            formControlName="genouDroit"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_genouGauche">Genou Gauche</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="genouGauche"
-            id="field_genouGauche"
-            data-cy="genouGauche"
-            formControlName="genouGauche"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_chevilleDroite">Cheville Droite</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="chevilleDroite"
-            id="field_chevilleDroite"
-            data-cy="chevilleDroite"
-            formControlName="chevilleDroite"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_chevilleGauche">Cheville Gauche</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="chevilleGauche"
-            id="field_chevilleGauche"
-            data-cy="chevilleGauche"
-            formControlName="chevilleGauche"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_epauleDroite">Epaule Droite</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="epauleDroite"
-            id="field_epauleDroite"
-            data-cy="epauleDroite"
-            formControlName="epauleDroite"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_epauleGauche">Epaule Gauche</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="epauleGauche"
-            id="field_epauleGauche"
-            data-cy="epauleGauche"
-            formControlName="epauleGauche"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_poignetDroit">Poignet Droit</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="poignetDroit"
-            id="field_poignetDroit"
-            data-cy="poignetDroit"
-            formControlName="poignetDroit"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_poignetGauche">Poignet Gauche</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="poignetGauche"
-            id="field_poignetGauche"
-            data-cy="poignetGauche"
-            formControlName="poignetGauche"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hancheDroite">Hanche Droite</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hancheDroite"
-            id="field_hancheDroite"
-            data-cy="hancheDroite"
-            formControlName="hancheDroite"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_hancheGauche">Hanche Gauche</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hancheGauche"
-            id="field_hancheGauche"
-            data-cy="hancheGauche"
-            formControlName="hancheGauche"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_pecTherapeutique">Pec Therapeutique</label>
-          <select
-            class="form-control"
-            name="pecTherapeutique"
-            formControlName="pecTherapeutique"
-            id="field_pecTherapeutique"
-            data-cy="pecTherapeutique"
-          >
-            <option [ngValue]="null"></option>
-            @for (pECTherapeutique of pECTherapeutiqueValues; track $index) {
-              <option [value]="pECTherapeutique">
-                {{ { null: '', RAS: 'RAS', SYNOVIORTHOSE: 'SYNOVIORTHOSE', PTG: 'PTG' }[pECTherapeutique] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_inhibiteurs">Inhibiteurs</label>
-          <select class="form-control" name="inhibiteurs" formControlName="inhibiteurs" id="field_inhibiteurs" data-cy="inhibiteurs">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxInhibiteur">Taux Inhibiteur</label>
-          <select
-            class="form-control"
-            name="tauxInhibiteur"
-            formControlName="tauxInhibiteur"
-            id="field_tauxInhibiteur"
-            data-cy="tauxInhibiteur"
-          >
-            <option [ngValue]="null"></option>
-            @for (tauxInhibiteur of tauxInhibiteurValues; track $index) {
-              <option [value]="tauxInhibiteur">
-                {{ { null: '', FAIBLE_REPONDEUR: 'FAIBLE_REPONDEUR', FORT_REPONDEUR: 'FORT_REPONDEUR', NP: 'NP' }[tauxInhibiteur] }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_testRecuperationFAH">Test Recuperation FAH</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="testRecuperationFAH"
-            id="field_testRecuperationFAH"
-            data-cy="testRecuperationFAH"
-            formControlName="testRecuperationFAH"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_dateTestRecuperation">Date Test Recuperation</label>
-          <div class="input-group">
-            <input
-              id="field_dateTestRecuperation"
-              data-cy="dateTestRecuperation"
-              type="text"
-              class="form-control"
-              name="dateTestRecuperation"
-              ngbDatepicker
-              #dateTestRecuperationDp="ngbDatepicker"
-              formControlName="dateTestRecuperation"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateTestRecuperationDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
+  <!-- Si Synovite OU Arthropathie cochés -->
+  @if (editForm.get('synovite')?.value || editForm.get('arthropathieHemophiliqueChronique')?.value) {
+    <!-- Articulations cibles -->
+    <div class="mb-3">
+      <label class="form-label">Articulations cibles</label>
+      <div class="d-flex flex-wrap gap-3">
+        @for (articulation of [
+          { id: 'genouGauche', label: 'Genou gauche' },
+          { id: 'genouDroit', label: 'Genou droit' },
+          { id: 'coudeGauche', label: 'Coude gauche' },
+          { id: 'coudeDroit', label: 'Coude droit' },
+          { id: 'chevilleGauche', label: 'Cheville gauche' },
+          { id: 'chevilleDroite', label: 'Cheville droite' }
+        ]; track $index) {
+          <div class="form-check d-flex align-items-center gap-2">
+            <input type="checkbox" class="form-check-input" [id]="'field_' + articulation.id" [formControlName]="articulation.id" />
+            <label class="form-check-label" [for]="'field_' + articulation.id">{{ articulation.label }}</label>
           </div>
-        </div>
+        }
+      </div>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_tauxRecuperation">Taux Recuperation</label>
-          <select
-            class="form-control"
-            name="tauxRecuperation"
-            formControlName="tauxRecuperation"
-            id="field_tauxRecuperation"
-            data-cy="tauxRecuperation"
-          >
-            <option [ngValue]="null"></option>
-            @for (tauxRecuperation of tauxRecuperationValues; track $index) {
-              <option [value]="tauxRecuperation">{{ { null: '', NORMAL: 'NORMAL', DIMINUE: 'DIMINUE' }[tauxRecuperation] }}</option>
-            }
-          </select>
-        </div>
+    <!-- PEC thérapeutique -->
+    <div class="mb-3">
+      <label class="form-label" for="field_pecTherapeutique">PEC thérapeutique</label>
+      <select
+        class="form-control"
+        name="pecTherapeutique"
+        formControlName="pecTherapeutique"
+        id="field_pecTherapeutique"
+        data-cy="pecTherapeutique"
+      >
+        <option [ngValue]="null" disabled selected hidden>Choisir</option>
+        @for (pECTherapeutique of pECTherapeutiqueValues; track $index) {
+          <option [value]="pECTherapeutique">
+            {{ { null: '', RAS: 'RAS', SYNOVIORTHOSE: 'Synoviorthèse', PTG: 'PTG' }[pECTherapeutique] }}
+          </option>
+        }
+      </select>
+    </div>
+  }
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_antiFAHNonNeutralisant">Anti FAH Non Neutralisant</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="antiFAHNonNeutralisant"
-            id="field_antiFAHNonNeutralisant"
-            data-cy="antiFAHNonNeutralisant"
-            formControlName="antiFAHNonNeutralisant"
-          />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_antiFAHNegatif">Anti FAH Negatif</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="antiFAHNegatif"
-            id="field_antiFAHNegatif"
-            data-cy="antiFAHNegatif"
-            formControlName="antiFAHNegatif"
-          />
-        </div>
+<!-- Inhibiteurs -->
+<div class="mb-3">
+  <label class="form-label fw-bold">2 - Inhibiteurs</label>
+  <select
+    class="form-control"
+    name="inhibiteurs"
+    formControlName="inhibiteurs"
+    id="field_inhibiteurs"
+    data-cy="inhibiteurs"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'Oui', NON: 'Non', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_rechercheACC">Recherche ACC</label>
-          <select class="form-control" name="rechercheACC" formControlName="rechercheACC" id="field_rechercheACC" data-cy="rechercheACC">
-            <option [ngValue]="null"></option>
-            @for (rechercheACC of rechercheACCValues; track $index) {
-              <option [value]="rechercheACC">
-                {{
-                  { null: '', NON_FAITE: 'NON_FAITE', FAITE: 'FAITE', POSITIVE: 'POSITIVE', NEGATIVE: 'NEGATIVE', DOUTEUSE: 'DOUTEUSE' }[
-                    rechercheACC
-                  ]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+@if (editForm.get('inhibiteurs')?.value === 'OUI') {
+  <!-- Taux inhibiteur -->
+  <div class="mb-3">
+    <label class="form-label">Taux d’inhibiteur</label>
+    <select
+      class="form-control"
+      formControlName="tauxInhibiteur"
+      id="field_tauxInhibiteur"
+    >
+      <option [ngValue]="null" disabled selected hidden>Choisir</option>
+      @for (taux of tauxInhibiteurValues; track $index) {
+        <option [value]="taux">
+          {{ { FAIBLE_REPONDEUR: 'Faible répondeur', FORT_REPONDEUR: 'Fort répondeur', NP: 'NP' }[taux] }}
+        </option>
+      }
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_augmenterDoseFacteur">Augmenter Dose Facteur</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="augmenterDoseFacteur"
-            id="field_augmenterDoseFacteur"
-            data-cy="augmenterDoseFacteur"
-            formControlName="augmenterDoseFacteur"
-          />
-        </div>
+  <!-- Test récupération -->
+  <div class="mb-3">
+    <label class="form-label">Test de récupération du FAH</label>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" formControlName="testRecuperationFAH" id="testRecuperationFAH" />
+      <label class="form-check-label" for="testRecuperationFAH">Fait</label>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_novoseven">Novoseven</label>
-          <input type="checkbox" class="form-check" name="novoseven" id="field_novoseven" data-cy="novoseven" formControlName="novoseven" />
-        </div>
+  @if (editForm.get('testRecuperationFAH')?.value) {
+    <!-- Date test -->
+    <div class="mb-3">
+      <label class="form-label">Date du test</label>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="dateTestRecuperation"
+          ngbDatepicker
+          #dateTestRecuperationDp="ngbDatepicker"
+        />
+        <button type="button" class="btn btn-outline-secondary" (click)="dateTestRecuperationDp.toggle()">
+          <fa-icon icon="calendar-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_feiba">Feiba</label>
-          <input type="checkbox" class="form-check" name="feiba" id="field_feiba" data-cy="feiba" formControlName="feiba" />
-        </div>
+    <!-- Taux de récupération -->
+    <div class="mb-3">
+      <label class="form-label">Taux de récupération</label>
+      <select class="form-control" formControlName="tauxRecuperation">
+        <option [ngValue]="null" disabled selected hidden>Choisir</option>
+        <option value="NORMAL">Normal</option>
+        <option value="DIMINUE">Diminué</option>
+      </select>
+    </div>
+  }
 
-        <div class="mb-3">
-          <label class="form-label" for="field_corticotherapie">Corticotherapie</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="corticotherapie"
-            id="field_corticotherapie"
-            data-cy="corticotherapie"
-            formControlName="corticotherapie"
-          />
-        </div>
+  <!-- Anticorps -->
+  <div class="mb-3 d-flex flex-wrap gap-4">
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" formControlName="antiFAHNonNeutralisant" id="antiFAHNonNeutralisant" />
+      <label class="form-check-label" for="antiFAHNonNeutralisant">Anti-FAH non neutralisant</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" formControlName="antiFAHNegatif" id="antiFAHNegatif" />
+      <label class="form-check-label" for="antiFAHNegatif">Anti-FAH négatif</label>
+    </div>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_immurel">Immurel</label>
-          <input type="checkbox" class="form-check" name="immurel" id="field_immurel" data-cy="immurel" formControlName="immurel" />
-        </div>
+  <!-- Recherche ACC -->
+  <div class="mb-3">
+    <label class="form-label">Recherche ACC type LA associé</label>
+    <select class="form-control" formControlName="rechercheACC">
+      <option [ngValue]="null" disabled selected hidden>Choisir</option>
+      @for (acc of rechercheACCValues; track $index) {
+        <option [value]="acc">
+          {{ {
+            NON_FAITE: 'Non faite',
+            FAITE: 'Faite',
+            POSITIVE: 'Positive',
+            NEGATIVE: 'Négative',
+            DOUTEUSE: 'Douteuse'
+          }[acc] }}
+        </option>
+      }
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_iti">Iti</label>
-          <input type="checkbox" class="form-check" name="iti" id="field_iti" data-cy="iti" formControlName="iti" />
-        </div>
+  <!-- CAT thérapeutique -->
+  <div class="mb-3">
+    <label class="form-label">CAT thérapeutique</label>
+    <div class="d-flex flex-wrap gap-4">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" formControlName="augmenterDoseFacteur" id="augmenterDoseFacteur" />
+        <label for="augmenterDoseFacteur" class="form-check-label">Augmenter dose facteur</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" formControlName="novoseven" id="novoseven" />
+        <label for="novoseven" class="form-check-label">Novoseven</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" formControlName="feiba" id="feiba" />
+        <label for="feiba" class="form-check-label">Feiba</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" formControlName="corticotherapie" id="corticotherapie" />
+        <label for="corticotherapie" class="form-check-label">Corticothérapie</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" formControlName="immurel" id="immurel" />
+        <label for="immurel" class="form-check-label">Immurel</label>
+      </div>
+    </div>
+  </div>
 
-        @let posologieITIRef = editForm.get('posologieITI')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_posologieITI">Posologie ITI</label>
-          <input
-            type="text"
-            class="form-control"
-            name="posologieITI"
-            id="field_posologieITI"
-            data-cy="posologieITI"
-            formControlName="posologieITI"
-          />
-          @if (posologieITIRef.invalid && (posologieITIRef.dirty || posologieITIRef.touched)) {
-            <div>
-              @if (editForm.get('posologieITI')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+  <!-- ITI -->
+  <div class="mb-3">
+    <label class="form-label">ITI</label>
+    <input type="checkbox" class="form-check-input" formControlName="iti" id="iti" />
+    <label for="iti" class="form-check-label ms-2">Oui</label>
+  </div>
 
-        @let dureeITIRef = editForm.get('dureeITI')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_dureeITI">Duree ITI</label>
-          <input type="text" class="form-control" name="dureeITI" id="field_dureeITI" data-cy="dureeITI" formControlName="dureeITI" />
-          @if (dureeITIRef.invalid && (dureeITIRef.dirty || dureeITIRef.touched)) {
-            <div>
-              @if (editForm.get('dureeITI')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+  @if (editForm.get('iti')?.value) {
+    <div class="mb-3">
+      <label class="form-label" for="field_posologieITI">Posologie</label>
+      <input type="text" class="form-control" formControlName="posologieITI" />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_observanceITI">Observance ITI</label>
-          <select
-            class="form-control"
-            name="observanceITI"
-            formControlName="observanceITI"
-            id="field_observanceITI"
-            data-cy="observanceITI"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+    <div class="mb-3">
+      <label class="form-label" for="field_dureeITI">Durée</label>
+      <input type="text" class="form-control" formControlName="dureeITI" />
+    </div>
 
-        @let causeNonObservanceRef = editForm.get('causeNonObservance')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeNonObservance">Cause Non Observance</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeNonObservance"
-            id="field_causeNonObservance"
-            data-cy="causeNonObservance"
-            formControlName="causeNonObservance"
-          />
-          @if (causeNonObservanceRef.invalid && (causeNonObservanceRef.dirty || causeNonObservanceRef.touched)) {
-            <div>
-              @if (editForm.get('causeNonObservance')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+    <div class="mb-3">
+      <label class="form-label" for="field_observanceITI">Observance</label>
+      <select class="form-control" formControlName="observanceITI">
+        <option [ngValue]="null" disabled selected hidden>Choisir</option>
+        <option value="OUI">Oui</option>
+        <option value="NON">Non</option>
+        <option value="NP">NP</option>
+      </select>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_evolutionInhibiteur">Evolution Inhibiteur</label>
-          <select
-            class="form-control"
-            name="evolutionInhibiteur"
-            formControlName="evolutionInhibiteur"
-            id="field_evolutionInhibiteur"
-            data-cy="evolutionInhibiteur"
-          >
-            <option [ngValue]="null"></option>
-            @for (evolutionInhibiteur of evolutionInhibiteurValues; track $index) {
-              <option [value]="evolutionInhibiteur">
-                {{ { null: '', DISPARITION: 'DISPARITION', PERSISTANCE: 'PERSISTANCE' }[evolutionInhibiteur] }}
-              </option>
-            }
-          </select>
-        </div>
+    @if (editForm.get('observanceITI')?.value === 'NON') {
+      <div class="mb-3">
+        <label class="form-label" for="field_causeNonObservance">Cause non observance</label>
+        <input type="text" class="form-control" formControlName="causeNonObservance" />
+      </div>
+    }
+  }
 
-        <div class="mb-3">
-          <label class="form-label" for="field_prophylaxieHemlibra">Prophylaxie Hemlibra</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="prophylaxieHemlibra"
-            id="field_prophylaxieHemlibra"
-            data-cy="prophylaxieHemlibra"
-            formControlName="prophylaxieHemlibra"
-          />
-        </div>
+  <!-- Évolution inhibiteur -->
+  <div class="mb-3">
+    <label class="form-label">Évolution de l’inhibiteur</label>
+    <select class="form-control" formControlName="evolutionInhibiteur">
+      <option [ngValue]="null" disabled selected hidden>Choisir</option>
+      <option value="DISPARITION">Disparition</option>
+      <option value="PERSISTANCE">Persistance</option>
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDebutHemlibra">Date Debut Hemlibra</label>
-          <div class="input-group">
-            <input
-              id="field_dateDebutHemlibra"
-              data-cy="dateDebutHemlibra"
-              type="text"
-              class="form-control"
-              name="dateDebutHemlibra"
-              ngbDatepicker
-              #dateDebutHemlibraDp="ngbDatepicker"
-              formControlName="dateDebutHemlibra"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDebutHemlibraDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
-        </div>
+  <!-- Prophylaxie Hemlibra -->
+  <div class="mb-3">
+    <label class="form-label">Prophylaxie par Hemlibra</label>
+    <input type="checkbox" class="form-check-input" formControlName="prophylaxieHemlibra" id="prophylaxieHemlibra" />
+    <label for="prophylaxieHemlibra" class="form-check-label ms-2">Oui</label>
+  </div>
+
+  @if (editForm.get('prophylaxieHemlibra')?.value) {
+    <div class="mb-3">
+      <label class="form-label">Date de début</label>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="dateDebutHemlibra"
+          ngbDatepicker
+          #dateDebutHemlibraDp="ngbDatepicker"
+        />
+        <button type="button" class="btn btn-outline-secondary" (click)="dateDebutHemlibraDp.toggle()">
+          <fa-icon icon="calendar-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
+  }
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_schemaTherapeutique">Schema Therapeutique</label>
