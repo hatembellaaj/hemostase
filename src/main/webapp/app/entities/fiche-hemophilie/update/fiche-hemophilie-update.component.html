@@ -855,131 +855,79 @@
     <div class="accordion-body">
       <!-- Contenu pour la section Circonstances de découverte -->
 
-        @let circonstancesDecouverteRef = editForm.get('circonstancesDecouverte')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_circonstancesDecouverte">Circonstances Decouverte</label>
-          <select
-            class="form-control"
-            name="circonstancesDecouverte"
-            formControlName="circonstancesDecouverte"
-            id="field_circonstancesDecouverte"
-            data-cy="circonstancesDecouverte"
-          >
-            <option [ngValue]="null"></option>
-            @for (circumstanceDecouverte of circumstanceDecouverteValues; track $index) {
-              <option [value]="circumstanceDecouverte">
-                {{
-                  { null: '', FORTUITE: 'FORTUITE', FAMILIALE: 'FAMILIALE', SYNDROME_HEMORRAGIQUE: 'SYNDROME_HEMORRAGIQUE' }[
-                    circumstanceDecouverte
-                  ]
-                }}
-              </option>
-            }
-          </select>
-          @if (circonstancesDecouverteRef.invalid && (circonstancesDecouverteRef.dirty || circonstancesDecouverteRef.touched)) {
-            <div>
-              @if (editForm.get('circonstancesDecouverte')?.errors?.required) {
-                <small class="form-text text-danger">Ce champ est obligatoire.</small>
-              }
-            </div>
-          }
-        </div>
+@let circonstancesDecouverteRef = editForm.get('circonstancesDecouverte')!;
 
-        <div class="mb-3">
-          <label class="form-label" for="field_cutaneoMuqueux">Cutaneo Muqueux</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="cutaneoMuqueux"
-            id="field_cutaneoMuqueux"
-            data-cy="cutaneoMuqueux"
-            formControlName="cutaneoMuqueux"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label" for="field_circonstancesDecouverte">Circonstances Découverte</label>
+  <select
+    class="form-control"
+    name="circonstancesDecouverte"
+    formControlName="circonstancesDecouverte"
+    id="field_circonstancesDecouverte"
+    data-cy="circonstancesDecouverte"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir une circonstance</option>
+    <option value="FORTUITE">Découverte fortuite</option>
+    <option value="FAMILIALE">Enquête familiale</option>
+    <option value="SYNDROME_HEMORRAGIQUE">Exploration d’un syndrome hémorragique</option>
+  </select>
+  @if (circonstancesDecouverteRef.invalid && (circonstancesDecouverteRef.dirty || circonstancesDecouverteRef.touched)) {
+    <div>
+      @if (editForm.get('circonstancesDecouverte')?.errors?.required) {
+        <small class="form-text text-danger">Ce champ est obligatoire.</small>
+      }
+    </div>
+  }
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthrose">Hemarthrose</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemarthrose"
-            id="field_hemarthrose"
-            data-cy="hemarthrose"
-            formControlName="hemarthrose"
-          />
-        </div>
+<!-- Afficher les checkboxes seulement si SYNDROME_HEMORRAGIQUE est sélectionné -->
+@if (editForm.get('circonstancesDecouverte')?.value === 'SYNDROME_HEMORRAGIQUE') {
+  <div class="mb-3">
+    <label class="form-label">Manifestations hémorragiques</label>
+    <div class="d-flex flex-wrap gap-4">
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_cutaneoMuqueux" formControlName="cutaneoMuqueux" />
+        <label for="field_cutaneoMuqueux" class="form-check-label">Cutanéo-muqueux</label>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomePostTraumatique">Hematome Post Traumatique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hematomePostTraumatique"
-            id="field_hematomePostTraumatique"
-            data-cy="hematomePostTraumatique"
-            formControlName="hematomePostTraumatique"
-          />
-        </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_hemarthrose" formControlName="hemarthrose" />
+        <label for="field_hemarthrose" class="form-check-label">Hémarthrose</label>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_plaiePostTraumatique">Plaie Post Traumatique</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="plaiePostTraumatique"
-            id="field_plaiePostTraumatique"
-            data-cy="plaiePostTraumatique"
-            formControlName="plaiePostTraumatique"
-          />
-        </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_hematomePostTraumatique" formControlName="hematomePostTraumatique" />
+        <label for="field_hematomePostTraumatique" class="form-check-label">Hématome post-traumatique</label>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragiePostCirconcision">Hemorragie Post Circoncision</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragiePostCirconcision"
-            id="field_hemorragiePostCirconcision"
-            data-cy="hemorragiePostCirconcision"
-            formControlName="hemorragiePostCirconcision"
-          />
-        </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_plaiePostTraumatique" formControlName="plaiePostTraumatique" />
+        <label for="field_plaiePostTraumatique" class="form-check-label">Plaie post-traumatique</label>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragiePostChirurgie">Hemorragie Post Chirurgie</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragiePostChirurgie"
-            id="field_hemorragiePostChirurgie"
-            data-cy="hemorragiePostChirurgie"
-            formControlName="hemorragiePostChirurgie"
-          />
-        </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_hemorragiePostCirconcision" formControlName="hemorragiePostCirconcision" />
+        <label for="field_hemorragiePostCirconcision" class="form-check-label">Hémorragie post-circoncision</label>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieCerebrale">Hemorragie Cerebrale</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieCerebrale"
-            id="field_hemorragieCerebrale"
-            data-cy="hemorragieCerebrale"
-            formControlName="hemorragieCerebrale"
-          />
-        </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_hemorragiePostChirurgie" formControlName="hemorragiePostChirurgie" />
+        <label for="field_hemorragiePostChirurgie" class="form-check-label">Hémorragie post-chirurgie</label>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemorragieDigestive">Hemorragie Digestive</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="hemorragieDigestive"
-            id="field_hemorragieDigestive"
-            data-cy="hemorragieDigestive"
-            formControlName="hemorragieDigestive"
-          />
-        </div>
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_hemorragieCerebrale" formControlName="hemorragieCerebrale" />
+        <label for="field_hemorragieCerebrale" class="form-check-label">Hémorragie cérébrale</label>
+      </div>
+
+      <div class="form-check d-flex align-items-center gap-2">
+        <input type="checkbox" class="form-check-input" id="field_hemorragieDigestive" formControlName="hemorragieDigestive" />
+        <label for="field_hemorragieDigestive" class="form-check-label">Hémorragie digestive</label>
+      </div>
+    </div>
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_datePremierSigneClinique">Date Premier Signe Clinique</label>
