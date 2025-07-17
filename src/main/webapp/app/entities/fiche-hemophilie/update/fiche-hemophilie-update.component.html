@@ -2709,39 +2709,65 @@
 }
 
 <!-- 5. Activité sportive -->
-<div class="mb-3">
-  <label class="form-label">5 - Activité sportive</label>
-  <input type="checkbox" class="form-check" formControlName="activiteSportive" />
+<div class="mb-3 d-flex align-items-center gap-2">
+  <label for="field_activiteSportive" class="form-label mb-0">5 - Activité sportive</label>
+  <input
+    type="checkbox"
+    class="form-check-input"
+    name="activiteSportive"
+    id="field_activiteSportive"
+    formControlName="activiteSportive"
+  />
 </div>
 
 @if (editForm.get('activiteSportive')?.value) {
   <div class="mb-3">
-    <label class="form-label">Type d’activité sportive</label>
-    <input type="text" class="form-control" formControlName="typeActiviteSportive" />
+    <label class="form-label" for="field_typeActiviteSportive">Type d’activité sportive</label>
+    <input
+      type="text"
+      class="form-control"
+      name="typeActiviteSportive"
+      id="field_typeActiviteSportive"
+      formControlName="typeActiviteSportive"
+    />
   </div>
 }
 
+
 <!-- 6. Décédé -->
-<div class="mb-3">
-  <label class="form-label">6 - Décédé</label>
-  <input type="checkbox" class="form-check" formControlName="decede" />
+<div class="mb-3 d-flex align-items-center gap-2">
+  <label for="field_decede" class="form-label mb-0">6 - Décédé</label>
+  <input
+    type="checkbox"
+    class="form-check-input"
+    name="decede"
+    id="field_decede"
+    formControlName="decede"
+  />
 </div>
 
 @if (editForm.get('decede')?.value) {
   <div class="mb-3">
-    <label class="form-label">Cause du décès</label>
-    <input type="text" class="form-control" formControlName="causeDeces" />
+    <label class="form-label" for="field_causeDeces">Cause du décès</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="causeDeces"
+      id="field_causeDeces"
+    />
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Date du décès</label>
+    <label class="form-label" for="field_dateDeces">Date du décès</label>
     <div class="input-group">
       <input
+        id="field_dateDeces"
         type="text"
         class="form-control"
-        formControlName="dateDeces"
+        name="dateDeces"
         ngbDatepicker
         #dateDecesDp="ngbDatepicker"
+        formControlName="dateDeces"
       />
       <button type="button" class="btn btn-outline-secondary" (click)="dateDecesDp.toggle()">
         <fa-icon icon="calendar-alt"></fa-icon>
@@ -2749,6 +2775,7 @@
     </div>
   </div>
 }
+
 
       
       </div>
