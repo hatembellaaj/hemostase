@@ -694,72 +694,92 @@
 </div>
 
 
-        <div class="mb-3">
-          <label class="form-label" for="field_casSimilaires">Cas Similaires</label>
-          <select
-            class="form-control"
-            name="casSimilaires"
-            formControlName="casSimilaires"
-            id="field_casSimilaires"
-            data-cy="casSimilaires"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<div class="mb-3 d-flex align-items-end gap-3">
+  <!-- Cas Similaires -->
+  <div class="flex-fill">
+    <select
+      class="form-control"
+      name="casSimilaires"
+      formControlName="casSimilaires"
+      id="field_casSimilaires"
+      data-cy="casSimilaires"
+    >
+      <option [ngValue]="null" disabled selected hidden>Cas Similaires</option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+      }
+    </select>
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nombreCas">Nombre Cas</label>
-          <input type="number" class="form-control" name="nombreCas" id="field_nombreCas" data-cy="nombreCas" formControlName="nombreCas" />
-        </div>
+  <!-- Champs conditionnels affichés uniquement si "Cas Similaires" == OUI -->
+  @if (editForm.get('casSimilaires')?.value === 'OUI') {
+    <!-- Nombre Cas -->
+    <div class="flex-fill">
+      <input
+        type="number"
+        class="form-control"
+        name="nombreCas"
+        id="field_nombreCas"
+        data-cy="nombreCas"
+        formControlName="nombreCas"
+        placeholder="Nombre Cas"
+      />
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_degreParenteCasSimilaires">Degre Parente Cas Similaires</label>
-          <select
-            class="form-control"
-            name="degreParenteCasSimilaires"
-            formControlName="degreParenteCasSimilaires"
-            id="field_degreParenteCasSimilaires"
-            data-cy="degreParenteCasSimilaires"
-          >
-            <option [ngValue]="null"></option>
-            @for (degreeParente of degreeParenteValues; track $index) {
-              <option [value]="degreeParente">
-                {{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[degreeParente] }}
-              </option>
-            }
-          </select>
-        </div>
+    <!-- Degré Parenté Cas Similaires -->
+    <div class="flex-fill">
+      <select
+        class="form-control"
+        name="degreParenteCasSimilaires"
+        formControlName="degreParenteCasSimilaires"
+        id="field_degreParenteCasSimilaires"
+        data-cy="degreParenteCasSimilaires"
+      >
+        <option [ngValue]="null" disabled selected hidden>Degré Parenté</option>
+        @for (degreeParente of degreeParenteValues; track $index) {
+          <option [value]="degreeParente">
+            {{ { null: '', FRERE: 'FRERE', COUSIN: 'COUSIN', LOINTAIN: 'LOINTAIN' }[degreeParente] }}
+          </option>
+        }
+      </select>
+    </div>
+  }
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_decesSyndromeHemorragique">Deces Syndrome Hemorragique</label>
-          <select
-            class="form-control"
-            name="decesSyndromeHemorragique"
-            formControlName="decesSyndromeHemorragique"
-            id="field_decesSyndromeHemorragique"
-            data-cy="decesSyndromeHemorragique"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_nombreDeces">Nombre Deces</label>
-          <input
-            type="number"
-            class="form-control"
-            name="nombreDeces"
-            id="field_nombreDeces"
-            data-cy="nombreDeces"
-            formControlName="nombreDeces"
-          />
-        </div>
+ <div class="mb-3 d-flex align-items-end gap-3">
+  <!-- Décès Syndrome Hémorragique -->
+  <div class="flex-fill">
+    <select
+      class="form-control"
+      name="decesSyndromeHemorragique"
+      formControlName="decesSyndromeHemorragique"
+      id="field_decesSyndromeHemorragique"
+      data-cy="decesSyndromeHemorragique"
+    >
+      <option [ngValue]="null" disabled selected hidden>Décès Syndrome Hémorragique</option>
+      @for (ouiNonNP of ouiNonNPValues; track $index) {
+        <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+      }
+    </select>
+  </div>
+
+  <!-- Nombre Décès (visible seulement si OUI) -->
+  @if (editForm.get('decesSyndromeHemorragique')?.value === 'OUI') {
+    <div class="flex-fill">
+      <input
+        type="number"
+        class="form-control"
+        name="nombreDeces"
+        id="field_nombreDeces"
+        data-cy="nombreDeces"
+        formControlName="nombreDeces"
+        placeholder="Nombre Décès"
+      />
+    </div>
+  }
+</div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_formeHemophilie">Forme Hemophilie</label>
@@ -779,29 +799,33 @@
           </select>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_fratrieNbFreres">Fratrie Nb Freres</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fratrieNbFreres"
-            id="field_fratrieNbFreres"
-            data-cy="fratrieNbFreres"
-            formControlName="fratrieNbFreres"
-          />
-        </div>
+<div class="mb-3">
+  <label class="form-label">Fratrie</label>
+  <div class="d-flex gap-3">
+    <!-- Nombre de Frères -->
+    <input
+      type="number"
+      class="form-control"
+      name="fratrieNbFreres"
+      id="field_fratrieNbFreres"
+      data-cy="fratrieNbFreres"
+      formControlName="fratrieNbFreres"
+      placeholder="Nb Frères"
+    />
 
-        <div class="mb-3">
-          <label class="form-label" for="field_fratrieNbSoeurs">Fratrie Nb Soeurs</label>
-          <input
-            type="number"
-            class="form-control"
-            name="fratrieNbSoeurs"
-            id="field_fratrieNbSoeurs"
-            data-cy="fratrieNbSoeurs"
-            formControlName="fratrieNbSoeurs"
-          />
-        </div>
+    <!-- Nombre de Sœurs -->
+    <input
+      type="number"
+      class="form-control"
+      name="fratrieNbSoeurs"
+      id="field_fratrieNbSoeurs"
+      data-cy="fratrieNbSoeurs"
+      formControlName="fratrieNbSoeurs"
+      placeholder="Nb Sœurs"
+    />
+  </div>
+</div>
+
 
           </div>
   </div>
