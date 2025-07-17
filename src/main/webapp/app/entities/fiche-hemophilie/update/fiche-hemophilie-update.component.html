@@ -2652,143 +2652,105 @@
 
 
       
-        <div class="mb-3">
-          <label class="form-label" for="field_vieSociale">Vie Sociale</label>
-          <select class="form-control" name="vieSociale" formControlName="vieSociale" id="field_vieSociale" data-cy="vieSociale">
-            <option [ngValue]="null"></option>
-            @for (vieSociale of vieSocialeValues; track $index) {
-              <option [value]="vieSociale">
-                {{
-                  { null: '', PRESCOLAIRE: 'PRESCOLAIRE', SCOLARISE: 'SCOLARISE', CHOMEUR: 'CHOMEUR', TRAVAILLE: 'TRAVAILLE' }[vieSociale]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+<!-- 1. Vie sociale -->
+<div class="mb-3">
+  <label class="form-label fw-bold">1 - Vie sociale</label>
+  <select class="form-control" formControlName="vieSociale">
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (vieSociale of vieSocialeValues; track $index) {
+      <option [value]="vieSociale">
+        {{ { PRESCOLAIRE: 'Préscolaire', SCOLARISE: 'Scolarisé', CHOMEUR: 'Chômeur', TRAVAILLE: 'Travaille' }[vieSociale] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_marie">Marie</label>
-          <select class="form-control" name="marie" formControlName="marie" id="field_marie" data-cy="marie">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- 2. Marié -->
+<div class="mb-3">
+  <label class="form-label">2 - Marié</label>
+  <select class="form-control" formControlName="marie">
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (val of ouiNonNPValues; track $index) {
+      <option [value]="val">{{ { OUI: 'Oui', NON: 'Non', NP: 'NP' }[val] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_enfants">Enfants</label>
-          <select class="form-control" name="enfants" formControlName="enfants" id="field_enfants" data-cy="enfants">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Enfants si marié oui -->
+@if (editForm.get('marie')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label">Enfants</label>
+    <select class="form-control" formControlName="enfants">
+      <option [ngValue]="null" disabled selected hidden>Choisir</option>
+      @for (val of ouiNonNPValues; track $index) {
+        <option [value]="val">{{ { OUI: 'Oui', NON: 'Non', NP: 'NP' }[val] }}</option>
+      }
+    </select>
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_handicap">Handicap</label>
-          <select class="form-control" name="handicap" formControlName="handicap" id="field_handicap" data-cy="handicap">
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- 4. Handicap -->
+<div class="mb-3">
+  <label class="form-label">4 - Handicap</label>
+  <select class="form-control" formControlName="handicap">
+    <option [ngValue]="null" disabled selected hidden>Choisir</option>
+    @for (val of ouiNonNPValues; track $index) {
+      <option [value]="val">{{ { OUI: 'Oui', NON: 'Non', NP: 'NP' }[val] }}</option>
+    }
+  </select>
+</div>
 
-        @let typeHandicapRef = editForm.get('typeHandicap')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeHandicap">Type Handicap</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeHandicap"
-            id="field_typeHandicap"
-            data-cy="typeHandicap"
-            formControlName="typeHandicap"
-          />
-          @if (typeHandicapRef.invalid && (typeHandicapRef.dirty || typeHandicapRef.touched)) {
-            <div>
-              @if (editForm.get('typeHandicap')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+<!-- Type handicap si oui -->
+@if (editForm.get('handicap')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label">Type de handicap</label>
+    <input type="text" class="form-control" formControlName="typeHandicap" />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_activiteSportive">Activite Sportive</label>
-          <input
-            type="checkbox"
-            class="form-check"
-            name="activiteSportive"
-            id="field_activiteSportive"
-            data-cy="activiteSportive"
-            formControlName="activiteSportive"
-          />
-        </div>
+<!-- 5. Activité sportive -->
+<div class="mb-3">
+  <label class="form-label">5 - Activité sportive</label>
+  <input type="checkbox" class="form-check" formControlName="activiteSportive" />
+</div>
 
-        @let typeActiviteSportiveRef = editForm.get('typeActiviteSportive')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_typeActiviteSportive">Type Activite Sportive</label>
-          <input
-            type="text"
-            class="form-control"
-            name="typeActiviteSportive"
-            id="field_typeActiviteSportive"
-            data-cy="typeActiviteSportive"
-            formControlName="typeActiviteSportive"
-          />
-          @if (typeActiviteSportiveRef.invalid && (typeActiviteSportiveRef.dirty || typeActiviteSportiveRef.touched)) {
-            <div>
-              @if (editForm.get('typeActiviteSportive')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@if (editForm.get('activiteSportive')?.value) {
+  <div class="mb-3">
+    <label class="form-label">Type d’activité sportive</label>
+    <input type="text" class="form-control" formControlName="typeActiviteSportive" />
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_decede">Decede</label>
-          <input type="checkbox" class="form-check" name="decede" id="field_decede" data-cy="decede" formControlName="decede" />
-        </div>
+<!-- 6. Décédé -->
+<div class="mb-3">
+  <label class="form-label">6 - Décédé</label>
+  <input type="checkbox" class="form-check" formControlName="decede" />
+</div>
 
-        @let causeDecesRef = editForm.get('causeDeces')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_causeDeces">Cause Deces</label>
-          <input
-            type="text"
-            class="form-control"
-            name="causeDeces"
-            id="field_causeDeces"
-            data-cy="causeDeces"
-            formControlName="causeDeces"
-          />
-          @if (causeDecesRef.invalid && (causeDecesRef.dirty || causeDecesRef.touched)) {
-            <div>
-              @if (editForm.get('causeDeces')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
-          }
-        </div>
+@if (editForm.get('decede')?.value) {
+  <div class="mb-3">
+    <label class="form-label">Cause du décès</label>
+    <input type="text" class="form-control" formControlName="causeDeces" />
+  </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_dateDeces">Date Deces</label>
-          <div class="input-group">
-            <input
-              id="field_dateDeces"
-              data-cy="dateDeces"
-              type="text"
-              class="form-control"
-              name="dateDeces"
-              ngbDatepicker
-              #dateDecesDp="ngbDatepicker"
-              formControlName="dateDeces"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateDecesDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-          </div>
-        </div>
+  <div class="mb-3">
+    <label class="form-label">Date du décès</label>
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="dateDeces"
+        ngbDatepicker
+        #dateDecesDp="ngbDatepicker"
+      />
+      <button type="button" class="btn btn-outline-secondary" (click)="dateDecesDp.toggle()">
+        <fa-icon icon="calendar-alt"></fa-icon>
+      </button>
+    </div>
+  </div>
+}
+
+      
       </div>
     </div>
   </div>
