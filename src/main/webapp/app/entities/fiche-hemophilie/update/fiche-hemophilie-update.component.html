@@ -2072,7 +2072,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_modaliteTraitement">Modalite Traitement</label>
+          <label class="form-label" for="field_modaliteTraitement">Modalité du ttt substitutif</label>
           <select
             class="form-control"
             name="modaliteTraitement"
@@ -2110,7 +2110,7 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_agePremiereSubstitution">Age Premiere Substitution</label>
+          <label class="form-label" for="field_agePremiereSubstitution">Age de la 1ére substitution</label>
           <input
             type="number"
             class="form-control"
@@ -2121,69 +2121,64 @@
           />
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_antecedentsTraitementPSL">Antecedents Traitement PSL</label>
-          <select
-            class="form-control"
-            name="antecedentsTraitementPSL"
-            formControlName="antecedentsTraitementPSL"
-            id="field_antecedentsTraitementPSL"
-            data-cy="antecedentsTraitementPSL"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal : Antécédents de traitement par PSL -->
+<div class="mb-3">
+  <label class="form-label fw-bold" for="field_antecedentsTraitementPSL">Antécédents de traitement par des PSL</label>
+  <select
+    class="form-control"
+    name="antecedentsTraitementPSL"
+    formControlName="antecedentsTraitementPSL"
+    id="field_antecedentsTraitementPSL"
+    data-cy="antecedentsTraitementPSL"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir une option</option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_plasmaFraisCongele">Plasma Frais Congele</label>
-          <select
-            class="form-control"
-            name="plasmaFraisCongele"
-            formControlName="plasmaFraisCongele"
-            id="field_plasmaFraisCongele"
-            data-cy="plasmaFraisCongele"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champs conditionnels : PFC + Cryoprécipité -->
+@if (editForm.get('antecedentsTraitementPSL')?.value === 'OUI') {
+  <div class="mb-3 d-flex flex-wrap gap-3">
+    <!-- PFC -->
+    <div class="flex-fill">
+      <label class="form-label" for="field_plasmaFraisCongele">Plasma frais congelé (PFC)</label>
+      <select
+        class="form-control"
+        name="plasmaFraisCongele"
+        formControlName="plasmaFraisCongele"
+        id="field_plasmaFraisCongele"
+        data-cy="plasmaFraisCongele"
+      >
+        <option [ngValue]="null" disabled selected hidden>Choisir</option>
+        @for (ouiNonNP of ouiNonNPValues; track $index) {
+          <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+        }
+      </select>
+    </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_cryoprecipite">Cryoprecipite</label>
-          <select
-            class="form-control"
-            name="cryoprecipite"
-            formControlName="cryoprecipite"
-            id="field_cryoprecipite"
-            data-cy="cryoprecipite"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+    <!-- Cryoprécipité -->
+    <div class="flex-fill">
+      <label class="form-label" for="field_cryoprecipite">Cryoprécipité</label>
+      <select
+        class="form-control"
+        name="cryoprecipite"
+        formControlName="cryoprecipite"
+        id="field_cryoprecipite"
+        data-cy="cryoprecipite"
+      >
+        <option [ngValue]="null" disabled selected hidden>Choisir</option>
+        @for (ouiNonNP of ouiNonNPValues; track $index) {
+          <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+        }
+      </select>
+    </div>
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_orthopediques">Orthopediques</label>
-          <select
-            class="form-control"
-            name="orthopediques"
-            formControlName="orthopediques"
-            id="field_orthopediques"
-            data-cy="orthopediques"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+
+
 
 
     </div>
@@ -2214,7 +2209,21 @@
       <!-- Contenu pour la section Complications -->
 
 
-
+        <div class="mb-3">
+          <label class="form-label" for="field_orthopediques">Orthopediques</label>
+          <select
+            class="form-control"
+            name="orthopediques"
+            formControlName="orthopediques"
+            id="field_orthopediques"
+            data-cy="orthopediques"
+          >
+            <option [ngValue]="null"></option>
+            @for (ouiNonNP of ouiNonNPValues; track $index) {
+              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+            }
+          </select>
+        </div>
 
       
         <div class="mb-3">
