@@ -1369,61 +1369,83 @@
     data-bs-parent="#ficheAccordion"
   >
     <div class="accordion-body">
-
-
-              <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseMC">Hemarthrose MC</label>
-          <select
-            class="form-control"
-            name="hemarthroseMC"
-            formControlName="hemarthroseMC"
-            id="field_hemarthroseMC"
-            data-cy="hemarthroseMC"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
       
-        @let hemarthroseSiegeRef = editForm.get('hemarthroseSiege')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseSiege">Hemarthrose Siege</label>
-          <input
-            type="text"
-            class="form-control"
-            name="hemarthroseSiege"
-            id="field_hemarthroseSiege"
-            data-cy="hemarthroseSiege"
-            formControlName="hemarthroseSiege"
-          />
-          @if (hemarthroseSiegeRef.invalid && (hemarthroseSiegeRef.dirty || hemarthroseSiegeRef.touched)) {
-            <div>
-              @if (editForm.get('hemarthroseSiege')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
+
+<div class="mb-3">
+  <label class="form-label" for="field_hemarthroseMC">1 - Hémarthrose</label>
+  <select
+    class="form-control"
+    name="hemarthroseMC"
+    formControlName="hemarthroseMC"
+    id="field_hemarthroseMC"
+    data-cy="hemarthroseMC"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir une option</option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+    }
+  </select>
+</div>
+
+@if (editForm.get('hemarthroseMC')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label">Détails Hémarthrose</label>
+
+    <!-- Conteneur global pour Siège + Type -->
+    <div class="d-flex flex-wrap gap-3">
+      
+      <!-- Sièges (checkboxes) -->
+      <div class="flex-fill">
+        <div class="form-label mb-2">Siège</div>
+        <div class="d-flex flex-wrap gap-3">
+          @for (siege of [
+            'Coude droit', 'Coude gauche',
+            'Genou droit', 'Genou gauche',
+            'Cheville droite', 'Cheville gauche',
+            'Épaule droite', 'Épaule gauche',
+            'Poignet droit', 'Poignet gauche',
+            'Hanche droite', 'Hanche gauche'
+          ]; track $index) {
+            <div class="form-check d-flex align-items-center gap-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [value]="siege"
+                (change)="onSiegeChange($event)"
+                [checked]="editForm.get('hemarthroseSiege')?.value?.includes(siege)"
+              />
+              <label class="form-check-label">{{ siege }}</label>
             </div>
           }
         </div>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hemarthroseType">Hemarthrose Type</label>
-          <select
-            class="form-control"
-            name="hemarthroseType"
-            formControlName="hemarthroseType"
-            id="field_hemarthroseType"
-            data-cy="hemarthroseType"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+      <!-- Type -->
+      <div class="flex-fill d-flex flex-column">
+        <label for="field_hemarthroseType" class="form-label">Type</label>
+        <select
+          class="form-control"
+          name="hemarthroseType"
+          formControlName="hemarthroseType"
+          id="field_hemarthroseType"
+          data-cy="hemarthroseType"
+        >
+          <option [ngValue]="null" disabled selected hidden>Type</option>
+          @for (typeManifestation of typeManifestationValues; track $index) {
+            <option [value]="typeManifestation">
+              {{ { null: '', SPONTANE: 'Spontané', PROVOQUE: 'Provoqué' }[typeManifestation] }}
+            </option>
+          }
+        </select>
+      </div>
 
-        <div class="mb-3">
+    </div>
+  </div>
+}
+
+
+
+        <!--div class="mb-3">
           <label class="form-label" for="field_hemarthroseFrequenceAn">Hemarthrose Frequence An</label>
           <input
             type="number"
@@ -1433,118 +1455,153 @@
             data-cy="hemarthroseFrequenceAn"
             formControlName="hemarthroseFrequenceAn"
           />
-        </div>
+    </div-->
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSuperficiel">Hematome Superficiel</label>
-          <select
-            class="form-control"
-            name="hematomeSuperficiel"
-            formControlName="hematomeSuperficiel"
-            id="field_hematomeSuperficiel"
-            data-cy="hematomeSuperficiel"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label" for="field_hematomeSuperficiel">2 - Hématome superficiel</label>
+  <select
+    class="form-control"
+    name="hematomeSuperficiel"
+    formControlName="hematomeSuperficiel"
+    id="field_hematomeSuperficiel"
+    data-cy="hematomeSuperficiel"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir une option</option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSuperficielType">Hematome Superficiel Type</label>
-          <select
-            class="form-control"
-            name="hematomeSuperficielType"
-            formControlName="hematomeSuperficielType"
-            id="field_hematomeSuperficielType"
-            data-cy="hematomeSuperficielType"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeManifestation of typeManifestationValues; track $index) {
-              <option [value]="typeManifestation">{{ { null: '', SPONTANE: 'SPONTANE', PROVOQUE: 'PROVOQUE' }[typeManifestation] }}</option>
-            }
-          </select>
-        </div>
+<!-- Champs conditionnels -->
+@if (editForm.get('hematomeSuperficiel')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label">Détails Hématome superficiel</label>
+    <div class="d-flex flex-wrap gap-3">
 
-        @let hematomeSuperficielSiegeRef = editForm.get('hematomeSuperficielSiege')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomeSuperficielSiege">Hematome Superficiel Siege</label>
-          <input
-            type="text"
-            class="form-control"
-            name="hematomeSuperficielSiege"
-            id="field_hematomeSuperficielSiege"
-            data-cy="hematomeSuperficielSiege"
-            formControlName="hematomeSuperficielSiege"
-          />
-          @if (hematomeSuperficielSiegeRef.invalid && (hematomeSuperficielSiegeRef.dirty || hematomeSuperficielSiegeRef.touched)) {
-            <div>
-              @if (editForm.get('hematomeSuperficielSiege')?.errors?.maxlength) {
-                <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
-              }
-            </div>
+      <!-- Type -->
+      <div class="flex-fill d-flex flex-column">
+        <label for="field_hematomeSuperficielType" class="form-label">Type</label>
+        <select
+          class="form-control"
+          name="hematomeSuperficielType"
+          formControlName="hematomeSuperficielType"
+          id="field_hematomeSuperficielType"
+          data-cy="hematomeSuperficielType"
+        >
+          <option [ngValue]="null" disabled selected hidden>Type</option>
+          @for (typeManifestation of typeManifestationValues; track $index) {
+            <option [value]="typeManifestation">
+              {{ { null: '', SPONTANE: 'Spontané', PROVOQUE: 'Provoqué' }[typeManifestation] }}
+            </option>
           }
-        </div>
+        </select>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomePsoas">Hematome Psoas</label>
-          <select
-            class="form-control"
-            name="hematomePsoas"
-            formControlName="hematomePsoas"
-            id="field_hematomePsoas"
-            data-cy="hematomePsoas"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+      <!-- Siège -->
+      <div class="flex-fill d-flex flex-column">
+        <label class="form-label" for="field_hematomeSuperficielSiege">Siège</label>
+        @let hematomeSuperficielSiegeRef = editForm.get('hematomeSuperficielSiege')!;
+        <input
+          type="text"
+          class="form-control"
+          name="hematomeSuperficielSiege"
+          id="field_hematomeSuperficielSiege"
+          data-cy="hematomeSuperficielSiege"
+          formControlName="hematomeSuperficielSiege"
+          placeholder="Ex : bras, cuisse, dos..."
+        />
+        @if (hematomeSuperficielSiegeRef.invalid && (hematomeSuperficielSiegeRef.dirty || hematomeSuperficielSiegeRef.touched)) {
+          <div>
+            @if (hematomeSuperficielSiegeRef.errors?.maxlength) {
+              <small class="form-text text-danger">Ce champ doit faire moins de 25 caractères.</small>
             }
-          </select>
-        </div>
+          </div>
+        }
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomePsoasType">Hematome Psoas Type</label>
-          <select
-            class="form-control"
-            name="hematomePsoasType"
-            formControlName="hematomePsoasType"
-            id="field_hematomePsoasType"
-            data-cy="hematomePsoasType"
-          >
-            <option [ngValue]="null"></option>
-            @for (typeHemorragie of typeHemorragieValues; track $index) {
-              <option [value]="typeHemorragie">
-                {{
-                  {
-                    null: '',
-                    CHUTE_DENTAIRE: 'CHUTE_DENTAIRE',
-                    PLAIE_LANGUE: 'PLAIE_LANGUE',
-                    GINGIVORRAGIES: 'GINGIVORRAGIES',
-                    EPISTAXIS: 'EPISTAXIS',
-                    ECHYMOSES: 'ECHYMOSES',
-                  }[typeHemorragie]
-                }}
-              </option>
-            }
-          </select>
-        </div>
+    </div>
+  </div>
+}
 
-        <div class="mb-3">
-          <label class="form-label" for="field_hematomePsoasRecidive">Hematome Psoas Recidive</label>
-          <select
-            class="form-control"
-            name="hematomePsoasRecidive"
-            formControlName="hematomePsoasRecidive"
-            id="field_hematomePsoasRecidive"
-            data-cy="hematomePsoasRecidive"
-          >
-            <option [ngValue]="null"></option>
-            @for (ouiNonNP of ouiNonNPValues; track $index) {
-              <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
-            }
-          </select>
-        </div>
+
+<!-- Champ principal -->
+<div class="mb-3">
+  <label class="form-label" for="field_hematomePsoas">3 - Hématome du psoas</label>
+  <select
+    class="form-control"
+    name="hematomePsoas"
+    formControlName="hematomePsoas"
+    id="field_hematomePsoas"
+    data-cy="hematomePsoas"
+  >
+    <option [ngValue]="null" disabled selected hidden>Choisir une option</option>
+    @for (ouiNonNP of ouiNonNPValues; track $index) {
+      <option [value]="ouiNonNP">
+        {{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}
+      </option>
+    }
+  </select>
+</div>
+
+<!-- Champs conditionnels -->
+@if (editForm.get('hematomePsoas')?.value === 'OUI') {
+  <div class="mb-3">
+    <label class="form-label">Détails Hématome du psoas</label>
+    <div class="d-flex flex-wrap gap-3">
+
+      <!-- Type -->
+      <div class="flex-fill d-flex flex-column">
+        <label for="field_hematomePsoasType" class="form-label">Type</label>
+        <select
+          class="form-control"
+          name="hematomePsoasType"
+          formControlName="hematomePsoasType"
+          id="field_hematomePsoasType"
+          data-cy="hematomePsoasType"
+        >
+          <option [ngValue]="null" disabled selected hidden>Type</option>
+          @for (typeHemorragie of typeHemorragieValues; track $index) {
+            <option [value]="typeHemorragie">
+              {{
+                {
+                  null: '',
+                  CHUTE_DENTAIRE: 'Chute dentaire',
+                  PLAIE_LANGUE: 'Plaie langue',
+                  GINGIVORRAGIES: 'Gingivorragies',
+                  EPISTAXIS: 'Epistaxis',
+                  ECHYMOSES: 'Ecchymoses'
+                }[typeHemorragie]
+              }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <!-- Récidive -->
+      <div class="flex-fill d-flex flex-column">
+        <label for="field_hematomePsoasRecidive" class="form-label">Récidive</label>
+        <select
+          class="form-control"
+          name="hematomePsoasRecidive"
+          formControlName="hematomePsoasRecidive"
+          id="field_hematomePsoasRecidive"
+          data-cy="hematomePsoasRecidive"
+        >
+          <option [ngValue]="null" disabled selected hidden>Récidive</option>
+          @for (ouiNonNP of ouiNonNPValues; track $index) {
+            <option [value]="ouiNonNP">{{ { null: '', OUI: 'OUI', NON: 'NON', NP: 'NP' }[ouiNonNP] }}</option>
+          }
+        </select>
+      </div>
+
+    </div>
+  </div>
+}
+
 
         <div class="mb-3">
           <label class="form-label" for="field_hemorragiesCutaneoMuqueuses">Hemorragies Cutaneo Muqueuses</label>
