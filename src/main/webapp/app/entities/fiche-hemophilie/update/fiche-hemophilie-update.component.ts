@@ -115,6 +115,21 @@ export class FicheHemophilieUpdateComponent implements OnInit {
     }
   }
 
+  onSiegeChange(event: Event): void {
+    const checkbox = event.target as HTMLInputElement;
+    const siegeCtrl = this.editForm.get('hemarthroseSiege');
+    let currentValue = siegeCtrl?.value ? siegeCtrl.value.split(',').map(s => s.trim()) : [];
+  
+    if (checkbox.checked) {
+      currentValue.push(checkbox.value);
+    } else {
+      currentValue = currentValue.filter(val => val !== checkbox.value);
+    }
+  
+    siegeCtrl?.setValue(currentValue.join(', '));
+  }
+
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFicheHemophilie>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
