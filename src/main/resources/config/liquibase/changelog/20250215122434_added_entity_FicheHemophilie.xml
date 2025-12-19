@@ -10,6 +10,7 @@
         Added the entity FicheHemophilie.
     -->
     <changeSet id="20250215122434-1" author="jhipster">
+        <validCheckSum>9:65164b3eeb65f617e0ebc3f23d7dd05a</validCheckSum>
         <createTable tableName="fiche_hemophilie">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
