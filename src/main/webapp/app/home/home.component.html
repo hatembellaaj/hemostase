@@ -1,14 +1,12 @@
-<div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
-  </div>
+<div class="row g-4 align-items-center">
+  <div class="col-lg-7 col-md-6">
+    <p class="eyebrow mb-1">Registre national</p>
+    <h1 class="display-5 hero-title mb-3">Suivi de l&apos;hémostase</h1>
+    <p class="lead hero-subtitle">
+      Centralisez les données, surveillez les incidents et partagez les tendances clés pour mieux accompagner les équipes soignantes.
+    </p>
 
-  <div class="col-md-9">
-    <h1 class="display-4"><span>Bienvenue, Java Hipster !</span> (Adhes 2025)</h1>
-
-    <p class="lead">Ceci est votre page d&apos;accueil</p>
-
-    <div>
+    <div class="mt-4">
       @if (account() !== null) {
         <div class="alert alert-success">
           @if (account(); as accountRef) {
@@ -16,44 +14,43 @@
           }
         </div>
       } @else {
-        <div class="alert alert-warning">
-          <span>Si vous voulez vous </span>
-          <a class="alert-link" (click)="login()">connecter</a
-          ><span
-            >, vous pouvez utiliser les comptes par défaut : <br />
-            - Administrateur (nom d&apos;utilisateur=&quot;admin&quot; et mot de passe =&quot;admin&quot;) <br />
-            - Utilisateur (nom d&apos;utilisateur=&quot;user&quot; et mot de passe =&quot;user&quot;).</span
-          >
-        </div>
-
-        <div class="alert alert-warning">
-          <span>Vous n&apos;avez pas encore de compte ?</span>&nbsp;
-          <a class="alert-link" routerLink="/account/register">Créer un compte</a>
+        <div class="alert alert-info">
+          <span>Accédez au registre avec un compte dédié.</span>
+          <a class="alert-link" (click)="login()">Se connecter</a>
+          <span> ou </span>
+          <a class="alert-link" routerLink="/account/register">créer un compte</a>.
         </div>
       }
     </div>
 
-    <p>Si vous avez des questions à propos de JHipster :</p>
+    <div class="row g-3 mt-3">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h2 class="info-title">Suivi temps réel</h2>
+          <ul class="insight-list">
+            <li>Signalements consolidés des centres partenaires</li>
+            <li>Visualisation rapide des tendances de coagulation</li>
+            <li>Alertes ciblées pour fluidifier les prises en charge</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-card">
+          <h2 class="info-title">Confiance &amp; qualité</h2>
+          <ul class="insight-list">
+            <li>Indicateurs prêts à partager avec les équipes</li>
+            <li>Historique traçable des mises à jour</li>
+            <li>Espaces dédiés aux protocoles et retours d&apos;expérience</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <ul>
-      <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">Page d&apos;accueil de JHipster</a></li>
-      <li>
-        <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">JHipster sur Stack Overflow</a>
-      </li>
-      <li>
-        <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer"
-          >JHipster bug tracker</a
-        >
-      </li>
-      <li>
-        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">JHipster public chat room</a>
-      </li>
-      <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">Suivez &#64;jhipster sur Twitter</a></li>
-    </ul>
-
-    <p>
-      <span>Si vous aimez JHipster, donnez nous une étoile sur</span>
-      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">GitHub </a>!
-    </p>
+  <div class="col-lg-5 col-md-6">
+    <figure class="hemostasis-visual" role="img" aria-label="Courbes illustrant la dynamique de l'hémostase">
+      <div class="visual-curve"></div>
+      <figcaption class="visual-caption">Des courbes pour suivre la stabilité et détecter les anomalies en un coup d&apos;œil.</figcaption>
+    </figure>
   </div>
 </div>

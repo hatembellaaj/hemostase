@@ -2,22 +2,77 @@
 Main page styles
 ========================================================================== */
 
-.hipster {
-  display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
-  background-size: contain;
+.eyebrow {
+  font-size: 0.95rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #1d7490;
 }
 
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-moz-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
-  .hipster {
-    background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
-    background-size: contain;
-  }
+.hero-title {
+  font-weight: 700;
+  color: #13324c;
+}
+
+.hero-subtitle {
+  color: #304a63;
+  max-width: 46rem;
+}
+
+.info-card {
+  background: #f5fbff;
+  border: 1px solid #d5e9f5;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  height: 100%;
+}
+
+.info-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #134b70;
+  margin-bottom: 0.5rem;
+}
+
+.insight-list {
+  padding-left: 1.1rem;
+  margin: 0;
+  color: #2f3c4a;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.hemostasis-visual {
+  position: relative;
+  background: radial-gradient(circle at 25% 20%, #e8f3ff, #d4e8ff 45%, #f2f8ff 85%);
+  border: 1px solid #d5e9f5;
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.visual-curve {
+  position: absolute;
+  inset: 1rem;
+  background:
+    linear-gradient(120deg, rgba(58, 131, 185, 0.75), rgba(19, 75, 112, 0.6)) left center/18px 100% no-repeat,
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.9), transparent 45%),
+    radial-gradient(circle at 60% 35%, rgba(255, 255, 255, 0.8), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.75), transparent 38%),
+    conic-gradient(from 240deg at 50% 60%, rgba(38, 119, 165, 0.9), rgba(60, 158, 206, 0.85), rgba(19, 75, 112, 0.95));
+  border-radius: 14px;
+  box-shadow:
+    0 15px 30px rgba(18, 66, 101, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.visual-caption {
+  margin: 0;
+  color: #2f3c4a;
+  font-weight: 600;
+  position: relative;
 }
