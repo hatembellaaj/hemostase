@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpResponse, provideHttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import dayjs from 'dayjs/esm';
 import { Subject, from, of } from 'rxjs';
 
 import { PatientService } from '../service/patient.service';
@@ -42,6 +43,10 @@ describe('Patient Management Update Component', () => {
     comp = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   describe('ngOnInit', () => {
     it('Should update editForm', () => {
       const patient: IPatient = { id: 456 };
@@ -50,6 +55,20 @@ describe('Patient Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.patient).toEqual(patient);
+    });
+
+    it('should calculate ageActuel from dateNaissance changes', () => {
+      jest.useFakeTimers().setSystemTime(new Date('2024-01-02T00:00:00Z'));
+      const patient: IPatient = { id: 456, dateNaissance: dayjs('2010-01-01') };
+
+      activatedRoute.data = of({ patient });
+      comp.ngOnInit();
+
+      expect(comp.editForm.get('ageActuel')?.value).toBe(14);
+
+      comp.editForm.get('dateNaissance')?.setValue(dayjs('2000-06-15'));
+
+      expect(comp.editForm.get('ageActuel')?.value).toBe(23);
     });
   });
 

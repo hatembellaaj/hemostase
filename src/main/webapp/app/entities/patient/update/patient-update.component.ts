@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import dayjs from 'dayjs/esm';
+import { Observable, Subject } from 'rxjs';
+import { finalize, takeUntil } from 'rxjs/operators';
 
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +24,7 @@ import { PatientFormGroup, PatientFormService } from './patient-form.service';
   templateUrl: './patient-update.component.html',
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
-export class PatientUpdateComponent implements OnInit {
+export class PatientUpdateComponent implements OnInit, OnDestroy {
   isSaving = false;
   patient: IPatient | null = null;
   genderValues = Object.keys(Gender);
@@ -37,6 +38,8 @@ export class PatientUpdateComponent implements OnInit {
   protected patientFormService = inject(PatientFormService);
   protected activatedRoute = inject(ActivatedRoute);
 
+  private readonly destroy$ = new Subject<void>();
+
   // eslint-disable-next-line @typescript-eslint/member-ordering
   editForm: PatientFormGroup = this.patientFormService.createPatientFormGroup();
 
@@ -46,7 +49,14 @@ export class PatientUpdateComponent implements OnInit {
       if (patient) {
         this.updateForm(patient);
       }
+      this.syncAgeFromBirthDate();
+      this.registerBirthDateWatcher();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   previousState(): void {
@@ -55,6 +65,7 @@ export class PatientUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
+    this.syncAgeFromBirthDate();
     const patient = this.patientFormService.getPatient(this.editForm);
     if (patient.id !== null) {
       this.subscribeToSaveResponse(this.patientService.update(patient));
@@ -85,5 +96,37 @@ export class PatientUpdateComponent implements OnInit {
   protected updateForm(patient: IPatient): void {
     this.patient = patient;
     this.patientFormService.resetForm(this.editForm, patient);
+  }
+
+  private registerBirthDateWatcher(): void {
+    this.editForm
+      .get('dateNaissance')
+      ?.valueChanges.pipe(takeUntil(this.destroy$))
+      .subscribe(value => this.syncAgeFromBirthDate(value));
+  }
+
+  private syncAgeFromBirthDate(dateValue?: dayjs.Dayjs | string | null): void {
+    const ageControl = this.editForm.get('ageActuel');
+    if (!ageControl) {
+      return;
+    }
+
+    const birthDate = this.normalizeDateValue(dateValue ?? this.editForm.get('dateNaissance')?.value);
+    const age = birthDate ? dayjs().diff(birthDate, 'year') : null;
+
+    ageControl.setValue(age, { emitEvent: false });
+  }
+
+  private normalizeDateValue(dateValue: unknown): dayjs.Dayjs | null {
+    if (!dateValue) {
+      return null;
+    }
+
+    if (dayjs.isDayjs(dateValue)) {
+      return dateValue;
+    }
+
+    const parsedDate = dayjs(dateValue);
+    return parsedDate.isValid() ? parsedDate : null;
   }
 }
