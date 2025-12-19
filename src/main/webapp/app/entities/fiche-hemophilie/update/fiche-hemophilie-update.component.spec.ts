@@ -3,6 +3,7 @@ import { HttpResponse, provideHttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, from, of } from 'rxjs';
+import dayjs from 'dayjs/esm';
 
 import { FicheHemophilieService } from '../service/fiche-hemophilie.service';
 import { IFicheHemophilie } from '../fiche-hemophilie.model';
@@ -42,6 +43,10 @@ describe('FicheHemophilie Management Update Component', () => {
     comp = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   describe('ngOnInit', () => {
     it('Should update editForm', () => {
       const ficheHemophilie: IFicheHemophilie = { id: 456 };
@@ -50,6 +55,16 @@ describe('FicheHemophilie Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.ficheHemophilie).toEqual(ficheHemophilie);
+    });
+
+    it('should calculate ageActuel when dateNaissance is provided', () => {
+      jest.useFakeTimers().setSystemTime(new Date('2024-01-01T00:00:00.000Z'));
+      const ficheHemophilie: IFicheHemophilie = { id: 456, dateNaissance: dayjs('2000-06-15') };
+
+      activatedRoute.data = of({ ficheHemophilie });
+      comp.ngOnInit();
+
+      expect(comp.editForm.get('ageActuel')?.value).toBe(23);
     });
   });
 
@@ -118,6 +133,27 @@ describe('FicheHemophilie Management Update Component', () => {
       expect(ficheHemophilieService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('age calculation', () => {
+    it('should update ageActuel when dateNaissance changes', () => {
+      jest.useFakeTimers().setSystemTime(new Date('2024-01-01T00:00:00.000Z'));
+      activatedRoute.data = of({ ficheHemophilie: null });
+      comp.ngOnInit();
+
+      comp.editForm.get('dateNaissance')?.setValue(dayjs('2010-01-10'));
+
+      expect(comp.editForm.get('ageActuel')?.value).toBe(14);
+    });
+
+    it('should clear ageActuel when dateNaissance is removed', () => {
+      activatedRoute.data = of({ ficheHemophilie: null });
+      comp.ngOnInit();
+
+      comp.editForm.get('dateNaissance')?.setValue(null);
+
+      expect(comp.editForm.get('ageActuel')?.value).toBeNull();
     });
   });
 });

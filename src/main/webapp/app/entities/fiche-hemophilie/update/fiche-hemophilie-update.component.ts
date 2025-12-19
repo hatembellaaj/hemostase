@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import dayjs from 'dayjs/esm';
 
 import { CivilStatus } from 'app/entities/enumerations/civil-status.model';
 import { ServiceCliniqueType } from 'app/entities/enumerations/service-clinique-type.model';
@@ -93,6 +94,7 @@ export class FicheHemophilieUpdateComponent implements OnInit {
   editForm: FicheHemophilieFormGroup = this.ficheHemophilieFormService.createFicheHemophilieFormGroup();
 
   ngOnInit(): void {
+    this.registerDateNaissanceWatcher();
     this.activatedRoute.data.subscribe(({ ficheHemophilie }) => {
       this.ficheHemophilie = ficheHemophilie;
       if (ficheHemophilie) {
@@ -119,16 +121,15 @@ export class FicheHemophilieUpdateComponent implements OnInit {
     const checkbox = event.target as HTMLInputElement;
     const siegeCtrl = this.editForm.get('hemarthroseSiege');
     let currentValue = siegeCtrl?.value ? siegeCtrl.value.split(',').map(s => s.trim()) : [];
-  
+
     if (checkbox.checked) {
       currentValue.push(checkbox.value);
     } else {
       currentValue = currentValue.filter(val => val !== checkbox.value);
     }
-  
+
     siegeCtrl?.setValue(currentValue.join(', '));
   }
-
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFicheHemophilie>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
@@ -152,5 +153,26 @@ export class FicheHemophilieUpdateComponent implements OnInit {
   protected updateForm(ficheHemophilie: IFicheHemophilie): void {
     this.ficheHemophilie = ficheHemophilie;
     this.ficheHemophilieFormService.resetForm(this.editForm, ficheHemophilie);
+    this.updateAgeActuel(this.editForm.get('dateNaissance')?.value);
+  }
+
+  private registerDateNaissanceWatcher(): void {
+    this.editForm.get('dateNaissance')?.valueChanges.subscribe(dateNaissance => this.updateAgeActuel(dateNaissance));
+  }
+
+  private updateAgeActuel(dateNaissance: dayjs.Dayjs | null): void {
+    const ageControl = this.editForm.get('ageActuel');
+
+    if (!ageControl) {
+      return;
+    }
+
+    if (!dateNaissance || !dayjs.isDayjs(dateNaissance) || !dateNaissance.isValid()) {
+      ageControl.setValue(null, { emitEvent: false });
+      return;
+    }
+
+    const age = dayjs().diff(dateNaissance, 'year');
+    ageControl.setValue(age >= 0 ? age : null, { emitEvent: false });
   }
 }
