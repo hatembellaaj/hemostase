@@ -160,7 +160,7 @@ export class FicheHemophilieUpdateComponent implements OnInit {
     this.editForm.get('dateNaissance')?.valueChanges.subscribe(dateNaissance => this.updateAgeActuel(dateNaissance));
   }
 
-  private updateAgeActuel(dateNaissance: dayjs.Dayjs | null): void {
+  private updateAgeActuel(dateNaissance: dayjs.Dayjs | null | undefined): void {
     const ageControl = this.editForm.get('ageActuel');
 
     if (!ageControl) {
