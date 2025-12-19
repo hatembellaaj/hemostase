@@ -10,6 +10,7 @@
         Added the entity FicheThrombopathie.
     -->
     <changeSet id="20250216125812-1" author="jhipster">
+        <validCheckSum>9:2f40931899c84eb0265b2f8ec92d6939</validCheckSum>
         <createTable tableName="fiche_thrombopathie">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>

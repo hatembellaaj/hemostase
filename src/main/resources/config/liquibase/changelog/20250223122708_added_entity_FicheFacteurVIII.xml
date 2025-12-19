@@ -10,6 +10,7 @@
         Added the entity FicheFacteurVIII.
     -->
     <changeSet id="20250223122708-1" author="jhipster">
+        <validCheckSum>9:ffff5bc3cbfd1e2e0a8ee3caabbca0c4</validCheckSum>
         <createTable tableName="fiche_facteur_viii">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
