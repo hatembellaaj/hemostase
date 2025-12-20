@@ -33,6 +33,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <start-class>tn.adhes.hemostase.Adhes2025App</start-class>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx1G</argLine>
+        <checkerframework-qual.version>3.37.0</checkerframework-qual.version>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
@@ -86,6 +87,11 @@
                 <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.checkerframework</groupId>
+                <artifactId>checker-qual</artifactId>
+                <version>${checkerframework-qual.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -339,6 +345,27 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-liquibase-changelog-output</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${project.build.directory}"/>
+                                <chmod dir="${project.build.directory}" perm="u+w" includes="**/*" failonerror="false"/>
+                                <delete dir="${project.build.outputDirectory}/config/liquibase/changelog" failonerror="false"/>
+                                <mkdir dir="${project.build.outputDirectory}/config/liquibase/changelog"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
