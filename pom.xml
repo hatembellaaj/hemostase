@@ -33,6 +33,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <start-class>tn.adhes.hemostase.Adhes2025App</start-class>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx1G</argLine>
+        <checkerframework-qual.version>3.37.0</checkerframework-qual.version>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
@@ -86,6 +87,11 @@
                 <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.checkerframework</groupId>
+                <artifactId>checker-qual</artifactId>
+                <version>${checkerframework-qual.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
