@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Optional;
 import org.adhes.hemostase.config.ApplicationProperties;
 import org.adhes.hemostase.config.CRLFLogConverter;
+import org.adhes.hemostase.config.FicheImportProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,7 @@ import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
-@EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
+@EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class, FicheImportProperties.class })
 public class HemostaseApp {
 
     private static final Logger LOG = LoggerFactory.getLogger(HemostaseApp.class);
