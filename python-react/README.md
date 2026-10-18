@@ -90,6 +90,28 @@ L'interface est entièrement pilotée par ce schéma : aucun code React à modif
 - Non repris : inscription publique, réinitialisation de mot de passe par e-mail, pages
   d'administration techniques de JHipster (métriques, logs, configuration).
 
+## Statistiques
+
+Menu **Analyse → Statistiques** (ou bouton « Statistiques » sur chaque liste), un registre à la fois :
+
+- **Vue d'ensemble** : chiffres clés (nombre de fiches, âge médian, part des moins de 18 ans, des femmes,
+  et indicateurs propres au registre : formes sévères, hémophilie B, inhibiteurs…) et graphiques
+  prédéfinis (âge, origine, couverture sociale, consanguinité, année du diagnostic, puis graphiques
+  propres à chaque registre). Ils sont définis dans `backend/app/stats.py` (`COMMON_CHARTS`, `SPECIFIC`,
+  `KPI_SPECIFIC`) : ajouter un graphique = ajouter une ligne.
+- **Explorateur** : l'utilisateur choisit
+  - le type : histogramme, courbe ou camembert ;
+  - l'axe des catégories : un champ (liste, oui/non, nombre regroupé en classes, date regroupée par année)
+    ou plusieurs champs oui/non à comparer (ex. hémarthrose, psoas, inhibiteurs) ;
+  - une répartition par un second champ (barres groupées ou empilées) ;
+  - la mesure : nombre de fiches, ou moyenne / minimum / maximum d'une valeur (Hb, taux de facteur…) ;
+  - des filtres (ex. forme clinique = A, âge entre 0 et 18) ;
+  - l'affichage en pourcentage et l'inclusion des « Non renseigné ».
+
+  Les réglages sont conservés dans l'adresse de la page : copier le lien suffit pour partager un graphique.
+
+Chaque graphique a une infobulle, une vue tableau et un export CSV.
+
 ## API
 
 | Méthode | Route                                   | Rôle                                       |
@@ -99,6 +121,8 @@ L'interface est entièrement pilotée par ce schéma : aucun code React à modif
 | POST    | `/api/account/change-password`          | Changer son mot de passe                   |
 | GET     | `/api/schema`                           | Description des fiches                     |
 | GET     | `/api/stats`                            | Nombre de fiches par registre              |
+| GET     | `/api/stats/{type}/overview`            | Chiffres clés et graphiques prédéfinis     |
+| POST    | `/api/stats/{type}/aggregate`           | Agrégation à la demande (voir `backend/app/stats.py`) |
 | GET     | `/api/fiches/{type}?page&size&sort&q`   | Liste paginée (`X-Total-Count`), recherche |
 | GET     | `/api/fiches/{type}/export.csv`         | Export CSV (séparateur `;`, compatible Excel) |
 | GET/POST/PUT/DELETE | `/api/fiches/{type}[/{id}]`  | Lecture, création, modification, suppression |

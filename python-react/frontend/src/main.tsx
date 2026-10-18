@@ -12,6 +12,7 @@ import FicheForm from './pages/FicheForm';
 import FicheList from './pages/FicheList';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Stats from './pages/Stats';
 import Users from './pages/Users';
 import { AppProvider, ToastProvider, useApp } from './state';
 
@@ -37,6 +38,8 @@ const router = createBrowserRouter([
       { path: 'fiches/:slug/new', element: <FicheForm key="new" /> },
       { path: 'fiches/:slug/:id', element: <FicheDetail /> },
       { path: 'fiches/:slug/:id/edit', element: <FicheForm key="edit" /> },
+      { path: 'stats', element: <Navigate to="/stats/hemophilie" replace /> },
+      { path: 'stats/:slug', element: <Stats /> },
       { path: 'account', element: <Account /> },
       {
         path: 'admin/users',

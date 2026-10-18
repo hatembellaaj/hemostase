@@ -47,6 +47,10 @@ export default function Layout() {
               {counts[e.slug] !== undefined && <span className="nav-count">{counts[e.slug]}</span>}
             </NavLink>
           ))}
+          <p className="nav-group">Analyse</p>
+          <NavLink to={`/stats/${loc.pathname.match(/^\/(?:fiches|stats)\/([^/]+)/)?.[1] ?? entities[0]?.slug ?? 'hemophilie'}`} className={({ isActive }) => `nav-item ${isActive || loc.pathname.startsWith('/stats') ? 'active' : ''}`}>
+            Statistiques
+          </NavLink>
           {isAdmin && (
             <>
               <p className="nav-group">Administration</p>

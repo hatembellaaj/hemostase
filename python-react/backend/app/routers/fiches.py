@@ -4,6 +4,7 @@ from sqlalchemy import delete, func, insert, select, update
 from ..db import get_engine
 from ..fiches import build_list_query, select_keyed, get_entity, serialize, to_csv, validate_payload
 from ..schema import entities, load_schema
+from ..stats import aggregate, overview
 from ..security import get_current_user
 
 router = APIRouter(prefix="/api", tags=["fiches"], dependencies=[Depends(get_current_user)])
@@ -26,6 +27,20 @@ def stats():
             n = conn.execute(select(func.count()).select_from(table)).scalar_one()
             out.append({"slug": ent["slug"], "title": ent["title"], "count": n})
     return out
+
+
+@router.get("/stats/{slug}/overview")
+def stats_overview(slug: str):
+    """Chiffres clés et graphiques prédéfinis d'un registre."""
+    ent, table = get_entity(slug)
+    return overview(ent, table)
+
+
+@router.post("/stats/{slug}/aggregate")
+def stats_aggregate(slug: str, spec: dict):
+    """Agrégation à la demande (explorateur de l'interface)."""
+    ent, table = get_entity(slug)
+    return aggregate(ent, table, spec)
 
 
 @router.get("/fiches/{slug}")

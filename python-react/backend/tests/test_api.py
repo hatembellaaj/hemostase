@@ -98,3 +98,28 @@ def test_users_admin(client):
     assert client.get("/api/admin/users", headers=hu).status_code == 403
     assert client.get("/api/fiches/thrombopathie", headers=hu).status_code == 200
     assert client.delete("/api/admin/users/medecin", headers=h).status_code == 204
+
+
+def test_stats_overview_all_entities(client):
+    h = token(client)
+    for ent in entities():
+        r = client.get(f"/api/stats/{ent['slug']}/overview", headers=h)
+        assert r.status_code == 200, (ent["slug"], r.text)
+        body = r.json()
+        assert body["kpis"][0]["label"] == "Fiches" and body["charts"], ent["slug"]
+
+
+def test_stats_aggregate(client):
+    h = token(client)
+    url = "/api/stats/hemophilie/aggregate"
+    r = client.post(url, json={"x": "severite", "series": "sexe"}, headers=h).json()
+    assert [c["key"] for c in r["categories"]][:1] in (["SEVERE"], ["MODEREE"], ["MINEURE"])
+    total = sum(v for d in r["cells"].values() for v in d.values())
+    assert total == r["total"]
+    r = client.post(url, json={"x": "ageActuel", "xBin": 10, "measure": {"op": "avg", "field": "hb"}}, headers=h)
+    assert r.status_code == 200
+    r = client.post(url, json={"x": "dateNaissance", "filters": [{"field": "sexe", "op": "in", "value": ["MASCULIN"]}]}, headers=h).json()
+    assert all(c["key"] == "__missing__" or isinstance(c["key"], int) for c in r["categories"])
+    r = client.post(url, json={"fields": ["hemarthroseMC", "inhibiteurs"], "series": "formeClinique"}, headers=h)
+    assert r.status_code == 200 and len(r.json()["categories"]) == 2
+    assert client.post(url, json={"x": "nom"}, headers=h).status_code == 400

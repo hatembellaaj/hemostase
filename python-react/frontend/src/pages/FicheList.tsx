@@ -67,6 +67,9 @@ export default function FicheList() {
           </p>
         </div>
         <div className="head-actions">
+          <Link to={`/stats/${slug}`} className="btn btn-quiet">
+            Statistiques
+          </Link>
           <button
             className="btn btn-quiet"
             onClick={() => download(`/api/fiches/${slug}/export.csv${q ? `?q=${encodeURIComponent(q)}` : ''}`, `${ent.table}.csv`).catch((e) => toast(e.message, 'error'))}
