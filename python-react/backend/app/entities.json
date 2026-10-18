@@ -95,7 +95,7 @@
      "column": "profession",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Profession",
      "section": "Identification"
     },
@@ -508,7 +508,7 @@
      "column": "degre_parente_consanguins",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Degré Parenté Consanguins",
      "section": "Antécédents",
      "visibleIf": {
@@ -1158,7 +1158,7 @@
      "column": "hematome_superficiel_siege",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Siège",
      "section": "Manifestations cliniques",
      "visibleIf": {
@@ -1390,7 +1390,7 @@
      "column": "hemorragie_visceres_examen",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Hemorragie Visceres Examen",
      "section": "Manifestations cliniques"
     },
@@ -1607,7 +1607,7 @@
      "column": "intervention_chirurgicale_type",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Type",
      "section": "Manifestations cliniques",
      "visibleIf": {
@@ -1695,7 +1695,7 @@
      "column": "cause_prise_en_charge",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Cause prise en charge",
      "section": "Prise en charge thérapeutique",
      "visibleIf": {
@@ -1709,7 +1709,7 @@
      "column": "prophylaxie_dose_frequence",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Prophylaxie dose frequence",
      "section": "Prise en charge thérapeutique",
      "visibleIf": {
@@ -1778,7 +1778,7 @@
      "column": "type_traitement_substitutif",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Type Traitement Substitutif",
      "section": "Prise en charge thérapeutique"
     },
@@ -2250,7 +2250,7 @@
      "column": "posologie_iti",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Posologie",
      "section": "Complications liées au traitement",
      "visibleIf": {
@@ -2330,7 +2330,7 @@
      "column": "cause_non_observance",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Cause non observance",
      "section": "Complications liées au traitement",
      "visibleIf": {
@@ -2515,7 +2515,7 @@
      "column": "charge_virale_vhc",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Charge virale",
      "section": "Complications liées au traitement",
      "visibleIf": {
@@ -2705,7 +2705,7 @@
      "column": "type_handicap",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Type de handicap",
      "section": "Evolution",
      "visibleIf": {
@@ -2748,7 +2748,7 @@
      "column": "cause_deces",
      "type": "string",
      "required": false,
-     "maxLength": 25,
+     "maxLength": 255,
      "label": "Cause du décès",
      "section": "Evolution",
      "visibleIf": {

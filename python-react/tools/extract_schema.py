@@ -46,6 +46,19 @@ TYPE_MAP = {
     "TextBlob": "text",
 }
 
+# Ajustements apportés au modèle JHipster d'origine.
+# Champs de texte libre de la fiche hémophilie limités à 25 caractères dans JHipster : trop court
+# pour le registre Excel (siège des hématomes, examens, interventions...). Portés à 255.
+FIELD_OVERRIDES = {
+    ("FicheHemophilie", n): {"maxLength": 255}
+    for n in (
+        "profession", "degreParenteConsanguins", "hematomeSuperficielSiege", "hemorragieVisceresExamen",
+        "interventionChirurgicaleType", "causePriseEnCharge", "prophylaxieDoseFrequence",
+        "typeTraitementSubstitutif", "posologieITI", "causeNonObservance", "chargeViraleVHC",
+        "typeHandicap", "causeDeces",
+    )
+}
+
 VOID_TAGS = {"input", "br", "img", "hr", "meta", "link", "col", "area", "base", "embed", "source", "track", "wbr"}
 
 
@@ -473,6 +486,7 @@ def build(project: Path) -> dict:
                 fd["min"] = float(f["fieldValidateRulesMin"])
             if "max" in rules:
                 fd["max"] = float(f["fieldValidateRulesMax"])
+            fd.update(FIELD_OVERRIDES.get((jh_name, name), {}))
             json_fields[name] = fd
 
         known = set(json_fields)
