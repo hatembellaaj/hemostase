@@ -1,0 +1,30 @@
+# Développement : rechargement à chaud du backend et du frontend
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+# -> interface http://localhost:5173 , API http://localhost:8000/api/docs
+
+services:
+  db:
+    ports:
+      - "3306:3306"
+
+  backend:
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    volumes:
+      - ./backend/app:/app/app
+    ports:
+      - "8000:8000"
+    environment:
+      CORS_ORIGINS: http://localhost:5173
+      SEED_DEMO_DATA: "true"
+
+  frontend:
+    build:
+      context: ./frontend
+      target: build
+    command: ["npx", "vite", "--host", "0.0.0.0"]
+    environment:
+      VITE_API_PROXY: http://backend:8000
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - "5173:5173"

@@ -1,0 +1,52 @@
+# Registre hémostase : MariaDB + API FastAPI + interface React (nginx)
+#   cp .env.example .env    # puis adaptez les mots de passe
+#   docker compose up -d --build
+#   -> http://localhost:8080
+
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME:-hemostase}
+      MARIADB_USER: ${DB_USER:-hemostase}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-hemostase}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+    # innodb-strict-mode=0 : nécessaire pour importer un dump JHipster (tables de 200+ colonnes)
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--innodb-strict-mode=0"]
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    # décommentez pour accéder à la base depuis votre poste (DBeaver, etc.)
+    # ports:
+    #   - "3306:3306"
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: mysql+pymysql://${DB_USER:-hemostase}:${DB_PASSWORD:-hemostase}@db:3306/${DB_NAME:-hemostase}?charset=utf8mb4
+      JWT_SECRET: ${JWT_SECRET:-change-me-please-change-me-please-change-me-please}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-false}
+      CORS_ORIGINS: http://localhost:8080
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  db_data:
