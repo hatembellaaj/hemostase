@@ -1,0 +1,181 @@
+# Règles de validation. Une règle n'est exécutée que si son statut figure dans config.rules.active_statuses.
+# Par défaut : structural et approved uniquement.
+#   structural          contrôle formel sans interprétation clinique (format, domaine documenté, identité)
+#   hypothesis          dépend du sens SUPPOSÉ d'un code ou d'un champ (dictionnaire à l'état d'hypothèse)
+#   proposed_reference  seuil clinique issu de la littérature : nécessite une validation experte
+#   approved            validée par un responsable (approved_by + approved_on obligatoires)
+# Pour passer une règle en « approved », renseigner approved_by / approved_on ET confirmer dans fields.yaml
+# les définitions dont elle dépend (depends_on_definitions).
+version: "0.1.0"
+rules:
+  # ---------------------------------------------------------------- structurelles
+  - id: S01_parse_failure
+    version: "1"
+    family: C_incertitude
+    kind: structural
+    status: structural
+    description: Valeur présente qui ne correspond à aucun format autorisé pour le type du champ.
+    applies_to: all_in_scope
+  - id: S02_undefined_code
+    version: "1"
+    family: C_incertitude
+    kind: structural
+    status: structural
+    description: Code absent de la liste des codes documentés (même à l'état d'hypothèse) pour ce champ.
+    applies_to: code_fields
+  - id: S03_unit_missing
+    version: "1"
+    family: C_incertitude
+    kind: structural
+    status: structural
+    description: Valeur numérique sans unité alors que le dictionnaire ne fixe pas l'unité du champ.
+    applies_to: [inhibitor_titer]
+  - id: S04_same_name_key
+    version: "1"
+    family: C_incertitude
+    kind: structural
+    status: structural
+    description: >-
+      Plusieurs lignes partagent la même clé de nom (insensible à la casse). Signalement d'une question
+      d'identité (même personne ? fratrie ? homonymie ?) ; les lignes ne sont JAMAIS fusionnées.
+    applies_to: [patient_name]
+
+  # ---------------------------------------------------------------- dépendances (sens des codes supposé)
+  - id: H01_consanguinity_degree_dependency
+    version: "1"
+    family: B_coherence
+    kind: dependency
+    status: hypothesis
+    description: Le degré de parenté n'est attendu que si les parents sont consanguins (code 1 = oui supposé).
+    when_filled: consanguinity_degree
+    requires: {field: consanguinity, code: 1}
+    depends_on_definitions: [consanguinity.code_map, consanguinity_degree.applicability]
+  - id: H02_family_relation_dependency
+    version: "1"
+    family: B_coherence
+    kind: dependency
+    status: hypothesis
+    description: Le lien de parenté des cas similaires n'est attendu que s'il existe un cas similaire (code 1 = oui supposé).
+    when_filled: family_case_relation
+    requires: {field: family_similar_cases, code: 1}
+    depends_on_definitions: [family_similar_cases.code_map]
+  - id: H03_circumcision_age_dependency
+    version: "1"
+    family: B_coherence
+    kind: dependency
+    status: hypothesis
+    description: Un âge de circoncision n'est attendu que si la circoncision a eu lieu (code 1 = oui supposé).
+    when_filled: circumcision_age
+    requires: {field: circumcision, code: 1}
+    depends_on_definitions: [circumcision.code_map]
+  - id: H04_inhibitor_details_dependency
+    version: "1"
+    family: B_coherence
+    kind: dependency
+    status: hypothesis
+    description: Répondeur et titre d'inhibiteur ne sont attendus qu'en présence d'un inhibiteur (code 1 = oui supposé).
+    when_filled_any: [inhibitor_responder, inhibitor_titer]
+    requires: {field: inhibitor, code: 1}
+    depends_on_definitions: [inhibitor.code_map]
+  - id: H05_elbow_synthesis
+    version: "1"
+    family: B_coherence
+    kind: cross_field
+    status: hypothesis
+    description: La colonne de synthèse « coude » vaut 1 si et seulement si le coude droit ou gauche vaut 1 (sens 1 = atteinte supposé).
+    fields: [hemarthrosis_elbow_any, hemarthrosis_elbow_right, hemarthrosis_elbow_left]
+    depends_on_definitions: [hemarthrosis_elbow_any.code_map, hemarthrosis_elbow_right.code_map]
+  - id: H06_hemarthrosis_vs_site
+    version: "1"
+    family: B_coherence
+    kind: cross_field
+    status: hypothesis
+    description: Une articulation atteinte (code 1) est incompatible avec « hémarthrose = non » (code 2).
+    fields: [hemarthrosis, hemarthrosis_elbow_right, hemarthrosis_elbow_left]
+    depends_on_definitions: [hemarthrosis.code_map]
+  - id: H07_age_diagnosis_text_vs_months
+    version: "1"
+    family: B_coherence
+    kind: cross_field
+    status: hypothesis
+    description: >-
+      L'âge au diagnostic en texte et la colonne « mois » doivent coïncider lorsque la conversion est exacte
+      (années et mois uniquement ; 1 an = 12 mois). Avec des jours, pas de conclusion.
+    fields: [age_at_diagnosis_text, age_at_diagnosis_months]
+    params: {tolerance_months: 0}
+    depends_on_definitions: [age_at_diagnosis_months.definition]
+  - id: H08_aptt_ratio_arithmetic
+    version: "1"
+    family: B_coherence
+    kind: cross_field
+    status: hypothesis
+    description: >-
+      Le ratio TCA doit égaler patient/témoin, enregistré tronqué ou arrondi à la précision saisie
+      (tolérance = une unité de la dernière décimale saisie : règle de précision numérique, pas un seuil médical).
+    fields: [aptt_patient_control, aptt_ratio]
+    depends_on_definitions: [aptt_ratio.definition]
+  - id: H09_first_signs_before_diagnosis
+    version: "1"
+    family: B_coherence
+    kind: temporal
+    status: hypothesis
+    description: L'âge aux premiers signes ne peut pas dépasser l'âge au diagnostic (comparaison seulement si les deux durées sont convertibles exactement).
+    fields: [age_first_signs, age_at_diagnosis_text]
+    depends_on_definitions: [age_first_signs.definition]
+  - id: H10_ddn_after_birth
+    version: "1"
+    family: B_coherence
+    kind: temporal
+    status: hypothesis
+    description: La date DDN ne peut pas précéder la date de naissance ; conclusion seulement si les intervalles de précision ne se chevauchent pas.
+    fields: [ddn, birth_date]
+    depends_on_definitions: [ddn.definition]
+  - id: H11_age_recorded_vs_birth
+    version: "1"
+    family: B_coherence
+    kind: temporal
+    status: hypothesis
+    description: >-
+      Âge enregistré cohérent avec la date de naissance À LA DATE DE RÉFÉRENCE de l'âge. Sans date de
+      référence confirmée (params.reference_date), la règle ne conclut pas.
+    fields: [age_recorded, birth_date]
+    params: {reference_date: null}
+    depends_on_definitions: [age_recorded.reference_date]
+
+  # ---------------------------------------------------------------- seuils cliniques (validation experte requise)
+  - id: K01_severity_vs_factor_level
+    version: "1"
+    family: B_coherence
+    kind: clinical_threshold
+    status: proposed_reference
+    description: >-
+      Classe de sévérité compatible avec le taux du facteur déficitaire (FVIII si forme A, FIX si forme B) :
+      sévère < 1 %, modérée 1–5 %, mineure > 5 % et < 40 %.
+    reference: >-
+      White GC et al. Thromb Haemost 2001;85:560 ; Blanchette VS et al. J Thromb Haemost 2014;12:1935
+      (définitions ISTH/SSC). À valider par les experts du registre (unité des taux, méthode de dosage, date du dosage).
+    fields: [severity, clinical_form, fviii_level, fix_level]
+    params: {severe_below: 1, moderate_max: 5, mild_below: 40}
+    depends_on_definitions: [severity.code_map, clinical_form.code_map, fviii_level.unit, fix_level.unit]
+  - id: K02_responder_vs_titer
+    version: "1"
+    family: B_coherence
+    kind: clinical_threshold
+    status: proposed_reference
+    description: Fort répondeur si titre maximal ≥ 5 UB/ml, faible répondeur sinon.
+    reference: Blanchette VS et al. J Thromb Haemost 2014;12:1935 (définitions ISTH/SSC). Unité du titre à confirmer.
+    fields: [inhibitor_responder, inhibitor_titer]
+    params: {high_responder_min_bu: 5}
+    depends_on_definitions: [inhibitor_responder.code_map, inhibitor_titer.unit]
+
+  # ---------------------------------------------------------------- tâches sans règle déterministe (agents uniquement)
+  - id: N01_narrative_vs_structured
+    version: "1"
+    family: B_coherence
+    kind: narrative
+    status: structural
+    deterministic: false
+    description: >-
+      Compatibilité entre commentaires libres et champs structurés. Une divergence peut refléter des périodes
+      différentes : elle ne constitue jamais une erreur automatique (au mieux « revue demandée »).
+    fields: [comment_1, comment_2]

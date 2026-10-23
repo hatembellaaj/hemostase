@@ -1,0 +1,69 @@
+# Prototype de contrôle qualité du registre — Docker Compose v2 (« docker compose », sans tiret).
+#
+#   docker compose build
+#   docker compose run --rm hqa audit                 # CLI : toute commande de « python -m hqa.cli »
+#   docker compose up -d review                       # interface de revue (Streamlit)
+#   docker compose up -d gateway                      # passerelle QA pour RAISE : /api/qa/docs
+#   docker compose --profile llm up -d ollama         # modèle local (facultatif, voir docs/DOCKER.md)
+#
+# Les données restent sur l'hôte (./data, ./runs) ; elles ne sont jamais copiées dans l'image.
+name: hemostase-qa
+
+x-hqa: &hqa
+  build:
+    context: .
+    args:
+      HQA_GIT_COMMIT: ${HQA_GIT_COMMIT:-unknown}
+      HQA_UID: ${HQA_UID:-1000}
+      HQA_GID: ${HQA_GID:-1000}
+  image: hemostase-qa:latest
+  env_file: .env            # cp .env.example .env ; HQA_ALLOW_REGISTRY_DATA_TO_LLM=no par défaut
+  volumes:
+    - ./data:/app/data
+    - ./runs:/app/runs
+    - ./dictionary:/app/dictionary        # le dictionnaire validé par les experts reste éditable sur l'hôte
+  networks: [qa]
+
+services:
+  hqa:
+    <<: *hqa
+    profiles: [cli]          # lancé uniquement par « docker compose run --rm hqa … »
+
+  review:
+    <<: *hqa
+    entrypoint: ["streamlit", "run", "review_app.py",
+                 "--server.address=0.0.0.0", "--server.port=8501", "--server.headless=true"]
+    command: []
+    # Streamlit n'a PAS d'authentification : exposé seulement sur la boucle locale de l'hôte.
+    # Accès distant : tunnel SSH (ssh -L 8501:127.0.0.1:8501 serveur) — voir docs/DOCKER.md.
+    ports:
+      - "127.0.0.1:${HQA_REVIEW_PORT:-8501}:8501"
+    restart: unless-stopped
+
+  gateway:
+    <<: *hqa
+    # passerelle QA pour les agents RAISE : vue pseudonymisée, outils déterministes, validation ; lecture seule
+    entrypoint: ["uvicorn", "hqa.gateway:app", "--host", "0.0.0.0", "--port", "8095"]
+    command: []
+    ports:
+      - "${HQA_GATEWAY_BIND:-127.0.0.1}:${HQA_GATEWAY_PORT:-8095}:8095"
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.12.6
+    profiles: [llm]
+    volumes:
+      - ollama-models:/root/.ollama
+    networks: [qa]          # aucun port publié : seul le réseau interne y accède
+    restart: unless-stopped
+    # GPU NVIDIA (si disponible et nvidia-container-toolkit installé) : décommenter
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices: [{driver: nvidia, count: all, capabilities: [gpu]}]
+
+networks:
+  qa: {}
+
+volumes:
+  ollama-models: {}

@@ -1,0 +1,10 @@
+# Données patients, correspondances et sorties : jamais dans Git
+data/
+runs/
+*.xlsx
+!examples/*.xlsx
+.env
+__pycache__/
+.pytest_cache/
+*.log
+raise/dist/toolbox_ids.json

@@ -1,0 +1,76 @@
+{
+ "QA Hémophilie — Coordinateur (B3)": {
+  "slug": "coordinateur",
+  "prompt": "10_maitre_coordinateur.md",
+  "delegates": [
+   "Normalisation",
+   "Cohérence",
+   "Vérification"
+  ],
+  "tools": [
+   "qa_lire_dossier",
+   "qa_terminer_dossier",
+   "qa_signaler_sortie_invalide"
+  ]
+ },
+ "QA Hémophilie — Coordinateur sans vérificateur (B3-noverif)": {
+  "slug": "coordinateur_noverif",
+  "prompt": "10_maitre_coordinateur.md",
+  "delegates": [
+   "Normalisation",
+   "Cohérence"
+  ],
+  "tools": [
+   "qa_lire_dossier",
+   "qa_terminer_dossier",
+   "qa_signaler_sortie_invalide"
+  ]
+ },
+ "QA Hémophilie — Normalisation": {
+  "slug": "normalisation",
+  "prompt": "20_esclave_normalisation.md",
+  "delegates": [],
+  "tools": [
+   "qa_lire_dossier",
+   "qa_outil_deterministe",
+   "qa_soumettre_normalisations",
+   "qa_signaler_sortie_invalide"
+  ]
+ },
+ "QA Hémophilie — Cohérence": {
+  "slug": "coherence",
+  "prompt": "30_esclave_coherence.md",
+  "delegates": [],
+  "tools": [
+   "qa_lire_dossier",
+   "qa_outil_deterministe",
+   "qa_soumettre_candidates",
+   "qa_signaler_sortie_invalide"
+  ]
+ },
+ "QA Hémophilie — Vérification": {
+  "slug": "verification",
+  "prompt": "40_esclave_verification.md",
+  "delegates": [],
+  "tools": [
+   "qa_lire_dossier",
+   "qa_outil_deterministe",
+   "qa_soumettre_verdicts",
+   "qa_signaler_sortie_invalide"
+  ]
+ },
+ "QA Hémophilie — Agent unique (B1)": {
+  "slug": "agent_unique",
+  "prompt": "50_agent_unique_B1.md",
+  "delegates": [],
+  "tools": [
+   "qa_lire_dossier",
+   "qa_outil_deterministe",
+   "qa_soumettre_normalisations",
+   "qa_soumettre_candidates",
+   "qa_soumettre_verdicts",
+   "qa_signaler_sortie_invalide",
+   "qa_terminer_dossier"
+  ]
+ }
+}

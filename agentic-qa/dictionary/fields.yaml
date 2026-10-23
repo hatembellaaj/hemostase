@@ -1,0 +1,606 @@
+version: 0.1.0
+source_sheet: Feuil1
+note: Dictionnaire initial généré par profilage. Les hypothèses doivent être confirmées par les responsables du registre avant
+  toute utilisation comme règle active. Les colonnes non listées conservent un identifiant fondé sur leur position (col_<lettre>).
+fields:
+- field_id: patient_name
+  source_col: 1
+  source_letter: A
+  original_header: Nom et prénom
+  contextual_name: Nom et initiale du patient
+  type: identifier
+  unit: null
+  unit_status: missing
+  definition_status: confirmed
+  approved_by: privacy-default
+  approved_on: null
+  unknown_markers: []
+  in_scope: false
+  privacy_role: direct_identifier
+- field_id: city
+  source_col: 3
+  source_letter: C
+  original_header: ville
+  contextual_name: Ville de résidence
+  type: identifier
+  unit: null
+  unit_status: missing
+  definition_status: confirmed
+  approved_by: privacy-default
+  approved_on: null
+  unknown_markers: []
+  in_scope: false
+  privacy_role: quasi_identifier
+- field_id: file_number
+  source_col: 4
+  source_letter: D
+  original_header: numéro du dossier
+  contextual_name: Numéro de dossier hospitalier
+  type: identifier
+  unit: null
+  unit_status: missing
+  definition_status: confirmed
+  approved_by: privacy-default
+  approved_on: null
+  unknown_markers: []
+  in_scope: false
+  privacy_role: direct_identifier
+- field_id: birth_date
+  source_col: 5
+  source_letter: E
+  original_header: date de naissance
+  contextual_name: Date de naissance
+  type: date
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: &id001
+  - '?'
+  - ??
+  - ???
+  - ????
+  - np
+  - NP
+  - nf
+  - NF
+  - NF?
+  in_scope: true
+  privacy_role: quasi_identifier
+- field_id: age_recorded
+  source_col: 6
+  source_letter: F
+  original_header: âge actuel
+  contextual_name: Âge enregistré (date de référence inconnue)
+  type: integer
+  unit: an
+  unit_status: hypothesis
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  definition_note: Concorde avec ~2024 − année de naissance ; ne correspond PAS à l'âge exact à la date DDN (écart +1 le plus
+    souvent). Date de référence à confirmer.
+- field_id: sex
+  source_col: 8
+  source_letter: H
+  original_header: sexe
+  contextual_name: Sexe
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  code_map:
+    1:
+      label: masculin
+      status: hypothesis
+    2:
+      label: féminin
+      status: hypothesis
+- field_id: consanguinity
+  source_col: 10
+  source_letter: J
+  original_header: consanguinité
+  contextual_name: Consanguinité des parents
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  - 3
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+    3:
+      label: non précisé
+      status: hypothesis
+- field_id: consanguinity_degree
+  source_col: 11
+  source_letter: K
+  original_header: degré de parenté
+  contextual_name: Degré de parenté des parents consanguins
+  type: text
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  applicability:
+    field: consanguinity
+    code: 1
+    status: hypothesis
+- field_id: family_similar_cases
+  source_col: 12
+  source_letter: L
+  original_header: cas similaire dans la famille
+  contextual_name: Cas similaire dans la famille
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  - 3
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+    3:
+      label: non précisé
+      status: hypothesis
+- field_id: family_case_relation
+  source_col: 15
+  source_letter: O
+  original_header: lien de parenté
+  contextual_name: Lien de parenté du ou des cas similaires
+  type: text
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  applicability:
+    field: family_similar_cases
+    code: 1
+    status: hypothesis
+- field_id: age_first_signs
+  source_col: 23
+  source_letter: W
+  original_header: age de début des 1ers signes
+  contextual_name: Âge aux premiers signes
+  type: duration
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+- field_id: age_at_diagnosis_text
+  source_col: 25
+  source_letter: Y
+  original_header: âge de diagnostic
+  contextual_name: Âge au diagnostic (texte)
+  type: duration
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+- field_id: age_at_diagnosis_months
+  source_col: 26
+  source_letter: Z
+  original_header: mois
+  contextual_name: Âge au diagnostic (en mois)
+  type: integer
+  unit: mois
+  unit_status: hypothesis
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  definition_note: 'Intitulé « mois » : concorde avec l''âge au diagnostic texte pour 79 lignes sur 82 (hypothèse).'
+- field_id: aptt_patient_control
+  source_col: 29
+  source_letter: AC
+  original_header: TCA
+  contextual_name: TCA patient/témoin
+  type: ratio
+  unit: s
+  unit_status: hypothesis
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+- field_id: aptt_ratio
+  source_col: 30
+  source_letter: AD
+  original_header: ratio
+  contextual_name: Ratio TCA
+  type: number
+  unit: sans unité
+  unit_status: hypothesis
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  definition_note: 'Hypothèse : patient / témoin du TCA, enregistré tronqué ou arrondi au centième.'
+- field_id: aptt_mix_patient_control
+  source_col: 31
+  source_letter: AE
+  original_header: TCA(M+T)
+  contextual_name: TCA mélange (M+T) patient/témoin
+  type: ratio
+  unit: s
+  unit_status: hypothesis
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+- field_id: fviii_level
+  source_col: 35
+  source_letter: AI
+  original_header: facteur VIII
+  contextual_name: Taux de facteur VIII
+  type: number
+  unit: '%'
+  unit_status: hypothesis
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  definition_note: 'Unité % supposée (valeurs « 1.5% », « <1% »). Valeurs 0–1 sans unité : % ou UI/ml ? à confirmer.'
+- field_id: fix_level
+  source_col: 36
+  source_letter: AJ
+  original_header: facteur IX
+  contextual_name: Taux de facteur IX
+  type: number
+  unit: '%'
+  unit_status: hypothesis
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+- field_id: clinical_form
+  source_col: 37
+  source_letter: AK
+  original_header: forme clinique
+  contextual_name: Forme clinique (hémophilie A/B)
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  code_map:
+    1:
+      label: A
+      status: hypothesis
+    2:
+      label: B
+      status: hypothesis
+- field_id: severity
+  source_col: 38
+  source_letter: AL
+  original_header: sévérité
+  contextual_name: Sévérité
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  - 3
+  code_map:
+    1:
+      label: sévère
+      status: hypothesis
+    2:
+      label: modérée
+      status: hypothesis
+    3:
+      label: mineure
+      status: hypothesis
+- field_id: hemarthrosis
+  source_col: 41
+  source_letter: AO
+  original_header: hémarthrose
+  contextual_name: Hémarthrose (antécédent)
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+- field_id: hemarthrosis_elbow_right
+  source_col: 42
+  source_letter: AP
+  original_header: coude dt
+  contextual_name: Hémarthrose coude droit
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+- field_id: hemarthrosis_elbow_left
+  source_col: 43
+  source_letter: AQ
+  original_header: coude gche
+  contextual_name: Hémarthrose coude gauche
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+- field_id: hemarthrosis_elbow_any
+  source_col: 44
+  source_letter: AR
+  original_header: coude
+  contextual_name: Hémarthrose coude (synthèse)
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+- field_id: circumcision
+  source_col: 79
+  source_letter: CA
+  original_header: circoncision
+  contextual_name: Circoncision
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  - 3
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+    3:
+      label: non précisé
+      status: hypothesis
+  text_variants:
+    pas encore:
+      meaning: non encore réalisée (variante lexicale proposée)
+      status: hypothesis
+- field_id: circumcision_age
+  source_col: 82
+  source_letter: CD
+  original_header: âge de circoncision
+  contextual_name: Âge à la circoncision
+  type: duration
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  applicability:
+    field: circumcision
+    code: 1
+    status: hypothesis
+- field_id: inhibitor
+  source_col: 125
+  source_letter: DU
+  original_header: inhibiteur
+  contextual_name: Inhibiteur
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  - 3
+  code_map:
+    1:
+      label: oui
+      status: hypothesis
+    2:
+      label: non
+      status: hypothesis
+    3:
+      label: non précisé
+      status: hypothesis
+- field_id: inhibitor_responder
+  source_col: 126
+  source_letter: DV
+  original_header: faible/fort repondeur
+  contextual_name: Faible/fort répondeur
+  type: code
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  allowed_values:
+  - 1
+  - 2
+  code_map:
+    1:
+      label: faible répondeur
+      status: hypothesis
+    2:
+      label: fort répondeur
+      status: hypothesis
+  applicability:
+    field: inhibitor
+    code: 1
+    status: hypothesis
+- field_id: inhibitor_titer
+  source_col: 127
+  source_letter: DW
+  original_header: taux d'inhibiteur
+  contextual_name: Titre de l'inhibiteur
+  type: number
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  definition_note: 'Unité non indiquée (UB/ml probable) : à confirmer.'
+  applicability:
+    field: inhibitor
+    code: 1
+    status: hypothesis
+- field_id: ddn
+  source_col: 162
+  source_letter: FF
+  original_header: DDN
+  contextual_name: DDN (sens à confirmer)
+  type: date
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: *id001
+  in_scope: true
+  privacy_role: quasi_identifier
+  definition_note: 'Distincte de la date de naissance ; 82/83 valeurs en 2022–2024 : date des dernières nouvelles ? À confirmer.'
+- field_id: comment_1
+  source_col: 163
+  source_letter: FG
+  original_header: null
+  contextual_name: Commentaire libre 1 (colonne sans titre)
+  type: narrative
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: []
+  in_scope: true
+- field_id: comment_2
+  source_col: 164
+  source_letter: FH
+  original_header: null
+  contextual_name: Commentaire libre 2 (colonne sans titre)
+  type: narrative
+  unit: null
+  unit_status: missing
+  definition_status: hypothesis
+  approved_by: null
+  approved_on: null
+  unknown_markers: []
+  in_scope: true

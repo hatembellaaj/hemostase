@@ -1,0 +1,11 @@
+# jamais dans l'image : données patients, correspondances, sorties, secrets
+data/
+runs/
+.env
+*.xlsx
+!examples/*.xlsx
+.git/
+**/__pycache__/
+.pytest_cache/
+.venv/
+*.log

@@ -1,0 +1,232 @@
+[
+ {
+  "name": "qa_lire_dossier",
+  "display_name": "QA — Lire le dossier (pseudonymisé)",
+  "description": "Renvoie la vue pseudonymisée d'un dossier : valeurs et normalisation par champ, cellules à normaliser, présence de commentaires, anomalies déterministes déjà trouvées, candidates d'agents et vérification, règles actives, budget restant. À appeler en premier.",
+  "script_type": "python",
+  "script_content": "import json, os, urllib.request, urllib.error, urllib.parse\n_BASE = os.environ[\"HQA_API_URL\"].rstrip(\"/\") + \"/api/qa\"\n_CONSIGNE = \"ERREUR technique ou refus : ne JAMAIS conclure a l'absence d'anomalie ; signaler et ne pas inventer.\"\ndef _q(x):\n    return urllib.parse.quote(str(x).strip(), safe=\"\")\ndef _call(method, path, body=None):\n    req = urllib.request.Request(_BASE + path, method=method,\n        data=None if body is None else json.dumps(body).encode(\"utf-8\"),\n        headers={\"X-API-Key\": os.environ[\"HQA_API_KEY\"], \"Content-Type\": \"application/json\"})\n    try:\n        with urllib.request.urlopen(req, timeout=60) as r:\n            txt = r.read().decode(\"utf-8\")\n            return json.loads(txt) if txt else {\"ERREUR\": \"reponse vide\", \"consigne\": _CONSIGNE}\n    except urllib.error.HTTPError as e:\n        return {\"ERREUR\": \"HTTP %d\" % e.code, \"detail\": e.read().decode(\"utf-8\", \"replace\")[:800], \"consigne\": _CONSIGNE}\n    except Exception as e:\n        return {\"ERREUR\": type(e).__name__, \"detail\": str(e)[:300], \"consigne\": _CONSIGNE}\ndef _payload(key, role):\n    try:\n        return json.loads(input_data.get(key) or \"\")\n    except ValueError as e:\n        _call(\"POST\", \"/sessions/%s/cases/%s/invalid-output\" % (_q(input_data[\"session_id\"]), _q(input_data[\"study_id\"])),\n              {\"role\": role, \"detail\": \"JSON invalide dans %s : %s\" % (key, e)})\n        return None\n_S = \"/sessions/%s/cases/%s\" % (_q(input_data.get(\"session_id\", \"\")), _q(input_data.get(\"study_id\", \"\")))\noutput_data = _call(\"GET\", _S)\n",
+  "input_schema": {
+   "type": "object",
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "description": "Identifiant de session (SESSION=… dans la tâche)"
+    },
+    "study_id": {
+     "type": "string",
+     "description": "Identifiant d'étude du dossier (DOSSIER=…, ex. S012)"
+    }
+   },
+   "required": [
+    "session_id",
+    "study_id"
+   ]
+  },
+  "timeout_seconds": 60,
+  "is_enabled": true
+ },
+ {
+  "name": "qa_outil_deterministe",
+  "display_name": "QA — Outil déterministe",
+  "description": "Exécute un outil déterministe sur le dossier. tool parmi : get_dictionary_entry {field_id}, parse_value {field_id, text}, compare_numbers {a, op, b}, duration_to_months {years, months, days}, date_interval {date}, list_relations {field_id}, run_rule {rule_id}. args_json = arguments en JSON.",
+  "script_type": "python",
+  "script_content": "import json, os, urllib.request, urllib.error, urllib.parse\n_BASE = os.environ[\"HQA_API_URL\"].rstrip(\"/\") + \"/api/qa\"\n_CONSIGNE = \"ERREUR technique ou refus : ne JAMAIS conclure a l'absence d'anomalie ; signaler et ne pas inventer.\"\ndef _q(x):\n    return urllib.parse.quote(str(x).strip(), safe=\"\")\ndef _call(method, path, body=None):\n    req = urllib.request.Request(_BASE + path, method=method,\n        data=None if body is None else json.dumps(body).encode(\"utf-8\"),\n        headers={\"X-API-Key\": os.environ[\"HQA_API_KEY\"], \"Content-Type\": \"application/json\"})\n    try:\n        with urllib.request.urlopen(req, timeout=60) as r:\n            txt = r.read().decode(\"utf-8\")\n            return json.loads(txt) if txt else {\"ERREUR\": \"reponse vide\", \"consigne\": _CONSIGNE}\n    except urllib.error.HTTPError as e:\n        return {\"ERREUR\": \"HTTP %d\" % e.code, \"detail\": e.read().decode(\"utf-8\", \"replace\")[:800], \"consigne\": _CONSIGNE}\n    except Exception as e:\n        return {\"ERREUR\": type(e).__name__, \"detail\": str(e)[:300], \"consigne\": _CONSIGNE}\ndef _payload(key, role):\n    try:\n        return json.loads(input_data.get(key) or \"\")\n    except ValueError as e:\n        _call(\"POST\", \"/sessions/%s/cases/%s/invalid-output\" % (_q(input_data[\"session_id\"]), _q(input_data[\"study_id\"])),\n              {\"role\": role, \"detail\": \"JSON invalide dans %s : %s\" % (key, e)})\n        return None\n_S = \"/sessions/%s/cases/%s\" % (_q(input_data.get(\"session_id\", \"\")), _q(input_data.get(\"study_id\", \"\")))\na = _payload(\"args_json\", input_data.get(\"role\") or \"coherence\")\noutput_data = _call(\"POST\", _S + \"/tools/\" + _q(input_data[\"tool\"]), {\"args\": a, \"role\": input_data.get(\"role\") or \"coherence\"}) if a is not None else {\"ERREUR\": \"args_json invalide\", \"consigne\": _CONSIGNE}\n",
+  "input_schema": {
+   "type": "object",
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "description": "Identifiant de session (SESSION=… dans la tâche)"
+    },
+    "study_id": {
+     "type": "string",
+     "description": "Identifiant d'étude du dossier (DOSSIER=…, ex. S012)"
+    },
+    "tool": {
+     "type": "string",
+     "description": "nom de l'outil"
+    },
+    "args_json": {
+     "type": "string",
+     "description": "arguments JSON, ex. {\"field_id\": \"fviii_level\"}"
+    },
+    "role": {
+     "type": "string",
+     "description": "normalizer | coherence | verifier | coordinator | single_agent"
+    }
+   },
+   "required": [
+    "session_id",
+    "study_id",
+    "tool",
+    "args_json"
+   ]
+  },
+  "timeout_seconds": 60,
+  "is_enabled": true
+ },
+ {
+  "name": "qa_soumettre_normalisations",
+  "display_name": "QA — Soumettre des normalisations",
+  "description": "Soumet les propositions de normalisation (payload_json = {\"proposals\": [...]}) ; la passerelle les valide et renvoie kept / ambiguous / rejected_by_code. Maximum 2 soumissions par dossier.",
+  "script_type": "python",
+  "script_content": "import json, os, urllib.request, urllib.error, urllib.parse\n_BASE = os.environ[\"HQA_API_URL\"].rstrip(\"/\") + \"/api/qa\"\n_CONSIGNE = \"ERREUR technique ou refus : ne JAMAIS conclure a l'absence d'anomalie ; signaler et ne pas inventer.\"\ndef _q(x):\n    return urllib.parse.quote(str(x).strip(), safe=\"\")\ndef _call(method, path, body=None):\n    req = urllib.request.Request(_BASE + path, method=method,\n        data=None if body is None else json.dumps(body).encode(\"utf-8\"),\n        headers={\"X-API-Key\": os.environ[\"HQA_API_KEY\"], \"Content-Type\": \"application/json\"})\n    try:\n        with urllib.request.urlopen(req, timeout=60) as r:\n            txt = r.read().decode(\"utf-8\")\n            return json.loads(txt) if txt else {\"ERREUR\": \"reponse vide\", \"consigne\": _CONSIGNE}\n    except urllib.error.HTTPError as e:\n        return {\"ERREUR\": \"HTTP %d\" % e.code, \"detail\": e.read().decode(\"utf-8\", \"replace\")[:800], \"consigne\": _CONSIGNE}\n    except Exception as e:\n        return {\"ERREUR\": type(e).__name__, \"detail\": str(e)[:300], \"consigne\": _CONSIGNE}\ndef _payload(key, role):\n    try:\n        return json.loads(input_data.get(key) or \"\")\n    except ValueError as e:\n        _call(\"POST\", \"/sessions/%s/cases/%s/invalid-output\" % (_q(input_data[\"session_id\"]), _q(input_data[\"study_id\"])),\n              {\"role\": role, \"detail\": \"JSON invalide dans %s : %s\" % (key, e)})\n        return None\n_S = \"/sessions/%s/cases/%s\" % (_q(input_data.get(\"session_id\", \"\")), _q(input_data.get(\"study_id\", \"\")))\np = _payload(\"payload_json\", \"normalizer\")\noutput_data = _call(\"POST\", _S + \"/normalizations\", p) if p is not None else {\"ERREUR\": \"payload_json invalide\", \"consigne\": _CONSIGNE}\n",
+  "input_schema": {
+   "type": "object",
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "description": "Identifiant de session (SESSION=… dans la tâche)"
+    },
+    "study_id": {
+     "type": "string",
+     "description": "Identifiant d'étude du dossier (DOSSIER=…, ex. S012)"
+    },
+    "payload_json": {
+     "type": "string",
+     "description": "objet JSON {\"proposals\": [...]} sérialisé"
+    }
+   },
+   "required": [
+    "session_id",
+    "study_id",
+    "payload_json"
+   ]
+  },
+  "timeout_seconds": 60,
+  "is_enabled": true
+ },
+ {
+  "name": "qa_soumettre_candidates",
+  "display_name": "QA — Soumettre des anomalies candidates",
+  "description": "Soumet les anomalies candidates avec preuves (payload_json = {\"candidates\": [...]}). Chaque soumission remplace la précédente ; la passerelle rejette règle inactive, champ inconnu, citation non conforme.",
+  "script_type": "python",
+  "script_content": "import json, os, urllib.request, urllib.error, urllib.parse\n_BASE = os.environ[\"HQA_API_URL\"].rstrip(\"/\") + \"/api/qa\"\n_CONSIGNE = \"ERREUR technique ou refus : ne JAMAIS conclure a l'absence d'anomalie ; signaler et ne pas inventer.\"\ndef _q(x):\n    return urllib.parse.quote(str(x).strip(), safe=\"\")\ndef _call(method, path, body=None):\n    req = urllib.request.Request(_BASE + path, method=method,\n        data=None if body is None else json.dumps(body).encode(\"utf-8\"),\n        headers={\"X-API-Key\": os.environ[\"HQA_API_KEY\"], \"Content-Type\": \"application/json\"})\n    try:\n        with urllib.request.urlopen(req, timeout=60) as r:\n            txt = r.read().decode(\"utf-8\")\n            return json.loads(txt) if txt else {\"ERREUR\": \"reponse vide\", \"consigne\": _CONSIGNE}\n    except urllib.error.HTTPError as e:\n        return {\"ERREUR\": \"HTTP %d\" % e.code, \"detail\": e.read().decode(\"utf-8\", \"replace\")[:800], \"consigne\": _CONSIGNE}\n    except Exception as e:\n        return {\"ERREUR\": type(e).__name__, \"detail\": str(e)[:300], \"consigne\": _CONSIGNE}\ndef _payload(key, role):\n    try:\n        return json.loads(input_data.get(key) or \"\")\n    except ValueError as e:\n        _call(\"POST\", \"/sessions/%s/cases/%s/invalid-output\" % (_q(input_data[\"session_id\"]), _q(input_data[\"study_id\"])),\n              {\"role\": role, \"detail\": \"JSON invalide dans %s : %s\" % (key, e)})\n        return None\n_S = \"/sessions/%s/cases/%s\" % (_q(input_data.get(\"session_id\", \"\")), _q(input_data.get(\"study_id\", \"\")))\np = _payload(\"payload_json\", \"coherence\")\noutput_data = _call(\"POST\", _S + \"/candidates\", p) if p is not None else {\"ERREUR\": \"payload_json invalide\", \"consigne\": _CONSIGNE}\n",
+  "input_schema": {
+   "type": "object",
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "description": "Identifiant de session (SESSION=… dans la tâche)"
+    },
+    "study_id": {
+     "type": "string",
+     "description": "Identifiant d'étude du dossier (DOSSIER=…, ex. S012)"
+    },
+    "payload_json": {
+     "type": "string",
+     "description": "objet JSON {\"candidates\": [...]} sérialisé"
+    }
+   },
+   "required": [
+    "session_id",
+    "study_id",
+    "payload_json"
+   ]
+  },
+  "timeout_seconds": 60,
+  "is_enabled": true
+ },
+ {
+  "name": "qa_soumettre_verdicts",
+  "display_name": "QA — Soumettre des verdicts de vérification",
+  "description": "Soumet un verdict par candidate d'agent (payload_json = {\"verdicts\": [{anomaly_id, decision, reason, fixable}]}).",
+  "script_type": "python",
+  "script_content": "import json, os, urllib.request, urllib.error, urllib.parse\n_BASE = os.environ[\"HQA_API_URL\"].rstrip(\"/\") + \"/api/qa\"\n_CONSIGNE = \"ERREUR technique ou refus : ne JAMAIS conclure a l'absence d'anomalie ; signaler et ne pas inventer.\"\ndef _q(x):\n    return urllib.parse.quote(str(x).strip(), safe=\"\")\ndef _call(method, path, body=None):\n    req = urllib.request.Request(_BASE + path, method=method,\n        data=None if body is None else json.dumps(body).encode(\"utf-8\"),\n        headers={\"X-API-Key\": os.environ[\"HQA_API_KEY\"], \"Content-Type\": \"application/json\"})\n    try:\n        with urllib.request.urlopen(req, timeout=60) as r:\n            txt = r.read().decode(\"utf-8\")\n            return json.loads(txt) if txt else {\"ERREUR\": \"reponse vide\", \"consigne\": _CONSIGNE}\n    except urllib.error.HTTPError as e:\n        return {\"ERREUR\": \"HTTP %d\" % e.code, \"detail\": e.read().decode(\"utf-8\", \"replace\")[:800], \"consigne\": _CONSIGNE}\n    except Exception as e:\n        return {\"ERREUR\": type(e).__name__, \"detail\": str(e)[:300], \"consigne\": _CONSIGNE}\ndef _payload(key, role):\n    try:\n        return json.loads(input_data.get(key) or \"\")\n    except ValueError as e:\n        _call(\"POST\", \"/sessions/%s/cases/%s/invalid-output\" % (_q(input_data[\"session_id\"]), _q(input_data[\"study_id\"])),\n              {\"role\": role, \"detail\": \"JSON invalide dans %s : %s\" % (key, e)})\n        return None\n_S = \"/sessions/%s/cases/%s\" % (_q(input_data.get(\"session_id\", \"\")), _q(input_data.get(\"study_id\", \"\")))\np = _payload(\"payload_json\", \"verifier\")\noutput_data = _call(\"POST\", _S + \"/verdicts\", p) if p is not None else {\"ERREUR\": \"payload_json invalide\", \"consigne\": _CONSIGNE}\n",
+  "input_schema": {
+   "type": "object",
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "description": "Identifiant de session (SESSION=… dans la tâche)"
+    },
+    "study_id": {
+     "type": "string",
+     "description": "Identifiant d'étude du dossier (DOSSIER=…, ex. S012)"
+    },
+    "payload_json": {
+     "type": "string",
+     "description": "objet JSON {\"verdicts\": [...]} sérialisé"
+    }
+   },
+   "required": [
+    "session_id",
+    "study_id",
+    "payload_json"
+   ]
+  },
+  "timeout_seconds": 60,
+  "is_enabled": true
+ },
+ {
+  "name": "qa_signaler_sortie_invalide",
+  "display_name": "QA — Signaler une sortie invalide",
+  "description": "Enregistre qu'un agent délégué n'a pas répondu ou a renvoyé une sortie inexploitable (jamais une absence d'anomalie).",
+  "script_type": "python",
+  "script_content": "import json, os, urllib.request, urllib.error, urllib.parse\n_BASE = os.environ[\"HQA_API_URL\"].rstrip(\"/\") + \"/api/qa\"\n_CONSIGNE = \"ERREUR technique ou refus : ne JAMAIS conclure a l'absence d'anomalie ; signaler et ne pas inventer.\"\ndef _q(x):\n    return urllib.parse.quote(str(x).strip(), safe=\"\")\ndef _call(method, path, body=None):\n    req = urllib.request.Request(_BASE + path, method=method,\n        data=None if body is None else json.dumps(body).encode(\"utf-8\"),\n        headers={\"X-API-Key\": os.environ[\"HQA_API_KEY\"], \"Content-Type\": \"application/json\"})\n    try:\n        with urllib.request.urlopen(req, timeout=60) as r:\n            txt = r.read().decode(\"utf-8\")\n            return json.loads(txt) if txt else {\"ERREUR\": \"reponse vide\", \"consigne\": _CONSIGNE}\n    except urllib.error.HTTPError as e:\n        return {\"ERREUR\": \"HTTP %d\" % e.code, \"detail\": e.read().decode(\"utf-8\", \"replace\")[:800], \"consigne\": _CONSIGNE}\n    except Exception as e:\n        return {\"ERREUR\": type(e).__name__, \"detail\": str(e)[:300], \"consigne\": _CONSIGNE}\ndef _payload(key, role):\n    try:\n        return json.loads(input_data.get(key) or \"\")\n    except ValueError as e:\n        _call(\"POST\", \"/sessions/%s/cases/%s/invalid-output\" % (_q(input_data[\"session_id\"]), _q(input_data[\"study_id\"])),\n              {\"role\": role, \"detail\": \"JSON invalide dans %s : %s\" % (key, e)})\n        return None\n_S = \"/sessions/%s/cases/%s\" % (_q(input_data.get(\"session_id\", \"\")), _q(input_data.get(\"study_id\", \"\")))\noutput_data = _call(\"POST\", _S + \"/invalid-output\", {\"role\": input_data.get(\"role\") or \"?\", \"detail\": input_data.get(\"detail\") or \"\"})\n",
+  "input_schema": {
+   "type": "object",
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "description": "Identifiant de session (SESSION=… dans la tâche)"
+    },
+    "study_id": {
+     "type": "string",
+     "description": "Identifiant d'étude du dossier (DOSSIER=…, ex. S012)"
+    },
+    "role": {
+     "type": "string",
+     "description": "normalizer | coherence | verifier"
+    },
+    "detail": {
+     "type": "string",
+     "description": "une phrase"
+    }
+   },
+   "required": [
+    "session_id",
+    "study_id",
+    "role",
+    "detail"
+   ]
+  },
+  "timeout_seconds": 60,
+  "is_enabled": true
+ },
+ {
+  "name": "qa_terminer_dossier",
+  "display_name": "QA — Terminer le dossier",
+  "description": "Clôt le traitement du dossier. status : completed | stopped_budget | stopped_no_progress | technical_failure.",
+  "script_type": "python",
+  "script_content": "import json, os, urllib.request, urllib.error, urllib.parse\n_BASE = os.environ[\"HQA_API_URL\"].rstrip(\"/\") + \"/api/qa\"\n_CONSIGNE = \"ERREUR technique ou refus : ne JAMAIS conclure a l'absence d'anomalie ; signaler et ne pas inventer.\"\ndef _q(x):\n    return urllib.parse.quote(str(x).strip(), safe=\"\")\ndef _call(method, path, body=None):\n    req = urllib.request.Request(_BASE + path, method=method,\n        data=None if body is None else json.dumps(body).encode(\"utf-8\"),\n        headers={\"X-API-Key\": os.environ[\"HQA_API_KEY\"], \"Content-Type\": \"application/json\"})\n    try:\n        with urllib.request.urlopen(req, timeout=60) as r:\n            txt = r.read().decode(\"utf-8\")\n            return json.loads(txt) if txt else {\"ERREUR\": \"reponse vide\", \"consigne\": _CONSIGNE}\n    except urllib.error.HTTPError as e:\n        return {\"ERREUR\": \"HTTP %d\" % e.code, \"detail\": e.read().decode(\"utf-8\", \"replace\")[:800], \"consigne\": _CONSIGNE}\n    except Exception as e:\n        return {\"ERREUR\": type(e).__name__, \"detail\": str(e)[:300], \"consigne\": _CONSIGNE}\ndef _payload(key, role):\n    try:\n        return json.loads(input_data.get(key) or \"\")\n    except ValueError as e:\n        _call(\"POST\", \"/sessions/%s/cases/%s/invalid-output\" % (_q(input_data[\"session_id\"]), _q(input_data[\"study_id\"])),\n              {\"role\": role, \"detail\": \"JSON invalide dans %s : %s\" % (key, e)})\n        return None\n_S = \"/sessions/%s/cases/%s\" % (_q(input_data.get(\"session_id\", \"\")), _q(input_data.get(\"study_id\", \"\")))\noutput_data = _call(\"POST\", _S + \"/finish\", {\"status\": input_data.get(\"status\") or \"technical_failure\", \"note\": input_data.get(\"note\") or \"\"})\n",
+  "input_schema": {
+   "type": "object",
+   "properties": {
+    "session_id": {
+     "type": "string",
+     "description": "Identifiant de session (SESSION=… dans la tâche)"
+    },
+    "study_id": {
+     "type": "string",
+     "description": "Identifiant d'étude du dossier (DOSSIER=…, ex. S012)"
+    },
+    "status": {
+     "type": "string",
+     "description": "completed | stopped_budget | stopped_no_progress | technical_failure"
+    },
+    "note": {
+     "type": "string",
+     "description": "une phrase"
+    }
+   },
+   "required": [
+    "session_id",
+    "study_id",
+    "status"
+   ]
+  },
+  "timeout_seconds": 60,
+  "is_enabled": true
+ }
+]

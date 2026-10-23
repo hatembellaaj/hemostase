@@ -1,0 +1,54 @@
+# Configuration par défaut. Toute exécution enregistre une copie de la configuration effective dans le manifeste.
+paths:
+  workbook: data/raw/registre.xlsx         # original : jamais modifié
+  sheet: Feuil1
+  fields: dictionary/fields.yaml
+  rules: dictionary/rules.yaml
+  prompts: prompts
+  private_dir: data/private                # table de correspondance des identifiants (hors exports)
+  derived_dir: data/derived
+  runs_dir: runs
+
+rules:
+  # statuts exécutés. Ajouter "hypothesis" UNIQUEMENT pour du développement : les sorties sont alors
+  # étiquetées rule_status=hypothesis et ne valent pas résultat clinique.
+  active_statuses: [structural, approved]
+
+privacy:
+  study_id_prefix: "S"
+  # généralisation des dates envoyées au modèle : "year_month" ou "none"
+  llm_date_generalization: year_month
+  # les identifiants directs ne sont jamais envoyés ; les commentaires libres sont expurgés
+  redact_narratives: true
+
+llm:
+  base_url: ${HQA_LLM_BASE_URL}
+  model: ${HQA_LLM_MODEL}
+  api_key: ${HQA_LLM_API_KEY}
+  temperature: 0.0
+  seed: 1234
+  max_output_tokens: 800
+  request_timeout_s: 60
+  # autorisation explicite d'envoyer des données (pseudonymisées) du registre au service
+  allow_registry_data: ${HQA_ALLOW_REGISTRY_DATA_TO_LLM}
+  # prix indicatif pour le calcul des coûts (0 pour un modèle local) ; à renseigner
+  price_per_1k_input: null
+  price_per_1k_output: null
+
+limits:
+  max_normalization_attempts: 2
+  max_revisions_after_verification: 1
+  max_llm_calls_per_case: 6
+  max_tokens_per_case: 12000
+  max_seconds_per_case: 120
+  max_technical_retries: 2
+  stop_after_steps_without_progress: 2
+
+split:
+  seed: 20270101
+  n_dev: 25
+
+evaluation:
+  bootstrap_samples: 2000
+  bootstrap_seed: 7
+  confidence: 0.95

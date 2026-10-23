@@ -1,0 +1,11 @@
+# Dépendances (versions figées pour la reproductibilité)
+openpyxl==3.1.5
+pydantic==2.10.4
+PyYAML==6.0.2
+httpx==0.28.1
+pytest==8.3.4
+# interface de revue (optionnelle)
+streamlit==1.41.1
+# passerelle QA pour orchestrateurs externes (RAISE)
+fastapi==0.115.6
+uvicorn==0.34.0

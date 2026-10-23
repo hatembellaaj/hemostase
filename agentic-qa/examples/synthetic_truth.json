@@ -1,0 +1,280 @@
+{
+ "seed": 42,
+ "n_rows": 30,
+ "classes": [
+  "clean",
+  "inherent",
+  "injected",
+  "undecidable",
+  "variation"
+ ],
+ "warning": "Données entièrement artificielles. Résultats = validation logicielle, pas estimation des erreurs réelles.",
+ "truth": [
+  {
+   "row_index": 1,
+   "class": "injected",
+   "name": "ratio_tca_faux",
+   "target": "COH:H08_aptt_ratio_arithmetic",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 2,
+   "class": "injected",
+   "name": "commentaire_contradictoire",
+   "target": "COH:N01",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 3,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 4,
+   "class": "variation",
+   "name": "virgule_decimale",
+   "target": "UNC:fviii_level",
+   "expected_label": "acceptable_variation"
+  },
+  {
+   "row_index": 5,
+   "class": "injected",
+   "name": "ratio_tca_faux",
+   "target": "COH:H08_aptt_ratio_arithmetic",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 6,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 7,
+   "class": "undecidable",
+   "name": "plage_de_dates",
+   "target": "UNC:ddn",
+   "expected_label": "unresolved"
+  },
+  {
+   "row_index": 8,
+   "class": "injected",
+   "name": "dependance_degre",
+   "target": "COH:H01_consanguinity_degree_dependency",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 9,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 10,
+   "class": "variation",
+   "name": "commentaire_compatible",
+   "target": "COH:N01",
+   "expected_label": "acceptable_variation"
+  },
+  {
+   "row_index": 11,
+   "class": "injected",
+   "name": "age_diag_discordant",
+   "target": "COH:H07_age_diagnosis_text_vs_months",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 12,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 13,
+   "class": "undecidable",
+   "name": "plage_de_dates",
+   "target": "UNC:ddn",
+   "expected_label": "unresolved"
+  },
+  {
+   "row_index": 13,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 14,
+   "class": "undecidable",
+   "name": "nombre_sans_unite_de_duree",
+   "target": "UNC:age_first_signs",
+   "expected_label": "unresolved"
+  },
+  {
+   "row_index": 14,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 15,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 16,
+   "class": "injected",
+   "name": "age_diag_discordant",
+   "target": "COH:H07_age_diagnosis_text_vs_months",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 16,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 17,
+   "class": "injected",
+   "name": "code_hors_domaine",
+   "target": "UNC:sex",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 18,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 19,
+   "class": "injected",
+   "name": "code_hors_domaine",
+   "target": "UNC:sex",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 19,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 20,
+   "class": "injected",
+   "name": "synthese_coude",
+   "target": "COH:H05_elbow_synthesis",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 20,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 21,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 22,
+   "class": "undecidable",
+   "name": "inconnu_explicite",
+   "target": "UNC:fviii_level",
+   "expected_label": "unresolved"
+  },
+  {
+   "row_index": 23,
+   "class": "variation",
+   "name": "commentaire_compatible",
+   "target": "COH:N01",
+   "expected_label": "acceptable_variation"
+  },
+  {
+   "row_index": 24,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 24,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 25,
+   "class": "undecidable",
+   "name": "inconnu_explicite",
+   "target": "UNC:fviii_level",
+   "expected_label": "unresolved"
+  },
+  {
+   "row_index": 25,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 26,
+   "class": "injected",
+   "name": "dependance_degre",
+   "target": "COH:H01_consanguinity_degree_dependency",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 27,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  },
+  {
+   "row_index": 28,
+   "class": "undecidable",
+   "name": "inconnu_explicite",
+   "target": "UNC:fviii_level",
+   "expected_label": "unresolved"
+  },
+  {
+   "row_index": 29,
+   "class": "injected",
+   "name": "age_diag_discordant",
+   "target": "COH:H07_age_diagnosis_text_vs_months",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 29,
+   "class": "inherent",
+   "name": "unite_absente_dictionnaire",
+   "target": "UNC:inhibitor_titer",
+   "expected_label": "confirmed_anomaly"
+  },
+  {
+   "row_index": 30,
+   "class": "clean",
+   "name": null,
+   "target": null,
+   "expected_label": null
+  }
+ ]
+}
