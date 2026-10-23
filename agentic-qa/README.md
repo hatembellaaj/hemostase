@@ -58,7 +58,7 @@ mkdir -p data/raw && cp /chemin/vers/registre.xlsx data/raw/registre.xlsx   # co
 ## Commandes
 
 ```bash
-python -m pytest -q tests                                   # 36 tests, données artificielles uniquement
+python -m pytest -q tests                                   # 41 tests, données artificielles uniquement
 
 python -m hqa.cli audit                                     # profil agrégé -> runs/audit/profile.md
 python -m hqa.cli split --freeze                            # découpage dev/test figé -> data/derived/split.json
@@ -70,6 +70,8 @@ python -m hqa.cli run --mode B0 --subset dev --enable-hypothesis-rules   # profi
 
 # expérience artificielle (validation logicielle) ; --simulate-llm = infrastructure B1-B3 avec FAUX modèle
 python -m hqa.cli synthetic --rows 30 --seed 42 --simulate-llm
+# --llm = VRAI modèle configuré, sur le classeur artificiel uniquement (pas d'autorisation registre requise)
+python -m hqa.cli synthetic --rows 10 --seed 42 --llm --modes B3
 
 # après annotation et adjudication par deux experts
 python -m hqa.cli evaluate --runs <run_B0> <run_B3> ... --annotations data/derived/annotation_test_adjudicated.csv

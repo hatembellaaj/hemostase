@@ -38,7 +38,7 @@ sed -i "s/^HQA_UID=.*/HQA_UID=$(id -u)/; s/^HQA_GID=.*/HQA_GID=$(id -g)/" .env
 
 ```bash
 HQA_GIT_COMMIT=$(git rev-parse HEAD) docker compose build
-docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 36 tests attendus
+docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 41 tests attendus
 ```
 
 ## 4. Lancer les étapes
@@ -71,18 +71,37 @@ ssh -L 8501:127.0.0.1:8501 <user>@<serveur>
 (Changer le port local avec `HQA_REVIEW_PORT` dans `.env`. Pour un accès sans tunnel, le placer derrière le
 reverse proxy existant **avec authentification** — ne pas publier le port sur 0.0.0.0.)
 
-## 6. Modèle local (uniquement après autorisation)
+## 6. Modèle local
 
 ```bash
 docker compose --profile llm up -d ollama
-docker compose exec ollama ollama pull <modèle>          # ex. un modèle instruct de 7–14 B selon le GPU/la RAM
+docker compose exec ollama ollama pull qwen2.5:7b-instruct   # serveur actuel : CPU seul, 31 Go de RAM
 ```
+
+Le service fixe `OLLAMA_CONTEXT_LENGTH=8192` (sinon les prompts longs sont tronqués sans erreur) et
+`OLLAMA_NUM_PARALLEL=1`. Mesure sur le serveur actuel (Xeon E-2386G, sans GPU) : ~34 tokens/s en lecture,
+~11 tokens/s en génération ; d'où `request_timeout_s: 300` et `max_seconds_per_case: 900` dans `config/default.yaml`.
+
+### 6a. Vrai modèle sur données artificielles (aucune autorisation registre requise)
+
+Dans `.env` : `HQA_LLM_BASE_URL=http://ollama:11434/v1` et `HQA_LLM_MODEL=qwen2.5:7b-instruct`
+(laisser `HQA_ALLOW_REGISTRY_DATA_TO_LLM=no`).
+
+```bash
+docker compose run --rm hqa synthetic --rows 10 --seed 42 --llm --modes B3     # essai court
+docker compose run --rm hqa synthetic --rows 30 --seed 42 --llm                # B1, B2, B3, B3-noverif
+```
+
+Seul le classeur artificiel généré peut être envoyé (contrôle par empreinte). Les résultats servent à valider
+l'infrastructure et à mesurer temps, tokens et sorties non conformes ; ils ne mesurent pas la performance sur le registre.
+
+### 6b. Registre (uniquement après autorisation)
 
 Dans `.env` :
 
 ```
 HQA_LLM_BASE_URL=http://ollama:11434/v1
-HQA_LLM_MODEL=<modèle>
+HQA_LLM_MODEL=qwen2.5:7b-instruct
 HQA_ALLOW_REGISTRY_DATA_TO_LLM=yes     # seulement après confirmation écrite de l'environnement
 ```
 

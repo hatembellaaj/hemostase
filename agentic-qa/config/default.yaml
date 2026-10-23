@@ -28,7 +28,8 @@ llm:
   temperature: 0.0
   seed: 1234
   max_output_tokens: 800
-  request_timeout_s: 60
+  # modèle local sur CPU (serveur sans GPU, ~11 tokens/s en génération) : un appel peut dépasser une minute
+  request_timeout_s: 300
   # autorisation explicite d'envoyer des données (pseudonymisées) du registre au service
   allow_registry_data: ${HQA_ALLOW_REGISTRY_DATA_TO_LLM}
   # prix indicatif pour le calcul des coûts (0 pour un modèle local) ; à renseigner
@@ -40,7 +41,8 @@ limits:
   max_revisions_after_verification: 1
   max_llm_calls_per_case: 6
   max_tokens_per_case: 12000
-  max_seconds_per_case: 120
+  # calibré pour un modèle local sur CPU ; à ajuster sur le développement (synthetic --llm, run --subset dev) puis à figer
+  max_seconds_per_case: 900
   max_technical_retries: 2
   stop_after_steps_without_progress: 2
 

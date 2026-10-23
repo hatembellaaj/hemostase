@@ -37,6 +37,31 @@ def ctx_for(mode, d, engine, fake, limits=LIMITS):
 def test_registry_data_guard():
     with pytest.raises(RegistryDataNotAuthorized):
         OpenAICompatibleClient("http://localhost:11434/v1", "m", allow_registry_data="no")
+    # données artificielles : pas d'autorisation registre requise
+    assert OpenAICompatibleClient("http://localhost:11434/v1", "m", allow_registry_data="no", artificial_data=True).artificial_data
+
+
+def test_real_llm_on_artificial_data_only(cfg, tmp_path, monkeypatch):
+    import hqa.cli as cli
+
+    seen = []
+
+    def fake_make_client(c, artificial_data=False):
+        seen.append(artificial_data)
+        return FakeLLM(lambda s, u: '{"proposals": [], "candidates": [], "verdicts": [], "action": "final"}')
+
+    monkeypatch.setattr(cli, "ROOT", tmp_path)
+    monkeypatch.setattr(cli, "make_client", fake_make_client)
+    (tmp_path / "examples").mkdir()
+    cli.cmd_synthetic(type("A", (), {"rows": 10, "seed": 1, "simulate_llm": False, "llm": True, "modes": ["B3"]})(), cfg)
+    assert seen == [True]
+    # un autre classeur que le classeur artificiel généré est refusé avant tout appel
+    import argparse
+    ns = argparse.Namespace(mode="B3", subset="all", workbook=str(tmp_path / "examples" / "synthetic_registre.xlsx"),
+                            enable_hypothesis_rules=False, coordinator="policy", prompt_version="v1", artificial_sha256="0" * 64)
+    with pytest.raises(SystemExit):
+        cli.cmd_run(ns, cfg)
+    assert seen == [True]
 
 
 def test_invalid_json_is_not_absence_of_anomaly(mini, d):

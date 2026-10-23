@@ -8,6 +8,7 @@ Ligne de commande. Exemples :
   python -m hqa.cli run --mode B3 --subset dev            # exige un LLM configuré ET autorisé
   python -m hqa.cli evaluate --runs <run_id> [<run_id>...] --annotations data/derived/annotation_test.csv
   python -m hqa.cli synthetic                               # expérience artificielle complète (validation logicielle)
+  python -m hqa.cli synthetic --llm --modes B3              # vrai modèle, données artificielles seulement
   python -m hqa.cli review-assignment --experts A B --conditions B0 B3
 """
 from __future__ import annotations
@@ -147,10 +148,17 @@ def cmd_run(args, cfg):
             client = FakeLLM(lambda s, u: '{"proposals": [], "candidates": [], "verdicts": [], "action": "final"}')
             notes.append("FAUX MODÈLE (FakeLLM) : aucune sortie de modèle réelle ; résultats exclus des résultats scientifiques.")
         else:
+            # vrai modèle sur données artificielles : réservé à cmd_synthetic, qui fournit l'empreinte du classeur généré
+            artificial = getattr(args, "artificial_sha256", None)
+            if artificial and artificial != wb.sha256:
+                sys.exit("Classeur différent du classeur artificiel généré : envoi au modèle refusé")
             try:
-                client = make_client(cfg)
+                client = make_client(cfg, artificial_data=bool(artificial))
             except (LLMNotConfigured, RegistryDataNotAuthorized) as e:
                 sys.exit(f"Mode {args.mode} non exécuté : {e}")
+            if artificial:
+                notes.append("Vrai modèle sur données ENTIÈREMENT ARTIFICIELLES : validation logicielle et mesure des coûts, "
+                             "pas une performance sur le registre.")
         prompts = Prompts(cfg["paths"]["prompts"], args.prompt_version)
         agents = Agents(client, prompts, d, cfg["llm"]["max_output_tokens"], cfg["privacy"]["llm_date_generalization"])
         llm_info = {k: cfg["llm"].get(k) for k in ("base_url", "model", "temperature", "seed", "max_output_tokens")} | {"prompt_version": args.prompt_version}
@@ -253,9 +261,14 @@ def cmd_synthetic(args, cfg):
     ns = argparse.Namespace(mode="B0", subset="all", workbook=g["workbook"], enable_hypothesis_rules=True, coordinator="policy", prompt_version="v1")
     rid = cmd_run(ns, json.loads(json.dumps(syn_cfg)))
     run_ids = [rid]
-    for mode in (["B1", "B2", "B3", "B3-noverif"] if getattr(args, "simulate_llm", False) else []):
-        ns_m = argparse.Namespace(**{**vars(ns), "mode": mode, "fake_llm": True})
-        run_ids.append(cmd_run(ns_m, json.loads(json.dumps(syn_cfg))))
+    simulate, real = getattr(args, "simulate_llm", False), getattr(args, "llm", False)
+    if simulate and real:
+        sys.exit("--simulate-llm et --llm sont exclusifs")
+    if simulate or real:
+        llm_args = {"fake_llm": True} if simulate else {"artificial_sha256": sha256_file(g["workbook"])}
+        for mode in getattr(args, "modes", None) or ["B1", "B2", "B3", "B3-noverif"]:
+            ns_m = argparse.Namespace(**{**vars(ns), "mode": mode, **llm_args})
+            run_ids.append(cmd_run(ns_m, json.loads(json.dumps(syn_cfg))))
     d2, wb, cases, same = _setup(syn_cfg, g["workbook"])
     opps = build_opportunities(cases, d2, same)
     row_to_sid = {c.excel_row: c.study_id for c in cases}
@@ -315,6 +328,10 @@ def main(argv=None):
     y.add_argument("--rows", type=int, default=30)
     y.add_argument("--seed", type=int, default=42)
     y.add_argument("--simulate-llm", action="store_true", help="exécute aussi B1-B3 avec un FAUX modèle (infrastructure uniquement)")
+    y.add_argument("--llm", action="store_true",
+                   help="exécute aussi B1-B3 avec le VRAI modèle configuré, sur les données artificielles uniquement")
+    y.add_argument("--modes", nargs="+", choices=[m for m in MODES if m != "B0"], default=None,
+                   help="modes LLM à exécuter (défaut : B1 B2 B3 B3-noverif)")
     v = sub.add_parser("review-assignment")
     v.add_argument("--experts", nargs="+", required=True)
     v.add_argument("--conditions", nargs="+", required=True)

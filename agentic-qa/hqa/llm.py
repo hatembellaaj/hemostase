@@ -53,10 +53,14 @@ class OpenAICompatibleClient:
     simulated = False
 
     def __init__(self, base_url: str, model: str, api_key: str | None = None, temperature: float = 0.0,
-                 seed: int | None = None, timeout_s: float = 60, allow_registry_data: str | None = "no"):
+                 seed: int | None = None, timeout_s: float = 60, allow_registry_data: str | None = "no",
+                 artificial_data: bool = False):
         if not base_url or not model:
             raise LLMNotConfigured("HQA_LLM_BASE_URL et HQA_LLM_MODEL doivent être renseignés")
-        if str(allow_registry_data).lower() != "yes":
+        # artificial_data=True : client réservé aux données entièrement artificielles (synthetic --llm) ; l'autorisation
+        # registre n'est alors pas requise. Ne jamais l'activer pour un classeur issu du registre.
+        self.artificial_data = artificial_data
+        if not artificial_data and str(allow_registry_data).lower() != "yes":
             raise RegistryDataNotAuthorized(
                 "Envoi de données du registre non autorisé : positionner HQA_ALLOW_REGISTRY_DATA_TO_LLM=yes "
                 "après confirmation de l'environnement (modèle local ou API autorisée) et de l'autorisation de traitement."
@@ -207,7 +211,8 @@ def call_json(client: LLMClient, budget: Budget, role: str, system: str, user: s
             raise InvalidModelOutput(f"schéma non respecté : {e}") from e
 
 
-def make_client(cfg: dict) -> LLMClient:
+def make_client(cfg: dict, artificial_data: bool = False) -> LLMClient:
     c = cfg["llm"]
     return OpenAICompatibleClient(c.get("base_url"), c.get("model"), c.get("api_key"), c.get("temperature", 0.0),
-                                  c.get("seed"), c.get("request_timeout_s", 60), c.get("allow_registry_data"))
+                                  c.get("seed"), c.get("request_timeout_s", 60), c.get("allow_registry_data"),
+                                  artificial_data=artificial_data)
