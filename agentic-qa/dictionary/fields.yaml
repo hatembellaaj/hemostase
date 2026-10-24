@@ -241,12 +241,13 @@ fields:
   contextual_name: TCA patient/témoin
   type: ratio
   unit: s
-  unit_status: hypothesis
+  unit_status: confirmed
   definition_status: hypothesis
   approved_by: null
   approved_on: null
   unknown_markers: *id001
   in_scope: true
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. Temps en secondes (patient / témoin).'
 - field_id: aptt_ratio
   source_col: 30
   source_letter: AD
@@ -254,13 +255,13 @@ fields:
   contextual_name: Ratio TCA
   type: number
   unit: sans unité
-  unit_status: hypothesis
+  unit_status: confirmed
   definition_status: hypothesis
   approved_by: null
   approved_on: null
   unknown_markers: *id001
   in_scope: true
-  definition_note: 'Hypothèse : patient / témoin du TCA, enregistré tronqué ou arrondi au centième.'
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. Ratio sans unité. Hypothèse restante : patient / témoin du TCA, tronqué ou arrondi au centième.'
 - field_id: aptt_mix_patient_control
   source_col: 31
   source_letter: AE
@@ -268,12 +269,13 @@ fields:
   contextual_name: TCA mélange (M+T) patient/témoin
   type: ratio
   unit: s
-  unit_status: hypothesis
+  unit_status: confirmed
   definition_status: hypothesis
   approved_by: null
   approved_on: null
   unknown_markers: *id001
   in_scope: true
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. Temps en secondes (patient / témoin).'
 - field_id: fviii_level
   source_col: 35
   source_letter: AI
@@ -281,13 +283,13 @@ fields:
   contextual_name: Taux de facteur VIII
   type: number
   unit: '%'
-  unit_status: hypothesis
+  unit_status: confirmed
   definition_status: hypothesis
   approved_by: null
   approved_on: null
   unknown_markers: *id001
   in_scope: true
-  definition_note: 'Unité % supposée (valeurs « 1.5% », « <1% »). Valeurs 0–1 sans unité : % ou UI/ml ? à confirmer.'
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. % (1 UI/dL = 1 %). Aucune conversion automatique : une valeur saisie 0,12 reste 0,12 %.'
 - field_id: fix_level
   source_col: 36
   source_letter: AJ
@@ -295,12 +297,13 @@ fields:
   contextual_name: Taux de facteur IX
   type: number
   unit: '%'
-  unit_status: hypothesis
+  unit_status: confirmed
   definition_status: hypothesis
   approved_by: null
   approved_on: null
   unknown_markers: *id001
   in_scope: true
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. % (1 UI/dL = 1 %). Aucune conversion automatique : une valeur saisie 0,12 reste 0,12 %.'
 - field_id: clinical_form
   source_col: 37
   source_letter: AK
@@ -551,14 +554,14 @@ fields:
   original_header: taux d'inhibiteur
   contextual_name: Titre de l'inhibiteur
   type: number
-  unit: null
-  unit_status: missing
+  unit: UB/ml
+  unit_status: confirmed
   definition_status: hypothesis
   approved_by: null
   approved_on: null
   unknown_markers: *id001
   in_scope: true
-  definition_note: 'Unité non indiquée (UB/ml probable) : à confirmer.'
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. Unités Bethesda par mL.'
   applicability:
     field: inhibitor
     code: 1
@@ -567,17 +570,17 @@ fields:
   source_col: 162
   source_letter: FF
   original_header: DDN
-  contextual_name: DDN (sens à confirmer)
+  contextual_name: Date de dernière nouvelle
   type: date
   unit: null
   unit_status: missing
-  definition_status: hypothesis
-  approved_by: null
-  approved_on: null
+  definition_status: confirmed
+  approved_by: 'H. Bellaaj, responsable du registre'
+  approved_on: '2026-10-24'
   unknown_markers: *id001
   in_scope: true
   privacy_role: quasi_identifier
-  definition_note: 'Distincte de la date de naissance ; 82/83 valeurs en 2022–2024 : date des dernières nouvelles ? À confirmer.'
+  definition_note: 'DDN = date de dernière nouvelle (confirmé : H. Bellaaj, responsable du registre, 2026-10-24). La date de référence de l''âge actuel (colonne F) reste à confirmer.'
 - field_id: comment_1
   source_col: 163
   source_letter: FG

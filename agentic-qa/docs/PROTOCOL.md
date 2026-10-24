@@ -2,9 +2,10 @@
 
 ## 1. Données et unité d'observation
 - Source : copie de `registre.xlsx` (empreinte dans chaque manifeste). 83 lignes renseignées, 165 colonnes.
-- Unité d'observation **provisoire** : la ligne (« dossier »). Les 83 lignes ne sont pas supposées être 83 personnes :
-  8 groupes partagent la même clé de nom (17 lignes) ; ils sont signalés (S04), **jamais fusionnés**, et placés
-  dans le même sous-ensemble pour éviter une fuite dev/test.
+- Unité d'observation **confirmée** (2026-10-24) : une ligne = un patient, soit 83 patients. Les 8 groupes de même
+  clé de nom (17 lignes, dates de naissance différentes) sont des personnes distinctes, probablement des fratries :
+  ils restent **jamais fusionnés** et placés dans le même sous-ensemble dev/test (antécédents familiaux partagés).
+  S04 (v2) ne signale plus qu'une même clé de nom ET une même date de naissance (double saisie possible).
 
 ## 2. Découpage
 - `python -m hqa.cli split --freeze` : graine 20270101, 25 dossiers dev, 58 test. Le fichier figé ne peut plus être écrasé.

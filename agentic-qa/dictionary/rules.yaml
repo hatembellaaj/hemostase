@@ -31,14 +31,15 @@ rules:
     description: Valeur numérique sans unité alors que le dictionnaire ne fixe pas l'unité du champ.
     applies_to: [inhibitor_titer]
   - id: S04_same_name_key
-    version: "1"
+    version: "2"
     family: C_incertitude
     kind: structural
     status: structural
     description: >-
-      Plusieurs lignes partagent la même clé de nom (insensible à la casse). Signalement d'une question
-      d'identité (même personne ? fratrie ? homonymie ?) ; les lignes ne sont JAMAIS fusionnées.
-    applies_to: [patient_name]
+      Une ligne = un patient (confirmé le 2026-10-24) : des lignes de même clé de nom sont des personnes
+      distinctes. Seules une même clé de nom ET une même date de naissance signalent une double saisie possible ;
+      les lignes ne sont JAMAIS fusionnées.
+    applies_to: [patient_name, birth_date]
 
   # ---------------------------------------------------------------- dépendances (sens des codes supposé)
   - id: H01_consanguinity_degree_dependency

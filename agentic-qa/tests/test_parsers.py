@@ -19,6 +19,14 @@ def test_number_with_unit_and_decimal_comma():
     assert isinstance(parse_number(True, "%"), ParseFailure)
 
 
+def test_conventional_unit_equivalences():
+    # 1 UI/dL = 1 % (facteurs) et UB = UB/mL : pas d'alerte ; UI/mL est une autre échelle : signalé, jamais converti
+    assert "unite_differente_du_dictionnaire" not in parse_number("12 UI/dL", "%").issues
+    assert "unite_differente_du_dictionnaire" not in parse_number("3 UB", "UB/ml").issues
+    p = parse_number("0,12 UI/mL", "%")
+    assert "unite_differente_du_dictionnaire" in p.issues and p.value == 0.12
+
+
 def test_year_only_is_not_turned_into_january_first():
     p = parse_date(2018)
     assert p.value == "2018" and p.temporal_precision == TemporalPrecision.YEAR

@@ -109,13 +109,13 @@ class RuleEngine:
                 yield CheckOutcome(rule.id, case.study_id, [fid], "pass"), None, None, None
 
     def _r_S04(self, rule, case, norm):
-        group = self.ctx.get("same_name", {}).get(case.study_id)
+        group = self.ctx.get("possible_duplicate", {}).get(case.study_id)
         if group:
-            out = CheckOutcome(rule.id, case.study_id, ["patient_name"], "fail", subtype="identity_question", category="C_incertitude")
+            out = CheckOutcome(rule.id, case.study_id, ["patient_name", "birth_date"], "fail", subtype="possible_duplicate", category="C_incertitude")
             others = ", ".join(s for s in group if s != case.study_id)
-            yield out, [_ev(case, self.d, "patient_name", note=f"même clé de nom que {others}")], \
-                f"Clé de nom partagée avec {others} (dates de naissance différentes ou non vérifiées) : identité à confirmer, aucune fusion.", \
-                ProposedAction(kind="review", detail="Confirmer s'il s'agit de personnes distinctes (fratrie, homonymie) ou de la même personne")
+            yield out, [_ev(case, self.d, "patient_name", note=f"même clé de nom que {others}"), _ev(case, self.d, "birth_date")], \
+                f"Même clé de nom et même date de naissance que {others} : double saisie possible (une ligne = un patient), aucune fusion.", \
+                ProposedAction(kind="review", detail="Vérifier s'il s'agit d'une double saisie du même patient")
         else:
             yield CheckOutcome(rule.id, case.study_id, ["patient_name"], "pass"), None, None, None
 

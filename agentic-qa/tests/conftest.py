@@ -8,7 +8,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from hqa.cases import build_cases, same_name_groups  # noqa: E402
+from hqa.cases import build_cases, possible_duplicate_groups  # noqa: E402
 from hqa.config import load_config  # noqa: E402
 from hqa.dictionary import load_dictionary  # noqa: E402
 from hqa.privacy import Pseudonymizer  # noqa: E402
@@ -37,7 +37,7 @@ def synth(tmp_path, d):
     g = generate(d, 30, 42, tmp_path / "syn")
     wb = read_workbook(g["workbook"], "Feuil1", {c: f.field_id for c, f in d.by_col().items()})
     cases = build_cases(wb, d, Pseudonymizer(tmp_path / "private"))
-    same = {s: grp for grp in same_name_groups(cases) for s in grp}
+    same = {s: grp for grp in possible_duplicate_groups(cases) for s in grp}
     return {"path": g["workbook"], "truth": g["truth"], "wb": wb, "cases": cases, "same": same}
 
 
@@ -70,8 +70,8 @@ def mini(tmp_path, d):
         wb = read_workbook(p, "Feuil1", {c: f.field_id for c, f in d.by_col().items()})
         cases = build_cases(wb, d, Pseudonymizer(tmp_path / "private_mini"))
         cases.sort(key=lambda c: c.excel_row)
-        same = {s: grp for grp in same_name_groups(cases) for s in grp}
-        return {"path": p, "wb": wb, "cases": cases, "engine": RuleEngine(d, statuses or DEV_STATUSES, {"same_name": same})}
+        same = {s: grp for grp in possible_duplicate_groups(cases) for s in grp}
+        return {"path": p, "wb": wb, "cases": cases, "engine": RuleEngine(d, statuses or DEV_STATUSES, {"possible_duplicate": same})}
     return _make
 
 

@@ -10,18 +10,18 @@ Une fois confirmée, chaque réponse se reporte dans `dictionary/fields.yaml` (`
 - Une cellule vide signifie-t-elle « non », « non recherché », « inconnu » ou « non applicable » ?
 - Valeurs textuelles rencontrées : « pas encore » (×5), « asymptomatique », « 2 » sans unité de durée.
 
-## 2. Sens de DDN (colonne FF)
-- Date de dernière nouvelle ? de dernière consultation ? Elle ne correspond pas à la date de calcul de l'âge
-  (écart +1 an dans 45 cas, +2 dans 13). Que signifient les valeurs « 23-24 » ?
+## 2. Sens de DDN (colonne FF) — ✅ confirmé le 2026-10-24
+- **DDN = date de dernière nouvelle.** Reste ouvert : que signifient les valeurs « 23-24 » (période ? année
+  scolaire ?) — elles restent « non résolues ».
 
-## 3. Unité d'observation
-- Une ligne = un patient, ou un patient peut-il avoir plusieurs lignes (épisodes, mises à jour) ?
-- Les 8 groupes de lignes partageant la même clé de nom (dates de naissance différentes) sont-ils des
-  homonymes, des frères, ou des doublons ?
+## 3. Unité d'observation — ✅ confirmé le 2026-10-24
+- **Une ligne = un patient.** Les 8 groupes de même clé de nom (dates de naissance différentes) sont donc des
+  personnes distinctes ; reste à savoir, pour l'interprétation des antécédents familiaux, s'il s'agit de fratries.
 
-## 4. Unités des mesures
-- Facteurs VIII/IX : % ou UI/ml (ex. 0,12 avec sévérité 3) ?
-- Titre d'inhibiteur : unités Bethesda ? (16 valeurs sans unité)
+## 4. Unités des mesures — ✅ confirmé le 2026-10-24 (unités conventionnelles France / Tunisie)
+- Facteurs VIII/IX en % (1 UI/dL = 1 %) ; titre d'inhibiteur en UB/mL ; TCA en secondes ; ratio sans unité.
+- Reste ouvert : les valeurs décimales < 1 (ex. 0,12 avec sévérité 3) sont-elles bien des % ou une saisie en UI/mL ?
+  Elles ne sont jamais converties automatiquement.
 - Ratio TCA : troncature ou arrondi (49 cohérents par troncature, 6 divergences) ?
 
 ## 5. Dates de référence

@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .agents import Agents, Prompts
-from .cases import build_cases, same_name_groups
+from .cases import build_cases, possible_duplicate_groups
 from .config import ROOT, load_config
 from .dictionary import load_dictionary
 from .exports import NOT_RUN, metrics_tables, write_manifest, write_results
@@ -44,8 +44,8 @@ def _setup(cfg: dict, workbook: str | None = None):
     wb = read_workbook(path, cfg["paths"]["sheet"], {c: f.field_id for c, f in d.by_col().items()})
     pseudo = Pseudonymizer(cfg["paths"]["private_dir"], cfg["privacy"]["study_id_prefix"])
     cases = build_cases(wb, d, pseudo)
-    groups = same_name_groups(cases)
-    same = {s: g for g in groups for s in g}
+    groups = possible_duplicate_groups(cases)
+    same = {s: g for g in groups for s in g}  # doublons de saisie possibles (même nom ET même date de naissance)
     if sha256_file(path) != before:
         raise RuntimeError("Fichier source modifié pendant le traitement")
     return d, wb, cases, same
@@ -128,7 +128,7 @@ def cmd_run(args, cfg):
     d, wb, cases, same = _setup(cfg, args.workbook)
     statuses = _active_statuses(cfg, args)
     cfg["rules"]["active_statuses"] = statuses
-    engine = RuleEngine(d, statuses, {"same_name": same})
+    engine = RuleEngine(d, statuses, {"possible_duplicate": same})
     run_id = _run_id(args.mode)
     split = None
     if args.subset != "all":

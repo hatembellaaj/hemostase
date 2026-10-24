@@ -38,7 +38,7 @@ sed -i "s/^HQA_UID=.*/HQA_UID=$(id -u)/; s/^HQA_GID=.*/HQA_GID=$(id -g)/" .env
 
 ```bash
 HQA_GIT_COMMIT=$(git rev-parse HEAD) docker compose build
-docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 44 tests attendus
+docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 45 tests attendus
 ```
 
 ## 4. Lancer les étapes

@@ -58,7 +58,7 @@ mkdir -p data/raw && cp /chemin/vers/registre.xlsx data/raw/registre.xlsx   # co
 ## Commandes
 
 ```bash
-python -m pytest -q tests                                   # 44 tests, données artificielles uniquement
+python -m pytest -q tests                                   # 45 tests, données artificielles uniquement
 
 python -m hqa.cli audit                                     # profil agrégé -> runs/audit/profile.md
 python -m hqa.cli split --freeze                            # découpage dev/test figé -> data/derived/split.json
@@ -97,8 +97,9 @@ sont la vue `llm_view` : identifiant d'étude, dates ramenées au mois, noms exp
 
 ## Résultats existants (à ne pas surinterpréter)
 
-- **Registre réel, B0 structurel, 83 lignes :** 43 anomalies *candidates* (S04 même clé de nom : 17,
-  S03 unité absente : 16, S01 valeur illisible : 10). Ce sont des signalements, pas des erreurs confirmées :
+- **Registre réel, B0 structurel, 83 lignes :** 10 anomalies *candidates* (S01 valeur illisible : 10). Avant les
+  confirmations du 2026-10-24 (une ligne = un patient, unités conventionnelles), 43 : S04 même clé de nom 17 et
+  S03 unité absente 16 ont disparu, sans aucune double saisie possible (même nom et même date de naissance). Ce sont des signalements, pas des erreurs confirmées :
   aucune annotation experte n'existe encore, donc **aucune précision ni rappel n'est rapportable**.
 - **Données artificielles (30 lignes, graine 42) :** B0 rappel global 0,947 (18/19) ; l'unique faux négatif est
   la contradiction commentaire/champ, qu'aucune règle déterministe ne couvre (conçue ainsi). Les lignes B1–B3

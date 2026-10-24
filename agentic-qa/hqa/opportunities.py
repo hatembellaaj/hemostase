@@ -63,8 +63,8 @@ def build_opportunities(cases: list[Case], d: Dictionary, same_name: dict[str, l
                              "values_shown": v})
         opps.append({"opportunity_id": f"UNC:{c.study_id}:identity", "study_id": c.study_id, "family": "C_incertitude",
                      "target": "identity", "fields": "patient_name",
-                     "question": "Ce dossier pose-t-il une question d'identité (autre dossier de même clé de nom) ?",
-                     "values_shown": "autres dossiers de même clé : " + (", ".join(s for s in same_name.get(c.study_id, []) if s != c.study_id) or "aucun")})
+                     "question": "Ce dossier est-il une double saisie possible (même clé de nom et même date de naissance) ?",
+                     "values_shown": "dossiers de même nom et même date de naissance : " + (", ".join(s for s in same_name.get(c.study_id, []) if s != c.study_id) or "aucun")})
         for r in d.rules.values():
             if r.kind in ("structural",) or r.id.startswith("S0"):
                 continue

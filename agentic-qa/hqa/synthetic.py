@@ -105,8 +105,9 @@ def generate(d: Dictionary, n_rows: int, seed: int, out_dir: str | Path) -> dict
         rows.append(r)
         truth.append(applied or {"row_index": i, "class": "clean", "name": None, "target": None, "expected_label": None})
         # attentes inhérentes au dictionnaire (indépendantes de la perturbation) : un titre d'inhibiteur sans unité,
-        # alors que le dictionnaire ne fixe pas l'unité, DOIT être signalé (incertitude « unité absente »)
-        if r.get("inhibitor_titer") is not None and not (applied and applied["target"] == "UNC:inhibitor_titer"):
+        # SI le dictionnaire ne fixe pas l'unité, DOIT être signalé (incertitude « unité absente »)
+        if d.fields["inhibitor_titer"].unit is None and r.get("inhibitor_titer") is not None \
+                and not (applied and applied["target"] == "UNC:inhibitor_titer"):
             truth.append({"row_index": i, "class": "inherent", "name": "unite_absente_dictionnaire",
                           "target": "UNC:inhibitor_titer", "expected_label": "confirmed_anomaly"})
     # classeur : intitulés du dictionnaire à leurs positions

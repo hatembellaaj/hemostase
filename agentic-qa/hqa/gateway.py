@@ -263,7 +263,7 @@ def create_session(body: SessionCreate):
             cases = subset(cases, split, body.subset)
         if body.max_cases:
             cases = sorted(cases, key=lambda c: c.study_id)[: body.max_cases]
-        engine = RuleEngine(STORE.d, cfg["rules"]["active_statuses"], {"same_name": STORE.same})
+        engine = RuleEngine(STORE.d, cfg["rules"]["active_statuses"], {"possible_duplicate": STORE.same})
         states = {}
         for c in cases:
             norm = normalize_case(c, STORE.d)

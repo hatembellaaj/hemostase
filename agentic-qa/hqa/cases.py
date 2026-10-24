@@ -85,10 +85,14 @@ def llm_view(case: Case, d: Dictionary, normalized: dict | None = None, date_gen
     return {"study_id": case.study_id, "fields": fields}
 
 
-def same_name_groups(cases: list[Case]) -> list[list[str]]:
-    groups: dict[str, list[str]] = {}
+def possible_duplicate_groups(cases: list[Case]) -> list[list[str]]:
+    """Une ligne = un patient (confirmé) : des lignes de même clé de nom sont des personnes distinctes (fratries,
+    homonymes). Seule une même clé de nom ET une même date de naissance renseignée suggère une double saisie."""
+    groups: dict[tuple, list[str]] = {}
     for c in cases:
-        groups.setdefault(c.name_key, []).append(c.study_id)
+        bd = c.cells["birth_date"].raw_value if "birth_date" in c.cells else None
+        if bd is not None:
+            groups.setdefault((c.name_key, str(bd)), []).append(c.study_id)
     return [sorted(g) for g in groups.values() if len(g) > 1]
 
 

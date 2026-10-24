@@ -128,6 +128,13 @@ def test_no_merge_on_name_only(mini, d):
     m = mini([base_row(patient_name="Fictif X", birth_date=datetime(2001, 1, 1)),
               base_row(patient_name="fictif x", birth_date=datetime(2005, 1, 1))])
     assert len(m["cases"]) == 2 and m["cases"][0].study_id != m["cases"][1].study_id
+    # une ligne = un patient : même nom, dates de naissance différentes -> personnes distinctes, aucune alerte
+    a, _ = m["engine"].run(m["cases"][0], normalize_case(m["cases"][0], d))
+    assert not [x for x in a if x.rule_id.startswith("S04")]
+    # même nom ET même date de naissance -> double saisie possible signalée, jamais fusionnée
+    m = mini([base_row(patient_name="Fictif X", birth_date=datetime(2001, 1, 1)),
+              base_row(patient_name="fictif x", birth_date=datetime(2001, 1, 1))])
+    assert len(m["cases"]) == 2
     a, _ = m["engine"].run(m["cases"][0], normalize_case(m["cases"][0], d))
     s04 = [x for x in a if x.rule_id.startswith("S04")]
     assert s04 and s04[0].action.kind == "review" and "aucune fusion" in s04[0].justification

@@ -56,7 +56,9 @@ def _decimals(s: str) -> int:
 # ---------------------------------------------------------------------------
 # Nombres (avec unité, valeurs censurées)
 # ---------------------------------------------------------------------------
-NUM_RE = re.compile(r"^\s*(<=|>=|≤|≥|<|>)?\s*(\d+(?:[.,]\d+)?)\s*(%|g/dl|g/l|ui/kg|ui|ub|/mm3)?\s*$", re.I)
+NUM_RE = re.compile(r"^\s*(<=|>=|≤|≥|<|>)?\s*(\d+(?:[.,]\d+)?)\s*(%|g/dl|g/l|ui/dl|ui/ml|ui/kg|ui|ub/ml|ub|/mm3)?\s*$", re.I)
+# unités équivalentes (unités conventionnelles France / Tunisie) : 1 UI/dL = 1 % pour les facteurs ; UB = UB/mL
+EQUIVALENT_UNITS = {"%": {"ui/dl"}, "ub/ml": {"ub"}}
 
 
 def parse_number(v: Any, expected_unit: str | None = None) -> Parsed | ParseFailure:
@@ -79,7 +81,8 @@ def parse_number(v: Any, expected_unit: str | None = None) -> Parsed | ParseFail
             ">=": Comparator.GE, "≥": Comparator.GE}[op_txt]
     unit_norm = unit.lower() if unit else None
     issues = []
-    if unit_norm and expected_unit and unit_norm != expected_unit.lower():
+    if unit_norm and expected_unit and unit_norm != expected_unit.lower() \
+            and unit_norm not in EQUIVALENT_UNITS.get(expected_unit.lower(), set()):
         issues.append("unite_differente_du_dictionnaire")
     if not unit_norm and not expected_unit:
         issues.append("unite_absente")
