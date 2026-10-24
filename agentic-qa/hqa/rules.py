@@ -259,9 +259,23 @@ class RuleEngine:
             yield CheckOutcome(rule.id, case.study_id, rule.fields, "not_evaluable", "précision insuffisante (intervalles qui se chevauchent)"), None, None, None
 
     def _r_H11(self, rule, case, norm):
-        ref = rule.params.get("reference_date")
+        ref, ref_years = rule.params.get("reference_date"), rule.params.get("reference_years")
         a, b = norm.get(rule.fields[0]), norm.get(rule.fields[1])
         if not (a and b and a.state == ValueState.OBSERVED and b.state == ValueState.OBSERVED):
+            return
+        if ref_years and not ref:
+            # âge calculé à l'année (année de calcul − année de naissance), quelle que soit la précision de la date ;
+            # plusieurs années de calcul confirmées : seul un âge ne correspondant à aucune est signalé
+            birth_year = date_bounds(b.value)[0].year
+            expected = sorted(int(y) - birth_year for y in ref_years)
+            if a.value in expected:
+                yield CheckOutcome(rule.id, case.study_id, rule.fields, "pass"), None, None, None
+            else:
+                years = " ou ".join(str(y) for y in sorted(ref_years))
+                yield CheckOutcome(rule.id, case.study_id, rule.fields, "fail", subtype="value_mismatch"), \
+                    [_ev(case, self.d, f) for f in rule.fields], \
+                    f"Âge saisi {a.value:g} ; attendu {' ou '.join(map(str, expected))} (âge calculé en {years}).", \
+                    ProposedAction(kind="review", detail="Vérifier l'âge ou la date de naissance")
             return
         if not ref:
             yield CheckOutcome(rule.id, case.study_id, rule.fields, "not_evaluable", "date de référence de l'âge inconnue"), None, None, None

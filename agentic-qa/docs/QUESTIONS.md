@@ -24,9 +24,8 @@ Une fois confirmée, chaque réponse se reporte dans `dictionary/fields.yaml` (`
 - Ratio TCA : troncature ou arrondi (49 cohérents par troncature, 6 divergences) ?
 
 ## 5. Dates de référence
-- Date à laquelle l'âge (colonne F) a été calculé ou saisi (l'âge ≈ 2024 − année de naissance) ? Réponse du
-  2026-10-24 : « oui » — à préciser : l'âge est-il bien calculé comme 2024 − année de naissance (référence à l'année,
-  sans jour ni mois) ?
+- ✅ Âge (colonne F) = année de calcul − année de naissance, calculé en **2024 ou en 2025** selon les patients
+  (confirmé le 2026-10-24). Règle H11 approuvée : 46 âges ↔ 2024, 36 ↔ 2025, 1 incohérent (à revoir).
 - Âge au diagnostic : texte (Y) ou mois (Z) fait-il foi ? (1 discordance « 11 ans » / 120)
 
 ## 6. Seuils et règles

@@ -6,6 +6,8 @@
   clé de nom (17 lignes, dates de naissance différentes) sont des personnes distinctes, probablement des fratries :
   ils restent **jamais fusionnés** et placés dans le même sous-ensemble dev/test (antécédents familiaux partagés).
   S04 (v2) ne signale plus qu'une même clé de nom ET une même date de naissance (double saisie possible).
+- Règles actives par défaut : structurelles (S01–S04, N01) et **H11 v3 approuvée** (âge = 2024 ou 2025 − année de
+  naissance). Les autres règles H et K restent des hypothèses, en attente de la signification des codes.
 
 ## 2. Découpage
 - `python -m hqa.cli split --freeze` : graine 20270101, 25 dossiers dev, 58 test. Le fichier figé ne peut plus être écrasé.

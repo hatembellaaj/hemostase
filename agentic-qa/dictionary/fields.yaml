@@ -72,17 +72,16 @@ fields:
   source_col: 6
   source_letter: F
   original_header: âge actuel
-  contextual_name: Âge enregistré (date de référence inconnue)
+  contextual_name: Âge enregistré (année de calcul 2024 ou 2025 − année de naissance)
   type: integer
   unit: an
-  unit_status: hypothesis
-  definition_status: hypothesis
-  approved_by: null
-  approved_on: null
+  unit_status: confirmed
+  definition_status: confirmed
+  approved_by: 'H. Bellaaj, responsable du registre'
+  approved_on: '2026-10-24'
   unknown_markers: *id001
   in_scope: true
-  definition_note: Concorde avec ~2024 − année de naissance ; ne correspond PAS à l'âge exact à la date DDN (écart +1 le plus
-    souvent). Date de référence à confirmer.
+  definition_note: 'Confirmé le 2026-10-24 : âge = année de calcul − année de naissance, calculé en 2024 ou en 2025 selon les patients (référence à l''année, ni jour ni mois). L''année de calcul de chaque patient n''est pas enregistrée. Ce n''est pas l''âge à la DDN.'
 - field_id: sex
   source_col: 8
   source_letter: H

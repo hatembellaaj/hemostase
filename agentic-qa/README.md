@@ -100,9 +100,10 @@ sont la vue `llm_view` : identifiant d'étude, dates ramenées au mois, noms exp
 
 ## Résultats existants (à ne pas surinterpréter)
 
-- **Registre réel, B0 structurel, 83 lignes :** 10 anomalies *candidates* (S01 valeur illisible : 10). Avant les
-  confirmations du 2026-10-24 (une ligne = un patient, unités conventionnelles), 43 : S04 même clé de nom 17 et
-  S03 unité absente 16 ont disparu, sans aucune double saisie possible (même nom et même date de naissance). Ce sont des signalements, pas des erreurs confirmées :
+- **Registre réel, B0 (règles structurelles + H11 approuvée), 83 patients :** 11 anomalies *candidates*
+  (S01 valeur illisible : 10 ; H11 âge incohérent : 1). Avant les confirmations du 2026-10-24 (une ligne = un patient,
+  unités conventionnelles, âge calculé en 2024 ou 2025), 43 : S04 même clé de nom 17 et S03 unité absente 16 ont
+  disparu, sans aucune double saisie possible. H11 : 46 âges correspondent à 2024, 36 à 2025, 1 à aucune des deux. Ce sont des signalements, pas des erreurs confirmées :
   aucune annotation experte n'existe encore, donc **aucune précision ni rappel n'est rapportable**.
 - **Données artificielles (30 lignes, graine 42) :** B0 rappel global 0,947 (18/19) ; l'unique faux négatif est
   la contradiction commentaire/champ, qu'aucune règle déterministe ne couvre (conçue ainsi). Les lignes B1–B3

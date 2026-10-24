@@ -2,15 +2,16 @@
 
 1. **Aucun résultat LLM publiable.** Le vrai modèle n'a tourné qu'en B3 sur 10 fiches artificielles de mise au
    point (graine 42) ; B1, B2 et l'ablation n'ont tourné qu'avec un faux modèle étiqueté `[SIMULÉ]`.
-2. **Aucune référence experte.** Les 10 signalements B0 sur le registre réel sont des candidats ; sans annotation
+2. **Aucune référence experte.** Les 11 signalements B0 sur le registre réel sont des candidats ; sans annotation
    on ne peut parler ni de précision ni de rappel.
 3. **Dictionnaire hypothétique.** Toutes les correspondances de codes (ex. 1/2, 1/2/3) sont des hypothèses ;
    elles ne sont pas supposées identiques entre colonnes. Les règles qui en dépendent sont inactives.
 4. **Seuils médicaux.** Les seuils ISTH de sévérité et le seuil de répondeur (≥ 5 UB) sont cités avec référence
    mais restent `proposed_reference` tant qu'un expert ne les a pas validés pour ce registre (unités confirmées le
    2026-10-24 : taux en %, valeurs < 1 comprises, titre en UB/mL).
-5. **Date de référence de l'âge inconnue.** DDN n'est pas cette date (écarts de +1 à +2 ans) ; la règle âge/naissance
-   n'est pas évaluable.
+5. **Année de calcul de l'âge non enregistrée.** L'âge a été calculé en 2024 ou en 2025 selon les patients (confirmé) ;
+   l'année de chaque patient n'est pas dans le fichier. H11 accepte donc les deux : une erreur d'un an exactement
+   reste indétectable.
 6. **Petit échantillon** (83 lignes, 58 en test) : intervalles larges ; un seul centre ; généralisation limitée.
 7. **Banc artificiel** : les perturbations sont choisies par les auteurs ; leurs résultats valident le logiciel,
    pas la fréquence ni la nature des erreurs naturelles.

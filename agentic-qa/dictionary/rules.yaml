@@ -132,16 +132,19 @@ rules:
     fields: [ddn, birth_date]
     depends_on_definitions: [ddn.definition]
   - id: H11_age_recorded_vs_birth
-    version: "1"
+    version: "3"
     family: B_coherence
     kind: temporal
-    status: hypothesis
+    status: approved
     description: >-
-      Âge enregistré cohérent avec la date de naissance À LA DATE DE RÉFÉRENCE de l'âge. Sans date de
-      référence confirmée (params.reference_date), la règle ne conclut pas.
+      Âge enregistré = année de calcul − année de naissance, l'âge ayant été calculé en 2024 ou en 2025 selon les
+      patients (confirmé le 2026-10-24). Comparaison à l'année, sans jour ni mois ; seul un âge qui ne correspond à
+      aucune des années de calcul est signalé. Sans référence (reference_years ou reference_date), la règle ne conclut pas.
     fields: [age_recorded, birth_date]
-    params: {reference_date: null}
+    params: {reference_years: [2024, 2025], reference_date: null}
     depends_on_definitions: [age_recorded.reference_date]
+    approved_by: H. Bellaaj, responsable du registre
+    approved_on: '2026-10-24'
 
   # ---------------------------------------------------------------- seuils cliniques (validation experte requise)
   - id: K01_severity_vs_factor_level

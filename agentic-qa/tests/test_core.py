@@ -116,11 +116,23 @@ def test_severity_threshold_respects_precision_and_censoring(mini, d):
     assert all(a.rule_status == "proposed_reference" for a in out[2][0] if a.rule_id.startswith("K01"))
 
 
-def test_age_vs_birth_not_compared_without_reference_date(mini, d):
+def test_age_vs_birth_uses_confirmed_reference_year_only(mini, d):
     from datetime import datetime
-    m = mini([base_row(birth_date=datetime(2000, 5, 1), age_recorded=3)])
-    _, o = m["engine"].run(m["cases"][0], normalize_case(m["cases"][0], d))
-    assert any(x.rule_id.startswith("H11") and x.result == "not_evaluable" and "référence" in x.reason for x in o)
+    m = mini([base_row(birth_date=datetime(2000, 12, 31), age_recorded=24), base_row(birth_date=datetime(2000, 5, 1), age_recorded=25),
+              base_row(birth_date=datetime(2000, 5, 1), age_recorded=26), base_row(birth_date=datetime(2000, 5, 1), age_recorded=3)])
+    res = [{x.rule_id: x.result for x in m["engine"].run(c, normalize_case(c, d))[1]}["H11_age_recorded_vs_birth"] for c in m["cases"]]
+    # âge calculé en 2024 (24) ou en 2025 (25) : conforme, même né le 31 décembre (comparaison à l'année) ;
+    # 26 ou 3 ne correspondent à aucune année de calcul : signalés
+    assert res == ["pass", "pass", "fail", "fail"]
+    # sans référence, la règle ne conclut pas
+    rule = d.rules["H11_age_recorded_vs_birth"]
+    saved = dict(rule.params)
+    rule.params.update(reference_years=None, reference_date=None)
+    try:
+        _, o = m["engine"].run(m["cases"][3], normalize_case(m["cases"][3], d))
+        assert any(x.rule_id.startswith("H11") and x.result == "not_evaluable" and "référence" in x.reason for x in o)
+    finally:
+        rule.params.clear(); rule.params.update(saved)
 
 
 def test_no_merge_on_name_only(mini, d):
