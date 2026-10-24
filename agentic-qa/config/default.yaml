@@ -34,6 +34,8 @@ llm:
   request_timeout_s: 600
   # autorisation explicite d'envoyer des données (pseudonymisées) du registre au service
   allow_registry_data: ${HQA_ALLOW_REGISTRY_DATA_TO_LLM}
+  # référence de l'autorisation (qui, quand, périmètre) : exigée pour le registre, recopiée dans chaque manifeste
+  authorization_ref: ${HQA_LLM_AUTHORIZATION_REF}
   # prix indicatif pour le calcul des coûts (0 pour un modèle local) ; à renseigner
   price_per_1k_input: null
   price_per_1k_output: null

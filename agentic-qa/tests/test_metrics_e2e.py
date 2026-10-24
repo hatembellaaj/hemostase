@@ -73,3 +73,23 @@ def test_exports_contain_no_identifiers(cfg, tmp_path, monkeypatch, d):
     man = json.loads((run_dir / "manifest.json").read_text())
     assert man["llm"]["status"] == "non exécuté" and man["simulated_outputs"] is False
     assert any("hypothèse" in n for n in man["notes"])
+
+
+def test_single_expert_reference_and_blind_reannotation():
+    from hqa.opportunities import intra_rater, reannotation_sample, single_expert_reference
+
+    def row(o, sid, lab):
+        return {"opportunity_id": o, "study_id": sid, "family": "B_coherence", "target": "t", "fields": "f",
+                "question": "q", "values_shown": "v", "annotator_A_label": lab, "annotator_A_expected_value": "",
+                "annotator_B_label": "", "annotator_B_expected_value": "", "adjudicated_label": "", "adjudicated_expected_value": "", "notes": "n"}
+    first = [row(f"COH:S{i:02d}:x", f"S{i:02d}", "confirmed_anomaly" if i % 2 else "acceptable_variation") for i in range(10)]
+    s1, s2 = reannotation_sample(first, 0.2, 5), reannotation_sample(first, 0.2, 5)
+    assert s1 == s2 and len({r["study_id"] for r in s1}) == 2           # reproductible, 20 % des dossiers
+    assert all(not r["annotator_A_label"] and not r["notes"] for r in s1)  # aveugle : première annotation non montrée
+    ref = single_expert_reference(first)
+    assert [r["adjudicated_label"] for r in ref] == [r["annotator_A_label"] for r in first]
+    # réannotation : 3 accords sur 4, calcul à la main -> po 0,75 ; pe = 0,5*0,25 + 0,5*0,75 = 0,5 ; kappa 0,5
+    f = {r["opportunity_id"]: r for r in first[:4]}
+    labs = ["acceptable_variation", "confirmed_anomaly", "acceptable_variation", "acceptable_variation"]
+    second = {o: dict(r, annotator_A_label=l) for (o, r), l in zip(f.items(), labs)}
+    assert intra_rater(f, second) == {"n": 4, "observed_agreement": 0.75, "cohen_kappa": 0.5}

@@ -289,7 +289,7 @@ fields:
   approved_on: null
   unknown_markers: *id001
   in_scope: true
-  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. % (1 UI/dL = 1 %). Aucune conversion automatique : une valeur saisie 0,12 reste 0,12 %.'
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. % (1 UI/dL = 1 %). Valeurs inférieures à 1 confirmées en % (2026-10-24) : 0,12 signifie 0,12 %, jamais converti.'
 - field_id: fix_level
   source_col: 36
   source_letter: AJ
@@ -303,7 +303,7 @@ fields:
   approved_on: null
   unknown_markers: *id001
   in_scope: true
-  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. % (1 UI/dL = 1 %). Aucune conversion automatique : une valeur saisie 0,12 reste 0,12 %.'
+  definition_note: 'Unité confirmée (H. Bellaaj, responsable du registre, 2026-10-24) : unités conventionnelles utilisées en France et en Tunisie. % (1 UI/dL = 1 %). Valeurs inférieures à 1 confirmées en % (2026-10-24) : 0,12 signifie 0,12 %, jamais converti.'
 - field_id: clinical_form
   source_col: 37
   source_letter: AK

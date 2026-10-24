@@ -22,6 +22,7 @@ def client(cfg, d, tmp_path, monkeypatch):
     ])
     cfg["paths"]["workbook"] = str(p)
     cfg["llm"]["allow_registry_data"] = "yes"
+    cfg["llm"]["authorization_ref"] = "test : données artificielles"
     monkeypatch.setenv("HQA_API_KEY", KEY)
     gateway.STORE.sessions.clear()
     gateway.STORE.load(cfg)
@@ -43,6 +44,10 @@ def test_auth_and_llm_guard(client):
     gateway.STORE.cfg["llm"]["allow_registry_data"] = "no"
     r = client.post("/api/qa/sessions", json={"system_label": "RAISE-B3", "subset": "all"}, headers=H)
     assert r.status_code == 403  # aucune donnée servie sans autorisation explicite
+    gateway.STORE.cfg["llm"]["allow_registry_data"] = "yes"
+    gateway.STORE.cfg["llm"]["authorization_ref"] = None
+    r = client.post("/api/qa/sessions", json={"system_label": "RAISE-B3", "subset": "all"}, headers=H)
+    assert r.status_code == 403  # autorisation non documentée : refus
 
 
 def test_case_view_is_pseudonymized(client):

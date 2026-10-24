@@ -20,23 +20,25 @@ Une fois confirmée, chaque réponse se reporte dans `dictionary/fields.yaml` (`
 
 ## 4. Unités des mesures — ✅ confirmé le 2026-10-24 (unités conventionnelles France / Tunisie)
 - Facteurs VIII/IX en % (1 UI/dL = 1 %) ; titre d'inhibiteur en UB/mL ; TCA en secondes ; ratio sans unité.
-- Reste ouvert : les valeurs décimales < 1 (ex. 0,12 avec sévérité 3) sont-elles bien des % ou une saisie en UI/mL ?
-  Elles ne sont jamais converties automatiquement.
+- ✅ Les valeurs < 1 (ex. 0,12) sont bien des % (confirmé le 2026-10-24) ; elles ne sont jamais converties.
 - Ratio TCA : troncature ou arrondi (49 cohérents par troncature, 6 divergences) ?
 
 ## 5. Dates de référence
-- Date à laquelle l'âge (colonne F) a été calculé ou saisi (l'âge ≈ 2024 − année de naissance) ?
+- Date à laquelle l'âge (colonne F) a été calculé ou saisi (l'âge ≈ 2024 − année de naissance) ? Réponse du
+  2026-10-24 : « oui » — à préciser : l'âge est-il bien calculé comme 2024 − année de naissance (référence à l'année,
+  sans jour ni mois) ?
 - Âge au diagnostic : texte (Y) ou mois (Z) fait-il foi ? (1 discordance « 11 ans » / 120)
 
 ## 6. Seuils et règles
 - Validation des seuils ISTH (< 1 ; 1–5 ; > 5–< 40) et du seuil répondeur fort ≥ 5 UB pour ce registre.
 - Validation des règles en hypothèse H01–H11.
 
-## 7. Environnement LLM autorisé
-- Le traitement des données pseudonymisées par un modèle est-il autorisé (comité d'éthique, DPO, autorisation
-  de traitement) ? Modèle local uniquement, ou serveur hébergé dans l'établissement ? Aucune API externe d'ici là.
-- Quel modèle et quelle infrastructure (GPU disponible) ?
+## 7. Environnement LLM autorisé — ✅ confirmé le 2026-10-24
+- Traitement des données pseudonymisées autorisé avec le **modèle local** (Ollama sur le serveur du registre,
+  aucune API externe). La référence de l'autorisation va dans `HQA_LLM_AUTHORIZATION_REF` (recopiée dans les manifestes).
+- Infrastructure : CPU seul (Xeon E-2386G, 31 Go), qwen2.5:7b-instruct.
 
 ## 8. Organisation de l'évaluation
-- Deux experts pour l'annotation indépendante et un adjudicateur ; nombre de relecteurs pour la revue chronométrée.
+- ✅ **Un seul expert** (2026-10-24) : référence à un expert + réannotation en aveugle de ~20 % des dossiers.
+  Un second annotateur, même sur cet échantillon, renforcerait nettement la référence.
 - Accord sur l'échantillonnage stratifié (6 cellules par dossier en test).

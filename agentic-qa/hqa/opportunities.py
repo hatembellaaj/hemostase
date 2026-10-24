@@ -106,7 +106,42 @@ def read_annotations(path: str | Path) -> dict[str, dict]:
 
 def agreement(annotations: dict[str, dict]) -> dict:
     """Accord brut et kappa de Cohen entre les deux annotateurs (sur les opportunités annotées par les deux)."""
-    pairs = [(a["annotator_A_label"], a["annotator_B_label"]) for a in annotations.values() if a["annotator_A_label"] and a["annotator_B_label"]]
+    return _kappa([(a["annotator_A_label"], a["annotator_B_label"]) for a in annotations.values()
+                   if a["annotator_A_label"] and a["annotator_B_label"]])
+
+
+def intra_rater(first: dict[str, dict], second: dict[str, dict]) -> dict:
+    """Reproductibilité d'un expert unique : première annotation vs réannotation en aveugle (mêmes opportunités)."""
+    return _kappa([(first[o]["annotator_A_label"], r["annotator_A_label"]) for o, r in second.items()
+                   if o in first and first[o]["annotator_A_label"] and r["annotator_A_label"]])
+
+
+def reannotation_sample(rows: list[dict], fraction: float, seed: int) -> list[dict]:
+    """Échantillon reproductible de DOSSIERS (toutes leurs opportunités), ordre des dossiers mélangé, étiquettes vides :
+    l'expert réannote sans voir sa première annotation."""
+    import random
+
+    rng = random.Random(seed)
+    cases = sorted({r["study_id"] for r in rows})
+    chosen = rng.sample(cases, max(1, round(len(cases) * fraction)))
+    order = {sid: i for i, sid in enumerate(chosen)}
+    keep = [{k: (r.get(k, "") if k in ANNOTATION_COLUMNS[:7] else "") for k in ANNOTATION_COLUMNS} for r in rows if r["study_id"] in order]
+    return sorted(keep, key=lambda r: order[r["study_id"]])
+
+
+def single_expert_reference(rows_a: list[dict]) -> list[dict]:
+    """Référence à un seul expert : son étiquette devient l'étiquette de référence (aucune adjudication possible)."""
+    out = []
+    for r in rows_a:
+        r = dict(r)
+        if not r.get("adjudicated_label"):
+            r["adjudicated_label"] = r.get("annotator_A_label", "")
+            r["adjudicated_expected_value"] = r.get("annotator_A_expected_value", "")
+        out.append(r)
+    return out
+
+
+def _kappa(pairs: list[tuple[str, str]]) -> dict:
     if not pairs:
         return {"n": 0, "observed_agreement": None, "cohen_kappa": None}
     n = len(pairs)

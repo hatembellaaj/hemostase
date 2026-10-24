@@ -38,7 +38,7 @@ sed -i "s/^HQA_UID=.*/HQA_UID=$(id -u)/; s/^HQA_GID=.*/HQA_GID=$(id -g)/" .env
 
 ```bash
 HQA_GIT_COMMIT=$(git rev-parse HEAD) docker compose build
-docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 45 tests attendus
+docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 47 tests attendus
 ```
 
 ## 4. Lancer les étapes
@@ -106,6 +106,7 @@ Dans `.env` :
 HQA_LLM_BASE_URL=http://ollama:11434/v1
 HQA_LLM_MODEL=qwen2.5:7b-instruct
 HQA_ALLOW_REGISTRY_DATA_TO_LLM=yes     # seulement après confirmation écrite de l'environnement
+HQA_LLM_AUTHORIZATION_REF=modèle local uniquement, accord du responsable du registre du 2026-10-24
 ```
 
 ```bash

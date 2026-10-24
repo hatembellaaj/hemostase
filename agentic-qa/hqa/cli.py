@@ -14,6 +14,7 @@ Ligne de commande. Exemples :
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import sys
 import uuid
@@ -27,7 +28,8 @@ from .dictionary import load_dictionary
 from .exports import NOT_RUN, metrics_tables, write_manifest, write_results
 from .llm import LLMNotConfigured, RegistryDataNotAuthorized, make_client
 from .metrics import correction_metrics, cost_metrics, detection_metrics, normalization_metrics, paired_bootstrap, system_decisions
-from .opportunities import agreement, build_opportunities, read_annotations, write_annotation_file
+from .opportunities import (agreement, build_opportunities, intra_rater, read_annotations, reannotation_sample,
+                            single_expert_reference, write_annotation_file)
 from .pipelines import MODES, RunContext, run_case
 from .privacy import Pseudonymizer
 from .profiling import profile, profile_markdown
@@ -156,6 +158,9 @@ def cmd_run(args, cfg):
                 client = make_client(cfg, artificial_data=bool(artificial))
             except (LLMNotConfigured, RegistryDataNotAuthorized) as e:
                 sys.exit(f"Mode {args.mode} non exécuté : {e}")
+            if not artificial and not cfg["llm"].get("authorization_ref"):
+                sys.exit(f"Mode {args.mode} non exécuté : HQA_LLM_AUTHORIZATION_REF doit indiquer l'autorisation de traitement "
+                         "(qui, quand, périmètre) ; elle est recopiée dans le manifeste.")
             if artificial:
                 client.raw_log_path = Path(cfg["paths"]["runs_dir"]) / run_id / "raw_llm_outputs.jsonl"
                 client.raw_log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -163,7 +168,8 @@ def cmd_run(args, cfg):
                              "pas une performance sur le registre.")
         prompts = Prompts(cfg["paths"]["prompts"], args.prompt_version)
         agents = Agents(client, prompts, d, cfg["llm"]["max_output_tokens"], cfg["privacy"]["llm_date_generalization"])
-        llm_info = {k: cfg["llm"].get(k) for k in ("base_url", "model", "temperature", "seed", "max_output_tokens")} | {"prompt_version": args.prompt_version}
+        llm_info = {k: cfg["llm"].get(k) for k in ("base_url", "model", "temperature", "seed", "max_output_tokens", "authorization_ref")} | {
+            "prompt_version": args.prompt_version, "data": "artificial" if getattr(args, "artificial_sha256", None) else "registry"}
     ctx = RunContext(run_id, args.mode, d, engine, cfg["limits"], agents, args.coordinator)
     results: list[CaseResult] = [run_case(ctx, c) for c in cases]
     run_dir = Path(cfg["paths"]["runs_dir"]) / run_id
@@ -232,7 +238,11 @@ def evaluate_runs(cfg, run_ids: list[str], annotations_path: str, out_dir: Path,
 
     ev = cfg["evaluation"]
     boot = paired_bootstrap(case_ids, f1, list(systems), ev["bootstrap_samples"], ev["bootstrap_seed"], ev["confidence"]) if case_ids else NOT_RUN
+    ann_name = Path(annotations_path).name
+    ref_info = Path(annotations_path).with_name(ann_name.replace("annotation_", "reference_", 1).replace("_adjudicated.csv", ".json")) \
+        if ann_name.startswith("annotation_") and ann_name.endswith("_adjudicated.csv") else None
     metrics = {"artificial_experiment": artificial, "annotations": str(annotations_path), "inter_annotator": agreement(ann),
+               "reference_design": json.loads(ref_info.read_text(encoding="utf-8")) if ref_info and ref_info.exists() else "two_experts_or_unspecified",
                "n_reference_labels": len(reference), "systems": systems,
                "bootstrap_f1_global": boot, "note": "Métriques uniquement sur opportunités annotées ; NA = non calculable."}
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -288,6 +298,42 @@ def cmd_synthetic(args, cfg):
     print(f"détail -> {Path(cfg['paths']['runs_dir']) / f'synthetic-eval-{rid}'}")
 
 
+def cmd_reannotation_sample(args, cfg):
+    """Un seul expert : gabarit de réannotation en aveugle d'un échantillon de dossiers (reproductibilité intra-expert)."""
+    from .exports import write_csv
+
+    der = Path(cfg["paths"]["derived_dir"])
+    tpl = der / f"annotation_{args.subset}.csv"
+    out = der / f"annotation_{args.subset}_reannot.csv"
+    if out.exists():
+        sys.exit(f"{out} existe déjà : la réannotation a peut-être commencé")
+    with open(tpl, encoding="utf-8-sig") as fh:
+        rows = list(csv.DictReader(fh, delimiter=";"))
+    sample = reannotation_sample(rows, args.fraction, cfg["split"]["seed"] + 11)
+    write_csv(sample, out)
+    print(f"{len({r['study_id'] for r in sample})} dossiers, {len(sample)} opportunités -> {out} "
+          "(à annoter comme A, au moins deux semaines après la première annotation)")
+
+
+def cmd_single_reference(args, cfg):
+    """Un seul expert : son annotation devient la référence ; accord intra-expert si une réannotation existe."""
+    from .exports import write_csv
+
+    der = Path(cfg["paths"]["derived_dir"])
+    first_path = der / f"annotation_{args.subset}_A.csv"
+    with open(first_path, encoding="utf-8-sig") as fh:
+        rows = list(csv.DictReader(fh, delimiter=";"))
+    ref = single_expert_reference(rows)
+    write_csv(ref, der / f"annotation_{args.subset}_adjudicated.csv")
+    re_path = der / f"annotation_{args.subset}_reannot_A.csv"
+    info = {"design": "single_expert", "annotations": first_path.name,
+            "n_labelled": sum(1 for r in ref if r["adjudicated_label"]),
+            "intra_rater": intra_rater(read_annotations(first_path), read_annotations(re_path)) if re_path.exists() else NOT_RUN,
+            "note": "Référence établie par un seul expert, sans adjudication : limite à déclarer."}
+    (der / f"reference_{args.subset}.json").write_text(json.dumps(info, indent=1, ensure_ascii=False, default=str), encoding="utf-8")
+    print(f"{info['n_labelled']} étiquettes de référence ; accord intra-expert : {info['intra_rater']}")
+
+
 def cmd_review_assignment(args, cfg):
     """Revue chronométrée équilibrée : chaque dossier est vu par un expert dans UNE seule condition ;
     chaque expert voit chaque condition sur des dossiers différents (carré latin simple)."""
@@ -341,13 +387,19 @@ def main(argv=None):
                    help="exécute aussi B1-B3 avec le VRAI modèle configuré, sur les données artificielles uniquement")
     y.add_argument("--modes", nargs="+", choices=[m for m in MODES if m != "B0"], default=None,
                    help="modes LLM à exécuter (défaut : B1 B2 B3 B3-noverif)")
+    q = sub.add_parser("reannotation-sample", help="un seul expert : échantillon à réannoter en aveugle")
+    q.add_argument("--subset", choices=["dev", "test", "all"], default="test")
+    q.add_argument("--fraction", type=float, default=0.2)
+    g = sub.add_parser("single-reference", help="un seul expert : son annotation devient la référence")
+    g.add_argument("--subset", choices=["dev", "test", "all"], default="test")
     v = sub.add_parser("review-assignment")
     v.add_argument("--experts", nargs="+", required=True)
     v.add_argument("--conditions", nargs="+", required=True)
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
     {"audit": cmd_audit, "split": cmd_split, "annotation-template": cmd_annotation_template, "run": cmd_run,
-     "evaluate": cmd_evaluate, "synthetic": cmd_synthetic, "review-assignment": cmd_review_assignment}[args.cmd](args, cfg)
+     "evaluate": cmd_evaluate, "synthetic": cmd_synthetic, "review-assignment": cmd_review_assignment,
+     "reannotation-sample": cmd_reannotation_sample, "single-reference": cmd_single_reference}[args.cmd](args, cfg)
 
 
 if __name__ == "__main__":

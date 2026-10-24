@@ -64,6 +64,19 @@ def test_real_llm_on_artificial_data_only(cfg, tmp_path, monkeypatch):
     assert seen == [True]
 
 
+def test_registry_run_requires_documented_authorization(cfg, mini, monkeypatch):
+    import argparse
+    import hqa.cli as cli
+
+    m = mini([base_row()])
+    monkeypatch.setattr(cli, "make_client", lambda c, artificial_data=False: FakeLLM(responder({})))
+    cfg["llm"]["authorization_ref"] = None
+    ns = argparse.Namespace(mode="B3", subset="all", workbook=str(m["path"]), enable_hypothesis_rules=False,
+                            coordinator="policy", prompt_version="v1")
+    with pytest.raises(SystemExit, match="HQA_LLM_AUTHORIZATION_REF"):
+        cli.cmd_run(ns, cfg)
+
+
 def test_invalid_json_is_not_absence_of_anomaly(mini, d):
     m = mini([base_row(comment_1="il ne saigne pas")])
     fake = FakeLLM(responder({"cohérence": ["pas du json"]}))

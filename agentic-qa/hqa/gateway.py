@@ -129,6 +129,8 @@ def require_llm_authorization():
     if str(cfg["llm"].get("allow_registry_data")).lower() != "yes":
         raise HTTPException(403, "Données du registre non servies aux agents : HQA_ALLOW_REGISTRY_DATA_TO_LLM doit valoir yes "
                                  "après confirmation de l'environnement LLM et de l'autorisation de traitement.")
+    if not cfg["llm"].get("authorization_ref"):
+        raise HTTPException(403, "HQA_LLM_AUTHORIZATION_REF doit indiquer l'autorisation de traitement (qui, quand, périmètre).")
 
 
 AUTH = [Depends(require_key)]

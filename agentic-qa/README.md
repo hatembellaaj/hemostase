@@ -58,7 +58,7 @@ mkdir -p data/raw && cp /chemin/vers/registre.xlsx data/raw/registre.xlsx   # co
 ## Commandes
 
 ```bash
-python -m pytest -q tests                                   # 45 tests, données artificielles uniquement
+python -m pytest -q tests                                   # 47 tests, données artificielles uniquement
 
 python -m hqa.cli audit                                     # profil agrégé -> runs/audit/profile.md
 python -m hqa.cli split --freeze                            # découpage dev/test figé -> data/derived/split.json
@@ -73,7 +73,9 @@ python -m hqa.cli synthetic --rows 30 --seed 42 --simulate-llm
 # --llm = VRAI modèle configuré, sur le classeur artificiel uniquement (pas d'autorisation registre requise)
 python -m hqa.cli synthetic --rows 10 --seed 42 --llm --modes B3
 
-# après annotation et adjudication par deux experts
+# un seul expert : réannotation en aveugle de ~20 % des dossiers, puis référence à un expert
+python -m hqa.cli reannotation-sample --subset test --fraction 0.2
+python -m hqa.cli single-reference --subset test
 python -m hqa.cli evaluate --runs <run_B0> <run_B3> ... --annotations data/derived/annotation_test_adjudicated.csv
 
 streamlit run review_app.py                                 # annotation, adjudication, revue
@@ -87,6 +89,7 @@ python -m hqa.cli review-assignment --experts E1 E2 --conditions B0 B3   # carr�
 HQA_LLM_BASE_URL=http://localhost:11434/v1      # ex. Ollama
 HQA_LLM_MODEL=<modèle>
 HQA_ALLOW_REGISTRY_DATA_TO_LLM=yes              # seulement après confirmation écrite de l'environnement
+HQA_LLM_AUTHORIZATION_REF=<qui, quand, périmètre>  # exigée, recopiée dans chaque manifeste
 
 python -m hqa.cli run --mode B3 --subset dev
 python -m hqa.cli run --mode B1 --subset test   # test : exige un découpage figé

@@ -20,13 +20,19 @@
   l'exécution des systèmes.
 
 ## 4. Annotation de référence
-- Deux experts indépendants (A, B), **en aveugle** des sorties des systèmes (écran « Annotation en aveugle »,
-  un fichier par expert). Étiquettes : anomalie confirmée / variation acceptable / non applicable / non résolu ;
-  valeur attendue (JSON) pour la normalisation.
-- Accord inter-annotateurs : kappa de Cohen avant adjudication, rapporté par famille.
-- Adjudication des désaccords par un troisième expert ou par consensus (écran « Adjudication »).
+- **Un seul expert disponible (2026-10-24).** Il annote **en aveugle** des sorties des systèmes (écran
+  « Annotation en aveugle », annotateur A). Étiquettes : anomalie confirmée / variation acceptable /
+  non applicable / non résolu ; valeur attendue (JSON) pour la normalisation. « Non résolu » est préféré à une
+  étiquette incertaine.
+- Reproductibilité : `python -m hqa.cli reannotation-sample --subset test --fraction 0.2` tire, avec une graine fixe,
+  environ 20 % des dossiers ; l'expert les réannote comme A **au moins deux semaines plus tard**, dans un ordre
+  mélangé et sans voir sa première annotation. Kappa intra-expert rapporté par famille.
+- Référence : `python -m hqa.cli single-reference --subset test` (l'annotation devient la référence ;
+  `reference_test.json` trace le dispositif et l'accord intra-expert, recopiés dans les métriques).
+- Si un second annotateur devient disponible, même sur l'échantillon de réannotation, le dispositif à deux experts
+  (annotateur B, kappa inter-annotateurs, écran « Adjudication ») reste utilisable sans changement.
 - « Non résolu » dans la référence est **exclu** des dénominateurs et rapporté séparément.
-- Pilote recommandé : 5 dossiers dev annotés par les deux experts pour stabiliser les consignes.
+- Pilote recommandé : 5 dossiers dev annotés par l'expert pour stabiliser les consignes avant le test.
 
 ## 5. Systèmes comparés
 B0 règles ; B1 agent unique + outils ; B2 workflow fixe ; B3 multi-agent adaptatif ; B3-noverif.
