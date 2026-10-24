@@ -5,4 +5,5 @@ SOIT par la réponse finale :
 {"action": "final",
  "proposals": [<mêmes objets que l'agent de normalisation>],
  "candidates": [<mêmes objets que l'agent de cohérence, avec en plus "self_check": "accept" | "needs_review">]}
-Outils disponibles : voir la liste fournie. Les résultats des règles déterministes sont déjà fournis.
+Outils disponibles : voir la liste fournie. Les règles formelles sont exécutées par le code (deterministic_findings) :
+ne les réévalue pas ; tes candidats ne peuvent porter que sur les relations de rules_to_examine.

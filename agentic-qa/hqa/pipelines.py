@@ -14,7 +14,7 @@ from __future__ import annotations
 import time
 from dataclasses import dataclass, field
 
-from .agents import Agents
+from .agents import Agents, agent_rule_context
 from .cases import Case, llm_view
 from .dictionary import Dictionary
 from .llm import Budget, BudgetExhausted, InvalidModelOutput, LLMTechnicalError
@@ -81,6 +81,17 @@ def _merge_norm(norm: dict, proposals: list[NormalizedValue]) -> int:
     return changed
 
 
+def _rules_on_new_values(engine: RuleEngine, case: Case, norm: dict, known: list[CandidateAnomaly]) -> list[CandidateAnomaly]:
+    """Réexécute les règles formelles (par le code) après une normalisation par agent : seuls les signalements nouveaux
+    sont retournés. Ils reposent sur une valeur proposée par un agent : non vérifiés tant que le vérificateur n'a pas statué."""
+    seen = {a.check_id for a in known}
+    new, _ = engine.run(case, norm, "rules_after_llm_normalization")
+    out = [a for a in new if a.check_id not in seen]
+    for a in out:
+        a.verification = VerificationState.NOT_VERIFIED
+    return out
+
+
 def _apply_verdicts(cands: list[CandidateAnomaly], verdicts: list[dict]) -> list[int]:
     fixable = []
     for i, (c, v) in enumerate(zip(cands, verdicts)):
@@ -114,7 +125,9 @@ def run_b2(ctx: RunContext, case: Case) -> CaseResult:
         kept, amb, rej = ctx.agents.normalizer(budget, case, norm, fids)
         _merge_norm(norm, kept)
         _log(ctx, case, step := step + 1, "normalizer", "normalize", f"{len(fids)} cellules", f"{len(kept)} retenues, {len(amb)} ambiguës, {rej} rejetées par le code", llm_call=True)
-        cands, rej = ctx.agents.coherence(budget, case, norm, det, tools, set(ctx.engine.active))
+        extra = _rules_on_new_values(ctx.engine, case, norm, det)
+        cands, rej = ctx.agents.coherence(budget, case, norm, det + extra, tools, set(ctx.engine.active))
+        cands = extra + cands
         _log(ctx, case, step := step + 1, "coherence", "find_candidates", "dossier complet", f"{len(cands)} candidates, {rej} rejetées par le code", llm_call=True)
         if cands and ctx.mode != "B3-noverif":
             verdicts = ctx.agents.verifier(budget, case, cands)
@@ -195,10 +208,14 @@ def run_b3(ctx: RunContext, case: Case, use_verifier: bool = True) -> CaseResult
                     attempts[a["field_id"]] = L["max_normalization_attempts"]
                     norm[a["field_id"]].issues.append(f"ambiguite_declaree:{a['reason']}")
                 new_info = new_info or changed > 0
+                if changed:
+                    extra = _rules_on_new_values(ctx.engine, case, norm, det + cands)
+                    cands += extra
+                    unverified += extra
                 no_progress = 0 if (changed or amb) else no_progress + 1
                 _log(ctx, case, step, "normalizer", "normalize", f"{len(fids)} cellules", f"{len(kept)} retenues, {len(amb)} ambiguës, {rej} rejetées", llm_call=True)
             elif action == "coherence":
-                new, rej = ctx.agents.coherence(budget, case, norm, det, tools, set(ctx.engine.active))
+                new, rej = ctx.agents.coherence(budget, case, norm, det + cands, tools, set(ctx.engine.active))
                 coherence_done = True
                 cands += new
                 unverified += new
@@ -246,9 +263,7 @@ def run_b1(ctx: RunContext, case: Case) -> CaseResult:
     payload = {
         "case": llm_view(case, ctx.d, norm, ctx.agents.dg),
         "tools": TOOL_SPECS,
-        "active_rules": {rid: ctx.d.rules[rid].description for rid in sorted(ctx.engine.active)} | {
-            "N01_narrative_vs_structured": ctx.d.rules["N01_narrative_vs_structured"].description},
-        "deterministic_findings": [{"rule_id": a.rule_id, "fields": a.fields, "justification": a.justification} for a in det],
+        **agent_rule_context(ctx.d, set(ctx.engine.active), det),
         "cells_needing_normalization": _cells_needing_normalization(norm, ctx.d),
         "tool_results": [],
     }
@@ -265,7 +280,10 @@ def run_b1(ctx: RunContext, case: Case) -> CaseResult:
                 _log(ctx, case, step, "single_agent", f"tool:{obj['tool']}", str(obj.get("args"))[:120], "ok" if "error" not in res else res["error"], llm_call=True)
                 continue
             kept, amb, rej_p = validate_proposals({"proposals": obj["proposals"]}, _all_nonempty(norm, ctx.d), case, ctx.d)
-            _merge_norm(norm, kept)
+            if _merge_norm(norm, kept):
+                cands_rules = _rules_on_new_values(ctx.engine, case, norm, det)
+            else:
+                cands_rules = []
             for a in amb:
                 norm[a["field_id"]].issues.append(f"ambiguite_declaree:{a['reason']}")
             cands, rej_c = validate_candidates({"candidates": obj["candidates"]}, case, ctx.d, tools, set(ctx.engine.active),
@@ -275,6 +293,7 @@ def run_b1(ctx: RunContext, case: Case) -> CaseResult:
                 idx = int(c.anomaly_id.rsplit("-", 1)[-1])
                 sc = raw[idx].get("self_check") if idx < len(raw) else None
                 c.verification = VerificationState.NEEDS_REVIEW if sc == "needs_review" else VerificationState.ACCEPTED if sc == "accept" else VerificationState.NOT_VERIFIED
+            cands = cands_rules + cands
             _log(ctx, case, step, "single_agent", "final", "", f"{len(kept)} normalisations, {len(cands)} candidates, {rej_p + rej_c} rejetées", llm_call=True)
             break
     except BudgetExhausted as e:

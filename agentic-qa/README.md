@@ -58,7 +58,7 @@ mkdir -p data/raw && cp /chemin/vers/registre.xlsx data/raw/registre.xlsx   # co
 ## Commandes
 
 ```bash
-python -m pytest -q tests                                   # 42 tests, données artificielles uniquement
+python -m pytest -q tests                                   # 44 tests, données artificielles uniquement
 
 python -m hqa.cli audit                                     # profil agrégé -> runs/audit/profile.md
 python -m hqa.cli split --freeze                            # découpage dev/test figé -> data/derived/split.json

@@ -31,12 +31,12 @@ from typing import Any, Literal
 from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 
-from .agents import validate_candidates, validate_proposals
+from .agents import rules_for_agents, validate_candidates, validate_proposals
 from .cases import Case, llm_view
 from .config import ROOT, load_config
 from .exports import write_manifest, write_results
 from .normalize import normalize_case
-from .pipelines import _all_nonempty, _cells_needing_normalization, _has_narrative, _merge_norm
+from .pipelines import _all_nonempty, _cells_needing_normalization, _has_narrative, _merge_norm, _rules_on_new_values
 from .rules import RuleEngine
 from .schemas import CandidateAnomaly, CaseResult, DecisionLogEntry, VerificationState
 from .split import load_split, subset
@@ -299,7 +299,8 @@ def get_case(sid: str, study_id: str):
         "deterministic_findings": [_cand_view(c) for c in cs.det],
         "agent_candidates": [_cand_view(c) for c in cs.agent_cands],
         "ambiguous_cells": cs.ambiguous,
-        "active_rules": sorted(eng.active) + ["N01_narrative_vs_structured"],
+        "rules_to_examine": rules_for_agents(STORE.d, set(eng.active)),
+        "rules_already_evaluated_by_code": sorted(r for r in eng.active if STORE.d.rules[r].deterministic),
         "remaining": {"tool_calls": L["max_tool_calls_per_case"] - cs.tool_calls,
                       "normalization_attempts": L["max_normalization_attempts"] - cs.norm_attempts,
                       "candidate_submissions": 1 + L["max_revisions_after_verification"] - cs.cand_submissions,
@@ -334,6 +335,8 @@ def submit_normalizations(sid: str, study_id: str, body: Proposals):
     requested = _to_normalize(s, cs)
     kept, amb, rej = validate_proposals({"proposals": body.proposals}, requested, cs.case, STORE.d)
     changed = _merge_norm(cs.norm, kept)
+    if changed:  # règles formelles réexécutées par le code sur les valeurs rendues lisibles
+        cs.det += _rules_on_new_values(cs.tools.engine, cs.case, cs.norm, cs.det)
     cs.ambiguous = [a for a in cs.ambiguous if a["field_id"] not in {k.field_id for k in kept}] + amb
     cs.rejected_by_code += rej
     _log(s, cs, "normalizer", "normalize", f"{len(body.proposals)} propositions", f"{changed} retenues, {len(amb)} ambiguës, {rej} rejetées par le code")
@@ -368,7 +371,7 @@ def submit_candidates(sid: str, study_id: str, body: Candidates):
     return {"accepted": [{"index": i, "anomaly_id": a.anomaly_id} for i, a in accepted],
             "rejected_indexes": rejected,
             "submissions_left": 1 + L["max_revisions_after_verification"] - cs.cand_submissions,
-            "note": "rejet = règle inactive (hypothèse), champ inconnu ou identifiant, preuve absente ou citation différente de la source. "
+            "note": "rejet = règle formelle (déjà évaluée par le code), règle inactive, champ inconnu ou identifiant, preuve absente ou citation différente de la source. "
                     "Les actions sont toujours converties en « review » : aucune correction automatique."}
 
 

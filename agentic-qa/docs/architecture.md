@@ -34,4 +34,9 @@ flowchart TD
 - Bornes : 2 normalisations, 1 révision, 6 appels et un budget de tokens par dossier, délai maximal, nombre limité
   de tentatives techniques, arrêt après absence de progrès. Une erreur technique ou une sortie invalide donne le
   statut `technical_failure`, jamais « aucune anomalie ».
+- Partage des tâches : les règles formelles (S, H, K) sont évaluées **uniquement par le code**, y compris après
+  une normalisation par agent (réexécution, signalements `rules_after_llm_normalization` soumis au vérificateur).
+  Les agents ne traitent que les relations sans implémentation déterministe (`deterministic: false`, aujourd'hui
+  N01 commentaire / champ structuré) ; un candidat d'agent fondé sur une règle formelle est rejeté. Une sortie coupée
+  par la limite de tokens est invalide (« sortie tronquée »).
 - Les propositions sont des **actions de revue** ; le registre n'est jamais écrit.

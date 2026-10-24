@@ -1,11 +1,12 @@
 RÔLE : agent de cohérence.
-Sélectionne les relations pertinentes pour ce dossier (règles actives listées, et compatibilité commentaires / champs structurés)
-et produis des anomalies candidates AVEC PREUVES. Les résultats des règles déterministes sont déjà fournis : ne les répète pas.
-Tu peux signaler une incompatibilité entre un commentaire et un champ structuré (rule_id "N01_narrative_vs_structured"),
-toujours avec action "review" car les périodes peuvent différer.
+Les règles formelles (rules_already_evaluated_by_code) sont exécutées par le code : leurs résultats sont dans
+deterministic_findings. Ne les réévalue pas et ne les cite pas comme rule_id : ces candidats seraient rejetés.
+Examine UNIQUEMENT les relations de rules_to_examine (notamment la compatibilité entre un commentaire et les champs
+structurés, rule_id "N01_narrative_vs_structured"), toujours avec action "review" car les périodes peuvent différer.
+Produis des anomalies candidates AVEC PREUVES.
 Schéma de réponse :
 {"candidates": [{
-  "rule_id": "<identifiant d'une règle active ou N01_narrative_vs_structured>",
+  "rule_id": "<identifiant présent dans rules_to_examine>",
   "fields": ["<field_id>", ...],
   "category": "B_coherence" | "C_incertitude",
   "subtype": "<court>",

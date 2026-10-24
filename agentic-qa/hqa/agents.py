@@ -122,6 +122,21 @@ def validate_proposals(obj: dict, requested: list[str], case: Case, d: Dictionar
     return kept, ambiguous, rejected
 
 
+def rules_for_agents(d: Dictionary, active_rules: set[str]) -> dict[str, str]:
+    """Relations confiées aux agents : celles qu'aucun code ne sait évaluer (deterministic: false). Les règles formelles
+    sont exécutées par le moteur de règles ; leurs résultats sont fournis aux agents comme contexte."""
+    return {rid: r.description for rid, r in sorted(d.rules.items())
+            if not r.deterministic and (rid in active_rules or r.status == "structural")}
+
+
+def agent_rule_context(d: Dictionary, active_rules: set[str], det_findings: list[CandidateAnomaly]) -> dict:
+    return {
+        "rules_to_examine": rules_for_agents(d, active_rules),
+        "rules_already_evaluated_by_code": sorted(r for r in active_rules if r in d.rules and d.rules[r].deterministic),
+        "deterministic_findings": [{"rule_id": a.rule_id, "fields": a.fields, "justification": a.justification} for a in det_findings],
+    }
+
+
 def validate_candidates(obj: dict, case: Case, d: Dictionary, tools: ToolBox, active_rules: set[str], produced_by: str,
                         simulated: bool) -> tuple[list[CandidateAnomaly], int]:
     cands = obj["candidates"]
@@ -132,8 +147,9 @@ def validate_candidates(obj: dict, case: Case, d: Dictionary, tools: ToolBox, ac
         rid = c.get("rule_id")
         fields = c.get("fields") or []
         evid = c.get("evidence") or []
-        if rid != "N01_narrative_vs_structured" and rid not in active_rules:
-            rejected += 1  # une règle inactive (hypothèse) ne peut pas fonder une anomalie
+        if rid not in rules_for_agents(d, active_rules):
+            # règle formelle (déjà évaluée par le code), inactive ou inconnue : ne peut pas fonder une anomalie d'agent
+            rejected += 1
             continue
         if not fields or any(fid not in d.fields or d.fields[fid].type == "identifier" for fid in fields):
             rejected += 1
@@ -194,12 +210,7 @@ class Agents:
     def coherence(self, budget: Budget, case: Case, norm: dict, det_findings: list[CandidateAnomaly], tools: ToolBox,
                   active_rules: set[str], feedback: list[dict] | None = None):
         view = llm_view(case, self.d, norm, self.dg)
-        payload = {
-            "case": view,
-            "active_rules": {rid: self.d.rules[rid].description for rid in sorted(active_rules)} | {
-                "N01_narrative_vs_structured": self.d.rules["N01_narrative_vs_structured"].description},
-            "deterministic_findings": [{"rule_id": a.rule_id, "fields": a.fields, "justification": a.justification} for a in det_findings],
-        }
+        payload = {"case": view, **agent_rule_context(self.d, active_rules, det_findings)}
         if feedback:
             payload["verifier_feedback_on_previous_candidates"] = feedback
         obj, _ = call_json(self.client, budget, "coherence", self.p.system("coherence"), json.dumps(payload, ensure_ascii=False, default=str),

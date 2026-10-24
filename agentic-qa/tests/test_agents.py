@@ -144,6 +144,33 @@ def test_evidence_must_match_source_and_rule_must_be_active(mini, d):
     assert agent[0].verification.value == "needs_review" and all(a.simulated for a in agent)
 
 
+def test_agents_do_not_reevaluate_formal_rules(mini, d):
+    # règle formelle ACTIVE : déjà exécutée par le code, donc ni confiée à l'agent ni acceptée comme fondement
+    m = mini([base_row(comment_1="hémarthroses répétées")])
+    good = {"rule_id": "N01_narrative_vs_structured", "fields": ["comment_1"], "category": "B_coherence", "subtype": "x",
+            "evidence": [{"field_id": "comment_1", "quoted_value": "hémarthroses répétées"}], "justification": "j", "action": {"kind": "review", "detail": ""}}
+    formal = dict(good, rule_id="H01_consanguinity_degree_dependency")
+    fake = FakeLLM(responder({"cohérence": [json.dumps({"candidates": [good, formal]})]}))
+    r = run_case(ctx_for("B3-noverif", d, m["engine"], fake), m["cases"][0])
+    sent = json.loads(next(u for s, u in fake.calls if "agent de cohérence" in s))
+    assert list(sent["rules_to_examine"]) == ["N01_narrative_vs_structured"]
+    assert "H01_consanguinity_degree_dependency" in sent["rules_already_evaluated_by_code"]
+    assert [a.rule_id for a in r.anomalies if a.produced_by == "agent:coherence"] == ["N01_narrative_vs_structured"]
+
+
+def test_rules_rerun_by_code_after_llm_normalization(mini, d):
+    m = mini([base_row(age_first_signs="deux ans", age_at_diagnosis_text="1 an")])
+    prop = {"field_id": "age_first_signs", "state": "observed", "value_type": "duration", "value": {"years": 2},
+            "justification": "nombre écrit en lettres"}
+    for mode in ("B3-noverif", "B2"):
+        fake = FakeLLM(responder({"normalisation": [json.dumps({"proposals": [prop]})],
+                                  "vérification": [json.dumps({"verdicts": [{"candidate_index": 0, "decision": "needs_review", "reason": "r"}]})]}))
+        r = run_case(ctx_for(mode, d, m["engine"], fake), m["cases"][0])
+        h09 = [a for a in r.anomalies if a.rule_id == "H09_first_signs_before_diagnosis"]
+        assert [a.produced_by for a in h09] == ["rules_after_llm_normalization"], mode
+        assert h09[0].verification.value == ("not_verified" if mode == "B3-noverif" else "needs_review")
+
+
 def test_normalizer_cannot_invent_precision_or_drop_censoring(mini, d):
     from hqa.agents import validate_proposals
     m = mini([base_row(ddn=2024, fviii_level="<1%", fix_level=None)])
