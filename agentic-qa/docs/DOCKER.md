@@ -38,7 +38,7 @@ sed -i "s/^HQA_UID=.*/HQA_UID=$(id -u)/; s/^HQA_GID=.*/HQA_GID=$(id -g)/" .env
 
 ```bash
 HQA_GIT_COMMIT=$(git rev-parse HEAD) docker compose build
-docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 41 tests attendus
+docker compose run --rm --entrypoint python hqa -m pytest -q tests     # 42 tests attendus
 ```
 
 ## 4. Lancer les étapes
@@ -92,6 +92,9 @@ docker compose run --rm hqa synthetic --rows 10 --seed 42 --llm --modes B3     #
 docker compose run --rm hqa synthetic --rows 30 --seed 42 --llm                # B1, B2, B3, B3-noverif
 ```
 
+Les sorties brutes du modèle sont conservées dans `runs/<run>/raw_llm_outputs.jsonl` (données artificielles
+uniquement). Une sortie coupée par `max_output_tokens` est comptée comme invalide (« sortie tronquée »), jamais
+comme une absence d'anomalie.
 Seul le classeur artificiel généré peut être envoyé (contrôle par empreinte). Les résultats servent à valider
 l'infrastructure et à mesurer temps, tokens et sorties non conformes ; ils ne mesurent pas la performance sur le registre.
 

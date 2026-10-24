@@ -71,6 +71,20 @@ def test_invalid_json_is_not_absence_of_anomaly(mini, d):
     assert r.status == "technical_failure" and r.invalid_outputs == 1 and r.simulated
 
 
+def test_truncated_output_is_invalid_even_if_parsable(mini, d):
+    from dataclasses import replace
+
+    class Truncating(FakeLLM):
+        def chat(self, system, user, *, max_tokens):
+            return replace(super().chat(system, user, max_tokens=max_tokens), finish_reason="length")
+
+    m = mini([base_row(comment_1="il ne saigne pas")])
+    fake = Truncating(responder({}))
+    r = run_case(ctx_for("B3", d, m["engine"], fake), m["cases"][0])
+    assert r.status == "technical_failure" and r.invalid_outputs == 1
+    assert any("tronquée" in e for e in r.errors)
+
+
 def test_api_failure_retried_then_failure(mini, d):
     m = mini([base_row(comment_1="x")])
     fake = FakeLLM(lambda s, u: LLMTechnicalError("HTTP 503"))

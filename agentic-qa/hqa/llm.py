@@ -40,6 +40,7 @@ class LLMResponse:
     latency_s: float
     model: str
     simulated: bool = False
+    finish_reason: str | None = None   # "length" : sortie coupée par max_tokens
 
 
 class LLMClient(Protocol):
@@ -71,6 +72,8 @@ class OpenAICompatibleClient:
         self.temperature = temperature
         self.seed = seed
         self.timeout_s = timeout_s
+        # sorties brutes conservées pour diagnostic, uniquement sur données artificielles (voir cli.cmd_run)
+        self.raw_log_path = None
 
     def chat(self, system: str, user: str, *, max_tokens: int) -> LLMResponse:
         headers = {"Content-Type": "application/json"}
@@ -95,11 +98,17 @@ class OpenAICompatibleClient:
         try:
             data = r.json()
             text = data["choices"][0]["message"]["content"] or ""
+            finish = data["choices"][0].get("finish_reason")
             usage = data.get("usage") or {}
         except (ValueError, KeyError, IndexError) as e:
             raise LLMTechnicalError("réponse HTTP non conforme") from e
-        return LLMResponse(text=text, tokens_in=int(usage.get("prompt_tokens") or 0), tokens_out=int(usage.get("completion_tokens") or 0),
-                           latency_s=time.monotonic() - t0, model=data.get("model", self.model))
+        resp = LLMResponse(text=text, tokens_in=int(usage.get("prompt_tokens") or 0), tokens_out=int(usage.get("completion_tokens") or 0),
+                           latency_s=time.monotonic() - t0, model=data.get("model", self.model), finish_reason=finish)
+        if self.artificial_data and self.raw_log_path:
+            with open(self.raw_log_path, "a", encoding="utf-8") as fh:
+                fh.write(json.dumps({"role": system.split("RÔLE :")[-1].split("\n")[0].strip(), "finish_reason": finish,
+                                     "tokens_in": resp.tokens_in, "tokens_out": resp.tokens_out, "text": text}, ensure_ascii=False) + "\n")
+        return resp
 
 
 class FakeLLM:
@@ -202,6 +211,8 @@ def call_json(client: LLMClient, budget: Budget, role: str, system: str, user: s
             continue
         budget.record(role, resp)
         try:
+            if resp.finish_reason == "length":
+                raise InvalidModelOutput(f"sortie tronquée (limite de {max_tokens} tokens atteinte)")
             return validate(extract_json(resp.text)), resp
         except InvalidModelOutput:
             budget.invalid_outputs += 1

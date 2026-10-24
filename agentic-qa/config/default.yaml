@@ -27,9 +27,11 @@ llm:
   api_key: ${HQA_LLM_API_KEY}
   temperature: 0.0
   seed: 1234
-  max_output_tokens: 800
-  # modèle local sur CPU (serveur sans GPU, ~11 tokens/s en génération) : un appel peut dépasser une minute
-  request_timeout_s: 300
+  # 800 tronquait les réponses de cohérence (essai synthetic --llm, qwen2.5:7b) ; une sortie tronquée reste invalide
+  max_output_tokens: 1500
+  # modèle local sur CPU (serveur sans GPU) : ~34 tokens/s en lecture, ~11 en génération ; un appel ~4 000 + 1 500 tokens
+  # dure ~4 à 5 min
+  request_timeout_s: 600
   # autorisation explicite d'envoyer des données (pseudonymisées) du registre au service
   allow_registry_data: ${HQA_ALLOW_REGISTRY_DATA_TO_LLM}
   # prix indicatif pour le calcul des coûts (0 pour un modèle local) ; à renseigner
@@ -40,9 +42,10 @@ limits:
   max_normalization_attempts: 2
   max_revisions_after_verification: 1
   max_llm_calls_per_case: 6
-  max_tokens_per_case: 12000
+  # un appel de cohérence sur CPU ≈ 4 000 tokens lus + jusqu'à 1 500 générés ; à calibrer sur le développement puis figer
+  max_tokens_per_case: 30000
   # calibré pour un modèle local sur CPU ; à ajuster sur le développement (synthetic --llm, run --subset dev) puis à figer
-  max_seconds_per_case: 900
+  max_seconds_per_case: 1800
   max_technical_retries: 2
   stop_after_steps_without_progress: 2
 

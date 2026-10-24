@@ -157,6 +157,8 @@ def cmd_run(args, cfg):
             except (LLMNotConfigured, RegistryDataNotAuthorized) as e:
                 sys.exit(f"Mode {args.mode} non exécuté : {e}")
             if artificial:
+                client.raw_log_path = Path(cfg["paths"]["runs_dir"]) / run_id / "raw_llm_outputs.jsonl"
+                client.raw_log_path.parent.mkdir(parents=True, exist_ok=True)
                 notes.append("Vrai modèle sur données ENTIÈREMENT ARTIFICIELLES : validation logicielle et mesure des coûts, "
                              "pas une performance sur le registre.")
         prompts = Prompts(cfg["paths"]["prompts"], args.prompt_version)
@@ -276,7 +278,14 @@ def cmd_synthetic(args, cfg):
     ref_path = Path(syn_cfg["paths"]["derived_dir"]) / "synthetic_reference.csv"
     write_reference(ref, ref_path)
     m = evaluate_runs(syn_cfg, run_ids, str(ref_path), Path(cfg["paths"]["runs_dir"]) / f"synthetic-eval-{rid}", artificial=True)
-    print(json.dumps({k: v for k, v in m["systems"].items()}, indent=1, ensure_ascii=False, default=str)[:3000])
+    # résumé compact ; le détail complet est dans metrics.json du dossier d'évaluation
+    for name, sy in m["systems"].items():
+        g, c = sy["detection"]["global"], sy["cost"]
+        print(f"{name:<16} positifs {g['n_positive_reference']}  tp {g['tp']}  fp {g['fp']}  fn {g['fn']}  "
+              f"sans décision (panne) {g['n_no_decision_failure']}  | appels {c['llm_calls_total']}  "
+              f"tokens {c['tokens_in']}+{c['tokens_out']}  latence méd./max {c['latency_median_s']}/{c['latency_max_s']} s  "
+              f"invalides {c['invalid_outputs']}  états {c['statuses']}")
+    print(f"détail -> {Path(cfg['paths']['runs_dir']) / f'synthetic-eval-{rid}'}")
 
 
 def cmd_review_assignment(args, cfg):

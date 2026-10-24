@@ -8,4 +8,5 @@ Règles impératives :
 - Un commentaire et un champ codé peuvent concerner des périodes différentes : une divergence n'est jamais une erreur certaine.
 - Si tu ne peux pas conclure, réponds « ambiguous » ou « needs_review » : c'est une réponse valide.
 - Justifications courtes (une phrase). Pas de raisonnement détaillé. Cite les valeurs exactement comme fournies.
+- Réponse compacte : au plus 8 éléments par liste, en commençant par les plus pertinents ; ne recopie pas le dossier.
 - Réponds UNIQUEMENT par un objet JSON conforme au schéma demandé.
