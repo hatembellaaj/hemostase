@@ -14,7 +14,7 @@ from __future__ import annotations
 import time
 from dataclasses import dataclass, field
 
-from .agents import Agents, agent_rule_context
+from .agents import Agents, agent_rule_context, code_meanings
 from .cases import Case, llm_view
 from .dictionary import Dictionary
 from .llm import Budget, BudgetExhausted, InvalidModelOutput, LLMTechnicalError
@@ -260,8 +260,10 @@ def run_b1(ctx: RunContext, case: Case) -> CaseResult:
     norm = normalize_case(case, ctx.d)
     det, _ = ctx.engine.run(case, norm, "b0_rules")
     tools = ToolBox(case, ctx.d, norm, ctx.engine)
+    view = llm_view(case, ctx.d, norm, ctx.agents.dg)
     payload = {
-        "case": llm_view(case, ctx.d, norm, ctx.agents.dg),
+        "case": view,
+        "code_meanings": code_meanings(ctx.d, view),
         "tools": TOOL_SPECS,
         **agent_rule_context(ctx.d, set(ctx.engine.active), det),
         "cells_needing_normalization": _cells_needing_normalization(norm, ctx.d),

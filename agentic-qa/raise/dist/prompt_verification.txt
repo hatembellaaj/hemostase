@@ -29,6 +29,8 @@ PROCÉDURE
    - les valeurs citées existent dans le dossier et disent bien ce que la justification affirme ;
    - la règle invoquée est active (ou N01) et s'applique à ces champs (run_rule, get_dictionary_entry si besoin) ;
    - la conclusion ne repose pas sur un sens de code non confirmé, une unité supposée ou un seuil non validé ;
+   - chaque code cité est lu comme dans le dictionnaire ; si la justification lui donne un autre sens, ou si les
+     valeurs citées sont en fait compatibles entre elles → « reject » (fixable = false) ;
    - elle ne confond pas inhabituel et erroné ; pour N01, une différence de période possible → « needs_review ».
 3. Décision : « accept » (preuves suffisantes pour une revue humaine), « reject » (preuve insuffisante ou hypothèse
    non documentée ; fixable = true si une meilleure citation ou un meilleur champ pourrait la corriger), « needs_review »

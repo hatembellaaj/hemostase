@@ -55,6 +55,14 @@ def _dict_excerpt(d: Dictionary, field_ids: list[str]) -> dict:
     return out
 
 
+def code_meanings(d: Dictionary, view: dict) -> dict:
+    """Signification (et statut) des codes des champs codés renseignés : sans elle, un agent devrait deviner le sens."""
+    return {fid: {"name": f.contextual_name, "definition_status": d.fields[fid].definition_status,
+                  "codes": {str(k): f"{c.label} ({c.status})" for k, c in (d.fields[fid].code_map or {}).items()}}
+            for fid, f in ((fid, d.fields[fid]) for fid, e in view["fields"].items() if e.get("value") is not None)
+            if f.type == "code"}
+
+
 # ---------------------------------------------------------------------------------------- validation
 def validate_proposals(obj: dict, requested: list[str], case: Case, d: Dictionary) -> tuple[list[NormalizedValue], list[dict], int]:
     """-> (valeurs retenues, déclarations d'ambiguïté, nombre de propositions rejetées par le code)."""
@@ -210,7 +218,7 @@ class Agents:
     def coherence(self, budget: Budget, case: Case, norm: dict, det_findings: list[CandidateAnomaly], tools: ToolBox,
                   active_rules: set[str], feedback: list[dict] | None = None):
         view = llm_view(case, self.d, norm, self.dg)
-        payload = {"case": view, **agent_rule_context(self.d, active_rules, det_findings)}
+        payload = {"case": view, "code_meanings": code_meanings(self.d, view), **agent_rule_context(self.d, active_rules, det_findings)}
         if feedback:
             payload["verifier_feedback_on_previous_candidates"] = feedback
         obj, _ = call_json(self.client, budget, "coherence", self.p.system("coherence"), json.dumps(payload, ensure_ascii=False, default=str),

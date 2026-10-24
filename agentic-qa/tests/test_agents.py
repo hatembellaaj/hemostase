@@ -155,6 +155,9 @@ def test_agents_do_not_reevaluate_formal_rules(mini, d):
     sent = json.loads(next(u for s, u in fake.calls if "agent de cohérence" in s))
     assert list(sent["rules_to_examine"]) == ["N01_narrative_vs_structured"]
     assert "H01_consanguinity_degree_dependency" in sent["rules_already_evaluated_by_code"]
+    # le sens des codes (et son statut) est fourni : l'agent n'a pas à le deviner
+    assert sent["code_meanings"]["sex"]["codes"]["1"] == "masculin (hypothesis)"
+    assert all(sent["case"]["fields"][f]["value"] is not None for f in sent["code_meanings"])
     assert [a.rule_id for a in r.anomalies if a.produced_by == "agent:coherence"] == ["N01_narrative_vs_structured"]
 
 

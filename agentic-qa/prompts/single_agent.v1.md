@@ -7,3 +7,4 @@ SOIT par la réponse finale :
  "candidates": [<mêmes objets que l'agent de cohérence, avec en plus "self_check": "accept" | "needs_review">]}
 Outils disponibles : voir la liste fournie. Les règles formelles sont exécutées par le code (deterministic_findings) :
 ne les réévalue pas ; tes candidats ne peuvent porter que sur les relations de rules_to_examine.
+Lis les codes UNIQUEMENT avec code_meanings ; un code absent de code_meanings a un sens inconnu.

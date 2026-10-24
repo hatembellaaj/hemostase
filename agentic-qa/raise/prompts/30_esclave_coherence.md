@@ -14,6 +14,8 @@ PROCÉDURE
    comme rule_id (la passerelle les rejette). « rules_to_examine » est la seule liste de règles utilisables.
 2. Cherche les incompatibilités entre un commentaire libre (comment_1, comment_2…) et un champ structuré
    → rule_id "N01_narrative_vs_structured", toujours action "review" (les périodes peuvent différer).
+   Lis les codes UNIQUEMENT avec « code_meanings » ; un code absent a un sens inconnu ; un sens « hypothesis » doit
+   être signalé comme tel dans la justification.
    Utilise compare_numbers, duration_to_months, date_interval pour toute comparaison : ne calcule pas de tête.
 3. Chaque candidate DOIT citer ses preuves : {"field_id": ..., "quoted_value": "<valeur EXACTE de qa_lire_dossier>"}.
    Pour un commentaire, cite un extrait exact d'au moins 4 caractères.

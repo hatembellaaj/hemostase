@@ -31,7 +31,7 @@ from typing import Any, Literal
 from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 
-from .agents import rules_for_agents, validate_candidates, validate_proposals
+from .agents import code_meanings, rules_for_agents, validate_candidates, validate_proposals
 from .cases import Case, llm_view
 from .config import ROOT, load_config
 from .exports import write_manifest, write_results
@@ -294,6 +294,7 @@ def get_case(sid: str, study_id: str):
     view = llm_view(cs.case, STORE.d, cs.norm, _cfg()["privacy"]["llm_date_generalization"])
     return {
         **view,
+        "code_meanings": code_meanings(STORE.d, view),
         "cells_needing_normalization": _to_normalize(s, cs),
         "has_narrative": _has_narrative(cs.norm, STORE.d),
         "deterministic_findings": [_cand_view(c) for c in cs.det],
