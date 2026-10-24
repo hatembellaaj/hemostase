@@ -4,6 +4,7 @@
 #   docker compose run --rm hqa audit                 # CLI : toute commande de « python -m hqa.cli »
 #   docker compose up -d review                       # interface de revue (Streamlit)
 #   docker compose up -d gateway                      # passerelle QA pour RAISE : /api/qa/docs
+#   docker compose up -d site                         # page de bilan statique : http://127.0.0.1:8097
 #   docker compose --profile llm up -d ollama         # modèle local (facultatif, voir docs/DOCKER.md)
 #
 # Les données restent sur l'hôte (./data, ./runs) ; elles ne sont jamais copiées dans l'image.
@@ -47,6 +48,16 @@ services:
     command: []
     ports:
       - "${HQA_GATEWAY_BIND:-127.0.0.1}:${HQA_GATEWAY_PORT:-8095}:8095"
+    restart: unless-stopped
+
+  site:
+    # page de bilan statique (agrégats uniquement, aucune donnée patient) : http://127.0.0.1:8097
+    image: nginx:1.27.3-alpine
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+    ports:
+      - "${HQA_SITE_BIND:-127.0.0.1}:${HQA_SITE_PORT:-8097}:80"
+    networks: [qa]
     restart: unless-stopped
 
   ollama:

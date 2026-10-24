@@ -119,6 +119,20 @@ docker compose run --rm hqa run --mode B3-noverif --subset dev
 GPU NVIDIA : décommenter le bloc `deploy` du service `ollama` (nécessite `nvidia-container-toolkit`).
 Sans GPU le modèle tourne sur CPU, beaucoup plus lentement.
 
+## 6c. Page de bilan
+
+`site/index.html` est une page statique : architecture, chiffres obtenus, questions ouvertes. Elle ne contient
+que des agrégats, aucune donnée patient. Le service `site` (nginx) la sert en lecture seule :
+
+```bash
+docker compose up -d site            # http://127.0.0.1:8097 sur le serveur
+ssh -L 8097:127.0.0.1:8097 <user>@<serveur>   # depuis un poste, puis http://localhost:8097
+```
+
+Pour la rendre accessible sur le réseau, mettre `HQA_SITE_BIND=0.0.0.0` dans `.env` (ou la placer derrière le
+reverse proxy existant). Le schéma d'architecture et les polices se chargent depuis des CDN (jsDelivr, Google
+Fonts) : sans accès Internet, la page reste lisible et le schéma s'affiche en texte.
+
 ## 7. Arrêt et nettoyage
 
 ```bash

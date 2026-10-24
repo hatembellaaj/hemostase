@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bilan du prototype QA hémophilie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : rapport d'une colonne de lecture (~68ch), figures et tableaux sur la pleine largeur du conteneur (960px). */
+:root {
+  --bg: #f7f8f8;
+  --surface: #ffffff;
+  --ink: #15201f;
+  --ink-2: #4b5755;
+  --ink-3: #6f7b79;
+  --rule: #d9dfde;
+  --accent: #1f6b73;
+  --accent-soft: #e3f0f0;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --good: #1d7a45;   --good-bg: #e4f3ea;
+  --warn: #9a6200;   --warn-bg: #fbf0d9;
+  --crit: #b3261e;   --crit-bg: #fbe5e3;
+  --idle: #5b6563;   --idle-bg: #eceff0;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111716; --surface: #182120; --ink: #e9eeed; --ink-2: #b6c1bf; --ink-3: #8d9997; --rule: #2c3836;
+    --accent: #6cc2c9; --accent-soft: #1d3234;
+    --series-1: #3987e5; --series-2: #d95926;
+    --good: #6fcf97; --good-bg: #17301f; --warn: #e3b25a; --warn-bg: #33270f; --crit: #f08b84; --crit-bg: #3a1a18;
+    --idle: #a9b3b1; --idle-bg: #232c2b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111716; --surface: #182120; --ink: #e9eeed; --ink-2: #b6c1bf; --ink-3: #8d9997; --rule: #2c3836;
+  --accent: #6cc2c9; --accent-soft: #1d3234;
+  --series-1: #3987e5; --series-2: #d95926;
+  --good: #6fcf97; --good-bg: #17301f; --warn: #e3b25a; --warn-bg: #33270f; --crit: #f08b84; --crit-bg: #3a1a18;
+  --idle: #a9b3b1; --idle-bg: #232c2b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { color-scheme: light; }
+@media (prefers-color-scheme: dark) { html { color-scheme: dark; } }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 960px; margin: 0 auto; padding-block: 40px 72px; display: grid; gap: 44px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 5vw, 42px); }
+h2 { font-size: 26px; }
+h3 { font-size: 18px; font-family: var(--font-body); font-weight: 600; }
+p { margin: 0; }
+section { display: grid; gap: 16px; min-width: 0; }
+.eyebrow { font: 500 12px/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.lede { font-size: 17px; color: var(--ink-2); max-width: 68ch; }
+.meta { font: 400 13px/1.5 var(--font-mono); color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 4px 18px; }
+code, .mono { font-family: var(--font-mono); font-size: .9em; }
+a { color: var(--accent); }
+header { display: grid; gap: 14px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+
+.callout { border: 1px solid var(--rule); border-left: 3px solid var(--warn); background: var(--surface); padding: 14px 18px; border-radius: 4px; max-width: 76ch; }
+.callout strong { color: var(--ink); }
+
+/* statut */
+.status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.status-col { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.status-col ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; color: var(--ink-2); font-size: 14px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font: 500 12px/1 var(--font-mono); letter-spacing: .04em; padding: 5px 9px; border-radius: 999px; width: fit-content; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.chip.good { color: var(--good); background: var(--good-bg); }
+.chip.warn { color: var(--warn); background: var(--warn-bg); }
+.chip.crit { color: var(--crit); background: var(--crit-bg); }
+.chip.idle { color: var(--idle); background: var(--idle-bg); }
+
+/* figures clés */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.fact { background: var(--surface); padding: 14px 16px; display: grid; gap: 2px; }
+.fact b { font: 600 24px/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+.fact span { font-size: 13px; color: var(--ink-2); }
+
+/* figures */
+figure { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+figcaption { display: grid; gap: 4px; }
+figcaption .t { font-weight: 600; }
+figcaption .s { font-size: 13px; color: var(--ink-2); }
+.chart { width: 100%; overflow-x: auto; }
+.chart svg { display: block; width: 100%; height: auto; min-width: 280px; }
+.chart text { font-family: var(--font-body); font-size: 12px; fill: var(--ink-2); }
+.chart .val { fill: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.chart .axis { stroke: var(--rule); }
+.chart .grid { stroke: var(--rule); stroke-dasharray: 2 3; }
+.chart .ref { stroke: var(--ink-3); stroke-dasharray: 4 3; stroke-width: 1.5; }
+.chart .na { fill: none; stroke: var(--ink-3); stroke-dasharray: 3 3; }
+.chart .hit { fill: transparent; cursor: default; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px; }
+.multiples figure { padding: 14px; }
+.foot { font-size: 12.5px; color: var(--ink-3); }
+
+details { font-size: 13.5px; }
+details summary { cursor: pointer; color: var(--accent); width: fit-content; }
+details summary:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); font-size: 12.5px; }
+td.n, th.n { text-align: right; }
+
+.arch { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; overflow-x: auto; }
+.arch pre { margin: 0; }
+.decisions { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.decisions li { display: grid; gap: 4px; padding-top: 10px; border-top: 1px solid var(--rule); min-width: 0; }
+.decisions li b { font-weight: 600; }
+.decisions li span { color: var(--ink-2); font-size: 14px; }
+
+ol.steps { margin: 0; padding-left: 22px; display: grid; gap: 10px; max-width: 76ch; }
+ol.steps li::marker { font-family: var(--font-mono); color: var(--accent); }
+ol.steps .who { font: 500 11.5px/1 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); margin-left: 6px; }
+pre.cmd { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; overflow-x: auto; font: 400 13px/1.6 var(--font-mono); color: var(--ink); }
+
+#tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--bg); font: 500 12.5px/1.4 var(--font-body); padding: 6px 9px; border-radius: 4px; max-width: 260px; z-index: 20; }
+@media (prefers-reduced-motion: no-preference) { .chart rect.bar { transition: opacity .15s; } }
+.chart rect.bar.dim { opacity: .45; }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">ICAART 2027 · prototype · bilan au 24 octobre 2026</span>
+  <h1>Contrôle qualité hybride du registre d'hémophilie</h1>
+  <p class="lede">Où en est le prototype <em>Hybrid Multi-Agent Quality Assurance for a Hemophilia Registry</em> : l'architecture retenue, ce qui a réellement été exécuté, les chiffres obtenus et ce qui manque pour produire des résultats publiables.</p>
+  <div class="meta"><span>dépôt hatembellaaj/hemostase · branche feature/python-react · commit ad39708</span><span>47 tests</span><span>modèle local qwen2.5:7b-instruct (CPU)</span></div>
+</header>
+
+<div class="callout"><strong>À lire avant les chiffres.</strong> Aucune expérience publiable n'a encore été menée. Le registre réel n'a été traité que par les règles déterministes (B0), sans annotation experte : on peut compter des alertes, pas mesurer une précision ou un rappel. Les essais avec le vrai modèle ont porté sur 10 fiches <em>entièrement artificielles</em> qui ont servi à mettre le système au point. Ce sont des données de développement, pas des résultats.</div>
+
+<section aria-labelledby="s-statut">
+  <h2 id="s-statut">État d'avancement</h2>
+  <div class="status-grid">
+    <div class="status-col">
+      <span class="chip good">implémenté et testé</span>
+      <ul>
+        <li>Lecture en lecture seule, empreinte SHA-256, traçabilité cellule par cellule</li>
+        <li>Pseudonymisation, table de correspondance séparée</li>
+        <li>Dictionnaire (32 champs) et règles versionnés</li>
+        <li>Normalisation déterministe : censure, unités, précision des dates</li>
+        <li>Agents, coordinateur, vérificateur, bornes d'exécution</li>
+        <li>Comparateurs B0, B1, B2, B3, B3 sans vérificateur</li>
+        <li>Métriques avec dénominateurs, bootstrap apparié par patient</li>
+        <li>Interface de revue, passerelle RAISE, déploiement Docker</li>
+        <li>Référence à un seul expert et réannotation en aveugle de 20 % des patients</li>
+        <li>Autorisation de traitement exigée et recopiée dans chaque manifeste</li>
+      </ul>
+    </div>
+    <div class="status-col">
+      <span class="chip warn">exécuté, à valeur de développement</span>
+      <ul>
+        <li>Audit agrégé du registre réel</li>
+        <li>B0 sur les 83 patients (alertes candidates, sans référence)</li>
+        <li>B0 sur données artificielles (graine 42)</li>
+        <li>B3 avec le vrai modèle, 10 fiches artificielles, 3 itérations de mise au point</li>
+        <li>Mesure de vitesse du modèle sur le serveur</li>
+      </ul>
+    </div>
+    <div class="status-col">
+      <span class="chip idle">pas encore exécuté</span>
+      <ul>
+        <li>B1, B2 et l'ablation avec le vrai modèle</li>
+        <li>Expérience artificielle figée (nouvelle graine)</li>
+        <li>Tout mode LLM sur le registre réel (autorisé depuis le 24/10, à lancer d'abord sur le développement)</li>
+        <li>Annotation par l'expert et réannotation de contrôle</li>
+        <li>Précision, rappel, F1 sur le registre</li>
+        <li>Revue chronométrée</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="s-archi">
+  <h2 id="s-archi">Architecture retenue</h2>
+  <p class="prose">Le code fait tous les calculs et applique toutes les règles formelles. Les agents interviennent seulement là où le code ne suffit pas : une valeur écrite d'une façon qu'aucun format autorisé ne couvre, ou un commentaire libre à confronter aux champs structurés. Chaque proposition d'un agent est contrôlée par du code avant d'être retenue, et le médecin a le dernier mot.</p>
+  <div class="arch">
+<pre class="mermaid">
+flowchart LR
+  XLS[("registre.xlsx<br/>lecture seule")] --> DET["Outils déterministes<br/>lecture · pseudonymisation<br/>normalisation · règles"]
+  DICT[["Dictionnaire + règles<br/>YAML versionnés"]] --> DET
+  DET -->|"vue pseudonymisée<br/>+ résultats des règles"| CO{{"Coordinateur<br/>routage borné"}}
+  CO -->|"cellule illisible"| AN["Agent de<br/>normalisation"]
+  CO -->|"commentaire présent"| AC["Agent de cohérence<br/>N01 + sens des codes"]
+  CO -->|"candidats à vérifier"| AV["Agent<br/>vérificateur"]
+  AN -->|"valeur rendue lisible :<br/>règles réexécutées"| DET
+  AC --> AV
+  AV -->|"1 révision max"| AC
+  AN -.-> G["Validation par le code<br/>preuve = source · pas de précision inventée<br/>règle formelle refusée à l'agent<br/>sortie invalide = panne"]
+  AC -.-> G
+  AV -.-> G
+  DET --> AL[["Anomalies candidates<br/>preuves · règle · version<br/>action « revue »"]]
+  G --> AL
+  AL --> H["Revue humaine<br/>confirmer · rejeter · non résolu"]
+  AL --> EV["Évaluation<br/>B0 · B1 · B2 · B3 · B3 sans vérif."]
+  EXP["1 expert en aveugle<br/>+ réannotation de 20 %"] --> EV
+</pre>
+  </div>
+  <ul class="decisions">
+    <li><b>Règles formelles évaluées par le code seul</b><span>Lors des essais, l'agent de cohérence réévaluait toutes les règles et se trompait (« 9 mois » jugé supérieur à « 1 an et 6 mois »). Il ne reçoit plus que les relations sans implémentation déterministe, aujourd'hui N01 (commentaire ↔ champ).</span></li>
+    <li><b>Règles réexécutées après une normalisation</b><span>Quand un agent rend une valeur lisible, c'est le moteur de règles qui en tire les conséquences. Ces signalements passent ensuite au vérificateur.</span></li>
+    <li><b>Sens des codes fourni aux agents</b><span>Libellé et statut de chaque code (hypothèse ou confirmé) pour les champs renseignés. Sans cette information, l'agent devinait et a produit une fausse alerte.</span></li>
+    <li><b>Une panne n'est jamais « pas d'anomalie »</b><span>Une sortie invalide ou tronquée met le dossier en échec technique. Ses opportunités restent sans décision et entrent dans le rappel global.</span></li>
+    <li><b>Modèle local, mêmes règles pour tous les modes</b><span>Ollama sur le serveur, aucun port publié. B1, B2 et B3 utilisent le même modèle, les mêmes outils et les mêmes contraintes de prompt.</span></li>
+    <li><b>Une règle n'est active qu'une fois approuvée</b><span>H11 (âge cohérent avec l'année de naissance) est approuvée depuis le 24/10. Les autres règles H et K reposent sur des codes non confirmés : elles ne servent qu'en exploration sur le sous-ensemble de développement.</span></li>
+    <li><b>Référence à un seul expert</b><span>Un seul expert est disponible. Sa reproductibilité est mesurée par une réannotation en aveugle d'environ 20 % des patients, au moins deux semaines après la première. Sans second expert, il n'y a ni accord inter-annotateurs ni adjudication : c'est une limite déclarée.</span></li>
+  </ul>
+</section>
+
+<section aria-labelledby="s-donnees">
+  <h2 id="s-donnees">Le registre</h2>
+  <p class="prose">L'audit confirme les observations de départ. Le 24 octobre 2026, le responsable du registre a confirmé plusieurs points. Une ligne correspond à un patient, et DDN signifie date de dernière nouvelle. Les mesures sont en unités conventionnelles françaises et tunisiennes : facteurs en %, y compris les valeurs inférieures à 1 (0,12 signifie 0,12 %), inhibiteur en UB/mL, TCA en secondes. L'âge de la colonne F vaut l'année de calcul moins l'année de naissance, l'année de calcul étant 2024 ou 2025 selon les patients. Enfin, le traitement des données pseudonymisées par le modèle local est autorisé.</p>
+  <div class="facts">
+    <div class="fact"><b>83</b><span>patients (une ligne chacun)</span></div>
+    <div class="fact"><b>165</b><span>positions de colonnes</span></div>
+    <div class="fact"><b>14</b><span>intitulés répétés</span></div>
+    <div class="fact"><b>4</b><span>colonnes sans titre, 3 renseignées</span></div>
+    <div class="fact"><b>49</b><span>colonnes aux types mélangés</span></div>
+    <div class="fact"><b>74 / 44</b><span>valeurs de facteur VIII / IX</span></div>
+    <div class="fact"><b>24</b><span>valeurs d'accidents sur 6 mois</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="s-res">
+  <h2 id="s-res">Résultats obtenus</h2>
+
+  <figure>
+    <figcaption>
+      <span class="t">Registre réel : alertes candidates de B0, avant et après les confirmations</span>
+      <span class="s">83 patients, règles structurelles et H11 approuvée. Les autres règles H et K, encore à l'état d'hypothèse, ne sont pas incluses.</span>
+    </figcaption>
+    <div class="legend" aria-hidden="true"><span><i style="background:var(--series-1)"></i>Avant (dictionnaire initial) : 43</span><span><i style="background:var(--series-2)"></i>Après confirmations : 11</span></div>
+    <div class="chart" id="chart-real" role="img" aria-label="Alertes B0 par règle : S04 de 17 à 0, S03 de 16 à 0, S01 de 10 à 10, H11 de 0 (inactive) à 1"></div>
+    <p class="foot">Les 17 alertes S04 portaient sur des noms partagés par plusieurs lignes. Une ligne étant un patient, S04 ne cherche plus qu'une double saisie (même nom et même date de naissance), et il n'y en a aucune. Les 16 alertes S03 portaient sur l'unité du titre d'inhibiteur, désormais confirmée. H11, inactive avant le 24/10, compare l'âge à l'année de naissance. 46 âges correspondent à un calcul en 2024 et 36 à un calcul en 2025. Un seul patient ne correspond à aucune des deux années (écart de 10 ans) : c'est lui qui est signalé. Ce sont des alertes à examiner, pas des erreurs confirmées.</p>
+    <details><summary>Tableau des valeurs</summary><div class="tbl"><table>
+      <thead><tr><th>Règle</th><th>Objet</th><th class="n">Avant</th><th class="n">Après</th></tr></thead>
+      <tbody>
+        <tr><td>S04</td><td>même clé de nom → double saisie possible</td><td class="n">17</td><td class="n">0</td></tr>
+        <tr><td>S03</td><td>valeur sans unité alors que l'unité n'est pas fixée</td><td class="n">16</td><td class="n">0</td></tr>
+        <tr><td>S01</td><td>valeur illisible dans un format autorisé</td><td class="n">10</td><td class="n">10</td></tr>
+        <tr><td>H11</td><td>âge ne correspondant ni à 2024 ni à 2025 − année de naissance</td><td class="n">0 (inactive)</td><td class="n">1</td></tr>
+        <tr><td colspan="2"><b>Total</b></td><td class="n"><b>43</b></td><td class="n"><b>11</b></td></tr>
+      </tbody></table></div></details>
+  </figure>
+
+  <div class="prose" style="display:grid;gap:10px">
+    <h3>Données artificielles, règles seules (B0)</h3>
+    <p>Sur 30 fiches inventées (graine 42), B0 trouve 10 des 11 erreurs injectées, sans aucune fausse alerte. L'erreur manquée est la contradiction entre un commentaire et un champ, qu'aucune règle déterministe ne peut voir. Le banc d'essai est conçu ainsi pour ne pas favoriser une architecture plutôt qu'une autre. Ce résultat valide le logiciel, pas sa performance sur le registre.</p>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <div class="prose" style="display:grid;gap:10px">
+      <h3>Mise au point de B3 avec le vrai modèle</h3>
+      <p>Il s'agit de 10 fiches artificielles (graine 42), avec 4 erreurs injectées. B0 en trouve 3 et ne lève aucune fausse alerte. Chaque itération correspond à une correction du système. La quatrième, qui fournit le sens des codes aux agents, est poussée mais pas encore mesurée.</p>
+    </div>
+    <p class="legend"><span><b>I1</b> sortie limitée à 800 tokens</span><span><b>I2</b> limite 1 500</span><span><b>I3</b> règles formelles au code</span><span><b>I4</b> sens des codes fourni (à mesurer)</span></p>
+    <div class="multiples" id="multiples"></div>
+    <details><summary>Tableau des valeurs</summary><div class="tbl"><table>
+      <thead><tr><th>Itération</th><th>Changement</th><th class="n">Trouvées / 4</th><th class="n">Fausses alertes</th><th class="n">Échecs</th><th class="n">Appels</th><th class="n">Tokens lus + générés</th><th class="n">Latence max</th></tr></thead>
+      <tbody>
+        <tr><td>I1 · 2c9e7e8</td><td>sortie limitée à 800 tokens</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n">3</td><td class="n">8 666 + 1 723</td><td class="n">226 s</td></tr>
+        <tr><td>I2 · 0687d05</td><td>limite à 1 500, troncature détectée</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n">3</td><td class="n">8 768 + 3 119</td><td class="n">310 s</td></tr>
+        <tr><td>I3 · 4159164</td><td>règles formelles laissées au code</td><td class="n">4</td><td class="n">1</td><td class="n">0</td><td class="n">5</td><td class="n">9 444 + 642</td><td class="n">170 s</td></tr>
+        <tr><td>I4 · 0d0e232</td><td>sens des codes fourni aux agents</td><td class="n" colspan="5">non mesuré</td><td class="n">—</td></tr>
+        <tr><td>B0 (référence)</td><td>règles seules</td><td class="n">3</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">&lt; 0,01 s</td></tr>
+      </tbody></table></div></details>
+    <p class="foot">Les deux échecs de I1 et de I2 viennent de réponses de cohérence coupées par la limite de tokens : le système les a comptés comme des pannes, pas comme une absence d'anomalie. La fausse alerte de I3 vient d'une lecture erronée des codes 1 et 2 par l'agent de cohérence, qui ne disposait pas de leur signification : c'est l'objet de I4. Sur I3, l'erreur trouvée en plus de B0 est la contradiction « n'a jamais présenté d'hémarthrose » face à une hémarthrose du coude codée 1, envoyée en revue humaine.</p>
+  </div>
+
+  <figure>
+    <figcaption>
+      <span class="t">Vitesse du modèle sur le serveur</span>
+      <span class="s">qwen2.5:7b-instruct via Ollama, Xeon E-2386G (6 cœurs, 12 threads), 31 Go de RAM, sans GPU. Mesure sur un prompt court.</span>
+    </figcaption>
+    <div class="facts">
+      <div class="fact"><b>34</b><span>tokens/s en lecture du prompt</span></div>
+      <div class="fact"><b>10,8</b><span>tokens/s en génération</span></div>
+      <div class="fact"><b>38–310 s</b><span>par dossier quand le modèle est appelé</span></div>
+    </div>
+    <p class="foot">Les limites ont été recalibrées pour ce matériel : 1 500 tokens de sortie, 600 s par appel, 30 000 tokens et 1 800 s par dossier. Ce sont des valeurs de départ, à figer sur le sous-ensemble de développement.</p>
+  </figure>
+</section>
+
+<section aria-labelledby="s-manque">
+  <h2 id="s-manque">Informations encore attendues</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Question</th><th>Pourquoi elle bloque</th><th>Statut</th></tr></thead>
+    <tbody>
+      <tr><td>Que valent 1, 2 et 3 dans chaque colonne codée ? Le codage est-il commun à toutes ?</td><td>Toutes les règles H et K en dépendent : elles restent inactives</td><td><span class="chip crit">bloquant</span></td></tr>
+      <tr><td>Que signifie une case vide : non, inconnu ou non applicable ?</td><td>Sans réponse, impossible de juger les dépendances entre champs</td><td><span class="chip crit">bloquant</span></td></tr>
+      <tr><td>Un second annotateur, même sur l'échantillon de réannotation</td><td>Permettrait un accord inter-annotateurs. Avec un seul expert, la référence reste une limite déclarée.</td><td><span class="chip warn">souhaitable</span></td></tr>
+      <tr><td>Un seul expert disponible</td><td>Référence à un expert et réannotation en aveugle de 20 %</td><td><span class="chip good">organisé le 24/10</span></td></tr>
+      <tr><td>Traitement par le modèle local</td><td>Autorisé ; la référence de l'autorisation est exigée et recopiée dans chaque manifeste</td><td><span class="chip good">confirmé le 24/10</span></td></tr>
+      <tr><td>Âge de la colonne F</td><td>Calculé en 2024 ou en 2025 − année de naissance ; H11 approuvée</td><td><span class="chip good">confirmé le 24/10</span></td></tr>
+      <tr><td>Valeurs de facteur inférieures à 1</td><td>Ce sont des % (0,12 = 0,12 %), jamais converties</td><td><span class="chip good">confirmé le 24/10</span></td></tr>
+      <tr><td>DDN, une ligne = un patient, unités</td><td>—</td><td><span class="chip good">confirmé le 24/10</span></td></tr>
+    </tbody></table></div>
+</section>
+
+<section aria-labelledby="s-suite">
+  <h2 id="s-suite">Pour finaliser</h2>
+  <ol class="steps">
+    <li>Mesurer I4 sur la graine 42 et vérifier que la fausse alerte disparaît sans perdre l'erreur trouvée.<span class="who">serveur</span></li>
+    <li>Figer les prompts, les règles et les limites. Toute retouche ultérieure exigerait une nouvelle graine.<span class="who">équipe</span></li>
+    <li>Lancer l'expérience artificielle à rapporter : graine 2027, 30 fiches, B0 à B3 et l'ablation. Environ 3 à 6 h sur le CPU, à confirmer.<span class="who">serveur</span></li>
+    <li>Obtenir la signification des codes et des cases vides, puis activer les règles approuvées.<span class="who">équipe clinique</span></li>
+    <li>Lancer B1, B2 et B3 sur les 25 patients de développement avec le modèle local, désormais autorisé, pour caler les budgets.<span class="who">serveur</span></li>
+    <li>Figer le découpage (25 patients en développement, 58 en test). Faire annoter le test par l'expert en aveugle, puis réannoter 20 % des patients au moins deux semaines plus tard.<span class="who">expert</span></li>
+    <li>Exécuter B0 à B3 sur le test et calculer les métriques par famille, avec les intervalles bootstrap.<span class="who">serveur</span></li>
+    <li>Organiser la revue chronométrée selon le carré latin, puis rédiger les résultats et leurs limites.<span class="who">équipe</span></li>
+  </ol>
+</section>
+
+<section aria-labelledby="s-repro">
+  <h2 id="s-repro">Reproduire sur le serveur</h2>
+<pre class="cmd">cd ~/NewReg/hemostase &amp;&amp; git pull &amp;&amp; cd agentic-qa
+sudo HQA_GIT_COMMIT=$(git rev-parse HEAD) docker compose build hqa
+sudo docker compose run --rm --entrypoint python hqa -m pytest -q tests
+sudo docker compose run --rm hqa run --mode B0 --subset all
+sudo docker compose run --rm hqa synthetic --rows 10 --seed 42 --llm --modes B3</pre>
+  <p class="foot">Toute la procédure est dans docs/DOCKER.md et le protocole dans docs/PROTOCOL.md. Les questions ouvertes sont tenues à jour dans docs/QUESTIONS.md.</p>
+</section>
+
+</div>
+
+<footer style="max-width:960px;margin:0 auto;padding-block:0 40px;font-size:12.5px;color:var(--ink-3)">
+  Page statique du prototype agentic-qa (agentic-qa/site/index.html) · chiffres au 24 octobre 2026 · aucune donnée patient, uniquement des agrégats.
+</footer>
+<div id="tip" hidden></div>
+
+<script>
+(function () {
+  const NS = "http://www.w3.org/2000/svg";
+  const tip = document.getElementById("tip");
+  function el(name, attrs, parent) {
+    const e = document.createElementNS(NS, name);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function showTip(evt, text) {
+    tip.textContent = text; tip.hidden = false;
+    const x = Math.min(evt.clientX + 12, window.innerWidth - tip.offsetWidth - 8);
+    tip.style.left = x + "px"; tip.style.top = (evt.clientY - tip.offsetHeight - 10) + "px";
+  }
+  function hideTip() { tip.hidden = true; }
+  function hover(target, text, bar) {
+    target.addEventListener("pointermove", e => { showTip(e, text); if (bar) bar.classList.add("dim"); });
+    target.addEventListener("pointerleave", () => { hideTip(); if (bar) bar.classList.remove("dim"); });
+  }
+  function niceMax(v) { if (v <= 5) return 5; const p = Math.pow(10, Math.floor(Math.log10(v))); const n = v / p; return (n <= 2 ? 2 : n <= 5 ? 5 : 10) * p; }
+
+  // Bars rounded only at the data end (4px), square on the baseline.
+  function barPath(x, y, w, h, r, horizontal) {
+    if (h <= 0 && !horizontal) return "";
+    r = Math.min(r, horizontal ? h / 2 : w / 2, horizontal ? w : h);
+    if (horizontal) return `M${x},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h - r}Q${x + w},${y + h} ${x + w - r},${y + h}H${x}Z`;
+    return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`;
+  }
+
+  // ---- Figure 1 : barres horizontales groupées (2 séries)
+  (function () {
+    const rows = [["S04 · double saisie", 17, 0], ["S03 · unité absente", 16, 0], ["S01 · valeur illisible", 10, 10], ["H11 · âge incohérent", 0, 1]];
+    const W = 640, L = 150, R = 30, T = 18, rowH = 54, barH = 16, gap = 2;
+    const H = T + rows.length * rowH + 22, max = 20, sx = v => L + (W - L - R) * v / max;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}` }, document.getElementById("chart-real"));
+    for (let t = 0; t <= max; t += 5) {
+      el("line", { x1: sx(t), x2: sx(t), y1: T - 6, y2: H - 22, class: t ? "grid" : "axis" }, svg);
+      el("text", { x: sx(t), y: H - 6, "text-anchor": "middle" }, svg).textContent = t;
+    }
+    rows.forEach(([label, a, b], i) => {
+      const y0 = T + i * rowH + 6;
+      el("text", { x: L - 10, y: y0 + barH + 4, "text-anchor": "end" }, svg).textContent = label;
+      [[a, "var(--series-1)", "Avant"], [b, "var(--series-2)", "Après"]].forEach(([v, c, s], j) => {
+        const y = y0 + j * (barH + gap);
+        const w = Math.max(sx(v) - sx(0), 0);
+        let bar = null;
+        if (v > 0) bar = el("path", { d: barPath(sx(0), y, w, barH, 4, true), fill: c, class: "bar" }, svg);
+        else el("line", { x1: sx(0), x2: sx(0) + 6, y1: y + barH / 2, y2: y + barH / 2, stroke: c, "stroke-width": 2 }, svg);
+        el("text", { x: sx(v) + 6, y: y + barH - 3, class: "val" }, svg).textContent = v;
+        const hit = el("rect", { x: L, y: y - 1, width: W - L - R, height: barH + 2, class: "hit" }, svg);
+        hover(hit, `${label} · ${s} : ${v} alerte${v > 1 ? "s" : ""}`, bar);
+      });
+    });
+  })();
+
+  // ---- Figure 2 : petits multiples par itération (une série chacun)
+  const ITER = ["I1", "I2", "I3", "I4"];
+  const SUB = { I1: "limite 800", I2: "limite 1 500", I3: "règles au code", I4: "sens des codes" };
+  const panels = [
+    { t: "Erreurs injectées trouvées", s: "sur 4 ; tirets : B0 = 3", v: [3, 3, 4, null], ref: 3, max: 4, unit: "" },
+    { t: "Fausses alertes", s: "B0 = 0", v: [0, 0, 1, null], ref: null, max: 4, unit: "" },
+    { t: "Dossiers en échec technique", s: "sortie tronquée ou invalide", v: [2, 2, 0, null], ref: null, max: 4, unit: "" },
+    { t: "Tokens générés", s: "somme sur les 10 dossiers", v: [1723, 3119, 642, null], ref: null, max: null, unit: "" },
+    { t: "Latence maximale par dossier", s: "secondes", v: [226.2, 309.6, 170.1, null], ref: null, max: null, unit: " s" },
+    { t: "Appels au modèle", s: "somme sur les 10 dossiers", v: [3, 3, 5, null], ref: null, max: 6, unit: "" },
+  ];
+  const host = document.getElementById("multiples");
+  const fmt = v => v.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+  panels.forEach(p => {
+    const fig = document.createElement("figure");
+    fig.innerHTML = `<figcaption><span class="t">${p.t}</span><span class="s">${p.s}</span></figcaption><div class="chart"></div>`;
+    host.appendChild(fig);
+    const W = 300, H = 170, L = 34, R = 8, T = 16, B = 34;
+    const max = p.max || niceMax(Math.max(...p.v.filter(x => x != null)) * 1.1);
+    const sy = v => T + (H - T - B) * (1 - v / max);
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": p.t + " : " + p.v.map((v, i) => ITER[i] + " " + (v == null ? "non mesuré" : fmt(v))).join(", ") }, fig.querySelector(".chart"));
+    const steps = p.max ? (p.max <= 6 ? p.max : 4) : 4;
+    for (let k = 0; k <= steps; k++) {
+      const v = max * k / steps;
+      el("line", { x1: L, x2: W - R, y1: sy(v), y2: sy(v), class: k ? "grid" : "axis" }, svg);
+      if (k % (steps > 4 ? 2 : 1) === 0 || k === steps) el("text", { x: L - 6, y: sy(v) + 4, "text-anchor": "end" }, svg).textContent = fmt(v);
+    }
+    const band = (W - L - R) / ITER.length, bw = Math.min(30, band * 0.46);
+    ITER.forEach((it, i) => {
+      const cx = L + band * (i + 0.5), v = p.v[i];
+      el("text", { x: cx, y: H - 12, "text-anchor": "middle" }, svg).textContent = it;
+      let bar = null, label;
+      if (v == null) {
+        el("rect", { x: cx - bw / 2, y: sy(max * 0.5), width: bw, height: sy(0) - sy(max * 0.5), rx: 3, class: "na" }, svg);
+        el("text", { x: cx, y: sy(max * 0.5) - 6, "text-anchor": "middle", style: "font-size:10.5px;fill:var(--ink-3)" }, svg).textContent = "à mesurer";
+        label = `${it} (${SUB[it]}) : non mesuré`;
+      } else {
+        if (v > 0) bar = el("path", { d: barPath(cx - bw / 2, sy(v), bw, sy(0) - sy(v), 4, false), fill: "var(--series-1)", class: "bar" }, svg);
+        else el("line", { x1: cx - bw / 2, x2: cx + bw / 2, y1: sy(0) - 1, y2: sy(0) - 1, stroke: "var(--series-1)", "stroke-width": 2 }, svg);
+        el("text", { x: cx, y: sy(v) - 6, "text-anchor": "middle", class: "val" }, svg).textContent = fmt(v) + p.unit;
+        label = `${it} (${SUB[it]}) : ${fmt(v)}${p.unit}`;
+      }
+      const hit = el("rect", { x: cx - band / 2, y: T, width: band, height: H - T - B, class: "hit" }, svg);
+      hover(hit, label, bar);
+    });
+    if (p.ref != null) {
+      el("line", { x1: L, x2: W - R, y1: sy(p.ref), y2: sy(p.ref), class: "ref" }, svg);
+    }
+  });
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>
+  // Schéma d'architecture : rendu par Mermaid si le CDN est joignable, sinon le texte du schéma reste lisible.
+  if (window.mermaid) {
+    const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral", securityLevel: "strict", flowchart: { htmlLabels: true } });
+  }
+</script>
+</body>
+</html>
