@@ -171,7 +171,9 @@ def test_pseudonym_code_is_stable_and_keyed(monkeypatch):
     assert pseudonym.code("hemophilie", " FICTÎF ", "alpha", date(2011, 3, 2)) == c
     assert pseudonym.code("thrombopathie", "Fictif", "Alpha", date(2011, 3, 2)) == "THR-" + c[4:]
     assert pseudonym.code("hemophilie", "Fictif", "Alpha", date(2011, 3, 3)) != c   # autre date de naissance
-    monkeypatch.setattr(pseudonym.get_settings(), "pseudo_key", "trop-courte")
+    from app.config import get_settings
+
+    monkeypatch.setattr(get_settings(), "pseudo_key", "trop-courte")
     import pytest as _pytest
 
     with _pytest.raises(pseudonym.PseudoKeyMissing):
