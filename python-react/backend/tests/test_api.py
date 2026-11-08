@@ -123,3 +123,76 @@ def test_stats_aggregate(client):
     r = client.post(url, json={"fields": ["hemarthroseMC", "inhibiteurs"], "series": "formeClinique"}, headers=h)
     assert r.status_code == 200 and len(r.json()["categories"]) == 2
     assert client.post(url, json={"x": "nom"}, headers=h).status_code == 400
+
+
+def _fake_registry(rows):
+    """Classeur ENTIÈREMENT FICTIF au format du registre (seuls les intitulés contrôlés sont renseignés)."""
+    import datetime
+    import io
+
+    import openpyxl
+
+    from app.import_hemophilie import EXPECTED
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Feuil1"
+    hdr = [None] * 165
+    for i, h in EXPECTED.items():
+        hdr[i] = h
+    ws.append(hdr)
+    for name, born in rows:
+        r = [None] * 165
+        r[0], r[1], r[4], r[7], r[36], r[37] = name, 1, datetime.datetime(*born), 1, 1, 1
+        ws.append(r)
+    buf = io.BytesIO()
+    wb.save(buf)
+    return buf.getvalue()
+
+
+def test_import_hemophilie_from_interface(client):
+    h = token(client)
+    xlsx = _fake_registry([("Fictifimport Alpha", (2011, 3, 2)), ("Fictifimport Beta", (2012, 4, 3))])
+    url = "/api/admin/import/hemophilie"
+    hdr = {**h, "Content-Type": "application/octet-stream"}
+
+    # réservé aux administrateurs
+    client.post("/api/admin/users", json={"login": "lecteur", "activated": True, "authorities": ["ROLE_USER"], "password": "lecteur"}, headers=h)
+    hu = {**token(client, "lecteur", "lecteur"), "Content-Type": "application/octet-stream"}
+    assert client.post(f"{url}/preview", content=xlsx, headers=hu).status_code == 403
+
+    def count():
+        r = client.get("/api/fiches/hemophilie", params={"q": "Fictifimport"}, headers=h)
+        return int(r.headers["X-Total-Count"])
+
+    # aperçu : rien n'est écrit
+    p = client.post(f"{url}/preview", content=xlsx, headers=hdr)
+    assert p.status_code == 200, p.text
+    assert p.json()["valide"] and p.json()["nbFiches"] == 2 and p.json()["nbNouvelles"] == 2
+    assert count() == 0
+
+    # import, puis second import : aucun doublon
+    r = client.post(url, content=xlsx, headers=hdr)
+    assert r.status_code == 200, r.text
+    assert r.json()["importees"] == 2 and count() == 2
+    r = client.post(url, content=xlsx, headers=hdr)
+    assert r.json() == {"importees": 0, "ignoreesDejaPresentes": 2, "alertes": r.json()["alertes"]} and count() == 2
+    assert client.post(f"{url}/preview", content=xlsx, headers=hdr).json()["nbDejaPresentes"] == 2
+
+    # fichier au mauvais format ou illisible : refusé, rien n'est écrit
+    bad = _fake_registry([("Fictifimport Gamma", (2013, 1, 1))])
+    import io
+
+    import openpyxl
+
+    wb = openpyxl.load_workbook(io.BytesIO(bad))
+    wb.active["A1"] = "Autre colonne"
+    buf = io.BytesIO()
+    wb.save(buf)
+    r = client.post(url, content=buf.getvalue(), headers=hdr)
+    assert r.status_code == 400 and count() == 2
+    assert client.post(url, content=b"pas un classeur", headers=hdr).status_code == 400
+
+    # classeur de contrôle
+    rep = client.post(f"{url}/report", content=xlsx, headers=hdr)
+    assert rep.status_code == 200 and rep.content[:2] == b"PK"

@@ -25,6 +25,23 @@ Ouvrez <http://localhost:18500> (port `HTTP_PORT` du `.env`) et connectez-vous a
 - Documentation interactive de l'API : <http://localhost:18500/api/docs>
 - Pour charger les 80 fiches fictives de JHipster dans une base vide : `SEED_DEMO_DATA=true` dans `.env`.
 
+### Importer le registre Excel de l'hémophilie
+
+Depuis l'interface, compte administrateur : menu **Administration → Importer (Excel)**.
+
+1. Choisissez le classeur du registre (`.xlsx`, feuille de 165 colonnes codées). Il est contrôlé sans rien écrire :
+   nombre de fiches, fiches nouvelles ou déjà présentes, alertes de conversion, erreurs bloquantes.
+2. Téléchargez si besoin le **classeur de contrôle** (correspondance des colonnes, codes décodés, alertes, aperçu).
+3. Cliquez sur **Importer** : toutes les fiches nouvelles sont enregistrées en une seule transaction. Une fiche déjà
+   présente (même nom, prénom et date de naissance) n'est jamais importée deux fois ; un fichier contenant une erreur
+   est refusé en entier.
+
+Le même code est disponible en ligne de commande (génère un script SQL et le classeur de contrôle) :
+
+```bash
+python tools/import_registre_hemophilie.py registre.xlsx import_hemophilie.sql controle_import.xlsx
+```
+
 ### Mode développement (rechargement à chaud)
 
 ```bash

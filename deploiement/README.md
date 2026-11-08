@@ -35,6 +35,9 @@ docker compose up -d --build    # -> http://<serveur>:18500
 
 Le projet s'appelle `hemostase` (conteneurs `hemostase-*`, volume de base `hemostase_db_data`).
 
+Pour charger les fiches d'hémophilie : connecté en administrateur, menu **Administration → Importer (Excel)**
+(aperçu et contrôle avant import, aucune fiche importée deux fois). Voir `python-react/README.md`.
+
 ## 3. Contrôle qualité (agentic-qa)
 
 ```bash

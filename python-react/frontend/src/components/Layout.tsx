@@ -57,6 +57,9 @@ export default function Layout() {
               <NavLink to="/admin/users" className="nav-item">
                 Utilisateurs
               </NavLink>
+              <NavLink to="/admin/import" className="nav-item">
+                Importer (Excel)
+              </NavLink>
               <a href="/api/docs" className="nav-item" target="_blank" rel="noreferrer">
                 Documentation de l'API
               </a>

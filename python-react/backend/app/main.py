@@ -7,7 +7,7 @@ from sqlalchemy import text
 
 from .config import get_settings
 from .db import get_engine, init_db
-from .routers import auth, fiches, users
+from .routers import auth, fiches, imports, users
 from .seed import seed
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -41,6 +41,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(fiches.router)
+app.include_router(imports.router)
 
 
 @app.get("/api/health", tags=["système"])
