@@ -36,6 +36,8 @@ services:
       DATABASE_URL: mysql+pymysql://${DB_USER:-hemostase}:${DB_PASSWORD:-hemostase}@db:3306/${DB_NAME:-hemostase}?charset=utf8mb4
       JWT_SECRET: ${JWT_SECRET:-change-me-please-change-me-please-change-me-please}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      # compte de démonstration user/user : désactivé par défaut (serveur exposé)
+      CREATE_DEFAULT_USER: ${CREATE_DEFAULT_USER:-false}
       SEED_DEMO_DATA: ${SEED_DEMO_DATA:-false}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:18500}
     depends_on:
