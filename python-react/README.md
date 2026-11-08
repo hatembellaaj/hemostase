@@ -25,16 +25,24 @@ Ouvrez <http://localhost:18500> (port `HTTP_PORT` du `.env`) et connectez-vous a
 - Documentation interactive de l'API : <http://localhost:18500/api/docs>
 - Pour charger les 80 fiches fictives de JHipster dans une base vide : `SEED_DEMO_DATA=true` dans `.env`.
 
-### Importer le registre Excel de l'hémophilie
+### Importer un registre Excel (noms codés)
 
-Depuis l'interface, compte administrateur : menu **Administration → Importer (Excel)**.
+Depuis l'interface, compte administrateur : menu **Administration → Importer (Excel)**. Prérequis : `PSEUDO_KEY` dans `.env`
+(`openssl rand -hex 32`, à sauvegarder hors du serveur et à ne jamais changer).
 
-1. Choisissez le classeur du registre (`.xlsx`, feuille de 165 colonnes codées). Il est contrôlé sans rien écrire :
+1. Choisissez le **registre concerné** (seule l'hémophilie a aujourd'hui un convertisseur Excel), puis le classeur (`.xlsx`, feuille de 165 colonnes codées). Il est contrôlé sans rien écrire :
    nombre de fiches, fiches nouvelles ou déjà présentes, alertes de conversion, erreurs bloquantes.
 2. Téléchargez si besoin le **classeur de contrôle** (correspondance des colonnes, codes décodés, alertes, aperçu).
 3. Cliquez sur **Importer** : toutes les fiches nouvelles sont enregistrées en une seule transaction. Une fiche déjà
    présente (même nom, prénom et date de naissance) n'est jamais importée deux fois ; un fichier contenant une erreur
    est refusé en entier.
+
+**Codage des noms.** À l'import, le nom est remplacé par un code stable (ex. `HEM-3F9A21C4E7`, HMAC-SHA256 du nom, du
+prénom et de la date de naissance avec `PSEUDO_KEY`) et le prénom est vidé. La correspondance code ↔ identité n'est
+jamais enregistrée en base : bouton **Correspondance code ↔ identité** (recalculée depuis le fichier). Les fiches déjà
+en base avec un nom en clair (saisie manuelle, import antérieur) se codent avec **Coder les fiches existantes**, qui
+télécharge leur correspondance : conservez-la hors du serveur, c'est la seule trace de ces noms. Il s'agit d'une
+pseudonymisation : date de naissance, numéro de dossier, ville ou commentaires restent identifiants.
 
 Le même code est disponible en ligne de commande (génère un script SQL et le classeur de contrôle) :
 

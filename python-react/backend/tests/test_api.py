@@ -3,6 +3,7 @@ import tempfile
 
 os.environ["DATABASE_URL"] = "sqlite:///" + os.path.join(tempfile.mkdtemp(), "test.db")
 os.environ["SEED_DEMO_DATA"] = "true"
+os.environ["PSEUDO_KEY"] = "cle-de-test-uniquement-0123456789abcdef"
 
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
@@ -150,49 +151,117 @@ def _fake_registry(rows):
     return buf.getvalue()
 
 
+def _xlsx_rows(content):
+    import io
+
+    import openpyxl
+
+    ws = openpyxl.load_workbook(io.BytesIO(content)).active
+    return [r for r in ws.iter_rows(min_row=3, values_only=True)]
+
+
+def test_pseudonym_code_is_stable_and_keyed(monkeypatch):
+    from datetime import date
+
+    from app import pseudonym
+
+    c = pseudonym.code("hemophilie", "Fictif", "Alpha", date(2011, 3, 2))
+    assert pseudonym.is_code(c) and c.startswith("HEM-") and len(c) <= 25
+    # casse, accents et espaces ignorés ; même partie hexadécimale dans tous les registres
+    assert pseudonym.code("hemophilie", " FICTÎF ", "alpha", date(2011, 3, 2)) == c
+    assert pseudonym.code("thrombopathie", "Fictif", "Alpha", date(2011, 3, 2)) == "THR-" + c[4:]
+    assert pseudonym.code("hemophilie", "Fictif", "Alpha", date(2011, 3, 3)) != c   # autre date de naissance
+    monkeypatch.setattr(pseudonym.get_settings(), "pseudo_key", "trop-courte")
+    import pytest as _pytest
+
+    with _pytest.raises(pseudonym.PseudoKeyMissing):
+        pseudonym.code("hemophilie", "Fictif", "Alpha", None)
+
+
 def test_import_hemophilie_from_interface(client):
+    from datetime import date
+
+    from app.pseudonym import code
+
     h = token(client)
     xlsx = _fake_registry([("Fictifimport Alpha", (2011, 3, 2)), ("Fictifimport Beta", (2012, 4, 3))])
     url = "/api/admin/import/hemophilie"
     hdr = {**h, "Content-Type": "application/octet-stream"}
+    alpha = code("hemophilie", "Fictifimport", "Alpha", date(2011, 3, 2))
+
+    # registres : seul l'hémophilie a un convertisseur
+    regs = {r["slug"]: r for r in client.get("/api/admin/import", headers=h).json()}
+    assert regs["hemophilie"]["disponible"] and not regs["thrombopathie"]["disponible"]
+    assert client.post("/api/admin/import/thrombopathie/preview", content=xlsx, headers=hdr).status_code == 404
+    assert client.post("/api/admin/import/inconnu/preview", content=xlsx, headers=hdr).status_code == 404
 
     # réservé aux administrateurs
     client.post("/api/admin/users", json={"login": "lecteur", "activated": True, "authorities": ["ROLE_USER"], "password": "lecteur"}, headers=h)
     hu = {**token(client, "lecteur", "lecteur"), "Content-Type": "application/octet-stream"}
     assert client.post(f"{url}/preview", content=xlsx, headers=hu).status_code == 403
+    assert client.get("/api/admin/import", headers=hu).status_code == 403
 
-    def count():
-        r = client.get("/api/fiches/hemophilie", params={"q": "Fictifimport"}, headers=h)
+    def count(q):
+        r = client.get("/api/fiches/hemophilie", params={"q": q}, headers=h)
         return int(r.headers["X-Total-Count"])
 
-    # aperçu : rien n'est écrit
+    # aperçu : rien n'est écrit, le code de chaque fiche est annoncé
     p = client.post(f"{url}/preview", content=xlsx, headers=hdr)
     assert p.status_code == 200, p.text
     assert p.json()["valide"] and p.json()["nbFiches"] == 2 and p.json()["nbNouvelles"] == 2
-    assert count() == 0
+    assert p.json()["apercu"][0]["code"] == alpha
+    assert count(alpha) == 0
 
-    # import, puis second import : aucun doublon
+    # import : noms codés, aucun nom en clair en base ; second import : aucun doublon
     r = client.post(url, content=xlsx, headers=hdr)
     assert r.status_code == 200, r.text
-    assert r.json()["importees"] == 2 and count() == 2
+    assert r.json()["importees"] == 2 and count(alpha) == 1 and count("Fictifimport") == 0
+    fiche = client.get("/api/fiches/hemophilie", params={"q": alpha}, headers=h).json()[0]
+    assert fiche["nom"] == alpha and not fiche["prenom"]
     r = client.post(url, content=xlsx, headers=hdr)
-    assert r.json() == {"importees": 0, "ignoreesDejaPresentes": 2, "alertes": r.json()["alertes"]} and count() == 2
+    assert r.json()["importees"] == 0 and r.json()["ignoreesDejaPresentes"] == 2
     assert client.post(f"{url}/preview", content=xlsx, headers=hdr).json()["nbDejaPresentes"] == 2
 
+    # correspondance : remise à l'administrateur, recalculée depuis le fichier
+    corr = client.post(f"{url}/correspondence", content=xlsx, headers=hdr)
+    assert corr.status_code == 200
+    assert (alpha, "Fictifimport", "Alpha", "2011-03-02", "ligne Excel 2") in _xlsx_rows(corr.content)
+
     # fichier au mauvais format ou illisible : refusé, rien n'est écrit
-    bad = _fake_registry([("Fictifimport Gamma", (2013, 1, 1))])
     import io
 
     import openpyxl
 
-    wb = openpyxl.load_workbook(io.BytesIO(bad))
+    wb = openpyxl.load_workbook(io.BytesIO(_fake_registry([("Fictifimport Gamma", (2013, 1, 1))])))
     wb.active["A1"] = "Autre colonne"
     buf = io.BytesIO()
     wb.save(buf)
-    r = client.post(url, content=buf.getvalue(), headers=hdr)
-    assert r.status_code == 400 and count() == 2
+    assert client.post(url, content=buf.getvalue(), headers=hdr).status_code == 400
     assert client.post(url, content=b"pas un classeur", headers=hdr).status_code == 400
 
     # classeur de contrôle
     rep = client.post(f"{url}/report", content=xlsx, headers=hdr)
     assert rep.status_code == 200 and rep.content[:2] == b"PK"
+
+
+def test_code_existing_clear_names(client):
+    from datetime import date
+
+    from app.pseudonym import code
+
+    h = token(client)
+    ent = next(e for e in entities() if e["slug"] == "thrombopathie")
+    payload = {**minimal(ent), "nom": "Fictifexist", "prenom": "Delta", "dateNaissance": "2009-06-07"}
+    assert client.post("/api/fiches/thrombopathie", json=payload, headers=h).status_code == 201
+    before = {r["slug"]: r["nonCodees"] for r in client.get("/api/admin/import", headers=h).json()}["thrombopathie"]
+    assert before >= 1
+
+    r = client.post("/api/admin/import/thrombopathie/code-existing", headers=h)
+    assert r.status_code == 200, r.text
+    c = code("thrombopathie", "Fictifexist", "Delta", date(2009, 6, 7))
+    assert any(row[:4] == (c, "Fictifexist", "Delta", "2009-06-07") for row in _xlsx_rows(r.content))
+    lst = client.get("/api/fiches/thrombopathie", params={"q": c}, headers=h)
+    assert int(lst.headers["X-Total-Count"]) == 1 and not lst.json()[0]["prenom"]
+    assert {r["slug"]: r["nonCodees"] for r in client.get("/api/admin/import", headers=h).json()}["thrombopathie"] == 0
+    # second passage : rien à coder
+    assert client.post("/api/admin/import/thrombopathie/code-existing", headers=h).status_code == 409

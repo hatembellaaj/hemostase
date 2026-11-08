@@ -38,6 +38,8 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
       # compte de démonstration user/user : désactivé par défaut (serveur exposé)
       CREATE_DEFAULT_USER: ${CREATE_DEFAULT_USER:-false}
+      # clé du codage des noms et prénoms à l'import (obligatoire pour importer)
+      PSEUDO_KEY: ${PSEUDO_KEY:-}
       SEED_DEMO_DATA: ${SEED_DEMO_DATA:-false}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:18500}
     depends_on:

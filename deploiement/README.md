@@ -30,13 +30,15 @@ programme. En cas de conflit, changer la variable du `.env` concerné et relance
 ```bash
 cd python-react
 cp .env.example .env            # changer les mots de passe, JWT_SECRET ; HTTP_PORT=18500
+sed -i "s/^PSEUDO_KEY=.*/PSEUDO_KEY=$(openssl rand -hex 32)/" .env   # clé du codage des noms : à sauvegarder hors du serveur
 docker compose up -d --build    # -> http://<serveur>:18500
 ```
 
 Le projet s'appelle `hemostase` (conteneurs `hemostase-*`, volume de base `hemostase_db_data`).
 
-Pour charger les fiches d'hémophilie : connecté en administrateur, menu **Administration → Importer (Excel)**
-(aperçu et contrôle avant import, aucune fiche importée deux fois). Voir `python-react/README.md`.
+Pour charger un registre : connecté en administrateur, menu **Administration → Importer (Excel)** ; choisir le
+registre (hémophilie aujourd'hui), puis le fichier. Les noms et prénoms sont remplacés par un code ; la correspondance
+se télécharge à part et ne reste pas sur le serveur. Voir `python-react/README.md`.
 
 ## 3. Contrôle qualité (agentic-qa)
 

@@ -11,7 +11,7 @@ import FicheDetail from './pages/FicheDetail';
 import FicheForm from './pages/FicheForm';
 import FicheList from './pages/FicheList';
 import Home from './pages/Home';
-import ImportHemophilie from './pages/ImportHemophilie';
+import ImportRegistre from './pages/ImportRegistre';
 import Login from './pages/Login';
 import Stats from './pages/Stats';
 import Users from './pages/Users';
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         path: 'admin/import',
         element: (
           <Guard admin>
-            <ImportHemophilie />
+            <ImportRegistre />
           </Guard>
         ),
       },

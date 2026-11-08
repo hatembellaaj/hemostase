@@ -25,6 +25,9 @@ class Settings(BaseSettings):
 
     cors_origins: str = "http://localhost:5173,http://localhost:18500"
 
+    # Clé secrète du codage des noms et prénoms (pseudonym.py) : 32 caractères minimum, à ne jamais changer ni perdre
+    pseudo_key: str = ""
+
 
 @lru_cache
 def get_settings() -> Settings:

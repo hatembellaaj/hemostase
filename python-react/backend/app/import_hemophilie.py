@@ -921,13 +921,31 @@ def build_report(res: ImportResult) -> openpyxl.Workbook:
 
 
 def main(xlsx: str, out_sql: str, out_report: str) -> None:
+    import os
+
+    from .pseudonym import PseudoKeyMissing, code, correspondence_workbook
+
     res = parse_workbook(xlsx)
     if res.errors:
         sys.exit("Import impossible :\n  " + "\n  ".join(res.errors))
+    build_report(res).save(out_report)     # classeur de contrôle : identités du fichier source, usage local
+    # noms et prénoms codés comme dans l'interface (même clé PSEUDO_KEY, même code) ; correspondance à part
+    key = os.environ.get("PSEUDO_KEY")
+    try:
+        rows = []
+        for line, d in res.fiches:
+            c = code(ENT["slug"], d.get("nom"), d.get("prenom"), d.get("dateNaissance"), key)
+            rows.append({"code": c, "nom": d.get("nom"), "prenom": d.get("prenom"), "dateNaissance": d.get("dateNaissance"),
+                         "origine": f"ligne Excel {line}"})
+            d["nom"], d["prenom"] = c, None
+    except PseudoKeyMissing as e:
+        sys.exit(f"{e} Exportez la même clé que le serveur : PSEUDO_KEY=... python tools/import_registre_hemophilie.py ...")
     write_sql(res, out_sql)
-    build_report(res).save(out_report)
-    print(f"{len(res.fiches)} fiches -> {out_sql}")
+    out_corr = Path(out_sql).with_name(Path(out_sql).stem + "_correspondance.xlsx")
+    out_corr.write_bytes(correspondence_workbook(rows, Path(xlsx).name))
+    print(f"{len(res.fiches)} fiches (noms codés) -> {out_sql}")
     print(f"{len(res.alerts)} alertes -> {out_report}")
+    print(f"correspondance code <-> identité -> {out_corr}  (CONFIDENTIEL : à conserver hors du serveur)")
 
 
 if __name__ == "__main__":
