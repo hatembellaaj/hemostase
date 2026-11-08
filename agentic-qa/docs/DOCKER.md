@@ -60,12 +60,12 @@ docker compose up -d review
 docker compose logs -f review
 ```
 
-Streamlit n'a pas d'authentification : il est publié sur `127.0.0.1:8501` du serveur seulement.
+Streamlit n'a pas d'authentification : il est publié sur `127.0.0.1:18501` du serveur seulement.
 Depuis le poste de l'expert :
 
 ```bash
-ssh -L 8501:127.0.0.1:8501 <user>@<serveur>
-# puis ouvrir http://localhost:8501
+ssh -L 18501:127.0.0.1:18501 <user>@<serveur>
+# puis ouvrir http://localhost:18501
 ```
 
 (Changer le port local avec `HQA_REVIEW_PORT` dans `.env`. Pour un accès sans tunnel, le placer derrière le
@@ -125,8 +125,8 @@ Sans GPU le modèle tourne sur CPU, beaucoup plus lentement.
 que des agrégats, aucune donnée patient. Le service `site` (nginx) la sert en lecture seule :
 
 ```bash
-docker compose up -d site            # http://127.0.0.1:8097 sur le serveur
-ssh -L 8097:127.0.0.1:8097 <user>@<serveur>   # depuis un poste, puis http://localhost:8097
+docker compose up -d site            # http://127.0.0.1:18503 sur le serveur
+ssh -L 18503:127.0.0.1:18503 <user>@<serveur>   # depuis un poste, puis http://localhost:18503
 ```
 
 Pour la rendre accessible sur le réseau, mettre `HQA_SITE_BIND=0.0.0.0` dans `.env` (ou la placer derrière le
@@ -146,4 +146,5 @@ docker volume rm hemostase-qa_ollama-models   # supprime les modèles téléchar
 ## Cohabitation avec les autres déploiements
 
 Projet Compose distinct (`name: hemostase-qa`), réseau propre, aucune base de données, aucun port publié
-hors `127.0.0.1:8501` : pas de conflit avec la version Java ni avec `python-react` (port 8090).
+hors la plage 18500-18509 (revue 18501, passerelle 18502, bilan 18503 ; registre `python-react` sur 18500) :
+voir `../deploiement/README.md` et `../deploiement/check_ports.sh`.

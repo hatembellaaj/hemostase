@@ -5,7 +5,7 @@ Kit RAISE pour le contrôle qualité multi-agent (Maître/Esclaves) via la passe
   python raise/raise_kit.py build
       -> raise/dist/ : prompts système assemblés (à coller dans RAISE) + toolbox_tools.json
   python raise/raise_kit.py register --raise-url https://raise.example.org --auth "Bearer <jeton admin>" \
-         --hqa-url http://<hôte>:8095 --hqa-key <HQA_API_KEY>
+         --hqa-url http://<hôte>:18502 --hqa-key <HQA_API_KEY>
       -> crée les outils Toolbox et les secrets globaux HQA_API_URL / HQA_API_KEY dans RAISE
   python raise/raise_kit.py run --system RAISE-B3 --subset dev --master <id assistant Coordinateur> ...
       -> une session de la passerelle, une conversation RAISE par dossier, coûts relevés, session close
@@ -282,12 +282,12 @@ def main(argv=None):
     r = sp.add_parser("register")
     r.add_argument("--raise-url", required=True)
     r.add_argument("--auth", required=True, help='"Bearer <jeton admin>" ou clé API RAISE')
-    r.add_argument("--hqa-url", required=True, help="URL de la passerelle vue DEPUIS le backend RAISE, ex. http://10.0.0.5:8095")
+    r.add_argument("--hqa-url", required=True, help="URL de la passerelle vue DEPUIS le backend RAISE, ex. http://10.0.0.5:18502")
     r.add_argument("--hqa-key", required=True)
     x = sp.add_parser("run")
     x.add_argument("--system", required=True, choices=["RAISE-B1", "RAISE-B2", "RAISE-B3", "RAISE-B3-noverif"])
     x.add_argument("--subset", default="dev", choices=["dev", "test", "all"])
-    x.add_argument("--hqa-url", default="http://127.0.0.1:8095")
+    x.add_argument("--hqa-url", default="http://127.0.0.1:18502")
     x.add_argument("--hqa-key", default=None)
     x.add_argument("--raise-url", required=True)
     x.add_argument("--raise-auth", required=True)

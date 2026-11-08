@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     # Charge les fiches de démonstration (fake-data JHipster) si les tables sont vides
     seed_demo_data: bool = False
 
-    cors_origins: str = "http://localhost:5173,http://localhost:8080"
+    cors_origins: str = "http://localhost:5173,http://localhost:18500"
 
 
 @lru_cache

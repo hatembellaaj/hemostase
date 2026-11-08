@@ -4,17 +4,17 @@ Ce dossier contient les prompts et les définitions d'outils pour faire tourner 
 plateforme RAISE (assistants LangGraph Advanced, délégation `delegate_assistant_ids`, modèles Azure OpenAI),
 ainsi qu'un lanceur qui traite les dossiers un par un et produit des exports évaluables par `hqa evaluate`.
 
-## 1. Principe : les agents n'appellent pas l'API 8090
+## 1. Principe : les agents n'appellent pas l'API du registre
 
-L'API `http://<serveur>:8090/api` (FastAPI hemostase-py) ne convient pas aux agents :
+L'API `http://<serveur>:18500/api` (FastAPI hemostase-py, port `HTTP_PORT`) ne convient pas aux agents :
 
-| API 8090 `/api/fiches/...` | Risque si un agent GPT l'appelle |
+| API du registre `/api/fiches/...` | Risque si un agent GPT l'appelle |
 |---|---|
 | renvoie nom, n° de dossier, date de naissance complète | identifiants directs envoyés à Azure |
 | `PUT` / `DELETE` sur les fiches | un agent peut modifier ou supprimer le registre |
 | aucune validation métier des réponses d'agents | citations inventées, règles en hypothèse, corrections automatiques |
 
-Les outils RAISE s'appuient donc sur une **passerelle QA** (`hqa/gateway.py`, port 8095). Son schéma OpenAPI est
+Les outils RAISE s'appuient donc sur une **passerelle QA** (`hqa/gateway.py`, port 18502 sur l'hôte, `HQA_GATEWAY_PORT`). Son schéma OpenAPI est
 publié sur `/api/qa/docs`. La passerelle :
 
 - sert une vue **pseudonymisée** : identifiant d'étude, dates au mois, noms retirés des commentaires ;
@@ -33,9 +33,9 @@ publié sur `/api/qa/docs`. La passerelle :
 flowchart LR
   subgraph Serveur hemostase
     XLSX[(copie registre.xlsx<br/>SHA-256)] --> GW
-    GW[Passerelle QA :8095<br/>/api/qa — lecture seule<br/>pseudonymisation · règles · validation · budget]
+    GW[Passerelle QA :18502<br/>/api/qa — lecture seule<br/>pseudonymisation · règles · validation · budget]
     GW --> RUNS[(runs/&lt;session&gt;<br/>exports désidentifiés)]
-    API8090[API hemostase :8090<br/>nominative — NON exposée aux agents]
+    API8090[API hemostase :18500<br/>nominative — NON exposée aux agents]
   end
   subgraph RAISE
     M[Maître : Coordinateur<br/>LangGraph Advanced, T=0]
@@ -110,8 +110,8 @@ python3 -c "import secrets;print(secrets.token_urlsafe(32))"      # -> HQA_API_K
 # .env : HQA_API_KEY=…  HQA_GATEWAY_BIND=127.0.0.1 (ou IP privée, voir 4.2)
 #        HQA_ALLOW_REGISTRY_DATA_TO_LLM=yes   UNIQUEMENT après autorisation écrite (voir § 6)
 docker compose build && docker compose up -d gateway
-curl -s http://127.0.0.1:8095/api/qa/health
-# schéma : http://127.0.0.1:8095/api/qa/docs
+curl -s http://127.0.0.1:18502/api/qa/health
+# schéma : http://127.0.0.1:18502/api/qa/docs
 ```
 
 ### 4.2 Réseau RAISE → passerelle
@@ -120,7 +120,7 @@ C'est le backend RAISE qui exécute les scripts de la Toolbox : c'est donc lui q
 
 | Cas | `HQA_API_URL` (secret RAISE) | Publication de la passerelle |
 |---|---|---|
-| RAISE sur le même serveur, en Docker | `http://host.docker.internal:8095` (avec `extra_hosts: host-gateway`) ou l'IP du pont Docker | `HQA_GATEWAY_BIND=172.17.0.1` |
+| RAISE sur le même serveur, en Docker | `http://host.docker.internal:18502` (avec `extra_hosts: host-gateway`) ou l'IP du pont Docker | `HQA_GATEWAY_BIND=172.17.0.1` |
 | RAISE sur un autre serveur | `https://qa.<domaine>` | proxy inverse HTTPS + liste blanche de l'IP de RAISE ; jamais `0.0.0.0` sans pare-feu |
 
 ### 4.3 Modèle Azure dans RAISE
@@ -133,7 +133,7 @@ Fournisseur Azure OpenAI dans l'administration RAISE. Le modèle s'appelle `azur
 ```bash
 python3 raise/raise_kit.py build          # -> raise/dist/ (prompts assemblés + toolbox_tools.json)
 python3 raise/raise_kit.py register --raise-url https://<raise> --auth "Bearer <jeton admin>" \
-        --hqa-url http://<passerelle vue depuis RAISE>:8095 --hqa-key <HQA_API_KEY>
+        --hqa-url http://<passerelle vue depuis RAISE>:18502 --hqa-key <HQA_API_KEY>
 ```
 
 `register` crée les 7 outils Toolbox et les secrets globaux `HQA_API_URL` et `HQA_API_KEY`. Ces secrets sont injectés dans le script et ne sont jamais visibles du LLM. Les identifiants des outils créés sont écrits dans
@@ -213,4 +213,4 @@ docker compose run --rm hqa evaluate --runs <B0> <RAISE-B1> <RAISE-B2> <RAISE-B3
 - Le nombre d'appels LLM et les jetons de la voie B dépendent de RAISE. La passerelle ne voit que les appels d'outils.
 - La sortie du Maître n'est pas déterministe, même à température 0. Le manifeste trace le modèle et la version des prompts (`--prompt-version`), mais les prompts eux-mêmes se figent dans RAISE : exportez-les à chaque version.
 - Les sessions de la passerelle sont gardées en mémoire. Un redémarrage pendant une session oblige à en ouvrir une nouvelle ; aucun export partiel n'est présenté comme complet.
-- La passerelle lit la copie Excel du registre (empreinte vérifiée), pas la base de l'application 8090.
+- La passerelle lit la copie Excel du registre (empreinte vérifiée), pas la base de l'application du registre.

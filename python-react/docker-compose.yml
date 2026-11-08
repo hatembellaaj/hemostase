@@ -1,7 +1,10 @@
 # Registre hémostase : MariaDB + API FastAPI + interface React (nginx)
 #   cp .env.example .env    # puis adaptez les mots de passe
 #   docker compose up -d --build
-#   -> http://localhost:8080
+#   -> http://localhost:18500   (HTTP_PORT dans .env ; plage de la solution : 18500-18509, voir deploiement/README.md)
+
+# nom de projet fixe : conteneurs hemostase-db-1, hemostase-backend-1, hemostase-frontend-1 ; volume hemostase_db_data
+name: hemostase
 
 services:
   db:
@@ -24,7 +27,7 @@ services:
       retries: 10
     # décommentez pour accéder à la base depuis votre poste (DBeaver, etc.)
     # ports:
-    #   - "3306:3306"
+    #   - "127.0.0.1:${DB_PORT:-18507}:3306"
 
   backend:
     build: ./backend
@@ -34,7 +37,7 @@ services:
       JWT_SECRET: ${JWT_SECRET:-change-me-please-change-me-please-change-me-please}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
       SEED_DEMO_DATA: ${SEED_DEMO_DATA:-false}
-      CORS_ORIGINS: http://localhost:8080
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:18500}
     depends_on:
       db:
         condition: service_healthy
@@ -43,7 +46,7 @@ services:
     build: ./frontend
     restart: unless-stopped
     ports:
-      - "${HTTP_PORT:-8080}:80"
+      - "${HTTP_BIND:-0.0.0.0}:${HTTP_PORT:-18500}:80"
     depends_on:
       backend:
         condition: service_healthy

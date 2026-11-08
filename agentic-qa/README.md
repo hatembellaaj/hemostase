@@ -38,7 +38,7 @@ Outil d'aide à la revue des données : il ne prend aucune décision clinique et
 cp .env.example .env && mkdir -p data/raw runs   # puis copier registre.xlsx dans data/raw/
 HQA_GIT_COMMIT=$(git rev-parse HEAD) docker compose build
 docker compose run --rm hqa audit
-docker compose up -d review                     # http://127.0.0.1:8501 (tunnel SSH depuis un poste distant)
+docker compose up -d review                     # http://127.0.0.1:18501 (tunnel SSH depuis un poste distant)
 ```
 
 Toutes les commandes, le modèle local Ollama et le déploiement serveur : `docs/DOCKER.md`.

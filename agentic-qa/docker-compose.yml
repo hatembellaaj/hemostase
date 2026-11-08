@@ -4,7 +4,8 @@
 #   docker compose run --rm hqa audit                 # CLI : toute commande de « python -m hqa.cli »
 #   docker compose up -d review                       # interface de revue (Streamlit)
 #   docker compose up -d gateway                      # passerelle QA pour RAISE : /api/qa/docs
-#   docker compose up -d site                         # page de bilan statique : http://127.0.0.1:8097
+#   docker compose up -d site                         # page de bilan statique : http://127.0.0.1:18503
+# Ports publiés (hôte) : revue 18501, passerelle 18502, bilan 18503 — modifiables dans .env (voir ../deploiement/README.md).
 #   docker compose --profile llm up -d ollama         # modèle local (facultatif, voir docs/DOCKER.md)
 #
 # Les données restent sur l'hôte (./data, ./runs) ; elles ne sont jamais copiées dans l'image.
@@ -36,9 +37,9 @@ services:
                  "--server.address=0.0.0.0", "--server.port=8501", "--server.headless=true"]
     command: []
     # Streamlit n'a PAS d'authentification : exposé seulement sur la boucle locale de l'hôte.
-    # Accès distant : tunnel SSH (ssh -L 8501:127.0.0.1:8501 serveur) — voir docs/DOCKER.md.
+    # Accès distant : tunnel SSH (ssh -L 18501:127.0.0.1:18501 serveur) — voir docs/DOCKER.md.
     ports:
-      - "127.0.0.1:${HQA_REVIEW_PORT:-8501}:8501"
+      - "127.0.0.1:${HQA_REVIEW_PORT:-18501}:8501"
     restart: unless-stopped
 
   gateway:
@@ -47,16 +48,16 @@ services:
     entrypoint: ["uvicorn", "hqa.gateway:app", "--host", "0.0.0.0", "--port", "8095"]
     command: []
     ports:
-      - "${HQA_GATEWAY_BIND:-127.0.0.1}:${HQA_GATEWAY_PORT:-8095}:8095"
+      - "${HQA_GATEWAY_BIND:-127.0.0.1}:${HQA_GATEWAY_PORT:-18502}:8095"
     restart: unless-stopped
 
   site:
-    # page de bilan statique (agrégats uniquement, aucune donnée patient) : http://127.0.0.1:8097
+    # page de bilan statique (agrégats uniquement, aucune donnée patient) : http://127.0.0.1:18503
     image: nginx:1.27.3-alpine
     volumes:
       - ./site:/usr/share/nginx/html:ro
     ports:
-      - "${HQA_SITE_BIND:-127.0.0.1}:${HQA_SITE_PORT:-8097}:80"
+      - "${HQA_SITE_BIND:-127.0.0.1}:${HQA_SITE_PORT:-18503}:80"
     networks: [qa]
     restart: unless-stopped
 

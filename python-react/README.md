@@ -19,10 +19,10 @@ cp .env.example .env          # changez les mots de passe et JWT_SECRET
 docker compose up -d --build
 ```
 
-Ouvrez <http://localhost:8080> et connectez-vous avec `admin` / `admin` (ou `user` / `user`).
+Ouvrez <http://localhost:18500> (port `HTTP_PORT` du `.env`) et connectez-vous avec `admin` / `admin` (ou `user` / `user`).
 **Changez ces mots de passe dès la première connexion** (menu « Mon compte »).
 
-- Documentation interactive de l'API : <http://localhost:8080/api/docs>
+- Documentation interactive de l'API : <http://localhost:18500/api/docs>
 - Pour charger les 80 fiches fictives de JHipster dans une base vide : `SEED_DEMO_DATA=true` dans `.env`.
 
 ### Mode développement (rechargement à chaud)
@@ -31,7 +31,8 @@ Ouvrez <http://localhost:8080> et connectez-vous avec `admin` / `admin` (ou `use
 docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 
-Interface sur <http://localhost:5173>, API sur <http://localhost:8000/api/docs>, MariaDB sur le port 3306.
+Interface sur <http://localhost:5173>, API sur <http://localhost:8000/api/docs>, MariaDB sur le port 3306
+(modifiables par `DEV_WEB_PORT`, `DEV_API_PORT`, `DEV_DB_PORT` ; publiés sur 127.0.0.1 seulement).
 
 Sans Docker :
 
